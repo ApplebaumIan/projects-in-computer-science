@@ -6,6 +6,9 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import ProjectReadme from "../components/ReademeMD";
 import styles from './index.module.css';
+//import Syllabus from '../components/Syllabus';
+import SyllabusPage from './_syllabus-page.mdx'
+import MDXContent from '@theme/MDXContent';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -36,8 +39,11 @@ export default function Home() {
         description="Description will go into a meta tag in <head />">
         <HomepageHeader/>
         <main>
-            <HomepageFeatures/>
-            <ProjectReadme/>
+          <MDXContent>
+          <div style={{margin:50}}>
+            <SyllabusPage/>
+            </div>
+          </MDXContent>
         </main>
     </Layout>
   );
