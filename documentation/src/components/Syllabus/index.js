@@ -1,7 +1,6 @@
 const api_key = "rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb"; // don't worry its READ ONLY
 
 import React, { useEffect, useState } from "react"
-import axios from "axios";
 
 
 export default function Syllabus() {
@@ -19,34 +18,34 @@ export default function Syllabus() {
     return weeks + 1;
 }
 
-var config = {
-  method: 'get',
-  url: 'https://9e47-2607-fb90-37c-2b1a-9006-ba88-94f7-c4d4.ngrok.io/api/syllabus/1',
-  headers: { 
-    'Accept': 'application/json', 
-    'Authorization': 'Bearer '+api_key, 
-    'Access-Control-Allow-Origin' : '*',
-
-  }
-};
 
 
     const [events, setEvents] = useState()
-    const [s, setSyllabus] = useState()
+    const [s, setSyllabus] = useState({})
 
     useEffect(()=>{
       if (events == null){
-        axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-          setSyllabus(response.data.syllabus)
-          setEvents(response.data.events)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        var myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Authorization", "Bearer rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb");
+        
+        var requestOptions = {
+          method: 'GET',
+          headers: myHeaders,
+          redirect: 'follow'
+        };
+        
+        fetch("https://9e47-2607-fb90-37c-2b1a-9006-ba88-94f7-c4d4.ngrok.io/api/syllabus/1", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result)
+            setSyllabus(result.syllabus)
+            setEvents(result.events)
+          })
+          .catch(error => console.log('error', error));
       }
     },[events]);
+
     return <table>
                     <thead>
                     <tr>
