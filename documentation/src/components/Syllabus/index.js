@@ -1,4 +1,5 @@
 const api_key = "rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb"; // don't worry its READ ONLY
+const url = "https://92f1-2601-41-c402-84f0-8ca7-cfb8-29b4-8607.ngrok.io";
 
 import React, { useEffect, useState } from "react"
 
@@ -27,15 +28,15 @@ export default function Syllabus() {
       if (events == null){
         var myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
-        myHeaders.append("Authorization", "Bearer rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb");
-        
+        myHeaders.append("Authorization", `Bearer ${api_key}`);
+
         var requestOptions = {
           method: 'GET',
           headers: myHeaders,
-          redirect: 'follow'
+          redirect: 'follow',
         };
-        
-        fetch("https://9e47-2607-fb90-37c-2b1a-9006-ba88-94f7-c4d4.ngrok.io/api/syllabus/1", requestOptions)
+
+          fetch(url + "/api/syllabus/1", requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
@@ -73,7 +74,9 @@ export default function Syllabus() {
                     <tbody>
       {
       events != null ? events.map((event) => {
-          return <tr >
+          return <tr
+              key={event.id}
+          >
           <th scope="col">
               {
                   weeksBetween(s.start_date, event.event_date)

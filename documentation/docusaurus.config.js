@@ -216,6 +216,10 @@ const config = {
 
   ],
   scripts:['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+    {
+      src: 'https://assets.calendly.com/assets/external/widget.js',
+      async: true,
+    },
       ...main_template_jira_scripts()
   ],
 };
