@@ -1,5 +1,5 @@
-const api_key = "rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb"; // don't worry its READ ONLY
-const url = "https://92f1-2601-41-c402-84f0-8ca7-cfb8-29b4-8607.ngrok.io";
+const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
+const url = "http://ians-courses.ddns.net";
 
 import React, { useEffect, useState } from "react"
 
