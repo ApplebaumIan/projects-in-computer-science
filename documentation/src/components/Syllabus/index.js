@@ -1,4 +1,5 @@
-const api_key = "rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb"; // don't worry its READ ONLY
+const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
+const url = "https://ians-courses.ddns.net";
 
 import React, { useEffect, useState } from "react"
 
@@ -27,15 +28,15 @@ export default function Syllabus() {
       if (events == null){
         var myHeaders = new Headers();
         myHeaders.append("Accept", "application/json");
-        myHeaders.append("Authorization", "Bearer rxtVZfqg4YzLysJn2Z4lTsWPN0bZSbD5orRbUPOb");
-        
+        myHeaders.append("Authorization", `Bearer ${api_key}`);
+
         var requestOptions = {
           method: 'GET',
           headers: myHeaders,
-          redirect: 'follow'
+          redirect: 'follow',
         };
-        
-        fetch("https://9e47-2607-fb90-37c-2b1a-9006-ba88-94f7-c4d4.ngrok.io/api/syllabus/1", requestOptions)
+
+          fetch(url + "/api/syllabus/1", requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
