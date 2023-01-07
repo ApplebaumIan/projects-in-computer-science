@@ -216,7 +216,7 @@ const config = {
 
   ],
   scripts:['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
-      ...main_template_jira_scripts()
+  ...main_template_jira_scripts()
   ],
 };
 console.log(config.scripts)

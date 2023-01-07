@@ -73,7 +73,7 @@ export default function Syllabus() {
                     <tbody>
       {
       events != null ? events.map((event) => {
-          return <tr >
+          return <tr key={event.id}>
           <th scope="col">
               {
                   weeksBetween(s.start_date, event.event_date)
