@@ -1,5 +1,5 @@
 const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
-const url = "http://ians-courses.ddns.net";
+const url = "https://ians-courses.ddns.net";
 
 import React, { useEffect, useState } from "react"
 
