@@ -1,9 +1,63 @@
+import * as PropTypes from "prop-types";
+
 const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
 const url = "https://ians-courses.ddns.net";
 
 import React, { useEffect, useState } from "react"
+import Mermaid from "@theme/Mermaid";
 
+function SyllabusTable(props) {
+    return <table>
+        <thead>
+        <tr>
+            <th scope="col">
+                Week
+            </th>
+            <th scope="col">
+                Type
+            </th>
+            <th scope="col">
+                Event
+            </th>
+            <th scope="col">
+                <div className="flex items-center">
+                    Description
+                </div>
+            </th>
+            <th scope="col">
+                <div className="flex items-center">
+                    Date
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {
+            props.events != null ? props.events.map(props.prop1) : <></>
+        }
+        </tbody>
+    </table>;
+}
+function SyllabusGantt(props) {
+    return  <Mermaid value={`gantt
+    title Schedule Gantt Chart
+    dateFormat  YYYY-MM-DD
+    ${props.events != null ? props.events.map(props.prop1):``}`}
+    />
 
+    // <Mermaid value={`gantt
+    // title Projects in Computer Science Spring 2023 Syllabus
+    // dateFormat  YYYY-MM-DD
+    // ${props.events != null ? props.events.map(event=>formatEvent(event.toString())):``}
+    // `
+    // }/>
+        ;
+}
+
+SyllabusTable.propTypes = {
+    events: PropTypes.func,
+    prop1: PropTypes.func
+};
 export default function Syllabus() {
   function weeksBetween(startDate, endDate) {
     // Convert start and end dates to Date objects
@@ -47,57 +101,43 @@ export default function Syllabus() {
       }
     },[events]);
 
-    return <table>
-                    <thead>
-                    <tr>
-                        <th scope="col" >
-                            Week
-                        </th>
-                        <th scope="col" >
-                            Type
-                        </th>
-                        <th scope="col">
-                            Event
-                        </th>
-                        <th scope="col" >
-                            <div className="flex items-center">
-                                Description
-                            </div>
-                        </th>
-                        <th scope="col" >
-                            <div className="flex items-center">
-                                Date
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-      {
-      events != null ? events.map((event) => {
-          return <tr key={event.id}>
-          <th scope="col">
-              {
-                  weeksBetween(s.start_date, event.event_date)
-              }
-          </th>
-          <th scope="row"
-              >
-              {event.class_type}
-          </th>
-          <th scope="row"
-              >
-              {event.event_name}
-          </th>
-          <td >
-              {event.event_description}
-          </td>
-          <td >
-              {event.event_date}
-          </td>
-      </tr>
-      }) : <></>
+  function removeEmoji(s) {
+        return s.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
+      }
+
+
+    function formatEvent(event) {
+        return `${event.event_name}:${event.event_name.includes("Milestone") ? `milestone,`:``} ${event.event_date}, 1d \n`;
+        // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
-      </tbody>
-      </table>
+
+    return <>
+        <SyllabusGantt events={events} prop1={(event) => {
+            return formatEvent(event)
+        }}/>
+        <SyllabusTable events={events} prop1={(event) => {
+        return <tr key={event.id}>
+            <th scope="col">
+                {
+                    weeksBetween(s.start_date, event.event_date)
+                }
+            </th>
+            <th scope="row"
+            >
+                {event.class_type}
+            </th>
+            <th scope="row"
+            >
+                {event.event_name}
+            </th>
+            <td>
+                {event.event_description}
+            </td>
+            <td>
+                {event.event_date}
+            </td>
+        </tr>
+    }}/>
+    </>
     ;
 }
