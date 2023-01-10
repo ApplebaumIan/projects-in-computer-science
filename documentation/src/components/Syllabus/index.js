@@ -5,6 +5,7 @@ const url = "https://ians-courses.ddns.net";
 
 import React, { useEffect, useState } from "react"
 import Mermaid from "@theme/Mermaid";
+import CodeBlock from "@theme/CodeBlock";
 
 function SyllabusTable(props) {
     return <table>
@@ -39,11 +40,18 @@ function SyllabusTable(props) {
     </table>;
 }
 function SyllabusGantt(props) {
-    return  <Mermaid value={`gantt
+    let chart = `gantt
     title Schedule Gantt Chart
     dateFormat  YYYY-MM-DD
-    ${props.events != null ? props.events.map(props.prop1):``}`}
+    ${props.events != null ? props.events.map(props.prop1).join(''):``}`;
+    return  <details><summary>Click here for Mermaid Diagram markdown.
+        <Mermaid value={chart}
     />
+    </summary>
+    <CodeBlock>
+        {chart}
+    </CodeBlock>
+    </details>
 
     // <Mermaid value={`gantt
     // title Projects in Computer Science Spring 2023 Syllabus
@@ -58,8 +66,7 @@ SyllabusTable.propTypes = {
     events: PropTypes.func,
     prop1: PropTypes.func
 };
-export default function Syllabus() {
-  function weeksBetween(startDate, endDate) {
+function weeksBetween(startDate, endDate) {
     // Convert start and end dates to Date objects
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -72,6 +79,8 @@ export default function Syllabus() {
 
     return weeks + 1;
 }
+export default function Syllabus() {
+
 
 
 
@@ -106,15 +115,29 @@ export default function Syllabus() {
       }
 
 
-    function formatEvent(event) {
-        return `${event.event_name}:${event.event_name.includes("Milestone") ? `milestone,`:``} ${event.event_date}, 1d \n`;
+    function formatEvent(s,event) {
+        let event_date = new Date(event.event_date);
+        let today = Date.now();
+        let status = ``
+        if(today === event_date)
+        {
+            status = `active`
+        }
+        if(today > event_date)
+        {
+            status = `done`
+        }
+
+        let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
+        return `section Week ${weeksBetween(s.start_date, event.event_date)} 
+         ${event.event_name} ${classType}:${event.event_name.includes("Demo") ? `milestone,`:``} ${status}, ${event.event_date}, 1d
+        `;
         // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
-
     return <>
         <SyllabusGantt events={events} prop1={(event) => {
-            return formatEvent(event)
-        }}/>
+            return formatEvent(s,event)
+        }} />
         <SyllabusTable events={events} prop1={(event) => {
         return <tr key={event.id}>
             <th scope="col">
