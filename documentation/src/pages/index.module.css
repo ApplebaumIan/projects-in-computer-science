@@ -22,3 +22,15 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+/*#professor-applebaum img {*/
+/*  border-color: red;*/
+/*  border: solid;*/
+/*  border-width: 10px;*/
+/*}*/
+
+.masked {
+  -webkit-mask-image: radial-gradient(circle, black 50%, rgba(0, 0, 0, 0.5) 50%);
+  mask-image: radial-gradient(circle, black 50%, rgba(0, 0, 0, 0.5) 50%);
+
+}
