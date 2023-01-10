@@ -9,7 +9,8 @@ import styles from './index.module.css';
 //import Syllabus from '../components/Syllabus';
 import SyllabusPage from './_syllabus-page.mdx'
 import MDXContent from '@theme/MDXContent';
-
+import Figure from "../components/Figure";
+import DontPanic from "../../static/img/dont-panic.svg"
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -49,6 +50,13 @@ export default function Home() {
         title={`Hello from ${siteConfig.title}`}
         description="Description will go into a meta tag in <head />">
         <HomepageHeader/>
+        {/*<DontPanic/>*/}
+        <div>
+            <Figure caption={"Class Moto:"} subcaption={"Don't Panic, but expect the unexpected."}>
+                <DontPanic style={{height:"500px"}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
+            </Figure>
+        </div>
+
         <main>
           <MDXContent>
           <div style={{margin:50}}>

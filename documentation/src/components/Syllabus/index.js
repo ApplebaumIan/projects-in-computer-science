@@ -118,7 +118,6 @@ export default function Syllabus() {
 
 
     function phase(phase) {
-        console.log(phase)
         if (phase <= 2) {
             return `Inception Phase`
         } else if (phase > 2 && phase <= 7) {
@@ -157,7 +156,7 @@ export default function Syllabus() {
             return formatEvent(s,event)
         }} />
         <SyllabusTable events={events} prop1={(event) => {
-        return <tr key={event.id}>
+        return <tr key={event.event_name+event.id}>
             <th scope="col">
                 {
                     weeksBetween(s.start_date, event.event_date)
