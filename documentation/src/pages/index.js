@@ -53,7 +53,7 @@ export default function Home() {
         {/*<DontPanic/>*/}
         <div>
             <Figure caption={"Class Moto:"} subcaption={"Don't Panic, but expect the unexpected."}>
-                <DontPanic style={{height:"500px"}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
+                <DontPanic style={{width:"50%"}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
             </Figure>
         </div>
 
