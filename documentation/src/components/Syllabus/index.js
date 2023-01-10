@@ -49,7 +49,9 @@ function SyllabusGantt(props) {
     />
     </summary>
     <CodeBlock>
-        {chart}
+    ```mermaid{`\n`}
+        {chart+"\n"}
+    ```
     </CodeBlock>
     </details>
 
@@ -115,6 +117,16 @@ export default function Syllabus() {
       }
 
 
+    function phase(phase) {
+        console.log(phase)
+        if (phase <= 2) {
+            return `Inception Phase`
+        } else if (phase > 2 && phase <= 7) {
+            return `Elaboration Phase`
+        } else {
+            return `Construction Phase`
+        }
+    }
     function formatEvent(s,event) {
         let event_date = new Date(event.event_date);
         let today = Date.now();
@@ -130,10 +142,13 @@ export default function Syllabus() {
 
         let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
         let isMilestoneDemo = `${event.event_name.includes("Demo") ? `crit, milestone,` : ``}`;
-        let labOrLecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${status}, ${event.event_date}, 1d`;
-        let sprint = `${event.event_name}:${isMilestoneDemo} ${status}, ${event.event_date}, 2w`;
-        return `section Week ${weeksBetween(s.start_date, event.event_date)} 
-         ${ !(event.class_type==="Sprint") ? labOrLecture : sprint}
+        let isAssignment = `${event.class_type === "Assignment" ? `milestone,` : ``}`;
+        let labOrLecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
+        let sprint = `${event.event_name}: ${status}, ${event.event_date}, 2w`;
+        let week = weeksBetween(s.start_date, event.event_date);
+        var phaseStr = phase(week);
+        return `section ${phaseStr} 
+         ${!(event.class_type === "Sprint") ? labOrLecture : sprint}
         `;
         // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
