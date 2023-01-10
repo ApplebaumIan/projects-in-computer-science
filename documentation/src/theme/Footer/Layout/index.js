@@ -15,7 +15,6 @@ export default function FooterLayout({style, links, logo, copyright}) {
           </div>
         )}
       </div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async/>
     </footer>
   );
 }
