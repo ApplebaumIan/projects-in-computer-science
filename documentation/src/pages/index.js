@@ -11,6 +11,7 @@ import SyllabusPage from './_syllabus-page.mdx'
 import MDXContent from '@theme/MDXContent';
 import Figure from "../components/Figure";
 import DontPanic from "../../static/img/dont-panic.svg"
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
