@@ -119,18 +119,21 @@ export default function Syllabus() {
         let event_date = new Date(event.event_date);
         let today = Date.now();
         let status = ``
-        if(today === event_date)
-        {
-            status = `active`
-        }
-        if(today > event_date)
-        {
-            status = `done`
+        if(event.class_type !== "Sprint") {
+            if (today === event_date) {
+                status = `active`
+            }
+            if (today > event_date) {
+                status = `done`
+            }
         }
 
         let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
+        let isMilestoneDemo = `${event.event_name.includes("Demo") ? `crit, milestone,` : ``}`;
+        let labOrLecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${status}, ${event.event_date}, 1d`;
+        let sprint = `${event.event_name}:${isMilestoneDemo} ${status}, ${event.event_date}, 2w`;
         return `section Week ${weeksBetween(s.start_date, event.event_date)} 
-         ${event.event_name} ${classType}:${event.event_name.includes("Demo") ? `milestone,`:``} ${status}, ${event.event_date}, 1d
+         ${ !(event.class_type==="Sprint") ? labOrLecture : sprint}
         `;
         // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
