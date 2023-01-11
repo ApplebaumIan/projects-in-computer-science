@@ -120,7 +120,7 @@ export default function Syllabus() {
     function phase(phase) {
         if (phase <= 2) {
             return `Inception Phase`
-        } else if (phase > 2 && phase <= 7) {
+        } else if (phase > 2 && phase <= 6) {
             return `Elaboration Phase`
         } else {
             return `Construction Phase`
