@@ -43,6 +43,7 @@ function SyllabusGantt(props) {
     let chart = `gantt
     title Schedule Gantt Chart
     dateFormat  YYYY-MM-DD
+    excludes 2023-03-07 2023-03-08 2023-03-09 2023-03-10 2023-03-11 2023-03-12
     ${props.events != null ? props.events.map(props.prop1).join(''):``}`;
     return  <details><summary>Click here for Mermaid Diagram markdown.
         <Mermaid value={chart}
@@ -142,12 +143,41 @@ export default function Syllabus() {
         let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
         let isMilestoneDemo = `${event.event_name.includes("Demo") ? `crit, milestone,` : ``}`;
         let isAssignment = `${event.class_type === "Assignment" ? `milestone,` : ``}`;
-        let labOrLecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
+        let lab = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
+        let lecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
+        let assignment = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 12h`;
         let sprint = `${event.event_name}: ${status}, ${event.event_date}, 2w`;
+        let break_sprint = `${event.event_name}: ${status}, ${event.event_date}, 1w`;
+        let three_week_sprint = `${event.event_name}: ${status}, ${event.event_date}, 16d`;
+        let sbreak = `${event.event_name}: done, ${event.event_date}, 1d`;
         let week = weeksBetween(s.start_date, event.event_date);
         var phaseStr = phase(week);
+        var gantt_event = ""
+        switch (event.class_type){
+            case "Lab":
+                gantt_event = lab
+                break
+            case "Lecture":
+                gantt_event = lecture
+                break
+            case "Sprint":
+                gantt_event = event.event_name === "Sprint 2" ? break_sprint : sprint
+                if  (event.event_name === "Sprint 5"){
+                    gantt_event = three_week_sprint
+                }
+                break
+            case "Break!":
+                gantt_event = sbreak
+                break
+            // case "Assignment":
+            //     gantt_event = assignment
+            //     break
+            default:
+                gantt_event = lab
+                break
+        }
         return `section ${phaseStr} 
-         ${!(event.class_type === "Sprint") ? labOrLecture : sprint}
+         ${gantt_event}
         `;
         // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
