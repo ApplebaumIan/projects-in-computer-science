@@ -161,7 +161,7 @@ export default function Syllabus() {
                 gantt_event = lecture
                 break
             case "Sprint":
-                gantt_event = event.event_name === "Sprint 2" ? break_sprint : sprint
+                gantt_event = (event.event_name === "Sprint 2" || event.event_name === "Sprint 0") ? break_sprint : sprint
                 if  (event.event_name === "Sprint 5"){
                     gantt_event = three_week_sprint
                 }
