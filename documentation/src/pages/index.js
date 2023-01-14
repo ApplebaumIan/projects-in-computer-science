@@ -28,6 +28,11 @@ function HomepageHeader() {
             </Link>
             <Link
                 className="button button--secondary button--lg"
+                to="#class-discord">
+                Class Discord Server 💬
+            </Link>
+            <Link
+                className="button button--secondary button--lg"
                 to="#course-schedule">
                 Course Schedule 📆
             </Link>
