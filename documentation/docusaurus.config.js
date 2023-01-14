@@ -124,6 +124,12 @@ const config = {
             activeBaseRegex: `/tutorial/`,
           },
           {
+            to: '/hall-of-fame',
+            label: 'Capstone Hall of Fame 🏆',
+            position: 'right',
+          },
+
+          {
             href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
             label: 'GitHub',
             position: 'right',
