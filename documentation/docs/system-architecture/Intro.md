@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
 ---
-
-**Purpose**
+# System Architechture
+## Purpose
 
 The Design Document - Part I Architecture describes the software architecture and how the requirements are mapped into the design. This document will be a combination of diagrams and text that describes what the diagrams are showing.
 
-**Requirements**
+## Requirements
 
 In addition to the general requirements the Design Document - Part I Architecture will contain:
 

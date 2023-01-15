@@ -2,7 +2,7 @@
   "label": "Requirements Specification",
   "position": 4,
   "link": {
-    "type": "generated-index",
-    "description": "Document Overview goes here."
+    "type": "doc",
+    "id": "requirements/Intro"
   }
 }

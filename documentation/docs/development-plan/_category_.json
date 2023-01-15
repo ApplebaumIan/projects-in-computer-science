@@ -2,7 +2,7 @@
   "label": "Software Development Plan",
   "position": 5,
   "link": {
-    "type": "generated-index",
-    "description": "Document Overview goes here."
+    "type": "doc",
+    "id": "development-plan/Intro"
   }
 }
