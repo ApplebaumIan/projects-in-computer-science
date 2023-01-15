@@ -1,7 +1,7 @@
 import * as PropTypes from "prop-types";
 
 const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
-const url = "https://ians-courses.ddns.net";
+const url = "https://courses.ianapplebaum.com";
 
 import React, { useEffect, useState } from "react"
 import Mermaid from "@theme/Mermaid";
