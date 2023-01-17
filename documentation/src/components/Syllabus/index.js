@@ -129,16 +129,20 @@ export default function Syllabus() {
     }
     function formatEvent(s,event) {
         let event_date = new Date(event.event_date);
-        let today = Date.now();
+        let today = new Date();
         let status = ``
         if(event.class_type !== "Sprint") {
-            if (today === event_date) {
+            if (event_date.getFullYear() === today.getFullYear() &&
+                event_date.getMonth() === today.getMonth() &&
+                event_date.getDate() === today.getDate()) {
                 status = `active`
             }
-            if (today > event_date) {
+            else if (today.getTime() > event_date.getTime()) {
                 status = `done`
             }
         }
+
+
 
         let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
         let isMilestoneDemo = `${event.event_name.includes("Demo") ? `crit, milestone,` : ``}`;
