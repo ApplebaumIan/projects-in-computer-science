@@ -88,9 +88,14 @@ const config = {
         // Plugin Options for loading OpenAPI files
         specs: [
           {
-            id: 'using-single-yaml',
+            id: 'using-petstore-yaml',
             spec: 'static/openapi.yml.yaml',
             route: '/api/',
+          },
+          {
+            id: 'using-single-yaml',
+            spec: 'https://courses.ianapplebaum.com/public/docs/openapi.yaml',
+            route: '/courses/api/',
           },
         ],
         // Theme Options for modifying how redoc renders them
