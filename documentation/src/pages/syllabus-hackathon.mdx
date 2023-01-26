@@ -1,3 +1,4 @@
+import Figure from "../components/Figure";
 
 # Syllabus Hackathon - Docusaurus Activity
 
@@ -14,6 +15,8 @@ Fill out the followiwng form before the end of class!
 </details>
 
 :::
+
+## Introduction
 
 Documentation is a critical part of software projects. Think about it. When you're researching the tools you need for your projects, you're more likely to use the one that has documentation and a community that is actively using it. If you see a project on GitHub with no README file you're likely to just skip it, because you don't even know where to start. Large companies also expect you to document your code, so that management can add more team members when necessary, and so that 20 years down the road, they can maintain it.
 
@@ -92,8 +95,8 @@ In our Docusaurus project you can add MermaidJS diagrams directly in markdown. D
 Here is a link to MermaidJS documentation https://mermaid.js.org/syntax/classDiagram.html#class-diagrams.
 ````
 ```mermaid
-gantt
-    YOUR GANTT MARKUP
+classDiagram
+    YOUR CLASS DIAGRAM
 ```
 ````
 
@@ -101,7 +104,7 @@ gantt
 
 <summary>
 
-Markdown Code for Gantt
+Markdown Code for Class Diagram
 
 </summary>
 
@@ -164,6 +167,81 @@ classDiagram
 
 ```
 
+Here is the syntax:
+
+```
+[Relation Type][Link][Relation Type]
+```
+
+
+
+Where `Relation Type` can be one of:
+
+| Type  | Description |
+| ----- | ----------- |
+| `<\|` | Inheritance |
+| `\*`  | Composition |
+| `o`   | Aggregation |
+| `>`   | Association |
+| `<`   | Association |
+| `\|>` | Realization |
+
+And `Link` can be one of:
+
+| Type | Description |
+| ---- | ----------- |
+| --   | Solid       |
+| ..   | Dashed      |
+
+*from [MermaidJS Docs](https://mermaid.js.org/syntax/classDiagram.html#defining-relationship)*
+
+#### Example Sequence Diagram in MermaidJS
+
+<details>
+
+<summary>
+
+Markdown Code for Sequence Diagram
+
+</summary>
+
+
+````
+```mermaid
+sequenceDiagram
+actor WatchUser
+autonumber
+WatchUser->>Watch: pressButton1()
+Watch->>Display: blinkHours()
+WatchUser->>Watch: pressButton1()
+Watch->>Display: blinkMinutes()
+WatchUser->>Watch: pressButton2()
+Watch->>Time: incrementMinutes()
+Time->>Display: refresh()
+WatchUser->>Watch: pressButton1And2()
+Watch->>Time: commitNewTime()
+Watch->>Display: stopBlinkin()
+
+```
+````
+
+</details>
+
+```mermaid
+sequenceDiagram
+    actor WatchUser
+    autonumber
+    WatchUser->>Watch: pressButton1()
+    Watch->>Display: blinkHours()
+    WatchUser->>Watch: pressButton1()
+    Watch->>Display: blinkMinutes()
+    WatchUser->>Watch: pressButton2()
+    Watch->>Time: incrementMinutes()
+    Time->>Display: refresh()
+    WatchUser->>Watch: pressButton1And2()
+    Watch->>Time: commitNewTime()
+    Watch->>Display: stopBlinkin()
+```
 
 ## For Submission
 
