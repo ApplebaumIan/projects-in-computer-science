@@ -70,6 +70,87 @@ https://docs.github.com/en/github/administering-a-repository/managing-a-branch-p
 
 - You may as a team decide to make the repo private, consider keeping the repo public (optional). You should note, that your documentation will always be available publicly on GitHub Pages regardless.
 
+### UML Diagrams 
+
+#### Example Class Diagram in MermaidJS
+
+In our Docusaurus project you can add MermaidJS diagrams directly in markdown. Docusaurus will automatically render this markup to the desired chart.
+Here is a link to MermaidJS documentation https://mermaid.js.org/syntax/classDiagram.html#class-diagrams.
+````
+```mermaid
+gantt
+    YOUR GANTT MARKUP
+```
+````
+
+<details>
+
+<summary>
+
+Markdown Code for Gantt 
+
+</summary>
+
+
+````
+```mermaid
+classDiagram
+    note "From Duck till Zebra"
+    Animal <|-- Duck
+    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
+    Animal <|-- Fish
+    Animal <|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra{
+        +bool is_wild
+        +run()
+    }
+
+```
+````
+
+</details>
+
+```mermaid
+classDiagram
+    note "From Duck till Zebra"
+    Animal <|-- Duck
+    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
+    Animal <|-- Fish
+    Animal <|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra{
+        +bool is_wild
+        +run()
+    }
+
+```
+
+
 ## For Submission
 
 This is a group assignment. Submit a link to your newly created repository after all team members have joined.
