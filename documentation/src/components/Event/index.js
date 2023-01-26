@@ -40,7 +40,7 @@ export default function Event() {
     return <>
         <b>Temple University CIS {s.course_name} {s.course_year} {s.course_semester}</b>
         <br/>
-        <b>{events.event_date ? new Date(events.event_date).toDateString()+", 3:30 - 4:50 pm EST" : ""}</b><br/>
+        <b>{events.event_date ? new Date(events.event_date.replaceAll("-","/")).toDateString()+", 3:30 - 4:50 pm EST" : ""}</b><br/>
 
         {/*{events.event_description ? events.event_description : ""}*/}
     </>
