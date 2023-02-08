@@ -129,6 +129,11 @@ const config = {
             activeBaseRegex: `/tutorial/`,
           },
           {
+            to: '/slides',
+            label: 'Lecture Slides',
+            position: 'left',
+          },
+          {
             to: '/hall-of-fame',
             label: 'Capstone Hall of Fame 🏆',
             position: 'right',
