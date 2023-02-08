@@ -82,7 +82,7 @@ function weeksBetween(startDate, endDate) {
 
     return weeks + 1;
 }
-export default function Syllabus() {
+export default function Syllabus(props) {
 
 
 
@@ -102,7 +102,7 @@ export default function Syllabus() {
           redirect: 'follow',
         };
 
-          fetch(url + "/api/syllabus/1", requestOptions)
+          fetch(url + `/api/syllabus/${props.courseid}`, requestOptions)
           .then(response => response.json())
           .then(result => {
             console.log(result)
@@ -150,7 +150,7 @@ export default function Syllabus() {
         let lab = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
         let lecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
         let assignment = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 12h`;
-        let sprint = `${event.event_name}: ${status}, ${event.event_date}, 2w`;
+        let sprint = props.oneWeekSprints ? `${event.event_name}: ${status}, ${event.event_date}, 1w`: `${event.event_name}: ${status}, ${event.event_date}, 2w`;
         let break_sprint = `${event.event_name}: ${status}, ${event.event_date}, 1w`;
         let three_week_sprint = `${event.event_name}: ${status}, ${event.event_date}, 16d`;
         let sbreak = `${event.event_name}: done, ${event.event_date}, 1d`;
@@ -166,7 +166,7 @@ export default function Syllabus() {
                 break
             case "Sprint":
                 gantt_event = (event.event_name === "Sprint 2" || event.event_name === "Sprint 0") ? break_sprint : sprint
-                if  (event.event_name === "Sprint 5"){
+                if  (event.event_name === "Sprint 5" && !props.oneWeekSprints){
                     gantt_event = three_week_sprint
                 }
                 break

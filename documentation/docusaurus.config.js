@@ -28,7 +28,7 @@ const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((wo
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Professor Applebaum Section 704',
+  tagline: 'Professor Applebaum Section 002 & 704',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://capstone.ianapplebaum.com/',
   baseUrl: '/',
