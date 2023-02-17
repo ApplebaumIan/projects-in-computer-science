@@ -108,7 +108,21 @@ const config = {
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+
     ({
+      announcementBar: {
+        id: 'office_hours_changes_feb_2023',
+        content:
+            `Professor Applebaum's Monday and Friday office hours are cancelled until further notice. See <a href="#office-hours-professor-applebaum-via-zoom-meeting">Student Office Hours</a> for scheduling options.`,
+        backgroundColor: 'yellow',
+        textColor: '#091E42',
+        isCloseable: true,
+      },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
       navbar: {
         /*TODO: Change to your project's title*/
         title: title,
@@ -145,6 +159,7 @@ const config = {
             position: 'right',
           },
         ],
+
       },
       footer: {
         logo: {
