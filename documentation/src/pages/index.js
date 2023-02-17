@@ -23,7 +23,7 @@ function HomepageHeader() {
             {/* TODO: Change me to your project's tutorial*/ }
             <Link
                 className="button button--secondary button--lg"
-                to="#office-hours-professor-applebaum-via-zoom-meeting">
+                to="#office-hours-professor-applebaum">
                 Student Office Hours ️👨‍🏫
             </Link>
             <Link
