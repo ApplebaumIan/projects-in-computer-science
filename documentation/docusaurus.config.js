@@ -113,7 +113,7 @@ const config = {
       announcementBar: {
         id: 'office_hours_changes_feb_2023',
         content:
-            `Professor Applebaum's Monday and Friday office hours are cancelled until further notice. See <a href="#office-hours-professor-applebaum-via-zoom-meeting">Student Office Hours</a> for scheduling options.`,
+            `Professor Applebaum's Monday, Wednesday and Friday office hours are now available <b>in person at SERC 325</b>. See <a href="#office-hours-professor-applebaum-via-zoom-meeting">Student Office Hours</a> for scheduling options.`,
         backgroundColor: 'yellow',
         textColor: '#091E42',
         isCloseable: true,
