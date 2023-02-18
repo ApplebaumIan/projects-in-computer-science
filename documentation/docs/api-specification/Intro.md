@@ -36,7 +36,7 @@ Exceptions thrown\* (PLEASE see note below for details).
 
 ## Previous Class Examples
 
-An example of an auto-generated and then augmented API specification is here ([Patreon Shout API Specification](https://capstone-projects-2022-fall.github.io/project-patreon-shout/docs/api-specification/api-documentation "Patreon Shout API Specification") )
+An example of an auto-generated API specification is here ([Patreon Shout API Specification](https://capstone-projects-2022-fall.github.io/project-patreon-shout/docs/api-specification/api-documentation "Patreon Shout API Specification") )
 
 This group developed their API documentation by hand ([Collaby Bot API Specificication](https://capstone-projects-2022-fall.github.io/project-collabybot/docs/api-specification/class-doc "Collaby Bot API Specification") and [Attendance Face Recognition REST API](https://capstone-projects-2022-fall.github.io/project-attendance-face-recognition/docs/api-specification/AFR_API))
 
