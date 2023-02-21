@@ -186,6 +186,7 @@ export default function Syllabus(props) {
         // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
     return <>
+        <a href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
         <SyllabusGantt events={events} prop1={(event) => {
             return formatEvent(s,event)
         }} />
