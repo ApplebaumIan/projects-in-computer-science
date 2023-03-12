@@ -168,42 +168,74 @@ const config = {
         },
         links: [
           {
-            title: 'Docs',
+            title: 'Course Materials',
             items: [
               {
-                label: 'Documentation',
+                label: 'Documentation Reference',
                 to: '/docs/intro',
+              },
+              {
+                label: 'Course Schedule',
+                to:'/#course-schedule',
+              },
+              {
+                label: 'Docusaurus Tutorial',
+                to:'/tutorial/Intro',
+              },
+              {
+                label: 'Docusaurus Guide',
+                href: 'https://docusaurus.io/docs/category/guides',
+              },
+              {
+                label: 'GitHub Statistics',
+                to:'/github-statistics',
               },
             ],
           },
-          // {
-          //   title: 'Community',
-          //   items: [
-          //     {
-          //       label: 'Stack Overflow',
-          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-          //     },
-          //     {
-          //       label: 'Discord',
-          //       href: 'https://discordapp.com/invite/docusaurus',
-          //     },
-          //     {
-          //       label: 'Twitter',
-          //       href: 'https://twitter.com/docusaurus',
-          //     },
-          //   ],
-          // },
           {
-            title: 'More',
+            title: 'Communication',
             items: [
               {
-                label: 'GitHub',
-                href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
+                label: 'Class Discord',
+                href: '/#class-discord',
+              },
+              {
+                label: 'Course Contacts',
+                href: '/#contact-professor-applebaum',
+              },
+              {
+                label: 'Office Hours',
+                href: '/#office-hours-professor-applebaum',
+              },
+            ],
+          },
+          {
+            title: 'Our Tools',
+            items: [
+              {
+                label: 'Jira',
+                href: 'https://temple-cis-projects-in-cs.atlassian.net',
+              },
+              {
+                label: 'GitHub Org',
+                href: 'https://github.com/Capstone-Projects-2023-Spring',
+              },
+              {
+                label: 'Canvas Section 002',
+                href: 'https://templeu.instructure.com/courses/114625',
+              },
+              {
+                label: 'Canvas Section 704',
+                href: 'https://templeu.instructure.com/courses/124586',
+              },
+              {
+                label: 'Miro',
+                href: 'https://miro.com/',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} ${title}, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Ian Tyler Applebaum. <a target="_blank" href="https://github.com/applebaumian/projects-in-computer-science">Built with Docusaurus.</a>`,
       },
       prism: {
         theme: lightCodeTheme,
