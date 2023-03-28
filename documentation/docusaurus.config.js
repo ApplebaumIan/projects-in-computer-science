@@ -111,9 +111,9 @@ const config = {
 
     ({
       announcementBar: {
-        id: 'office_hours_changes_feb_2023',
+        id: 'GPU',
         content:
-            `Professor Applebaum's Monday, Wednesday and Friday office hours are now available <b>in person at SERC 325</b>. See <a href="#office-hours-professor-applebaum">Student Office Hours</a> for scheduling options.`,
+            `<b>The GPU Server is now available for Machine Learning projects</b>. <a href="mailto:lei.wang0005@temple.edu">Please email TA Tom</a> for access, and see <a href="/gpu-server">GPU Server</a> for access instructions.`,
         backgroundColor: 'yellow',
         textColor: '#091E42',
         isCloseable: true,
@@ -189,6 +189,10 @@ const config = {
               {
                 label: 'GitHub Statistics',
                 to:'/github-statistics',
+              },
+              {
+                label: 'GPU Server',
+                to:'/gpu-server',
               },
             ],
           },
