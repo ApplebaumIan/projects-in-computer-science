@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Office Wall Updates</title>
+    <style>
+        h1 {
+            font-size: 5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        h2{
+            /*font-size: 1rem;*/
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        p{
+            font-size: 2rem;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        li{
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    Ian's Office Hours
+</h1>
+<p>
+    Scan the QR Code to Schedule an appointment.
+</p>
+<div id="announce-area" style="border: #0c0c0d; border-style: dashed; padding: 20px; margin: 10px; font-size: 2rem">
+    <div>
+        <h2 id="title"></h2>
+        <div id="announcement">
+        </div>
+    </div>
+</div>
+
+    <table>
+        <tr>
+            <td><div>
+                <div>
+
+                    <div>
+                        <div>
+                            <div>
+                                    <br>
+                                <ul>
+                                    <li>
+                                        Monday, Wednesday, and Friday 1-2:00 PM Online or <b>SERC 325</b>
+                                    </li>
+                                    <li>
+                                        Tuesday and Thursday, 1-2:00 PM <b>Online only</b>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </td>
+            <td><img src="/img/office-qr.png" alt="QR code to https://calendly.com/ian-tyler-applebaum/office-hours" width="500px"/></td>
+        </tr>
+        <!-- add more rows as needed -->
+    </table>
+
+
+</body>
+<footer>
+    <script>
+        // Find the element to be updated
+        var element = document.getElementById('myElementId');
+
+        // Define a function to update the element
+        function updateElement() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://courses.ianapplebaum.com/api/announcement');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    // Update the text content of the element with the cat fact
+                    if(data.announcement) {
+                        document.getElementById('title').textContent = data.title;
+                        document.getElementById('announcement').textContent = data.announcement;
+                        document.getElementById("announce-area").style.display = 'block'
+                    }else{
+                        document.getElementById("announce-area").style.display = 'none'
+                    }
+                }
+                else {
+                    console.error('Failed to fetch cat fact:', xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error('Failed to fetch cat fact:', xhr.statusText);
+            };
+            xhr.send();
+            // Call the function again after a delay (e.g., 1 second)
+            setTimeout(updateElement, 10000);
+        }
+
+        // Call the updateElement function to start the update loop
+        updateElement();
+
+    </script>
+</footer>
+</html>
