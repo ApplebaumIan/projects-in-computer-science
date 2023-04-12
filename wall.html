@@ -22,6 +22,15 @@
         li{
             font-size: 2rem;
         }
+        .svg-container {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            transform: translateX(-50%);
+            z-index: 100;
+            height: 500px;
+            width: 1000px;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +76,9 @@
         </tr>
         <!-- add more rows as needed -->
     </table>
-    <img id="dp" src="img/dont-panic.svg" style="margin-top: -600px"></img>
+<div class="svg-container">
+    <img id="dp" src="img/dont-panic.svg"></img>
+</div>
 
 </body>
 <footer>
@@ -87,10 +98,10 @@
                         document.getElementById('title').textContent = data.title;
                         document.getElementById('announcement').textContent = data.announcement;
                         document.getElementById("announce-area").style.display = 'block'
-                        document.getElementById("dp").style.display = 'none'
+                        document.getElementById("dp").style.visibility = 'hidden';
                     }else{
                         document.getElementById("announce-area").style.display = 'none'
-                        document.getElementById("dp").style.display = 'block'
+                        document.getElementById("dp").style.visibility = 'visible'
                     }
                 }
                 else {
