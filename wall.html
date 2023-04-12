@@ -20,7 +20,7 @@
             margin-top: 0;
         }
         li{
-            font-size: 1.5rem;
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -67,7 +67,7 @@
         </tr>
         <!-- add more rows as needed -->
     </table>
-
+    <img id="dp" src="img/dont-panic.svg" style="margin-top: -600px"></img>
 
 </body>
 <footer>
@@ -87,8 +87,10 @@
                         document.getElementById('title').textContent = data.title;
                         document.getElementById('announcement').textContent = data.announcement;
                         document.getElementById("announce-area").style.display = 'block'
+                        document.getElementById("dp").style.display = 'none'
                     }else{
                         document.getElementById("announce-area").style.display = 'none'
+                        document.getElementById("dp").style.display = 'block'
                     }
                 }
                 else {
