@@ -41,3 +41,22 @@
 #atlwdg-trigger.atlwdg-trigger.atlwdg-RIGHT{
   background-color: #9d2235;
 }
+
+[data-theme='dark'] .live-demo  {
+  color: white !important;
+}
+.live-demo  {
+  color: black !important;
+}
+
+.live-demo{
+  text-align: justify;
+}
+
+#docusaurus_skipToContent_fallback > header > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > div > div:nth-child(1) > div {
+  text-align: center;
+}
+
+#docusaurus_skipToContent_fallback > header > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > div > div:nth-child(1) > div > details > div{
+  text-align: justify;
+}

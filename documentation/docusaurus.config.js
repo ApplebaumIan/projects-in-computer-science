@@ -111,9 +111,9 @@ const config = {
 
     ({
       announcementBar: {
-        id: 'GPU',
+        id: 'demos-spring-23',
         content:
-            `<b>The GPU Server is now available for Machine Learning projects</b>. <a href="mailto:lei.wang0005@temple.edu">Please email TA Tom</a> for access, and see <a href="/gpu-server">GPU Server</a> for access instructions.`,
+            `Join us for our live demos on April 27th at 3:30pm EST and May 1st 2:00pm EST on YouTube!`,
         backgroundColor: 'yellow',
         textColor: '#091E42',
         isCloseable: true,
