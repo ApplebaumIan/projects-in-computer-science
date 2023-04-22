@@ -10,14 +10,10 @@ const YouTubeVideoDescription = ({ videoId }) => {
     const [description, setDescription] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=AIzaSyA_MkRba4RRIrigTVPTnNA8Ax2Gq3i01Q0`,
-            );
-            setDescription(result.data.items[0].snippet.description);
-            console.log(result.data.items[0].snippet.description);
-        };
-        fetchData();
+        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=AIzaSyA_MkRba4RRIrigTVPTnNA8Ax2Gq3i01Q0`)
+      .then(response => response.json())
+      .then(data => setDescription(data.items[0].snippet.description))
+      .catch(error => console.error(error));
     }, [videoId]);
 
     return <VideoDescription description={description} />
