@@ -63,6 +63,8 @@ function WatchLiveDemo() {
             <div className={"col col--9"}>
                 <h2>Watch Live 🔴</h2>
                 <h3>April 27th 3:30-4:50pm and May 1st 2:00-3:30pm EST on YouTube</h3>
+                <p>48 Students, 7 projects, come see Temple University students present their 17 weeks worth of work live on YouTube. Projects ranging from unique education technologies to machine learning applications that can detect parking spots and predict stocks, this semester's teams have quite a lot to share.</p>
+
             </div>
             <div className={"col col--3"}>
                 <DontPanic style={{width: "100%"}}
