@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 function VideoDescription({ description }) {
-    const formattedDescription = description.replace(/\n/g, '<br>');
-    return <div dangerouslySetInnerHTML={{ __html: formattedDescription }} />;
+    // Regular expression to match URLs in the description
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+    // Replace URLs with clickable hyperlinks
+    const formattedDescription = description.replace(urlRegex, url => {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+
+    // Replace newlines with <br> tags
+    const formattedHtml = formattedDescription.replace(/\n/g, '<br>');
+
+    return <div dangerouslySetInnerHTML={{ __html: formattedHtml }} />;
 }
 
 const YouTubeVideoDescription = ({ videoId }) => {
