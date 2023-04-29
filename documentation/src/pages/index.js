@@ -14,6 +14,15 @@ import DontPanic from "../../static/img/dont-panic.svg"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
+function isTimeBetween(startDate, endDate) {
+    var currentDate = new Date();
+    if (currentDate >= startDate && currentDate <= endDate) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -58,6 +67,14 @@ function HomepageHeader() {
 }
 
 function WatchLiveDemo() {
+    // Section 002 should appear first
+    var section002Start = new Date("2023-04-29T01:00:00");
+    var section002End = new Date("2023-05-01T15:20:00");
+
+    // refreshing the page should then show section 003
+    var section003Start = new Date("2023-05-01T15:20:00");
+    var section003End = new Date("2023-05-01T16:50:00");
+
     return <div className={"live-demo card container shadow--tl margin--lg"}>
         <div className={"card__header row"}>
             <div className={"col col--9"}>
@@ -73,7 +90,7 @@ function WatchLiveDemo() {
         </div>
         <div className={"card__body"}>
             <Tabs>
-                <TabItem value="704" label={<>Section 704<br/>April 27th 3:30-4:50pm EST</>} default>
+                <TabItem value="704" label={<>Section 704<br/>April 27th 3:30-4:50pm EST</>}>
                     <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 704"}>
                         <iframe width="100%" height="615" src="https://www.youtube.com/embed/spUYv7YRjcU"
                                 title="YouTube video player" frameBorder="0"
@@ -89,7 +106,7 @@ function WatchLiveDemo() {
                         </details>
                     </div>
                 </TabItem>
-                <TabItem value="002" label={<>Section 002<br/>May 1st 2:00pm to 3:30pm</>}>
+                <TabItem value="002" label={<>Section 002<br/>May 1st 2:00pm to 3:30pm</>} default={isTimeBetween(section002Start,section002End)}>
                     <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 002"}>
                     <iframe width="100%" height="615" src="https://www.youtube.com/embed/HTpbSxVOIL0"
                             title="YouTube video player" frameBorder="0"
@@ -102,6 +119,22 @@ function WatchLiveDemo() {
                                 Click Here For the Demo Lineup!
                             </summary>
                             <YouTubeVideoDescription videoId={"HTpbSxVOIL0"}/>
+                        </details>
+                    </div>
+                </TabItem>
+                <TabItem value="003" label={<>Section 003<br/>May 1st 3:30pm to 4:50pm</>} default={isTimeBetween(section003Start,section003End)}>
+                    <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 003"}>
+                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/LEbPDvV_4Pg"
+                                title="YouTube video player" frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen></iframe>
+                    </Figure>
+                    <div className={"col"}>
+                        <details>
+                            <summary className={"button button--outline button--primary margin-bottom--lg"}>
+                                Click Here For the Demo Lineup!
+                            </summary>
+                            <YouTubeVideoDescription videoId={"LEbPDvV_4Pg"}/>
                         </details>
                     </div>
                 </TabItem>
