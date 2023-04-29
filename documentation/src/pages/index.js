@@ -89,7 +89,7 @@ function WatchLiveDemo() {
             </div>
         </div>
         <div className={"card__body"}>
-            <Tabs>
+            <Tabs queryString="section">
                 <TabItem value="704" label={<>Section 704<br/>April 27th 3:30-4:50pm EST</>}>
                     <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 704"}>
                         <iframe width="100%" height="615" src="https://www.youtube.com/embed/spUYv7YRjcU"
