@@ -1,71 +1,66 @@
 import React, { useRef, useEffect } from 'react';
+import paper, {Color} from 'paper';
 
-const AnimatedBackground = (props) => {
+const AnimatedBackground = ({ speed = Math.random() * 0.0010 + 0.001 }) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
+        paper.setup(canvasRef.current);
         const waves = [];
-        const numWaves = 1;
 
         class Wave {
             constructor() {
-                this.amplitude = Math.random() * 5 + 25;
-                this.frequency = Math.random() * 0.02 + 0.01;
-                this.speed = props.speed;// Slowed down the speed
+                this.path = new paper.Path();
+                this.path.strokeColor = new paper.Color(1, 1, 1, Math.random() * 0.4 + 0.1);
+                this.path.fillColor = new paper.Color(1, 1, 1, 0.2);
+                this.initialAmplitude = Math.random() * 25 + 100;
+                // this.initialAmplitude = Math.random() * 200 + 100;
+                // this.initialFrequency = Math.random() * 0.0009 + 0.0019;
+                this.initialFrequency = Math.random() * 0.006 + 0.0019;
+                this.speed = speed;
                 this.phase = Math.random() * Math.PI * 2;
-                this.alpha = Math.random() * 0.3 + 0.1;
+                this.blur = Math.random() * 50;
+                this.time = 0;
+                this.path.shadowColor = Math.floor(Math.random() * 2) ? 'red' : 'pink'
+                this.path.shadowBlur = this.blur
+                // this.path.blendMode = 'multiply'
             }
 
             draw() {
-                ctx.beginPath();
-                for (let x = 0; x < canvas.width; x++) {
+                this.path.removeSegments();
+                for (let x = 0; x < paper.view.size.width; x++) {
                     const y = this.amplitude * Math.sin((x * this.frequency) + this.phase);
-                    ctx.lineTo(x, y + canvas.height / 2);
+                    this.path.add(new paper.Point(x, y + paper.view.size.height / 2));
                 }
-                ctx.lineTo(canvas.width, canvas.height);
-                ctx.lineTo(0, canvas.height);
-                ctx.closePath();
+                this.path.add(new paper.Point(paper.view.size.width, paper.view.size.height));
+                this.path.add(new paper.Point(0, paper.view.size.height));
+                this.path.closed = true;
 
-                ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-
-                // Fill the area under the wave with white translucent color
-                ctx.fillStyle = `rgba(255, 255, 255, 0.2)`;
-                ctx.fill();
             }
 
             update() {
+                this.time += this.speed;
+                this.amplitude = this.initialAmplitude + 50 * Math.sin(this.time);
+                this.frequency = this.initialFrequency + 0.0005 * Math.sin(this.time);
                 this.phase += this.speed;
+                this.draw();
             }
         }
 
-        for (let i = 0; i < numWaves; i++) {
+        for (let i = 0; i < 4; i++) {
             waves.push(new Wave());
         }
 
-        const animate = () => {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        paper.view.onFrame = (event) => {
             waves.forEach(wave => {
                 wave.update();
-                wave.draw();
             });
         };
-
-        animate();
-
-    }, []);
+    }, [speed]);
 
     return (
-        <canvas ref={canvasRef} style={{ zIndex: -1, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+        <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} resize="true" />
     );
 };
-export default AnimatedBackground;
 
-AnimatedBackground.defaultProps = {
-    speed: Math.random() * 0.002 + 0.001
-}
+export default AnimatedBackground;
