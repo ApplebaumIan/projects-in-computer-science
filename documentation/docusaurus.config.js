@@ -28,7 +28,7 @@ const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((wo
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Professor Applebaum Section 002 & 704',
+  tagline: 'Professor Applebaum',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://capstone.ianapplebaum.com/',
   baseUrl: '/',
@@ -109,15 +109,37 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 
-    ({
-      announcementBar: {
-        id: 'demos-spring-23',
-        content:
-            `Join us for our live demos on April 27th at 3:30pm EST and May 1st 2:00pm EST on YouTube!`,
-        backgroundColor: 'yellow',
-        textColor: '#091E42',
-        isCloseable: true,
+    {
+      mermaid: {
+        theme: {light: 'default', dark: 'base'},
+
+        options: {
+          themeVariables: {
+            'primaryColor': '#bc2239',
+            'primaryTextColor': '#fff',
+            'secondaryTextColor': '#fff',
+            'tertiaryTextColor': '#fff',
+            // 'primaryBorderColor': '#7C0000',
+            'lineColor': '#F8B229',
+            'secondaryColor': '#006100',
+            'tertiaryColor': 'rgba(0,255,32,0.5)',
+          },
+          ganttConfig:{
+            'grid':"#fff"
+          },
+          securityLevel:'loose',
+          startOnLoad:true
+        }
       },
+
+      // announcementBar: {
+      //   id: 'demos-spring-23',
+      //   content:
+      //       `Join us for our live demos on April 27th at 3:30pm EST and May 1st 2:00pm EST on YouTube!`,
+      //   backgroundColor: 'yellow',
+      //   textColor: '#091E42',
+      //   isCloseable: true,
+      // },
       colorMode: {
         defaultMode: 'light',
         disableSwitch: false,
@@ -148,8 +170,8 @@ const config = {
             position: 'left',
           },
           {
-            to: '/hall-of-fame',
-            label: 'Capstone Hall of Fame 🏆',
+            to: '/showcase',
+            label: 'Capstone Showcase ⭐️',
             position: 'right',
           },
 
@@ -260,7 +282,7 @@ const config = {
         },
       },
 
-    }),
+    },
   plugins: [
     [
       '@docusaurus/plugin-content-docs',
