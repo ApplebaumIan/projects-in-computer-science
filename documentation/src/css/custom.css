@@ -60,3 +60,35 @@
 #docusaurus_skipToContent_fallback > header > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > div > div:nth-child(1) > div > details > div{
   text-align: justify;
 }
+
+.hero--primary{
+  /*height: 100vh;*/
+backdrop-filter: opacity(50%);
+}
+/*canvas {*/
+/*  filter: blur(15px);*/
+/*}*/
+#mobile-toc {
+  display: none !important;
+
+/*visibility: hidden;*/
+}
+
+
+.syllabus-content {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 996px) {
+
+  #mobile-toc {
+    display: flex !important;
+    margin-top: 2rem;
+    /*visibility: visible;*/
+  }
+}
+
+.clickable {
+  color: white;
+  fill: white;
+}
