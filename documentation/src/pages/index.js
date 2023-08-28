@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -14,6 +14,8 @@ import DontPanic from "../../static/img/dont-panic.svg"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
+import BrowserOnly from "@docusaurus/BrowserOnly";
+
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
     if (currentDate >= startDate && currentDate <= endDate) {
@@ -23,18 +25,18 @@ function isTimeBetween(startDate, endDate) {
     }
 }
 
-function HomepageHeader() {
+export function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
+      <div className="container" style={{zIndex:100}}>
           <div className={"row"}>
               <div className={"col"}>
                   <h1 className="hero__title">{siteConfig.title}</h1>
                   <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
 
-              <WatchLiveDemo/>
+              {/*<WatchLiveDemo/>*/}
               <div className={"col"}>
                   {/* TODO: Change me to your project's tutorial*/ }
                   <Link
@@ -62,6 +64,14 @@ function HomepageHeader() {
 
         </div>
       </div>
+        {/*<BrowserOnly  fallback={<div>Loading...</div>} >*/}
+        {/*    {() => {*/}
+        {/*        const AnimatedBackground =*/}
+        {/*            require('../components/AnimatedBackground/index').AnimatedBackground;*/}
+        {/*        return <AnimatedBackground/>;*/}
+        {/*    }}*/}
+        {/*</BrowserOnly>*/}
+
     </header>
   );
 }
@@ -148,19 +158,14 @@ export default function Home() {
   return (
     <Layout
         title={`Syllabus`}
-        description="Professor Applebaum's Capstone Projects in Computer Science Course Syllabus.">
+        description="Professor Applebaum's Capstone Course Syllabus.">
         <HomepageHeader/>
-        <div>
-            <Figure caption={"Class Moto:"} subcaption={"Don't Panic, but expect the unexpected."}>
-                <DontPanic style={{width:"50%"}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
-            </Figure>
-        </div>
         <main>
-            <MDXContent>
-                <div style={{margin: 50}}>
+            <div style={{zIndex:100000}}>
+                <MDXContent>
                     <SyllabusPage/>
-                </div>
-            </MDXContent>
+                </MDXContent>
+            </div>
         </main>
     </Layout>
   );
