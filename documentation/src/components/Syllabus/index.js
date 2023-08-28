@@ -6,7 +6,6 @@ const url = "https://courses.ianapplebaum.com";
 import React, { useEffect, useState } from "react"
 import Mermaid from "@theme/Mermaid";
 import CodeBlock from "@theme/CodeBlock";
-
 function SyllabusTable(props) {
     return <table>
         <thead>
@@ -40,21 +39,37 @@ function SyllabusTable(props) {
     </table>;
 }
 function SyllabusGantt(props) {
+    // let daysoff = `2023-03-07 2023-03-08 2023-03-09 2023-03-10 2023-03-11 2023-03-12`;
+    /*
+    Monday, November 20 - Wednesday, November 22
+Fall Break (no classes held)
+Thursday, November 23 - Sunday, November 26
+Thanksgiving holiday (no classes held)
+     */
+    let daysoff = `2023-09-04 2023-10-13 2023-11-20 2023-11-21 2023-11-22 2023-11-23 2023-11-24 2023-11-25 2023-11-26 `;
     let chart = `gantt
     title Schedule Gantt Chart
     dateFormat  YYYY-MM-DD
-    excludes 2023-03-07 2023-03-08 2023-03-09 2023-03-10 2023-03-11 2023-03-12
-    ${props.events != null ? props.events.map(props.prop1).join(''):``}`;
-    return  <details><summary>Click here for Mermaid Diagram markdown.
-        <Mermaid value={chart}
-    />
-    </summary>
-    <CodeBlock>
-    ```mermaid{`\n`}
-        {chart+"\n"}
-    ```
-    </CodeBlock>
-    </details>
+    excludes ${daysoff}
+    ${props.events != null ? props.events.map(props.prop1).join('') : ``}`;
+    return  <>
+        <div className={"row"}>
+            <div className={"col"}>
+            <details><summary className={"button button--outline button--primary margin-bottom--lg"}>Click here for Mermaid Diagram markdown.
+            </summary>
+                <CodeBlock>
+                    ```mermaid{`\n`}
+                    {chart+"\n"}
+                    ```
+                </CodeBlock>
+            </details>
+        </div>
+            <div className={"col"}>
+                <a className={"button button--primary margin-bottom--lg"} href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
+            </div>
+        </div>
+        <Mermaid value={chart} config={{securityLevel:"loose", theme:"dark"}} />
+</>
 
     // <Mermaid value={`gantt
     // title Projects in Computer Science Spring 2023 Syllabus
@@ -113,8 +128,15 @@ export default function Syllabus(props) {
       }
     },[events]);
 
+    function makeid(event_name) {
+        let id = event_name.toLowerCase()
+        id = id.replaceAll(" ","")
+        id = id.replaceAll("/","")
+        id = removeEmoji(id)
+        return id
+    }
   function removeEmoji(s) {
-        return s.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
+        return s.replaceAll(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '')
       }
 
 
@@ -127,7 +149,10 @@ export default function Syllabus(props) {
             return `Construction Phase`
         }
     }
-    function formatEvent(s,event) {
+    const printTask = function (taskId) {
+        alert('taskId: ' + taskId);
+    };
+    function formatEvent(s,event,id) {
         let event_date = new Date(event.event_date);
         let today = new Date();
         let status = ``
@@ -145,12 +170,14 @@ export default function Syllabus(props) {
 
 
         let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
-        let isMilestoneDemo = `${event.event_name.includes("Demo") ? `crit, milestone,` : ``}`;
-        let isAssignment = `${event.class_type === "Assignment" ? `milestone,` : ``}`;
-        let lab = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
-        let lecture = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 1d`;
-        let assignment = `${event.event_name} ${classType}:${isMilestoneDemo} ${isAssignment} ${status}, ${event.event_date}, 12h`;
-        let sprint = props.oneWeekSprints ? `${event.event_name}: ${status}, ${event.event_date}, 1w`: `${event.event_name}: ${status}, ${event.event_date}, 2w`;
+        let isMilestoneDemo = `${event.event_name.includes("Demo") ? ` crit, milestone,` : ``}`;
+        let isAssignment = `${event.class_type === "Assignment" ? `, milestone,` : ``}`;
+        let lab = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  1d`;
+        let lecture = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  1d`;
+        let assignment = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  12h`;
+        let sprint = props.oneWeekSprints ?
+            `${event.event_name}: ${status}, ${event.event_date}, 1w`:
+            `${event.event_name}: ${status}, ${event.event_date}, 2w`;
         let break_sprint = `${event.event_name}: ${status}, ${event.event_date}, 1w`;
         let three_week_sprint = `${event.event_name}: ${status}, ${event.event_date}, 16d`;
         let sbreak = `${event.event_name}: done, ${event.event_date}, 1d`;
@@ -160,15 +187,13 @@ export default function Syllabus(props) {
         switch (event.class_type){
             case "Lab":
                 gantt_event = lab
+                    // + `\nclick  ${id} href "https://mermaidjs.github.io/"`
                 break
             case "Lecture":
                 gantt_event = lecture
                 break
             case "Sprint":
-                gantt_event = (event.event_name === "Sprint 2" || event.event_name === "Sprint 0") ? break_sprint : sprint
-                if  (event.event_name === "Sprint 5" && !props.oneWeekSprints){
-                    gantt_event = three_week_sprint
-                }
+                gantt_event = (event.event_name === "Sprint 0" || event.event_name === "Sprint 6") ? break_sprint : sprint
                 break
             case "Break!":
                 gantt_event = sbreak
@@ -186,12 +211,14 @@ export default function Syllabus(props) {
         // return `${event.event_name}:${event.event_date}, 1d \n`;
     }
     return <>
-        <a href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
-        <SyllabusGantt events={events} prop1={(event) => {
-            return formatEvent(s,event)
-        }} />
+        <div className={"markdown"}>
+            <SyllabusGantt courseid={props.courseid} events={events} prop1={(event) => {
+                return formatEvent(s,event,makeid(event.event_name))
+            }} />
+        </div>
+
         <SyllabusTable events={events} prop1={(event) => {
-        return <tr key={event.event_name+event.id}>
+        return <tr id={makeid(event.event_name)+"-id"} key={event.event_name+event.id}>
             <th scope="col">
                 {
                     weeksBetween(s.start_date, event.event_date)
