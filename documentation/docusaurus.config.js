@@ -164,11 +164,11 @@ const config = {
             position: 'left',
             activeBaseRegex: `/tutorial/`,
           },
-          {
-            to: '/slides',
-            label: 'Lecture Slides',
-            position: 'left',
-          },
+          // {
+          //   to: '/slides',
+          //   label: 'Lecture Slides',
+          //   position: 'left',
+          // },
           {
             to: '/showcase',
             label: 'Capstone Showcase ⭐️',
