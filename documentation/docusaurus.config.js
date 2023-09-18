@@ -132,14 +132,14 @@ const config = {
         }
       },
 
-      // announcementBar: {
-      //   id: 'demos-spring-23',
-      //   content:
-      //       `Join us for our live demos on April 27th at 3:30pm EST and May 1st 2:00pm EST on YouTube!`,
-      //   backgroundColor: 'yellow',
-      //   textColor: '#091E42',
-      //   isCloseable: true,
-      // },
+      announcementBar: {
+        id: 'office-hours-fall-23',
+        content:
+            `Official Office Hours are now posted! Mondays, Wednesdays and Fridays. <a href="https://calendly.com/ian-tyler-applebaum/office-hours">Schedule now here!</a>`,
+        backgroundColor: 'yellow',
+        textColor: '#091E42',
+        isCloseable: true,
+      },
       colorMode: {
         defaultMode: 'light',
         disableSwitch: false,
