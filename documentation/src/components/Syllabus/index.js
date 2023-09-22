@@ -46,7 +46,7 @@ Fall Break (no classes held)
 Thursday, November 23 - Sunday, November 26
 Thanksgiving holiday (no classes held)
      */
-    let daysoff = `2023-09-04 2023-10-13 2023-11-20 2023-11-21 2023-11-22 2023-11-23 2023-11-24 2023-11-25 2023-11-26 `;
+    let daysoff = `2023-09-04 2023-09-29 2023-10-13 2023-11-20 2023-11-21 2023-11-22 2023-11-23 2023-11-24 2023-11-25 2023-11-26 `;
     let chart = `gantt
     title Schedule Gantt Chart
     dateFormat  YYYY-MM-DD
