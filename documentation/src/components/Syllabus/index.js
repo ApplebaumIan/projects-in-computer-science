@@ -168,9 +168,10 @@ export default function Syllabus(props) {
         }
 
 
+        let regex = /\bDemo\b/;
 
-        let classType = (event.class_type !== "N/A" && !event.event_name.includes("Demo")) ? event.class_type : "";
-        let isMilestoneDemo = `${event.event_name.includes("Demo") ? ` crit, milestone,` : ``}`;
+        let classType = (event.class_type !== "N/A" && !regex.test(event.event_name)) ? event.class_type : "";
+        let isMilestoneDemo = `${regex.test(event.event_name) ? ` crit, milestone,` : ``}`;
         let isAssignment = `${event.class_type === "Assignment" ? ` milestone,` : ``}`;
         let lab = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  1d`;
         let lecture = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  1d`;
