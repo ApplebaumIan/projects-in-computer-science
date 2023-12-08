@@ -36,7 +36,7 @@ export function HomepageHeader() {
                   <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
 
-              {/*<WatchLiveDemo/>*/}
+              <WatchLiveDemo/>
               <div className={"col"}>
                   {/* TODO: Change me to your project's tutorial*/ }
                   <Link
@@ -89,8 +89,8 @@ function WatchLiveDemo() {
         <div className={"card__header row"}>
             <div className={"col col--9"}>
                 <h2>Watch Live 🔴</h2>
-                <h3>April 27th 3:30-4:50pm and May 1st 2:00-3:30pm EST on YouTube</h3>
-                <p>48 Students, 7 projects, come see Temple University students present their 17 weeks worth of work live on YouTube. Projects ranging from unique education technologies to machine learning applications that can detect parking spots and predict stocks, this semester's teams have quite a lot to share.</p>
+                <h3>December 11th 10:30am to 5:00pm EST on YouTube</h3>
+                <p>64 Students, 9 projects, come see Temple University students present their 17 weeks worth of work live on YouTube. This semester projects range from embedded systems projects, augmented reality, unique machine learning experiences to help improve an underserved community's daily life and so much more.</p>
 
             </div>
             <div className={"col col--3"}>
@@ -100,8 +100,8 @@ function WatchLiveDemo() {
         </div>
         <div className={"card__body"}>
             <Tabs queryString="section">
-                <TabItem value="704" label={<>Section 704<br/>April 27th 3:30-4:50pm EST</>}>
-                    <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 704"}>
+                <TabItem value="701" label={<>Section 701<br/>10:30-11:50am EST</>}>
+                    <Figure caption={"Final Demos Fall Semester 2023 Live Stream"} subcaption={"Section 701"}>
                         <iframe width="100%" height="615" src="https://www.youtube.com/embed/spUYv7YRjcU"
                                 title="YouTube video player" frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -116,8 +116,8 @@ function WatchLiveDemo() {
                         </details>
                     </div>
                 </TabItem>
-                <TabItem value="002" label={<>Section 002<br/>May 1st 2:00pm to 3:30pm</>} default={isTimeBetween(section002Start,section002End)}>
-                    <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 002"}>
+                <TabItem value="002" label={<>Section 002<br/>2:00pm to 3:20pm EST</>} default={isTimeBetween(section002Start,section002End)}>
+                    <Figure caption={"Final Demos Fall Semester 2023 Live Stream"} subcaption={"Section 002"}>
                     <iframe width="100%" height="615" src="https://www.youtube.com/embed/HTpbSxVOIL0"
                             title="YouTube video player" frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -132,8 +132,8 @@ function WatchLiveDemo() {
                         </details>
                     </div>
                 </TabItem>
-                <TabItem value="003" label={<>Section 003<br/>May 1st 3:30pm to 4:50pm</>} default={isTimeBetween(section003Start,section003End)}>
-                    <Figure caption={"Final Demos Spring Semester 2023 Live Stream"} subcaption={"Section 003"}>
+                <TabItem value="003" label={<>Section 003<br/>3:40pm to 5:00pm EST</>} default={isTimeBetween(section003Start,section003End)}>
+                    <Figure caption={"Final Demos Fall Semester 2023 Live Stream"} subcaption={"Section 003"}>
                         <iframe width="100%" height="615" src="https://www.youtube.com/embed/LEbPDvV_4Pg"
                                 title="YouTube video player" frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
