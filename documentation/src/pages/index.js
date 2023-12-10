@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -102,7 +102,7 @@ function WatchLiveDemo() {
             <Tabs queryString="section">
                 <TabItem value="701" label={<>Section 701<br/>10:30-11:50am EST</>}>
                     <Figure caption={"Final Demos Fall Semester 2023 Live Stream"} subcaption={"Section 701"}>
-                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/spUYv7YRjcU"
+                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/Wge6Wd8ctRI?si=uA_0c1Y_gDTvJ-jm"
                                 title="YouTube video player" frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowFullScreen></iframe>
@@ -112,13 +112,13 @@ function WatchLiveDemo() {
                             <summary className={"button button--outline button--primary margin-bottom--lg"}>
                                 Click Here For the Demo Lineup!
                             </summary>
-                            <YouTubeVideoDescription videoId={"spUYv7YRjcU"}/>
+                            <YouTubeVideoDescription videoId={"Wge6Wd8ctRI"}/>
                         </details>
                     </div>
                 </TabItem>
                 <TabItem value="002" label={<>Section 002<br/>2:00pm to 3:20pm EST</>} default={isTimeBetween(section002Start,section002End)}>
                     <Figure caption={"Final Demos Fall Semester 2023 Live Stream"} subcaption={"Section 002"}>
-                    <iframe width="100%" height="615" src="https://www.youtube.com/embed/HTpbSxVOIL0"
+                    <iframe width="100%" height="615" src="https://www.youtube.com/embed/xYrKWJfFlUc?si=9Aw-8zQbGpXQobEm"
                             title="YouTube video player" frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen></iframe>
@@ -128,13 +128,13 @@ function WatchLiveDemo() {
                             <summary className={"button button--outline button--primary margin-bottom--lg"}>
                                 Click Here For the Demo Lineup!
                             </summary>
-                            <YouTubeVideoDescription videoId={"HTpbSxVOIL0"}/>
+                            <YouTubeVideoDescription videoId={"xYrKWJfFlUc"}/>
                         </details>
                     </div>
                 </TabItem>
                 <TabItem value="003" label={<>Section 003<br/>3:40pm to 5:00pm EST</>} default={isTimeBetween(section003Start,section003End)}>
                     <Figure caption={"Final Demos Fall Semester 2023 Live Stream"} subcaption={"Section 003"}>
-                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/LEbPDvV_4Pg"
+                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/XxRJPMJZ6Fk?si=AuK6OV1CxdGTYNv3"
                                 title="YouTube video player" frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowFullScreen></iframe>
@@ -144,7 +144,7 @@ function WatchLiveDemo() {
                             <summary className={"button button--outline button--primary margin-bottom--lg"}>
                                 Click Here For the Demo Lineup!
                             </summary>
-                            <YouTubeVideoDescription videoId={"LEbPDvV_4Pg"}/>
+                            <YouTubeVideoDescription videoId={"XxRJPMJZ6Fk"}/>
                         </details>
                     </div>
                 </TabItem>
