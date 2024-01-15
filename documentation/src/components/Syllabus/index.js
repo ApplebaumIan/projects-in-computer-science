@@ -173,7 +173,7 @@ export default function Syllabus(props) {
         let classType = (event.class_type !== "N/A" && !regex.test(event.event_name)) ? event.class_type : "";
         let isMilestoneDemo = `${regex.test(event.event_name) ? ` crit, milestone,` : ``}`;
         let isAssignment = `${event.class_type === "Assignment" ? ` milestone,` : ``}`;
-        let lab = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  1d`;
+        let lab = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  ${isAssignment != `` ? `1h` : `1d`}`;
         let lecture = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  1d`;
         let assignment = `${event.event_name} ${classType}:  ${isMilestoneDemo} ${isAssignment} ${status} ${id} , ${event.event_date},  12h`;
         let sprint = props.oneWeekSprints ?

@@ -36,7 +36,7 @@ export function HomepageHeader() {
                   <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
 
-              <WatchLiveDemo/>
+              {/*<WatchLiveDemo/>*/}
               <div className={"col"}>
                   {/* TODO: Change me to your project's tutorial*/ }
                   <Link
