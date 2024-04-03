@@ -113,7 +113,7 @@
             xhr.onerror = function() {
                 // console.error('Failed to fetch cat fact:', xhr.statusText);
             };
-            xhr.send();
+            try { xhr.send() } catch (e) {/*do nothing*/}
             // Call the function again after a delay (e.g., 1 second)
             setTimeout(updateElement, 10000);
         }
