@@ -48,10 +48,10 @@ Heading 2 in Docusuarus appears in the right-hand sidebar as a table of contents
 
 Make sure each team member have their own GitHub account (we recommend you use your personal account for resume building). If you do not have one already create an account at https://github.com/ .
 
-Each team member will get access to the team repo by using this GitHub Classroom link: https://classroom.github.com/a/fsKFByQo (This will automatically associate your Github ID with your Canvas name, create a git repo for your team in the class Github organization and give the instructors and TA access).
+Each team member will get access to the team repo by using this GitHub Classroom link: https://classroom.github.com/a/siczERSj (This will automatically associate your Github ID with your Canvas name, create a git repo for your team in the class Github organization and give the instructors and TA access).
 The first team member will have to create a team and give it a name. Other teams member will join this team.
 
-1. [Click here to join the GitHub Classroom and get the starter project.](https://classroom.github.com/a/fsKFByQo)
+1. [Click here to join the GitHub Classroom and get the starter project.](https://classroom.github.com/a/siczERSj)
 2. Login to your GitHub Account
 3. Select your name and TUmail from the list.
 4. Select your team or create it if it's not listed.
@@ -67,14 +67,14 @@ In order for your Documentation Website to build you need to fill a few environm
 4. Select the following privileges and make the expiration date the date of the course end. (This is just for security purposes)
 ![select token privileges repo, workflow, admin read:org](https://raw.githubusercontent.com/Capstone-Projects-2022-Fall/project-instructors/main/documentation/static/img/token-privlages.png)
 5. Copy your token to clipboard (make sure it's copied because it won't be retrievable when you leave the page.) ![Copy your token](https://raw.githubusercontent.com/Capstone-Projects-2022-Fall/project-instructors/main/documentation/static/img/copy-token.png)
-6. Go back to your project repository. Click the settings tab. Now you're going to add the token you copied to the project. Click Secrets under Security > Secrets > Actions. Click new repository secret. Name the secret TOKEN and paste it.
+6. Go back to your project repository. Click the "Actions" tab then click the big green "I understand my workflows, go ahead and enable them" button.
+7. Click the settings tab. Now you're going to add the token you copied to the project. Click Secrets under Security > Secrets > Actions. Click new repository secret. Name the secret TOKEN and paste it.
 ![Add TOKEN to project](https://raw.githubusercontent.com/Capstone-Projects-2022-Fall/project-instructors/main/documentation/static/img/add-token-to-project.png)
 You also need to make one last secret called USER which will contain your GitHub Username.
-7. Deploy the website. Start by clicking the Actions Tab. You should see a Workflow called "Deploy Docs" with a failed job called "Add online IDE url". Click the failed job. Click "Re-run jobs" then Re-run failed jobs.
-![Re-run failed jobs](https://raw.githubusercontent.com/Capstone-Projects-2022-Fall/project-instructors/main/documentation/static/img/re-run-failed-jobs.png)
-8. Once the job is complete navigate back to your repository's homepage (The Code Tab). You will see an Environments section that says "github-pages" with a 🚀. Click it. Then click "View deployment"
+8. Deploy the website. Edit the README Contributors section and push to main. GitHub Actions will take care of the rest.
+9. Once the job is complete navigate back to your repository's homepage (The Code Tab). You will see an Environments section that says "github-pages" with a 🚀. Click it. Then click "View deployment"
 ![github-pages environment button](https://raw.githubusercontent.com/Capstone-Projects-2022-Fall/project-instructors/main/documentation/static/img/environments.png)
-9. Check out your new site!
+10. Check out your new site!
 ![Your website](https://raw.githubusercontent.com/Capstone-Projects-2022-Fall/project-instructors/main/documentation/static/img/site.png)
 
 ### Repository and Site Cosmetics
