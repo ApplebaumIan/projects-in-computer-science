@@ -43,23 +43,23 @@ jobs:
           fi
           echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.run_number }}
-          release_name: ${{ env.SEMESTER_YEAR }} Course Syllabus
-          draft: false
-          prerelease: false
+#      - name: Create Release
+#        id: create_release
+#        uses: actions/create-release@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          tag_name: ${{ github.run_number }}
+#          release_name: ${{ env.SEMESTER_YEAR }} Course Syllabus
+#          draft: false
+#          prerelease: false
 
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "release-${{ github.run_number }}-${{ env.SEMESTER_YEAR }}"
+          tag_name: "${{ github.run_number }}"
           name: ${{ env.SEMESTER_YEAR }} Course Syllabus
           files: syllabus.pdf
           draft: false
