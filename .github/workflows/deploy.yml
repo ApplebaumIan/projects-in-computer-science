@@ -24,3 +24,11 @@ jobs:
           git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
           git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
           cd documentation && yarn deploy
+      - name: Make PDF
+        run: |
+          export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
+          cd documentation && yarn pdf
+      - name: Release PDF
+        uses: softprops/action-gh-release@v2
+        with:
+          files: syllabus.pdf

@@ -53,21 +53,22 @@ Thanksgiving holiday (no classes held)
     excludes ${daysoff}
     ${props.events != null ? props.events.map(props.prop1).join('') : ``}`;
     return  <>
-        <div className={"row"}>
-            <div className={"col"}>
-            <details><summary className={"button button--outline button--primary margin-bottom--lg"}>Click here for Mermaid Diagram markdown.
-            </summary>
-                <CodeBlock>
-                    ```mermaid{`\n`}
-                    {chart+"\n"}
-                    ```
-                </CodeBlock>
-            </details>
-        </div>
+        {/*TODO: Fix nested <detail> in tab for pdf export.*/}
+        {/*<div className={"row"}>*/}
+        {/*    <div className={"col"}>*/}
+        {/*    <details><summary className={"button button--outline button--primary margin-bottom--lg"}>Click here for Mermaid Diagram markdown.*/}
+        {/*    </summary>*/}
+        {/*        <CodeBlock>*/}
+        {/*            ```mermaid{`\n`}*/}
+        {/*            {chart+"\n"}*/}
+        {/*            ```*/}
+        {/*        </CodeBlock>*/}
+        {/*    </details>*/}
+        {/*</div>*/}
             <div className={"col"}>
                 <a className={"button button--primary margin-bottom--lg"} href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
             </div>
-        </div>
+        {/*</div>*/}
         <Mermaid value={chart} config={{securityLevel:"loose", theme:"dark"}} />
 </>
 
