@@ -24,11 +24,6 @@ jobs:
           git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
           git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
           cd documentation && yarn deploy
-      - name: Make PDF
-        run: |
-          cd documentation
-          yarn pdf
-
       - name: Determine Semester
         id: semester
         run: |
@@ -42,17 +37,10 @@ jobs:
             SEMESTER="Summer"
           fi
           echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
-
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.run_number }}
-#          release_name: ${{ env.SEMESTER_YEAR }} Course Syllabus
-#          draft: false
-#          prerelease: false
+      - name: Make PDF
+        run: |
+          cd documentation
+          yarn pdf
 
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
