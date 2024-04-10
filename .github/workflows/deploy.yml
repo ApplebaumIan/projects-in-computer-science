@@ -26,9 +26,41 @@ jobs:
           cd documentation && yarn deploy
       - name: Make PDF
         run: |
-          export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
-          cd documentation && yarn pdf
-      - name: Release PDF
-        uses: softprops/action-gh-release@v2
+          cd documentation
+          yarn pdf
+
+      - name: Determine Semester
+        id: semester
+        run: |
+          CURRENT_MONTH=$(date +%m)
+          CURRENT_YEAR=$(date +%Y)
+          if [[ "$CURRENT_MONTH" -ge 1 && "$CURRENT_MONTH" -le 5 ]]; then
+            SEMESTER="Spring"
+          elif [[ "$CURRENT_MONTH" -ge 9 && "$CURRENT_MONTH" -le 12 ]]; then
+            SEMESTER="Fall"
+          else
+            SEMESTER="Summer"
+          fi
+          echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tag_name: ${{ github.run_number }}
+          release_name: ${{ env.SEMESTER_YEAR }} Course Syllabus
+          draft: false
+          prerelease: false
+
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "release-${{ github.run_number }}-${{ env.SEMESTER_YEAR }}"
+          name: ${{ env.SEMESTER_YEAR }} Course Syllabus
           files: syllabus.pdf
+          draft: false
+          prerelease: false
