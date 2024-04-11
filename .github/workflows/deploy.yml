@@ -41,16 +41,13 @@ jobs:
         run: |
           cd documentation
           yarn pdf
-      - name: merge-pdfs
-        # You may pin to the exact commit or the version.
-        # uses: elMuso/MergePDFs-action@d6b53230697985c4c23620d57fffcd8ca4faa474
-        uses: elMuso/MergePDFs-action@1.1
+      - name: Combine PDFs
+        uses: amoeba/combine-pdf-action@v1
         with:
-          # The path that has all the .pdf files
           path: ./
-          # The name of the output file
-          filename: ./syllabus.pdf
-
+      - name: Rename PDF
+        run: |
+          mv combine.pdf syllabus.pdf
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
         env:
