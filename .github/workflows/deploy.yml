@@ -44,10 +44,10 @@ jobs:
       - name: Combine PDFs
         uses: amoeba/combine-pdf-action@v1
         with:
-          path: ./
+          path: resources
       - name: Rename PDF
         run: |
-          mv combine.pdf syllabus.pdf
+          mv resources/combine.pdf ./syllabus.pdf
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
         env:
