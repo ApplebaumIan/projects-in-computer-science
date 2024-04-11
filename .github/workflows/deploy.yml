@@ -41,7 +41,13 @@ jobs:
         run: |
           cd documentation
           yarn pdf
-
+      - name: Combine PDFs
+        uses: amoeba/combine-pdf-action@v1
+        with:
+          path: resources
+      - name: Rename PDF
+        run: |
+          mv resources/combined.pdf syllabus.pdf
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
         env:
