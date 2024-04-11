@@ -47,7 +47,7 @@ jobs:
           path: resources
       - name: Rename PDF
         run: |
-          mv combine.pdf syllabus.pdf
+          mv resources/combined.pdf syllabus.pdf
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
         env:
