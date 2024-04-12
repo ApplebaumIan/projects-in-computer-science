@@ -6,5 +6,9 @@ sidebar_position: 2
 ---
 
 import ApiDocMdx from '@theme/ApiDocMdx';
+import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 
-<ApiDocMdx id="using-single-yaml" />
+
+<>
+{docusaurusConfig.customFields.is_pdf ? <></> : <ApiDocMdx id="using-single-yaml" />}
+</>

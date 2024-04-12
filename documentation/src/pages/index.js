@@ -15,6 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
@@ -32,34 +33,37 @@ export function HomepageHeader() {
       <div className="container" style={{zIndex:100}}>
           <div className={"row"}>
               <div className={"col"}>
-                  <h1 className="hero__title">{siteConfig.title}</h1>
-                  <p className="hero__subtitle">{siteConfig.tagline}</p>
+                  <h1 className="hero__title">{siteConfig.customFields.course_number} <br/>
+                      {siteConfig.title}
+                  </h1>
+                  <p className="hero__subtitle">{siteConfig.customFields.semester} {siteConfig.tagline}</p>
+                  <div className={"col"}>
+                      {/* TODO: Change me to your project's tutorial*/ }
+                      <Link
+                          className="button button--secondary button--lg margin--md"
+                          to="#office-hours-professor-applebaum">
+                          Student Office Hours ️👨‍🏫
+                      </Link>
+                      <Link
+                          className="button button--secondary button--lg margin--md"
+                          to="#class-discord">
+                          Class Discord Server 💬
+                      </Link>
+                      <Link
+                          className="button button--secondary button--lg margin--md"
+                          to="#course-schedule">
+                          Course Schedule 📆
+                      </Link>
+                      <Link
+                          className="button button--secondary button--lg margin--md"
+                          to="/tutorial/intro">
+                          Docusaurus Tutorial 🦖
+                      </Link>
+                  </div>
+
               </div>
 
-              {/*<WatchLiveDemo/>*/}
-              <div className={"col"}>
-                  {/* TODO: Change me to your project's tutorial*/ }
-                  <Link
-                      className="button button--secondary button--lg margin--md"
-                      to="#office-hours-professor-applebaum">
-                      Student Office Hours ️👨‍🏫
-                  </Link>
-                  <Link
-                      className="button button--secondary button--lg margin--md"
-                      to="#class-discord">
-                      Class Discord Server 💬
-                  </Link>
-                  <Link
-                      className="button button--secondary button--lg margin--md"
-                      to="#course-schedule">
-                      Course Schedule 📆
-                  </Link>
-                  <Link
-                      className="button button--secondary button--lg margin--md"
-                      to="/tutorial/intro">
-                      Docusaurus Tutorial 🦖
-                  </Link>
-          </div>
+              {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
 
 
         </div>

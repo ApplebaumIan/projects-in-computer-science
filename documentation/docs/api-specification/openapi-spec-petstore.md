@@ -6,5 +6,8 @@ sidebar_position: 3
 ---
 
 import ApiDocMdx from '@theme/ApiDocMdx';
+import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 
-<ApiDocMdx id="using-petstore-yaml" />
+<>
+{docusaurusConfig.customFields.is_pdf ? <></> : <ApiDocMdx id="using-petstore-yaml" />}
+</>

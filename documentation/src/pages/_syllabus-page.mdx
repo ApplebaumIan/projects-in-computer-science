@@ -12,6 +12,7 @@ import TOCInline from "@theme/TOCInline"
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 
 <div id={"mobile-toc"} style={{display:"flex", justifyContent:"center", alignContent:"center"}}>
 <details style={{width:"75%"}}>
@@ -101,7 +102,10 @@ Office hours with Prof. Applebaum can be arranged by appointment using Calendly 
 
 If the scheduling widget doesn't appear use the following Calendly link: https://calendly.com/ian-tyler-applebaum/office-hours
 
-<InlineWidget url="https://calendly.com/ian-tyler-applebaum/office-hours" />
+<>
+{docusaurusConfig.customFields.is_pdf ? <></> : <InlineWidget url="https://calendly.com/ian-tyler-applebaum/office-hours" />}
+</>
+
 
 </details>
 

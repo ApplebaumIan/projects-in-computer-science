@@ -16,14 +16,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install
         run: cd documentation && yarn install
-
-      - name: Deploy
-        run: |
-          export ORG_NAME=$(echo ${GITHUB_REPOSITORY%/*})
-          export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
-          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
-          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
-          cd documentation && yarn deploy
       - name: Determine Semester
         id: semester
         run: |
@@ -37,6 +29,13 @@ jobs:
             SEMESTER="Summer"
           fi
           echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
+      - name: Deploy
+        run: |
+          export ORG_NAME=$(echo ${GITHUB_REPOSITORY%/*})
+          export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
+          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
+          cd documentation && yarn deploy
       - name: Make PDF
         run: |
           cd documentation
