@@ -38,6 +38,7 @@ jobs:
           cd documentation && yarn deploy
       - name: Make PDF
         run: |
+          export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
           cd documentation
           yarn pdf
       - name: Combine PDFs
