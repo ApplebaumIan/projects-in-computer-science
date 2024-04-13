@@ -18,7 +18,9 @@ const main_template_jira_scripts = () => {
     return []
   }
 }
-
+const is_pdf = process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
+const course_number = 'CIS 4398';
+const semester = process.env.SEMESTER_YEAR;
 // You can change the title here. The default is the name of the repository.
 const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
   return word[0].toUpperCase() + word.substring(1);
@@ -41,7 +43,11 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: process.env.ORG_NAME, // Usually your GitHub org/user name.
   projectName: process.env.PROJECT_NAME, // Usually your repo name.
-
+  customFields:{
+    course_number: course_number,
+    semester: semester,
+    is_pdf: is_pdf,
+  },
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
