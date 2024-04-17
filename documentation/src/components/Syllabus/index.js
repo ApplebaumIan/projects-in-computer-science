@@ -1,7 +1,9 @@
 import * as PropTypes from "prop-types";
 
-const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
-const url = "https://courses.ianapplebaum.com";
+const api_key = "ZDwWOxWIsmzavPDA3bK4KyG4vGcbUuaP0N1Fo0OT";
+//"0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
+const url = "http://projects-in-compsci.test";
+// "https://courses.ianapplebaum.com";
 
 import React, { useEffect, useState } from "react"
 import Mermaid from "@theme/Mermaid";
@@ -13,9 +15,9 @@ function SyllabusTable(props) {
             <th scope="col">
                 Week
             </th>
-            <th scope="col">
-                Type
-            </th>
+            {/*<th scope="col">*/}
+            {/*    Type*/}
+            {/*</th>*/}
             <th scope="col">
                 Event
             </th>
@@ -46,7 +48,7 @@ Fall Break (no classes held)
 Thursday, November 23 - Sunday, November 26
 Thanksgiving holiday (no classes held)
      */
-    let daysoff = `2024-03-04 2024-03-05 2024-03-06 2024-03-07 2024-03-08 2024-03-09 2024-03-10 `;
+    let daysoff = props.daysOff;
     let chart = `gantt
     title Schedule Gantt Chart
     dateFormat  YYYY-MM-DD
@@ -214,7 +216,7 @@ export default function Syllabus(props) {
     }
     return <>
         <div className={"markdown"}>
-            <SyllabusGantt courseid={props.courseid} events={events} prop1={(event) => {
+            <SyllabusGantt courseid={props.courseid} events={events} daysOff={props.daysOff} prop1={(event) => {
                 return formatEvent(s,event,makeid(event.event_name))
             }} />
         </div>
@@ -226,10 +228,10 @@ export default function Syllabus(props) {
                     weeksBetween(s.start_date, event.event_date)
                 }
             </th>
-            <th scope="row"
-            >
-                {event.class_type}
-            </th>
+            {/*<th scope="row"*/}
+            {/*>*/}
+            {/*    {event.class_type}*/}
+            {/*</th>*/}
             <th scope="row"
             >
                 {event.event_name}
