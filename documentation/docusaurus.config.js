@@ -65,6 +65,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          showLastUpdateAuthor: true,
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: 'docs',
           path: 'docs',
@@ -114,43 +115,7 @@ const config = {
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-
-    {
-      mermaid: {
-        theme: {light: 'default', dark: 'base'},
-
-        options: {
-          themeVariables: {
-            'primaryColor': '#bc2239',
-            'primaryTextColor': '#fff',
-            'secondaryTextColor': '#fff',
-            'tertiaryTextColor': '#fff',
-            // 'primaryBorderColor': '#7C0000',
-            'lineColor': '#F8B229',
-            'secondaryColor': '#006100',
-            'tertiaryColor': 'rgba(0,255,32,0.5)',
-          },
-          ganttConfig:{
-            'grid':"#fff"
-          },
-          securityLevel:'loose',
-          startOnLoad:true
-        }
-      },
-
-      announcementBar: {
-        id: 'office-hours-fall-23',
-        content:
-            `Official Office Hours are now posted! Mondays, Wednesdays and Fridays. <a href="https://calendly.com/ian-tyler-applebaum/office-hours">Schedule now here!</a>`,
-        backgroundColor: 'yellow',
-        textColor: '#091E42',
-        isCloseable: true,
-      },
-      colorMode: {
-        defaultMode: 'light',
-        disableSwitch: false,
-        respectPrefersColorScheme: true,
-      },
+    ({
       navbar: {
         /*TODO: Change to your project's title*/
         title: title,
@@ -288,7 +253,7 @@ const config = {
         },
       },
 
-    },
+    }),
   plugins: [
     [
       '@docusaurus/plugin-content-docs',
