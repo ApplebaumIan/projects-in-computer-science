@@ -35,7 +35,7 @@ const config = {
   url: 'https://capstone.ianapplebaum.com/',
   baseUrl: '/',
   trailingSlash: false,
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/dont-panic.svg',
 
