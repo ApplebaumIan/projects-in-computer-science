@@ -13,9 +13,9 @@ function SyllabusTable(props) {
             <th scope="col">
                 Week
             </th>
-            <th scope="col">
-                Type
-            </th>
+            {/*<th scope="col">*/}
+            {/*    Type*/}
+            {/*</th>*/}
             <th scope="col">
                 Event
             </th>
@@ -46,7 +46,7 @@ Fall Break (no classes held)
 Thursday, November 23 - Sunday, November 26
 Thanksgiving holiday (no classes held)
      */
-    let daysoff = `2024-03-04 2024-03-05 2024-03-06 2024-03-07 2024-03-08 2024-03-09 2024-03-10 `;
+    let daysoff = props.daysOff;
     let chart = `gantt
     title Schedule Gantt Chart
     dateFormat  YYYY-MM-DD
@@ -214,7 +214,7 @@ export default function Syllabus(props) {
     }
     return <>
         <div className={"markdown"}>
-            <SyllabusGantt courseid={props.courseid} events={events} prop1={(event) => {
+            <SyllabusGantt courseid={props.courseid} events={events} daysOff={props.daysOff} prop1={(event) => {
                 return formatEvent(s,event,makeid(event.event_name))
             }} />
         </div>
@@ -226,10 +226,10 @@ export default function Syllabus(props) {
                     weeksBetween(s.start_date, event.event_date)
                 }
             </th>
-            <th scope="row"
-            >
-                {event.class_type}
-            </th>
+            {/*<th scope="row"*/}
+            {/*>*/}
+            {/*    {event.class_type}*/}
+            {/*</th>*/}
             <th scope="row"
             >
                 {event.event_name}
