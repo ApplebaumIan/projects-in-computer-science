@@ -63,7 +63,7 @@ export function HomepageHeader() {
 
                     </div>
 
-                    {docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}
+                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
 
 
                 </div>
