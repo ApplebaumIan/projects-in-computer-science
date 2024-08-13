@@ -92,3 +92,83 @@ backdrop-filter: opacity(50%);
   color: white;
   fill: white;
 }
+
+/**{*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+.hero--primary {
+  position: relative;
+  width: 100%;
+  /*height: 100vh;*/
+  /*background: #3586ff;*/
+  overflow: hidden;
+}
+.hero--primary .air{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url(https://1.bp.blogspot.com/-xQUc-TovqDk/XdxogmMqIRI/AAAAAAAACvI/AizpnE509UMGBcTiLJ58BC6iViPYGYQfQCLcBGAsYHQ/s1600/wave.png);
+  background-size: 1000px 100px;
+}
+.hero--primary .air.air1{
+  animation: wave 30s linear infinite;
+  z-index: 5;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+  background-blend-mode: multiply;
+
+}
+.hero--primary .air.air2{
+  animation: wave2 15s linear infinite;
+  z-index: 6;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+  background-blend-mode: multiply;
+
+}
+.hero--primary .air.air3{
+  animation: wave 30s linear infinite;
+  z-index: 7;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+  background-blend-mode: multiply;
+
+}
+.hero--primary .air.air4{
+  animation: wave2 5s linear infinite;
+  z-index: 8;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+  background-blend-mode: multiply;
+
+}
+@keyframes wave{
+  0%{
+    background-position-x: 0px;
+  }
+  100%{
+    background-position-x: 1000px;
+  }
+}
+@keyframes wave2{
+  0%{
+    background-position-x: 0px;
+  }
+  100%{
+    background-position-x: -1000px;
+  }
+}
+
+/*#__docusaurus_skipToContent_fallback > header > div.container > div > div > div > a:nth-child(1){*/
+/*  z-index: 5000;*/
+/*}*/
+/*#__docusaurus_skipToContent_fallback > header > div.container > div > div > div > a:nth-child(4){*/
+/*  z-index: 1001;*/
+/*}*/

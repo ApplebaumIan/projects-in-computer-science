@@ -37,7 +37,7 @@ export function HomepageHeader() {
                             {siteConfig.title}
                         </h1>
                         <p className="hero__subtitle">{siteConfig.customFields.semester} {siteConfig.tagline}</p>
-                        <div className={"col"}>
+                        <div className={"col button_group"}>
                             {/* TODO: Change me to your project's tutorial*/ }
                             <Link
                                 className="button button--secondary button--lg margin--md"
@@ -75,7 +75,10 @@ export function HomepageHeader() {
             {/*        return <AnimatedBackground/>;*/}
             {/*    }}*/}
             {/*</BrowserOnly>*/}
-
+            <div className='air air1'/>
+            <div className='air air2'/>
+            <div className='air air3'/>
+            <div className='air air4'/>
         </header>
     );
 }
