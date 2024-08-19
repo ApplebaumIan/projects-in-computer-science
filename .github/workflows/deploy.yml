@@ -23,7 +23,7 @@ jobs:
           CURRENT_YEAR=$(date +%Y)
           if [[ "$CURRENT_MONTH" -ge 1 && "$CURRENT_MONTH" -le 5 ]]; then
             SEMESTER="Spring"
-          elif [[ "$CURRENT_MONTH" -ge 9 && "$CURRENT_MONTH" -le 12 ]]; then
+          elif [[ "$CURRENT_MONTH" -ge 8 && "$CURRENT_MONTH" -le 12 ]]; then
             SEMESTER="Fall"
           else
             SEMESTER="Summer"
