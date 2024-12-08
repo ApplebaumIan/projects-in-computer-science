@@ -116,6 +116,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: "/img/Dont_Panic.png",
       navbar: {
         /*TODO: Change to your project's title*/
         title: title,
