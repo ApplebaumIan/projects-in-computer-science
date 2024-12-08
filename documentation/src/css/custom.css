@@ -52,6 +52,9 @@
 .live-demo{
   text-align: justify;
 }
+.mobile-live-demo {
+  display: none !important;
+}
 
 #docusaurus_skipToContent_fallback > header > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > div > div:nth-child(1) > div {
   text-align: center;
@@ -74,13 +77,25 @@ backdrop-filter: opacity(50%);
 /*visibility: hidden;*/
 }
 
-
+.youtube-player{
+  width: 560px;
+  height: 317px;
+}
 .syllabus-content {
   margin-top: 50px;
 }
 
 @media screen and (max-width: 996px) {
-
+  .live-demo {
+    display: none;
+  }
+  .youtube-player{
+    width: 330px;
+    height: 208px;
+  }
+  .mobile-live-demo {
+    display: inline !important;
+  }
   #mobile-toc {
     display: flex !important;
     margin-top: 2rem;

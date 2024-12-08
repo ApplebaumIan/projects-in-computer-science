@@ -16,6 +16,7 @@ import TabItem from '@theme/TabItem';
 import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
+import * as PropTypes from "prop-types";
 
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
@@ -62,8 +63,7 @@ export function HomepageHeader() {
                         </div>
 
                     </div>
-
-                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
+                    {docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}
 
 
                 </div>
@@ -83,6 +83,51 @@ export function HomepageHeader() {
     );
 }
 
+function DemoLineUp(props) {
+    return <Tabs queryString="section" className={"unique-tabs"}>
+        <TabItem value="001" label={<>Section 001<br/>9:30-10:50am EST<br/>📍SERC 306</>}>
+            <Figure caption={"Final Demos Fall Semester 2024 Live Stream"} subcaption={"Section 001"}>
+                <iframe className={"youtube-player"}
+                        src="https://www.youtube.com/embed/TE_P9Rks8LU?si=4z3PUN1UpntHSaHR"
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </Figure>
+            <div className={"col"}>
+                <details>
+                    <summary className={"button button--outline button--primary margin-bottom--lg justify-center"}>
+                        Click Here For the Demo Lineup!
+                    </summary>
+                    <YouTubeVideoDescription videoId={"TE_P9Rks8LU"}/>
+                </details>
+            </div>
+        </TabItem>
+        <TabItem value="002" label={<>Section 002<br/>2:00pm to 3:20pm EST<br/>📍SERC 306</>}
+                 default={isTimeBetween(props.startDate, props.endDate)}>
+            <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 002"}>
+                <iframe className={"youtube-player"}
+                        src="https://www.youtube.com/embed/yFm41msA6Eg?si=uqBMHnvpnZMUG6Fx"
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </Figure>
+            <div className={"col"}>
+                <details>
+                    <summary className={"button button--outline button--primary margin-bottom--lg"}>
+                        Click Here For the Demo Lineup!
+                    </summary>
+                    <YouTubeVideoDescription videoId={"yFm41msA6Eg"}/>
+                </details>
+            </div>
+        </TabItem>
+    </Tabs>;
+}
+
+DemoLineUp.propTypes = {
+    startDate: PropTypes.any,
+    endDate: PropTypes.any
+};
+
 function WatchLiveDemo() {
     // Section 002 should appear first
     var section002Start = new Date("2023-04-29T01:00:00");
@@ -96,8 +141,7 @@ function WatchLiveDemo() {
         <div className={"card__header row"}>
             <div className={"col col--9"}>
                 <h2>Watch Live 🔴</h2>
-                <h3>April 29th 9:30am to 5:00pm EST on YouTube</h3>
-                <p>We have a lot to share this semester. 6 ambitious projects dealing with AI, Accessibility, Computer Vision, IoT, Embedded Systems, Gaming, and Computer Science Education. <b>Come see what Temple University's class of 2024 has to offer.</b></p>
+                <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>
 
             </div>
             <div className={"col col--3"}>
@@ -106,56 +150,7 @@ function WatchLiveDemo() {
             </div>
         </div>
         <div className={"card__body"}>
-            <Tabs queryString="section">
-                <TabItem value="001" label={<>Section 001<br/>9:30-10:50am EST<br/>📍SERC 214</>}>
-                    <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 001"}>
-                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/7Hc27xvGuj4"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen></iframe>
-                    </Figure>
-                    <div className={"col"}>
-                        <details>
-                            <summary className={"button button--outline button--primary margin-bottom--lg"}>
-                                Click Here For the Demo Lineup!
-                            </summary>
-                            <YouTubeVideoDescription videoId={"7Hc27xvGuj4"}/>
-                        </details>
-                    </div>
-                </TabItem>
-                <TabItem value="002" label={<>Section 002<br/>12:30pm to 1:50pm EST<br/>📍SERC 306</>} default={isTimeBetween(section002Start,section002End)}>
-                    <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 002"}>
-                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/w5BaWx_9U6U"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen></iframe>
-                    </Figure>
-                    <div className={"col"}>
-                        <details>
-                            <summary className={"button button--outline button--primary margin-bottom--lg"}>
-                                Click Here For the Demo Lineup!
-                            </summary>
-                            <YouTubeVideoDescription videoId={"w5BaWx_9U6U"}/>
-                        </details>
-                    </div>
-                </TabItem>
-                <TabItem value="003" label={<>Section 003<br/>3:30pm to 4:00pm EST<br/>📍SERC 306</>} default={isTimeBetween(section003Start,section003End)}>
-                    <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 003"}>
-                        <iframe width="100%" height="615" src="https://www.youtube.com/embed/Y7IkoT6fJuc"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen></iframe>
-                    </Figure>
-                    <div className={"col"}>
-                        <details>
-                            <summary className={"button button--outline button--primary margin-bottom--lg"}>
-                                Click Here For the Demo Lineup!
-                            </summary>
-                            <YouTubeVideoDescription videoId={"Y7IkoT6fJuc"}/>
-                        </details>
-                    </div>
-                </TabItem>
-            </Tabs>
+            <DemoLineUp startDate={section002Start} endDate={section002End}/>
         </div>
     </div>;
 }
@@ -170,6 +165,11 @@ export default function Home() {
             <main>
                 <div style={{zIndex:100000}}>
                     <MDXContent>
+                        <div className={"mobile-live-demo"}>
+                            <h2>Watch Live 🔴</h2>
+                            <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>
+                            <DemoLineUp/>
+                        </div>
                         <SyllabusPage/>
                     </MDXContent>
                 </div>
