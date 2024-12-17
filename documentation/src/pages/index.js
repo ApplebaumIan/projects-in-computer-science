@@ -63,7 +63,7 @@ export function HomepageHeader() {
                         </div>
 
                     </div>
-                    {docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}
+                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
 
 
                 </div>
@@ -165,11 +165,11 @@ export default function Home() {
             <main>
                 <div style={{zIndex:100000}}>
                     <MDXContent>
-                        <div className={"mobile-live-demo"}>
-                            <h2>Watch Live 🔴</h2>
-                            <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>
-                            <DemoLineUp/>
-                        </div>
+                        {/*<div className={"mobile-live-demo"}>*/}
+                        {/*    <h2>Watch Live 🔴</h2>*/}
+                        {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
+                        {/*    <DemoLineUp/>*/}
+                        {/*</div>*/}
                         <SyllabusPage/>
                     </MDXContent>
                 </div>
