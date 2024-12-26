@@ -6,6 +6,8 @@ const url = "https://courses.ianapplebaum.com";
 import React, { useEffect, useState } from "react"
 import Mermaid from "@theme/Mermaid";
 import CodeBlock from "@theme/CodeBlock";
+import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
+
 function SyllabusTable(props) {
     return <table>
         <thead>
@@ -38,6 +40,24 @@ function SyllabusTable(props) {
         </tbody>
     </table>;
 }
+
+function MermaidCodeBlock(props) {
+    return <div className={"col"}>
+        <details>
+            <summary className={"button button--outline button--primary margin-bottom--lg"}>Click here for Mermaid
+                Diagram markdown.
+            </summary>
+            <CodeBlock>
+                ```mermaid{`\n`}
+                {props.chart + "\n"}
+                ```
+            </CodeBlock>
+        </details>
+    </div>;
+}
+
+MermaidCodeBlock.propTypes = {chart: PropTypes.string};
+
 function SyllabusGantt(props) {
     // let daysoff = `2023-03-07 2023-03-08 2023-03-09 2023-03-10 2023-03-11 2023-03-12`;
     /*
@@ -53,24 +73,15 @@ Thanksgiving holiday (no classes held)
     excludes ${daysoff}
     ${props.events != null ? props.events.map(props.prop1).join('') : ``}`;
     return  <>
-        {/*TODO: Fix nested <detail> in tab for pdf export.*/}
-        {/*<div className={"row"}>*/}
-        {/*    <div className={"col"}>*/}
-        {/*    <details><summary className={"button button--outline button--primary margin-bottom--lg"}>Click here for Mermaid Diagram markdown.*/}
-        {/*    </summary>*/}
-        {/*        <CodeBlock>*/}
-        {/*            ```mermaid{`\n`}*/}
-        {/*            {chart+"\n"}*/}
-        {/*            ```*/}
-        {/*        </CodeBlock>*/}
-        {/*    </details>*/}
-        {/*</div>*/}
+        <div className={"row"}>
+            {docusaurusConfig.customFields.is_pdf ? <></> : <MermaidCodeBlock chart={chart}/>}
             <div className={"col"}>
-                <a className={"button button--primary margin-bottom--lg"} href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
+                <a className={"button button--primary margin-bottom--lg"}
+                   href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
             </div>
-        {/*</div>*/}
-        <Mermaid value={chart} config={{securityLevel:"loose", theme:"dark"}} />
-</>
+        </div>
+        <Mermaid value={chart} config={{securityLevel: "loose", theme: "dark"}}/>
+    </>
 
     // <Mermaid value={`gantt
     // title Projects in Computer Science Spring 2023 Syllabus
@@ -207,7 +218,7 @@ export default function Syllabus(props) {
                 gantt_event = lab
                 break
         }
-        return `section ${phaseStr} 
+        return `section ${phaseStr}
          ${gantt_event}
         `;
         // return `${event.event_name}:${event.event_date}, 1d \n`;
