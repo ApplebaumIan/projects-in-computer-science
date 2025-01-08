@@ -267,6 +267,16 @@ const config = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'ta-resource',
+        path: 'ta-resource',
+        routeBasePath: 'ta-resource',
+        sidebarPath: require.resolve('./sidebars.js'),
+        // ... other options
+      },
+    ],
+    [
       "docusaurus2-dotenv-2",
       {
         systemvars: true,

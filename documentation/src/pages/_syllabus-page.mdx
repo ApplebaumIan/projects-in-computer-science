@@ -1,4 +1,7 @@
-import {InlineWidget} from "react-calendly";
+---
+toc: true
+---
+
 
 import Syllabus from '../components/Syllabus';
 import DontPanic from "../../static/img/dont-panic.svg"
@@ -7,12 +10,8 @@ import Figure from "../components/Figure";
 
 import grading from "../../static/img/grading.png"
 
-import TOC from '@theme/TOC';
 import TOCInline from "@theme/TOCInline"
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 
 <div id={"mobile-toc"} style={{display:"flex", justifyContent:"center", alignContent:"center"}}>
 <details style={{width:"75%"}}>
@@ -30,104 +29,16 @@ import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 </details>
 </div>
 
-<div className={"container"} >
-<div className={"row"}>
-<div className={"syllabus-content col"}>
 
-
-<div  className={"container"}>
-<div className={"row"}>
-<div className={"col col--4"}>
-
-
-# Instructor
-
-<img id={"professor-applebaum"} className={"masked"} src={"https://s.gravatar.com/avatar/d7050d71af151b8db6f046e33e9e8e2e?s=200"} alt={"picture of Professor Ian Tyler Applebaum."}/>
-
-Professor Ian Tyler Applebaum
-Email:
-ian.tyler@temple.edu
-Discord:
-Applebaumian#2888
-Office: SERC 325
-
-</div>
-
-<div className={"col col--8"}>
-
-## Sections
-- Section 001
-    - Lecture Mondays and Fridays 9:30 am - 10:50 am Room SERC 214
-    - Lab Wednesdays 90:00 am - 9:50 am Room SERC 214
-- Section 002
-    - Lecture Mondays and Fridays 12:30 pm - 1:50 pm Room SERC 214
-    - Lab Wednesdays 1:00 pm - 1:50 pm Room SERC 214
-- Section 003
-    - Lecture Mondays and Fridays 3:30 pm - 4:50 pm Room SERC 214
-    - Lab Wednesdays 4:00 -pm - 4:50 pm Room SERC 214
-
-## Teaching and Lab Assistants
-
-**Section 001:**
-
-- Kyle Dragon Lee: Kyle.d.lee@temple.edu
-
-**Section 002**
-
-- Thanh Nguyen: thanh.p.nguyen46@temple.edu
-
-</div>
-</div>
-
-</div>
-
-## Office Hours
-
-### Professor Applebaum
-
-<details>
-<summary>
-Office hours with Prof. Applebaum can be arranged by appointment using Calendly and will be conducted via Discord or Zoom. Office hours are available at the following times:
-
-- Monday, 3:30-5:00 PM Online or in Person **SERC 325**
-
-- Wednesday, 1:00-2:00 PM Online or in Person **SERC 325**
-
-[//]: # (- Friday, 12:15-1:30 PM Online or in Person **SERC 325**)
-
-**To schedule an appointment with Prof. Applebaum, click here!**
-
-
-</summary>
-
-If the scheduling widget doesn't appear use the following Calendly link: https://calendly.com/ian-tyler-applebaum/office-hours
-
-<>
-{docusaurusConfig.customFields.is_pdf ? <></> : <InlineWidget url="https://calendly.com/ian-tyler-applebaum/office-hours" />}
-</>
-
-
-</details>
-
-### TA
-
-#### Kyle Dragon Lee
-
-- Monday, 5:00-6:00PM online **Discord**
-
-#### Thanh Nguyen
-
-- Schedule using [Calendly](https://calendly.com/thanh-phuoc-nguyen/office-hours/) - online via **Zoom**
-
-<div>
-<Figure caption={"Class Moto:"} subcaption={"Don't Panic, but expect the unexpected."}>
-<DontPanic style={{width:"100%"}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
-</Figure>
-</div>
 
 # Course Syllabus
 
 
+<div style={{float:'right'}}>
+    <Figure caption={"Class Moto:"} subcaption={"Don't Panic, but expect the unexpected."}>
+        <DontPanic style={{width:"100%", height:300}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
+    </Figure>
+</div>
 
 ## Course Description
 
@@ -170,20 +81,28 @@ As instructor I reserve the right to change activities if necessary, however **M
 :::
 
 
-[//]: # (<Tabs>)
-[//]: # (<TabItem value="1" label="Section 001" default>)
-[//]: # (<Syllabus courseid={11} daysOff={`2024-03-04 2024-03-05 2024-03-06 2024-03-07 2024-03-08 2024-03-09 2024-03-10 `}/>)
-[//]: # (</TabItem>)
-[//]: # (<TabItem value="2" label="Section 002" default>)
-
-<Syllabus courseid={9} daysOff={` 2025-03-03 2025-03-04 2025-03-05 2025-03-06 2025-03-07 2025-03-08 2025-03-09 `}/>
+[//]: # (<Syllabus courseid={9} daysOff={` 2025-03-03 2025-03-04 2025-03-05 2025-03-06 2025-03-07 2025-03-08 2025-03-09 `}/>)
 [//]: # (<Syllabus courseid={8} daysOff={` 2024-09-02 2024-11-25 2024-11-26 2024-11-27 2024-11-28 2024-11-29 2024-11-30 2024-12-01 `}/>)
 
-[//]: # (</TabItem>)
-[//]: # (<TabItem value="3" label="Section 003" default>)
-[//]: # (<Syllabus courseid={5}/>)
-[//]: # (</TabItem>)
-[//]: # (</Tabs>)
+| Week | Lab 1                                                                                     | Lecture                                                         | Lab 2                                                                                     | Deliverables                                                                                                                                                                                                                                         |
+| ---- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | Short Intro to Course, Introduce Client/Stakeholder and Projects                          | Requirements Management, Jira                                   | Docusaurus Setup                                                                           | <input type="checkbox" value="0"/> Team Collaboration Plan  <br/> <input type="checkbox" value="0"/> Docusaurus Web Page  <br/> <input type="checkbox" value="0"/> Email to Client/Stakeholder with team introduction and project-related questions |
+| 2    | MLK Day (No Class Held)                                                                   | Requirements Gathering Techniques and User Stories              |                                                                                           |                                                                                                                                                                                                                                                     |
+| 3    | Event Storming Workshop with Client/Stakeholder                                           | Refining User Stories from Event Storming Session               |                                                                                           | <input type="checkbox" value="0"/> Initial User Stories from Event Storming session                                                                                                                                                                 |
+| 4    | Client/Stakeholder Q&A: Each team meets with Client/Stakeholder to clarify requirements and receive feedback | Compare and Analyze Requirements Documents for Consistency and Completeness | Sprint 0 Planning and Task Assignments                                                    | <input type="checkbox" value="0"/> Sprint 0 Plan  <br/> <input type="checkbox" value="0"/> Story Point Estimates for User Stories                                                                                                                   |
+| 5    | Requirement Specification Document Workshop                                               | Effective Team Communication and Conflict Resolution            | Sprint 1 Planning (Start of 2-week sprint)                                                | <input type="checkbox" value="0"/> Requirement Specification Document (Draft)                                                                                                                                                                       |
+| 6    | Client/Stakeholder Q&A: Teams present wireframes, UML diagrams, and other designs for feedback | API Integration and State Management                            | Sprint 2 Planning (Start of 2-week sprint)                                                | <input type="checkbox" value="0"/> Functional React App with API Integration  <br/> <input type="checkbox" value="0"/> API Activity Demo Presentation                                                                                               |
+| 7    | Milestone Demo 1: Present Sprint 1 Deliverables                                           | Unit Testing and Continuous Integration (CI) Basics             | Sprint 2 Task Assignments                                                                  | <input type="checkbox" value="0"/> Sprint 1 Demo Feedback and Reflection                                                                                                                                                                            |
+| 8    |                                                                                           | Demo Best Practices and Client/Stakeholder Feedback Handling     | Sprint 3 Planning (Start of 2-week sprint)                                                | <input type="checkbox" value="0"/> Updated Sprint Plan with Refined User Stories                                                                                                                                                                    |
+| 9    |                                                                                           | Advanced Git Techniques and Feature Branching                   | Sprint 3 Task Assignments                                                                  |                                                                                                                                                                                                                                                     |
+| 10   | Design Document Workshop                                                                 | Design Patterns in Software Development                         | Sprint 4 Planning (Start of 2-week sprint)                                                | <input type="checkbox" value="0"/> Design Document (Draft)                                                                                                                                                                                          |
+| 11   | Sprint 2 Review and Milestone Demo 2 Prep                                                 | Integration Testing and Code Coverage Tools                     | Sprint 4 Task Assignments                                                                  | <input type="checkbox" value="0"/> Milestone Demo 2 Presentation                                                                                                                                                                                    |
+| 12   |                                                                                           | Debugging Strategies and Log Management                         | Sprint 5 Planning (Start of 2-week sprint)                                                | <input type="checkbox" value="0"/> Peer Feedback Report and Debugging Checklist                                                                                                                                                                     |
+| 13   | Milestone Demo 3 and Final Sprint Planning                                                | Preparing for Final Presentations                               | Sprint 5 Task Assignments                                                                  | <input type="checkbox" value="0"/> Sprint 3 Demo Feedback and Final Sprint Plan                                                                                                                                                                     |
+| 14   |                                                                                           | Open Lab for Final Questions                                    | Final Sprint Planning (Start of final 2-week sprint)                                      | <input type="checkbox" value="0"/> Updated Testing Procedures Document                                                                                                                                                                              |
+| 15   | Final Presentation Rehearsals                                                             | Course Reflection and Industry Readiness                        | Final Sprint Task Assignments                                                              | <input type="checkbox" value="0"/> Final Presentation Slides and in-class Demo Plan/Script (Draft)                                                                                                                                                  |
+| 16   | Final Presentation & Demo to Faculty and Guests                                           |                                                                 |                                                                                           | <input type="checkbox" value="0"/> Final Presentation & Demo  <br/> <input type="checkbox" value="0"/> Final Test Report Document                                                                                                                   |
+| 17   |                                                                                           |                                                                 |                                                                                           | <input type="checkbox" value="0"/> Final Grade Submission 🎓   <br/> <input type="checkbox" value="0"/> Have a great break! See you at graduation!!                                                                                                 |
 
 
 ### Technology Communication Requirements
@@ -259,38 +178,6 @@ at [speedtest.net](https://speedtest.net))
 
 
 </div>
-</div>
-
-
-
-#### Class Discord
-
-import Discord from "../../static/img/discord_logo.svg"
-
-<Discord
-/>
-
-
-
-
-<div className={"row"}>
-<div className={"col col--5"}>
-
-In this class, Discord will be the host for team communication as well as communication with your instructors and peers.
-You are free to conduct team meetings, have discussions about your projects, get advice or talk with your instructors using this platform. In addition, you may talk about your projects and assignments with other students in all the sections of the CIS 4398 Projects course.
-
-:::important Change your nickname!
-Please make sure that you change your nickname to your full name!
-:::
-
-<Figure src={"https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://discord.gg/7Fak2xkkda"} caption={"Scan QR Code above to join Discord Server"} />
-
-
-
-</div>
-
-<iframe src="https://discord.com/widget?id=1276585548638715925&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-
 </div>
 
 
@@ -592,11 +479,3 @@ commit, aid, encourage, facilitate, or solicit the commission of academic dishon
 impropriety including plagiarism, academic cheating, and selling lecture notes or other information
 provided by an instructor without the instructor’s authorization. Violations may result in failing the assignment and/or failing the course, and/or other sanctions as enumerated in the [University Code of Conduct (Links to an external site.)](https://studentconduct.temple.edu/policies).
 
-</div>
-<div className={"col col--4 margin--none"}>
-<TOC toc={toc} />
-
-</div>
-</div>
-
-</div>

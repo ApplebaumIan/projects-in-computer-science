@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -17,7 +17,12 @@ import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 import * as PropTypes from "prop-types";
-
+import Instructor from "../components/Instructor/Instructor";
+import OfficeHours from "../components/OfficeHours/OfficeHours";
+import Test from "./test.mdx"
+import TwoColumnLayout from "../components/TwoColumnLayout";
+import MDXContentWrapper from "../theme/MDXContent";
+import MDXPage from "@theme/MDXPage"
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
     if (currentDate >= startDate && currentDate <= endDate) {
@@ -170,6 +175,8 @@ export default function Home() {
                         {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
                         {/*    <DemoLineUp/>*/}
                         {/*</div>*/}
+                        {/*<Instructor/>*/}
+                        {/*<OfficeHours/>*/}
                         <SyllabusPage/>
                     </MDXContent>
                 </div>
