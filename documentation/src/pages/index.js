@@ -19,10 +19,6 @@ import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 import * as PropTypes from "prop-types";
 import Instructor from "../components/Instructor/Instructor";
 import OfficeHours from "../components/OfficeHours/OfficeHours";
-import Test from "./test.mdx"
-import TwoColumnLayout from "../components/TwoColumnLayout";
-import MDXContentWrapper from "../theme/MDXContent";
-import MDXPage from "@theme/MDXPage"
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
     if (currentDate >= startDate && currentDate <= endDate) {
