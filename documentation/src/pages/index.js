@@ -171,7 +171,7 @@ export default function Home() {
                         {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
                         {/*    <DemoLineUp/>*/}
                         {/*</div>*/}
-                        {/*<Instructor/>*/}
+                        <Instructor/>
                         {/*<OfficeHours/>*/}
                         <SyllabusPage/>
                     </MDXContent>
