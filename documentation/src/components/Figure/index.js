@@ -22,7 +22,7 @@ export default function Figure(props) {
     return (
         <figure id={id()} align={props.align ? props.align : "center"} style={props.style ? props.style : {}}>
                 {props.children}
-                {props.src ? <img src={props.src} alt={props.alt}/> : <></>}
+                {props.src ? <img src={props.src} alt={props.alt} width={props.imgWidth}/> : <></>}
             <figcaption align={props.align ? props.align : "center"}
                         style={{fontWeight: "bold"}}>{props.caption}
             </figcaption>

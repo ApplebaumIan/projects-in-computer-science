@@ -4,24 +4,26 @@ import DontPanic from "../../static/img/dont-panic.svg"
 import Figure from "../components/Figure";
 
 import grading from "../../static/img/grading.png"
-
+import feedback from "../../static/img/feedback-example.png"
+import jiraBoard from "../../static/img/jira-board-example.png"
+import Logo from "../../static/img/logo.svg"
 import TOCInline from "@theme/TOCInline"
 
 
 <div id={"mobile-toc"} style={{display:"flex", justifyContent:"center", alignContent:"center"}}>
-<details style={{width:"75%"}}>
-<summary>
-<div style={{textAlign:"center"}}>
+    <details style={{width:"75%"}}>
+        <summary>
+            <div style={{textAlign:"center"}}>
 
-**Table of Contents**
+                **Table of Contents**
 
-</div>
-</summary>
-<left>
-<TOCInline toc={toc}/>
-</left>
+            </div>
+        </summary>
+        <left>
+            <TOCInline toc={toc}/>
+        </left>
 
-</details>
+    </details>
 </div>
 
 
@@ -30,54 +32,96 @@ import TOCInline from "@theme/TOCInline"
 
 
 <div style={{float:'right'}}>
-    <Figure caption={"Class Moto:"} subcaption={"Don't Panic, but expect the unexpected."}>
+    <Figure caption={"Class Motto:"} subcaption={"Don't Panic, but expect the unexpected."}>
         <DontPanic style={{width:"100%", height:300}} alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
     </Figure>
 </div>
 
-## Course Description
+## Course Summary
 
-Congratulations on reaching the final course of your Computer Science undergraduate degree, a significant milestone that I'm honored to be a part of. This capstone course, designated by the CIS department, serves as a comprehensive evaluation of your computer science knowledge. It offers an environment for team-oriented design and implementation of large programming projects, where students propose, document, and demonstrate their projects. Emphasizing a project-driven approach, this method promotes active learning through in-depth classroom projects. Students will collaborate extensively, tackling both technical and managerial challenges. As a Writing-Intensive Course in CIS, you'll also focus on producing and revising technical software design and development documents throughout the course.
+This capstone course is the culmination of your Computer Science journey, focusing on team-based project design and implementation. You will collaborate on real-world projects, tackling technical and managerial challenges while refining your technical writing and presentation skills.
 
-### Education Goals
+### Attendance Policy
 
-- Provide an industrial working environment experience.
-- Guide students through all project development phases.
-- Apply and expand on knowledge from previous courses.
-- Facilitate the transition from school to professional work.
-- Emphasize systematic project proposal, documentation, development, and testing.
-- Promote teamwork, timely delivery, and resource management.
-- Enhance project management, communication, and teamwork skills.
-- Students will learn to conduct a literature search to support their design decisions and to cite sources appropriately.
-
-The project deliverables reflect authentic writing experiences that are common in the software engineering discipline. To prepare for this style of writing, students will prepare project deliverables through an iterative writing process, in which an initial draft is submitted, the instructor provides written feedback, and a revised version is submitted. Each project deliverable will have an individual grading rubric that includes elements that assess the ability to specify the purpose of the documentation, use of abstraction and models appropriately, discuss potential alternatives, use and cite evidence to support design decisions appropriately, organize and structure documentation appropriately, and to use correct grammar and appropriate style for communicating to various audiences.
-
-
-
-:::note Prerequisites
-
-C- or better in CIS 3238 or 3296 Software Design and Senior Standing
-
+:::danger Attendance
+**Attendance is mandatory for this course.** Each student is allowed a maximum of **3 absences** throughout the semester. Beyond this limit, your grade may be negatively affected. Attendance is crucial for success, as it ensures active participation in team projects and access to stakeholder feedback. Please make every effort to attend all classes and notify your instructor in advance if you must be absent.
 :::
 
+### What You Will Learn
 
-### Course Schedule
+- **Hands-On Experience**: Work in an environment that mirrors professional software development.
+- **Project Development**: Navigate all stages of project design, from ideation to final deployment.
+- **Real-World Applications**: Apply knowledge from previous courses to create functional and impactful projects.
+- **Teamwork**: Collaborate effectively with peers to achieve shared goals.
+- **Project Management**: Master Agile techniques, Jira, and GitHub for efficient project workflows.
+- **Documentation Skills**: Learn to create comprehensive technical documents that reflect industry standards.
 
-There are 16 weeks in the semester. The project schedule is managed in three phases as follows:
+Your project deliverables will involve writing-intensive components, iterating on feedback to produce high-quality work evaluated using rubrics.
 
-- Inception (2 weeks): decide what you do
-- Elaboration (4 weeks): say how you will do it
-- Construction (10 weeks): do what you say in elaboration. Or to quote Nike "Just Do It."
+### How Your Work Will Be Evaluated
 
-There will be three milestone and one final presentations/demos. All milestone demos are scheduled in the Construction phase and the final demo at the end of the semester. A detailed class schedule is shown below.
+Your work will be graded based on:
 
-:::important Some Activities are subject to change
-As instructor I reserve the right to change activities if necessary, however **Milestone demo dates will not change** during the duration of the course. Any changes to schedule will be announced automatically in the class [Discord](#class-discord).
-:::
+- Quality and completeness of project deliverables.
+- Collaboration and contribution to your team.
+- Ability to meet deadlines and manage resources effectively.
+- Documentation that demonstrates clear and professional communication.
+
+<Figure src={grading} caption="Grading Criteria and Weight Distribution"/>
+
+### Tools and Technologies
+
+In this course, you will use tools like Jira for project management and GitHub for version control, ensuring you are prepared for industry practices.
+
+<Figure src={jiraBoard} caption="Jira Software Scrum Board"/>
 
 
-[//]: # (<Syllabus courseid={9} daysOff={` 2025-03-03 2025-03-04 2025-03-05 2025-03-06 2025-03-07 2025-03-08 2025-03-09 `}/>)
-[//]: # (<Syllabus courseid={8} daysOff={` 2024-09-02 2024-11-25 2024-11-26 2024-11-27 2024-11-28 2024-11-29 2024-11-30 2024-12-01 `}/>)
+### Documentation and Writing Requirements
+
+<div style={{float:'right'}}>
+    <Figure caption={"Write > Submit > Feedback > Revise > Submit Again"}>
+        <img  style={{width:"50%"}} src={"https://media.istockphoto.com/id/1183393265/vector/editing-and-paper-revision-grammar-and-spelling-marks.jpg?s=612x612&w=0&k=20&c=yDH5h_FtJNQ2-vz1yCbUJZNQvsemtUg525vWV2-FO8Q="} alt={"red ink handwritten markup on a blank page."}/>
+    </Figure>
+</div>
+
+As a writing-intensive course, your ability to document and communicate technical ideas is crucial. You'll use Docusaurus, a modern documentation tool, to organize and present your work. Feedback will be provided via Jira tickets to mirror professional feedback processes. You will:
+
+- Submit initial drafts of your documentation.
+- Receive detailed feedback to guide revisions.
+- Resubmit improved versions for final grading.
+
+#### Key Documentation Deliverables
+
+1. **Project Proposal**: Define your project goals, user benefits, and requirements.
+2. **Requirements Specification**: Detail your project's features and success criteria.
+3. **Design Documents**: Create architecture and API documentation with diagrams.
+4. **Test Procedures**: Document your testing strategies and outcomes.
+
+[//]: # (<div style={{float:"right", width:"35%"}}>)
+
+[//]: # (    <Figure src={feedback} caption={"Example of feedback given to students' Docusaurus web page."}/>)
+
+[//]: # (</div>)
+
+### Docusaurus for Project Documentation
+
+<a href={"https://docusaurus.io/"} target="_blank">
+    <Logo style={{float:"left", marginRight:"50px"}}/>
+</a>
+
+[Docusaurus](https://docusaurus.io/) helps you create professional-grade documentation sites. Using basic Markdown, you'll structure your site with a table of contents, project details, and more. A custom course template simplifies setup, and GitHub Actions automate deployment, giving you real-world experience with modern tools.
+
+### Tracking Revisions and Feedback
+
+Your documentation will be tracked on GitHub, providing clear visibility into changes. A "Revisions" button on your Docusaurus site links to GitHub diffs, making it easy for you to review updates and for instructors to provide feedback.
+
+Feedback will be submitted as Jira tickets, allowing you to engage with comments and integrate them into your workflow. This approach ensures transparency and mirrors industry practices.
+
+### Working with Stakeholders
+
+You will interact with stakeholders throughout the course, gaining insight into real-world project requirements and feedback processes. Mondays are reserved for stakeholder visits, making attendance on these days essential.
+
+### Week-by-Week Schedule
 
 | Week | Lab 1                                                                                     | Lecture                                                         | Lab 2                                                                                     | Deliverables                                                                                                                                                                                                                                         |
 | ---- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -99,304 +143,21 @@ As instructor I reserve the right to change activities if necessary, however **M
 | 16   | Final Presentation & Demo to Faculty and Guests                                           |                                                                 |                                                                                           | <input type="checkbox" value="0"/> Final Presentation & Demo  <br/> <input type="checkbox" value="0"/> Final Test Report Document                                                                                                                   |
 | 17   |                                                                                           |                                                                 |                                                                                           | <input type="checkbox" value="0"/> Final Grade Submission 🎓   <br/> <input type="checkbox" value="0"/> Have a great break! See you at graduation!!                                                                                                 |
 
+### Evaluation Metrics
 
-### Technology Communication Requirements
+#### Group Performance
 
-This course requires the use of Canvas, including access to materials and assignment
-submission.
+- Deliverables meeting requirements.
+- Project complexity and innovation.
+- Team collaboration and effective communication.
 
-:::note
-On-campus computer labs have resumed normal operations and are available for student use.
+#### Personal Performance
 
-<details>
-<summary>
+- Initiative and proactive contributions.
+- Quality of individual work and ideas.
+- Positive and supportive team attitude.
 
-Limited resources are available for students who do not have the technology they need for class.
-
-</summary>
-
-Limited resources are available for students who do not have the technology they need for class.
-Students with educational technology needs, including no computer or camera or insufficient Wifi-
-access,  should  submit  a  Student  Technology  Assistance  Application  located  in  TUPortal  and
-linked from the Dean of Students Support and Resources webpage. The university will endeavor
-to meet needs, such as with a long-term loan of a laptop or Mifi device, a refurbished computer,
-or subsidized internet access. Internet Essentials from Comcast provides the option to purchase
-a computer for $150 and high-speed Internet service for $9.95 a month, plus tax. The Emergency
-Broadband Benefit (EBB) is available to purchase Xfinity, Verizon, T-Mobile, and other internet
-services. Qualified households can receive a temporary monthly credit of up to $50/month toward
-their Internet service and leased Internet equipment until the program's funding runs out.
-
-</details>
-
-
-:::
-
-
-
-#### Online Web Meeting Tool
-
-
-<div className={"row"}>
-<div className={"col"}>
-
-Online lectures will be conducted via **Zoom web conferencing**.
-Zoom is a web conferencing tool available to all students, faculty and staff. It is used in all lectures
-and labs. You can use this tool to meet with your team members or peers.
-To access Zoom, login to TUportal and select Zoom from the left navigation menu or go directly
-to temple.zoom.us. ZOOM training is provided by CAT. Zoom allows to share screens, slides,
-whiteboard, mobile devices and remote desktop controls.
-
-:::note
-Hardwired network connections are more consistent than Wi-Fi for Zoom sessions. If your
-network speeds are below the suggested rates, please try to move your computer closer to the
-Wi-Fi router or try to hardwire your connection.
-:::
-
-</div>
-<div className={"col"}>
-
-:::important Camera and Microphone Requirement for online class
-The expectation is that students participate both by video and audio in online classes. All students
-are required to have a working camera and headset during class times.
-
-- Microphone
-- Suggested models
-- [Samson Go Microphone (**I use this one its really good**)](https://www.amazon.com/dp/B001R76D42?ref=nb_sb_ss_w_as-reorder-t1_ypp_rep_k0_1_9&amp=&crid=20KF2NRV4ZUCT&amp=&sprefix=samson+go)
-- [Logitech H390 Computer Microphone, Over-the-Head (better if you want headphones for privacy)](https://www.staples.com/Logitech-H390-USB-Wired-PC-Headset-for-Internet-Calls-and-Music-981-000014/product_710265)
-- Webcam
-- Suggested models
-- [Logitech C270 HD Webcam](https://www.staples.com/Logitech-C270-HD-720p-Computer-Webcam-with-Microphone-960-000694/product_354562)
-- Recommended Internet Speed: 8mbps download & 5mbps upload (Test
-at [speedtest.net](https://speedtest.net))
-
-:::
-
-
-</div>
-</div>
-
-
-
-### Labs
-
-When you register for this course, you are mainly registering for the lab session for this course.
-You are expected to spend more time in lab than in lecture. Students are REQUIRED to attend
-the lab section that they are registered for.  Attendance will count as part of your grade. Random
-attendance record will be checked in both labs and lectures.
-
-The labs are designed for team members to work together and to communicate with each other in a group. Successful project development relies on a teamwork environment in which team members must collaborate and communicate.
-
-<div className={"row"}>
-<div className={"col"}>
-
-### Project
-
-You will undergo all the project development phases and experience the project development
-practice in a typical industrial working environment. Project will be proposed, documented,
-developed, and tested step by step. The final goals of a project are to deliver deliverables in
-accordance with requirements on schedule within resource restriction. You are expected to
-improve your project management and team working skills in all the development phases.
-
-
-</div>
-<div className={"col col--8"}>
-
-:::attention Section 001
-Section 001 will be working on HCI topics which may differ from the below categories. We will discuss this on the first day of class.
-:::
-
-:::note Project Categories
-
-- Mobile Applications
-- Progressive Web Applications
-- Embedded Systems
-- Machine Learning
-- RESTFul APIs
-- Message Bot Integrations
-- ~~*Multiplayer* Games~~
-
-Ultimately **be creative and passionate**. Some projects may not fit the above categories, and that is okay as long as the idea is well thought out, and researched.
-
-:::
-
-:::tip
-
-Check out the [Capstone Showcase](/showcase) to see previous examples of incredible projects and their demos.
-
-:::
-</div>
-
-</div>
-
-Students will be organized into project teams ranging in size from 5 to 7. The project will follow a modified version of the Rational Unified Process known as the Unified Process for Education.
-
-Students will propose their project ideas at the start of the second week of class. Project ideas must be substantial enough to be completed by
-a team of 5 - 7 students.
-
-
-### Project Management Process
-
-Agile-based software development project management process and the deployment of its tools
-will be introduced in the class. Agile is a very empowering process that helps software
-companies design and build the right products. The management process is very beneficial for
-software companies because it helps them analyze and improve their products throughout its
-development. Agile is a process that helps teams provide quick and unpredictable responses to
-the feedback they receive on their projects. It creates opportunities to assess a project’s direction
-during the development cycle. Teams assess the project progresses in regular meetings called
-sprints or iterations.
-
-### Documentation
-
-You are expected to develop your documentation using a project documentation tool called
-[Docusaurus](https://docusaurus.io/docs). Docusaurus will help you create and maintain a
-documentation website for all of your project documents. They will be written in markdown
-format. These, then, are easily published to GitHub Pages (for references on the markdown
-format we recommend this [cheat sheet](https://www.markdownguide.org/cheat-sheet/)). We will
-provide templates and tutorials on how to generate and revise your documents. These should be
-followed to receive a grade on your documentation assignments.
-
-You will open a pull request on GitHub, marking Instructors as reviewers, and turn in a link to
-your project documents on-line to the Canvas Web site. The instructors will directly comment on
-your documentation site's GitHub repository, but you will receive your grade through Canvas.
-These documents will be continuously revised over the course of the semester in this manner.
-
-### Writing-Intensive Course
-
-<div className={"container"} >
-<div className={"row"}>
-<div className={"col col--3"}>
-<Figure caption={"Write > Submit > Feedback > Revise > Submit Again"}>
-<img  src={"https://media.istockphoto.com/id/1183393265/vector/editing-and-paper-revision-grammar-and-spelling-marks.jpg?s=612x612&w=0&k=20&c=yDH5h_FtJNQ2-vz1yCbUJZNQvsemtUg525vWV2-FO8Q="} alt={"red ink handwritten markup on a blank page."}/>
-</Figure>
-</div>
-<div className={"col"}><p>
-As this is a writing-intensive course, students are required to submit written assignments that go through an iterative writing cycle: a student submits an assignment, the instructor gives feedback on the assignment, student revises and resubmits work, and the instructor
-assigns a grade for the revised version. Writing assignments in this course will be grounded in the expression of technical computer science concepts and are designed to help students to develop and practice skills in writing for the computer science discipline. You will learn to write various technical documents <a href={"/docs/intro"}> (see Documentation)</a> during
-the life cycle of a software development project. The artifacts at the end of phase will be graded. <b>The
-initial grading score may be lower,</b> but please <u><b>don't panic</b></u>, feedback and comments will be provided. <b>Students are expected to
-revise their documentation and resubmit them prior to final grading.</b> The revised document will be graded
-iteratively, and a better score be given if the revision meets the expectation of instructor’s
-feedback/comments.
-</p></div>
-</div>
-</div>
-
-### Quizzes and Exams
-There will be no mid-term and final exams given for this capstone course. Several milestone project demos and one final project presentations and demo during the semester will be made in lieu of mid-term and final exams. Several quizzes in the format of Zoom Polling may be given as we move forward to project development phases.
-
-### Grading
-- 10% Project Proposal
-- 40% Project Documents
-- 10% Project Management Process
-- 30% Project Presentation, Demos and Deliverables
-- 10% Attendance and Participation
-
-
-:::warning **THIS IS A WRITING INTENSIVE COURSE.**
-As a university policy on a writing-intensive course, at least 40% weight will be weighed to the final score in Canvas based on the writing assignments. You will submit all the project documentation and project status reports as writing assignments to Canvas and the work will be graded based on technical content and quality of writing.
-:::
-
-There will be two kinds of assignments in this course: group and individual assignments. As a result, your final grading will mainly be dependent on both group performance and your personal performance. First, a project will get a grade based on the group performance. This project grade will be used as a base grade for all the students working in the same project group.
-
-:::tip
-
-Each student's grade is adjusted either up or down based on the student's personal performance in the project and the scores in Canvas (see Figure below).
-
-<Figure src={grading} alt={"The function G(g) set equal to the scale from C+ to A- Ascending on the Y axis. On the X axis are 7 squares representing students, with the second square appearing higher on the y-axis to represent the score of A-. Attached to the afformentioned second square is a curly brace with a delta function with p as an argument to represent performance. on the rightmost side of the image are four male and female stick figures."} caption={"Grading Individual and Group Performance Scale."}
-subcaption={`g = Group performance,
-p = Personal performance,  Final grade = G(g) + Δ(p)`}
-/>
-
-If for example, a project gets a group grade B based on the group performance, almost all of the team members in the project team will get B grades except a few team members may get better or poorer grades than B based on their personal performance. Therefore, it is important to contribute, and be a team player.
-
-:::
-
-:::caution Canvas grades are only used as reference
-As a result of this grading policy the scores in Canvas will only be used as a reference for providing final grades.
-:::
-
-
-### Group Performance Measurement
-
-The group performance is evaluated in the following three measurements:
-- deliverables meeting requirements,
-- complexity of project
-- teamwork
-
-### Personal Performance Measurement
-
-The personal performance is evaluated in the following three measurements:
-- initiative
-- contribution
-- attitude
-
-:::note GitHub and Jira will be used to measure personal performance.
-
-<a href={"/github-statistics"} className="button button--outline button--lg button--secondary">See team GitHub Statistics 📊</a>
-
-:::
-
-### Course Orientation
-
-This is a pure “project-driven” course and you work on your assignment in a project in a team. This means that you will spend a lot of lab time in lab and collaborate with other team members during the project development phases. It seems as though learning takes place best within the context of problems to be solved and questions that are raised. We expect you to provide the solutions to problems arising during the project development, both technically and managerially.
-
-
-### Class Policies
-
-**Attendance to both lab and lecture is mandatory in this course**, as it is essential for successful project development in a team setting. We will use Qwickly in Canvas to track students’ attendance. Unexcused absences will not only negatively impact your personal performance, but also the performance of your team. As a result, it may result in a reduction of your final grade. Please make every effort to attend all lecture and lab sessions on time. If you are unable to attend a class for any reason, please inform your team members and the instructor ahead of time as a courtesy. During class sessions, please keep your mobile phone on vibrate mode.
-
-:::danger working a fulltime job
-
-Tell your manager that you can't work during this class as it is highly interactive and requires your full attention, particularly when we begin the project. I expect that since you registered for this course, you can fully participate. If you are unable to interact, give presentations, turn on your camera, or communicate with your teammates during lab or lecture, it would be best for you to withdraw from the course.
-
-:::
-
-:::note Online classroom etiquette
-
-It is expected that each student attends every class on time for the full duration of each
-class and behaves, in the same professional manner, as if you are in a regular classroom.
-This refers in particular to your location and attire. It is not appropriate to eat a large meal, be in the midst of commuting or driving a motorized vehicle, drink alcohol, smoke, or getting up often during an online class.
-
-:::
-
-You are expected to turn in your project documents online to the Canvas Web site on time. Late Assignments are subject to reduced points or a 0 grade. Project Documents must be published using Docusaurus and live on GitHub Pages. Late and hand-written submission will not be accepted or graded. If you submit multiple versions of the document online before the deadline, only the latest version will be graded. This does not apply to the revision of documentation.
-
-You may discuss project assignments with your friends, but everyone must write their own solutions. Additionally, you must include the names of any collaborators on the front page of the assignment or in the comments in the code, e.g. "I discussed this with Peter and Sally."
-
-:::important Using Open Source
-
-Using open source code is allowed and encouraged, but you are responsible for adhering to the open source license agreement if your project implementation includes any open source software code.
-
-:::
-
-Sharing your code, design specifications, and other documents in the capstone project with other students is permitted and encouraged. If you receive help from other students concerning the solution of your project implementation, it is appropriate to acknowledge that help in your design documents or in your source code as comments, e.g. "I discussed this with Peter and Sally." If you copy someone else's code, you must cite the source.
-
-:::important Generative AI/ML models
-You may use generative large language models such as ChatGPT in the process of coding your projects. Keep in mind the consequences of using such tools as they have a large impact on your projects quality. Also keep in mind that a large language model is not going to be efficient to develop an entire system. There is no free lunch. These tools are better suited as an aid to your learning.
-:::
-
-:::danger Using AI for Documentation
-You may not use AI such as ChatGPT to write your documentation for you. You may use it as an aid to your writing, but use of such technology will be considered academic dishonesty.
-:::
-
-### Documentation by Phase
-
-The documentation is expected to be developed over the life of the project, but certain
-documents are required to be initially delivered (I), finalized (F), or revised/updated (R) at the
-end of a particular phase as shown in the following table:
-
-
-
-| Document                   | Inception | Elaboration | Construction |
-|----------------------------|-----------|-------------|--------------|
-| [Project Proposal](/docs/proposal)           | F         |             |              |
-| [Requirements Specification](/docs/requirements/Intro) | I         | F           |              |
-| [System Architecture](/docs/system-architecture/Intro)   |           | F           | R            |
-| [API Specification](/docs/api-specification/Intro)  |           | I           | F            |
-| [Test Procedures](/docs/testing/Intro)            |           | I           | F            |
-| [Test Report](/docs/testing/test-report)                |           |             | F            |
-
-The project proposal is finalized the first week and feedback will be provided to the chosen projects by the instructor. The System Overview section of the Requirements Specification is a group revision of the Project Proposal.
+Using GitHub and Jira metrics, your participation and progress will be assessed to ensure fairness and alignment with industry practices.
 
 ## Relevant University Policies for this course
 
