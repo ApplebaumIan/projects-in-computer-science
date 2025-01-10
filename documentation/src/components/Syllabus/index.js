@@ -1,55 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import { DataGrid } from '@mui/x-data-grid';
-import Mermaid from "@theme/Mermaid";
-import CodeBlock from "@theme/CodeBlock";
-import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
-import { DateCalendar as Calendar } from '@mui/x-date-pickers';
+import {DataGrid} from '@mui/x-data-grid';
+import {DateCalendar as Calendar} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
+import {formatEvent, makeid, MermaidCodeBlock, SyllabusGantt, weeksBetween} from "./syllabusGantt";
 
-const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
-const url = "https://courses.ianapplebaum.com";
-
-function MermaidCodeBlock(props) {
-    return <div className={"col"}>
-        <details>
-            <summary className={"button button--outline button--primary margin-bottom--lg"}>Click here for Mermaid
-                Diagram markdown.
-            </summary>
-            <CodeBlock>
-                ```mermaid{`
-`}
-                {props.chart + "\n"}
-                ```
-            </CodeBlock>
-        </details>
-    </div>;
-}
+const api_key = "4q6YzIbRAdR6xII3dC62Zx7YVZxwDS9wviEXiX9jf5ea1681"; // READ ONLY
+const url = "http://projects-in-compsci.test";
 
 MermaidCodeBlock.propTypes = {chart: PropTypes.string};
-
-function SyllabusGantt(props) {
-    let daysoff = props.daysOff;
-    let chart = `gantt
-    title Schedule Gantt Chart
-    dateFormat  YYYY-MM-DD
-    excludes ${daysoff}
-    ${props.events != null ? props.events.map(props.prop1).join('') : ``}`;
-    return  <>
-        <div className={"row"}>
-            {docusaurusConfig.customFields.is_pdf ? <></> : <MermaidCodeBlock chart={chart}/>}<div className={"col"}>
-            <a className={"button button--primary margin-bottom--lg"}
-               href={`${url}/syllabus/${props.courseid}/excel`}>Download as Excel Spreadsheet.</a>
-        </div>
-        </div>
-        <Mermaid value={chart} config={{securityLevel: "loose", theme: "dark"}}/>
-    </>
-}
 
 function Syllabus(props) {
     const [events, setEvents] = useState([]);
     const [syllabus, setSyllabus] = useState({});
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [selectedEvent, setSelectedEvent] = useState([]); // Changed to store multiple events
     const [selectedDate, setSelectedDate] = useState(null); // State for calendar date
 
     useEffect(() => {
@@ -71,12 +35,31 @@ function Syllabus(props) {
     }, [events, props.courseid]);
 
     const handleCellClick = (params) => {
-        if (params.field === 'mondayLab' || params.field === 'lecture' || params.field === 'fridayLab') {
+        if (['mondayLab', 'lecture', 'fridayLab'].includes(params.field)) {
             const weekEvents = events.filter(event => weeksBetween(syllabus.start_date, event.event_date) === params.row.week);
-            const matchingEvent = weekEvents.find(event => event.event_name === params.value);
-            if (matchingEvent) {
-                setSelectedEvent(matchingEvent);
-                setSelectedDate(dayjs(matchingEvent.event_date)); // Update calendar date
+            const matchingEvents = weekEvents.filter(event => {
+                if (params.value) {
+                    return params.value.split(', ').includes(event.event_name);
+                }
+                return false;
+            });
+
+            if (matchingEvents.length > 0) {
+                const sortedEvents = matchingEvents.sort((a, b) => {
+                    if (a.class_type === "Milestone" && b.class_type !== "Milestone") {
+                        return -1;
+                    } else if (a.class_type !== "Milestone" && b.class_type === "Milestone") {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+                setSelectedEvent(sortedEvents); // Store all matching events, prioritizing milestones
+                const earliestDate = sortedEvents.reduce((earliest, event) =>
+                        new Date(event.event_date) < earliest ? new Date(event.event_date) : earliest,
+                    new Date(sortedEvents[0].event_date)
+                );
+                setSelectedDate(dayjs(earliestDate)); // Update the calendar to the earliest event date
             }
         }
     };
@@ -135,6 +118,8 @@ function Syllabus(props) {
 
     const rows = Object.values(events.reduce((acc, event) => {
         const week = weeksBetween(syllabus.start_date, event.event_date);
+        const eventDate = new Date(event.event_date);
+        const dayOfWeek = eventDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 
         if (!acc[week]) {
             acc[week] = {
@@ -155,29 +140,30 @@ function Syllabus(props) {
             }
         } else if (event.class_type === 'Lecture') {
             acc[week].lecture = event.event_name;
-        } else if (event.class_type === 'Milestone') {
+        } else if (event.class_type === 'Milestone' || event.class_type === 'Sprint') {
             acc[week].mondayLab += acc[week].mondayLab ? `, ${event.event_name}` : event.event_name;
         } else if (event.class_type === 'Deliverable') {
             acc[week].deliverables.push(event.event_description);
+        } else if (event.class_type === 'Break!') {
+            acc[week].mondayLab += acc[week].mondayLab ? `, ${event.event_name}` : event.event_name;
         }
 
         return acc;
     }, {}));
 
+
     return (
         <>
-            <SyllabusGantt
-                courseid={props.courseid}
-                events={events}
-                daysOff={props.daysOff}
-                prop1={(event) => formatEvent(syllabus, event, makeid(event.event_name))}
-            />
-            {selectedEvent && (
+            {selectedEvent.length > 0 && (
                 <div style={{ marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
-                    <h4>Event Description:</h4>
-                    <p><strong>Name:</strong> {selectedEvent.event_name}</p>
-                    <p><strong>Description:</strong> {selectedEvent.event_description}</p>
-                    <p><strong>Date:</strong> {formatDate(selectedEvent.event_date)}</p>
+                    <h4>Event Details:</h4>
+                    {selectedEvent.map((event, index) => (
+                        <div key={index} style={{ marginBottom: '1em' }}>
+                            <p><strong>Name:</strong> {event.event_name}</p>
+                            <p><strong>Description:</strong> {event.event_description}</p>
+                            <p><strong>Date:</strong> {formatDate(event.event_date)}</p>
+                        </div>
+                    ))}
                     <Calendar
                         value={selectedDate} // Bind the calendar to the selectedDate state
                         onChange={() => {}} // Keep it read-only for now
@@ -185,13 +171,12 @@ function Syllabus(props) {
                     />
                 </div>
             )}
-            <div style={{ height: 600, width: '100%' }}>
+            <div style={{ height: 300, width: '100%' }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}
-                    pageSize={10}
-                    rowsPerPageOptions={[10]}
-                    getRowHeight={() => 'auto'}
+                    autoPageSize
+                    // getRowHeight={() => 'auto'}
                     sx={{
                         '& .wrapText': {
                             whiteSpace: 'normal',
@@ -201,61 +186,18 @@ function Syllabus(props) {
                     onCellClick={handleCellClick}
                 />
             </div>
+            <div style={{paddingTop:50}}>
+                <SyllabusGantt
+                    courseid={props.courseid}
+                    events={events}
+                    daysOff={props.daysOff}
+                    prop1={(event) => formatEvent(syllabus, event, makeid(event.event_name))}
+                    url={url}
+                />
+            </div>
+
         </>
     );
-}
-
-function weeksBetween(startDate, endDate) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    return Math.floor((end - start) / (7 * 24 * 60 * 60 * 1000)) + 1;
-}
-
-function formatEvent(syllabus, event, id) {
-    let event_date = new Date(event.event_date);
-    let today = new Date();
-    let status = ``;
-
-    if (event.class_type !== "Sprint") {
-        if (
-            event_date.getFullYear() === today.getFullYear() &&
-            event_date.getMonth() === today.getMonth() &&
-            event_date.getDate() === today.getDate()
-        ) {
-            status = `active`;
-        } else if (today.getTime() > event_date.getTime()) {
-            status = `done`;
-        }
-    }
-
-    const week = weeksBetween(syllabus.start_date, event.event_date);
-    const phaseStr = phase(week);
-
-    return `section ${phaseStr}
-        ${event.event_name}: ${status}, ${event.event_date}, 1d
-    `;
-}
-
-function makeid(event_name) {
-    let id = event_name.toLowerCase();
-    id = id.replaceAll(" ", "");
-    id = id.replaceAll("/", "");
-    id = removeEmoji(id);
-    return id;
-}
-
-function removeEmoji(s) {
-    return s.replaceAll(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '');
-}
-
-function phase(phase) {
-    if (phase <= 2) {
-        return `Inception Phase`;
-    } else if (phase > 2 && phase <= 6) {
-        return `Elaboration Phase`;
-    } else {
-        return `Construction Phase`;
-    }
 }
 
 export default Syllabus;
