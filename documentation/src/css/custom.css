@@ -17,9 +17,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-main {
-  padding: 50px;
-}
+
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
@@ -88,6 +86,9 @@ backdrop-filter: opacity(50%);
 .syllabus-content {
   margin-top: 50px;
 }
+main {
+  padding: 50px;
+}
 
 @media screen and (max-width: 996px) {
   .live-demo {
@@ -104,6 +105,9 @@ backdrop-filter: opacity(50%);
     display: flex !important;
     margin-top: 2rem;
     /*visibility: visible;*/
+  }
+  main {
+    padding: 20px;
   }
 }
 
