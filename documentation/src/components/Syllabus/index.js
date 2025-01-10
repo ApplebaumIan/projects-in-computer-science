@@ -35,7 +35,7 @@ function Syllabus(props) {
     }, [events, props.courseid]);
 
     const handleCellClick = (params) => {
-        if (['mondayLab', 'lecture', 'fridayLab'].includes(params.field)) {
+        if (['mondayLab', 'lecture', 'fridayLab', 'combinedEvents'].includes(params.field)) {
             const weekEvents = events.filter(event => weeksBetween(syllabus.start_date, event.event_date) === params.row.week);
             const matchingEvents = weekEvents.filter(event => {
                 if (params.value) {
@@ -68,71 +68,86 @@ function Syllabus(props) {
         return dayjs(date).format('dddd, MMMM D, YYYY');
     };
 
-    const columns = [
-        {
-            field: 'week',
-            headerName: 'Week',
-            width: 90,
-            cellClassName: 'wrapText',
+    const isMobile = window.innerWidth <= 768;
 
-        },
-        {
-            field: 'mondayLab',
-            headerName: 'Monday Lab',
-            width: 250,
-            flex: 1,
-            cellClassName: 'wrapText',
-            sortable: false,
-        },
-        {
-            field: 'lecture',
-            headerName: 'Lecture',
-            width: 250,
-            flex: 1,
-            cellClassName: 'wrapText',
-            sortable: false,
-            filterable: true,
-        },
-        {
-            field: 'fridayLab',
-            headerName: 'Friday Lab',
-            width: 250,
-            flex: 1,
-            cellClassName: 'wrapText',
-            sortable: false,
-            // filterable: true,
-        },
-        {
-            field: 'deliverables',
-            headerName: 'Deliverables',
-            width: 300,
-            flex: 1.5,
-            cellClassName: 'wrapText',
-            sortable: false,
-            // filterable: true,
-            renderCell: (params) => (
-                <ul style={{ margin: 0, padding: 0 }}>
-                    {params.value.map((deliverable, index) => (
-                        <li key={index}>
-                            <label>
-                                <input type="checkbox" /> {deliverable}
-                            </label>
-                        </li>
-                    ))}
-                </ul>
-            )
-        }
-    ];
+    const columns = isMobile
+        ? [
+            {
+                field: 'week',
+                headerName: 'Week',
+                width: 90,
+                cellClassName: 'wrapText',
+            },
+            {
+                field: 'combinedEvents',
+                headerName: 'MWF Events',
+                width: 300,
+                flex: 1.5,
+                cellClassName: 'wrapText',
+                sortable: false,
+            }
+        ]
+        : [
+            {
+                field: 'week',
+                headerName: 'Week',
+                width: 90,
+                cellClassName: 'wrapText',
+            },
+            {
+                field: 'mondayLab',
+                headerName: 'Monday Lab',
+                width: 250,
+                flex: 1,
+                cellClassName: 'wrapText',
+                sortable: false,
+            },
+            {
+                field: 'lecture',
+                headerName: 'Lecture',
+                width: 250,
+                flex: 1,
+                cellClassName: 'wrapText',
+                sortable: false,
+            },
+            {
+                field: 'fridayLab',
+                headerName: 'Friday Lab',
+                width: 250,
+                flex: 1,
+                cellClassName: 'wrapText',
+                sortable: false,
+            },
+            {
+                field: 'deliverables',
+                headerName: 'Deliverables',
+                width: 300,
+                flex: 1.5,
+                cellClassName: 'wrapText',
+                sortable: false,
+                renderCell: (params) => (
+                    <ul style={{ margin: 0, padding: 0 }}>
+                        {params.value.map((deliverable, index) => (
+                            <li key={index}>
+                                <label>
+                                    <input type="checkbox" /> {deliverable}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                )
+            }
+        ];
 
     const rows = Object.values(events.reduce((acc, event) => {
         const week = weeksBetween(syllabus.start_date, event.event_date);
         const eventDate = new Date(event.event_date);
-        const dayOfWeek = eventDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 
         if (!acc[week]) {
             acc[week] = {
                 id: week,
                 week,
+                combinedEvents: '',
                 mondayLab: '',
                 lecture: '',
                 fridayLab: '',
@@ -146,24 +161,30 @@ function Syllabus(props) {
             } else {
                 acc[week].fridayLab = event.event_name;
             }
+            acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
         } else if (event.class_type === 'Lecture') {
             acc[week].lecture = event.event_name;
-        } else if (event.class_type === 'Milestone' || event.class_type === 'Sprint') {
-            acc[week].mondayLab += acc[week].mondayLab ? `, ${event.event_name}` : event.event_name;
+            acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
+        } else if (['Milestone', 'Break!'].includes(event.class_type)) {
+            acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
         } else if (event.class_type === 'Deliverable') {
             acc[week].deliverables.push(event.event_description);
-        } else if (event.class_type === 'Break!') {
-            acc[week].mondayLab += acc[week].mondayLab ? `, ${event.event_name}` : event.event_name;
         }
 
         return acc;
     }, {}));
 
-
     return (
         <>
             {selectedEvent.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
+                <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px', marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
+                    <div style={{ flex: 1, minWidth: '250px' }}>
+                        <Calendar
+                            value={selectedDate} // Bind the calendar to the selectedDate state
+                            onChange={() => {}} // Keep it read-only for now
+                            readOnly
+                        />
+                    </div>
                     <div style={{ flex: 1, minWidth: '250px' }}>
                         <h4>Event Details:</h4>
                         {selectedEvent.map((event, index) => (
@@ -174,19 +195,13 @@ function Syllabus(props) {
                             </div>
                         ))}
                     </div>
-                    <div style={{ flex: 1, minWidth: '250px' }}>
-                        <Calendar
-                            value={selectedDate} // Bind the calendar to the selectedDate state
-                            onChange={() => {}} // Keep it read-only for now
-                            readOnly
-                        />
-                    </div>
                 </div>
             )}
             <div style={{ height: 500, width: '100%' }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}
+                    {...(isMobile && { getRowHeight: () => 'auto' })} // Apply getRowHeight only for mobile
                     autoPageSize
                     disableColumnFilter
                     disableColumnSelector
@@ -208,13 +223,13 @@ function Syllabus(props) {
                 />
             </div>
             <div style={{paddingTop:50}}>
-                <SyllabusGantt
+                {!isMobile && <SyllabusGantt
                     courseid={props.courseid}
                     events={events}
                     daysOff={props.daysOff}
                     prop1={(event) => formatEvent(syllabus, event, makeid(event.event_name))}
                     url={url}
-                />
+                />}
             </div>
 
         </>
