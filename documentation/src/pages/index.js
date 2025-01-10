@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -154,6 +156,7 @@ function WatchLiveDemo() {
 export default function Home() {
     const {siteConfig} = useDocusaurusContext();
     return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Layout
             title={`Syllabus`}
             description="Professor Applebaum's Capstone Course Syllabus.">
@@ -172,5 +175,6 @@ export default function Home() {
                 </div>
             </main>
         </Layout>
+        </LocalizationProvider>
     );
 }

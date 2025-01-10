@@ -4,6 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Mermaid from "@theme/Mermaid";
 import CodeBlock from "@theme/CodeBlock";
 import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
+import { DateCalendar as Calendar } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
 const url = "https://courses.ianapplebaum.com";
@@ -15,7 +17,8 @@ function MermaidCodeBlock(props) {
                 Diagram markdown.
             </summary>
             <CodeBlock>
-                ```mermaid{`\n`}
+                ```mermaid{`
+`}
                 {props.chart + "\n"}
                 ```
             </CodeBlock>
@@ -46,7 +49,8 @@ function SyllabusGantt(props) {
 function Syllabus(props) {
     const [events, setEvents] = useState([]);
     const [syllabus, setSyllabus] = useState({});
-    const [selectedDescription, setSelectedDescription] = useState("");
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(null); // State for calendar date
 
     useEffect(() => {
         if (events.length === 0) {
@@ -71,9 +75,14 @@ function Syllabus(props) {
             const weekEvents = events.filter(event => weeksBetween(syllabus.start_date, event.event_date) === params.row.week);
             const matchingEvent = weekEvents.find(event => event.event_name === params.value);
             if (matchingEvent) {
-                setSelectedDescription(matchingEvent.event_description);
+                setSelectedEvent(matchingEvent);
+                setSelectedDate(dayjs(matchingEvent.event_date)); // Update calendar date
             }
         }
+    };
+
+    const formatDate = (date) => {
+        return dayjs(date).format('dddd, MMMM D, YYYY');
     };
 
     const columns = [
@@ -163,10 +172,17 @@ function Syllabus(props) {
                 daysOff={props.daysOff}
                 prop1={(event) => formatEvent(syllabus, event, makeid(event.event_name))}
             />
-            {selectedDescription && (
+            {selectedEvent && (
                 <div style={{ marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
                     <h4>Event Description:</h4>
-                    <p>{selectedDescription}</p>
+                    <p><strong>Name:</strong> {selectedEvent.event_name}</p>
+                    <p><strong>Description:</strong> {selectedEvent.event_description}</p>
+                    <p><strong>Date:</strong> {formatDate(selectedEvent.event_date)}</p>
+                    <Calendar
+                        value={selectedDate} // Bind the calendar to the selectedDate state
+                        onChange={() => {}} // Keep it read-only for now
+                        readOnly
+                    />
                 </div>
             )}
             <div style={{ height: 600, width: '100%' }}>
