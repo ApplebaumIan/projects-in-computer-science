@@ -1,10 +1,13 @@
 import React from 'react';
 import OfficeHours from "../OfficeHours/OfficeHours";
+import Figure from "../Figure";
+import DontPanic from "../../../static/img/dont-panic.svg";
 
 export default function Instructor() {
     return (
         <div className="container">
             <div className="row">
+                {/* First Column */}
                 <div className="col col--4">
                     <h2>Instructor</h2>
                     <img
@@ -14,12 +17,16 @@ export default function Instructor() {
                         alt="Professor Ian Tyler Applebaum"
                     />
                     <p>Professor Ian Tyler Applebaum</p>
-                    <p>Email: ian.tyler@temple.edu</p>
-                    <p>Discord: Applebaumian#2888</p>
-                    <p>Office: SERC 325</p>
+                    <ul>
+                        <li>Email: <a href={"mailto:ian.tyler@temple.edu"}>ian.tyler@temple.edu</a></li>
+                        {/*<li>Discord: Applebaumian#2888</li>*/}
+                        <li>Office: SERC 325</li>
+                    </ul>
+
                 </div>
 
-                <div className="col col--8">
+                {/* Second Column */}
+                <div className="col col--4">
                     <h2>Sections</h2>
                     <ul>
                         <li>
@@ -35,6 +42,14 @@ export default function Instructor() {
                             Lab: Wed 4:00-4:50 PM
                         </li>
                     </ul>
+                    <OfficeHours />
+                </div>
+
+                {/* Third Column */}
+                <div className="col col--4">
+                    <Figure caption={"Class Motto:"} subcaption={"Don't Panic, but expect the unexpected."}>
+                        <DontPanic style={{ width: "100%", height: 300 }} alt={"The words \"Don't panic\", written in large red friendly letters."} />
+                    </Figure>
                 </div>
             </div>
         </div>

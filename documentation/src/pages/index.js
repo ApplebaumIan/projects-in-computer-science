@@ -48,12 +48,7 @@ export function HomepageHeader() {
                             </Link>
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="#class-discord">
-                                Class Discord Server 💬
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="#course-schedule">
+                                to="#week-by-week-schedule">
                                 Course Schedule 📆
                             </Link>
                             <Link
@@ -172,7 +167,6 @@ export default function Home() {
                         {/*    <DemoLineUp/>*/}
                         {/*</div>*/}
                         <Instructor/>
-                        {/*<OfficeHours/>*/}
                         <SyllabusPage/>
                     </MDXContent>
                 </div>
