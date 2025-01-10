@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import {DataGrid} from '@mui/x-data-grid';
+import {DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {DateCalendar as Calendar} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import {formatEvent, makeid, MermaidCodeBlock, SyllabusGantt, weeksBetween} from "./syllabusGantt";
@@ -74,6 +74,7 @@ function Syllabus(props) {
             headerName: 'Week',
             width: 90,
             cellClassName: 'wrapText',
+
         },
         {
             field: 'mondayLab',
@@ -81,6 +82,7 @@ function Syllabus(props) {
             width: 250,
             flex: 1,
             cellClassName: 'wrapText',
+            sortable: false,
         },
         {
             field: 'lecture',
@@ -88,6 +90,8 @@ function Syllabus(props) {
             width: 250,
             flex: 1,
             cellClassName: 'wrapText',
+            sortable: false,
+            filterable: true,
         },
         {
             field: 'fridayLab',
@@ -95,6 +99,8 @@ function Syllabus(props) {
             width: 250,
             flex: 1,
             cellClassName: 'wrapText',
+            sortable: false,
+            // filterable: true,
         },
         {
             field: 'deliverables',
@@ -102,6 +108,8 @@ function Syllabus(props) {
             width: 300,
             flex: 1.5,
             cellClassName: 'wrapText',
+            sortable: false,
+            // filterable: true,
             renderCell: (params) => (
                 <ul style={{ margin: 0, padding: 0 }}>
                     {params.value.map((deliverable, index) => (
@@ -155,20 +163,24 @@ function Syllabus(props) {
     return (
         <>
             {selectedEvent.length > 0 && (
-                <div style={{ marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
-                    <h4>Event Details:</h4>
-                    {selectedEvent.map((event, index) => (
-                        <div key={index} style={{ marginBottom: '1em' }}>
-                            <p><strong>Name:</strong> {event.event_name}</p>
-                            <p><strong>Description:</strong> {event.event_description}</p>
-                            <p><strong>Date:</strong> {formatDate(event.event_date)}</p>
-                        </div>
-                    ))}
-                    <Calendar
-                        value={selectedDate} // Bind the calendar to the selectedDate state
-                        onChange={() => {}} // Keep it read-only for now
-                        readOnly
-                    />
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
+                    <div style={{ flex: 1, minWidth: '250px' }}>
+                        <h4>Event Details:</h4>
+                        {selectedEvent.map((event, index) => (
+                            <div key={index} style={{ marginBottom: '1em' }}>
+                                <p><strong>Name:</strong> {event.event_name}</p>
+                                <p><strong>Description:</strong> {event.event_description}</p>
+                                <p><strong>Date:</strong> {formatDate(event.event_date)}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div style={{ flex: 1, minWidth: '250px' }}>
+                        <Calendar
+                            value={selectedDate} // Bind the calendar to the selectedDate state
+                            onChange={() => {}} // Keep it read-only for now
+                            readOnly
+                        />
+                    </div>
                 </div>
             )}
             <div style={{ height: 300, width: '100%' }}>
@@ -176,7 +188,15 @@ function Syllabus(props) {
                     rows={rows}
                     columns={columns}
                     autoPageSize
-                    // getRowHeight={() => 'auto'}
+                    disableColumnFilter
+                    disableColumnSelector
+                    disableDensitySelector
+                    slots={{ toolbar: GridToolbar }}
+                    slotProps={{
+                        toolbar: {
+                            showQuickFilter: true,
+                        },
+                    }}
                     sx={{
                         '& .wrapText': {
                             whiteSpace: 'normal',
