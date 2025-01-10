@@ -68,7 +68,7 @@ function Syllabus(props) {
         return dayjs(date).format('dddd, MMMM D, YYYY');
     };
 
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
     const columns = isMobile
         ? [
