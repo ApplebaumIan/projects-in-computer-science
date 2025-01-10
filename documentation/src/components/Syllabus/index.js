@@ -5,8 +5,8 @@ import {DateCalendar as Calendar} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import {formatEvent, makeid, MermaidCodeBlock, SyllabusGantt, weeksBetween} from "./syllabusGantt";
 
-const api_key = "4q6YzIbRAdR6xII3dC62Zx7YVZxwDS9wviEXiX9jf5ea1681"; // READ ONLY
-const url = "http://projects-in-compsci.test";
+const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
+const url = "https://courses.ianapplebaum.com";
 
 MermaidCodeBlock.propTypes = {chart: PropTypes.string};
 
