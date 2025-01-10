@@ -183,7 +183,7 @@ function Syllabus(props) {
                     </div>
                 </div>
             )}
-            <div style={{ height: 300, width: '100%' }}>
+            <div style={{ height: 500, width: '100%' }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}
@@ -194,6 +194,7 @@ function Syllabus(props) {
                     slots={{ toolbar: GridToolbar }}
                     slotProps={{
                         toolbar: {
+                            printOptions: { disableToolbarButton: true },
                             showQuickFilter: true,
                         },
                     }}
