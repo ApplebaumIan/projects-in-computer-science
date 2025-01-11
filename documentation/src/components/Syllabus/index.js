@@ -4,7 +4,7 @@ import {DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {DateCalendar as Calendar} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import {formatEvent, makeid, MermaidCodeBlock, SyllabusGantt, weeksBetween} from "./syllabusGantt";
-
+import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
 const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
 const url = "https://courses.ianapplebaum.com";
 
@@ -75,7 +75,7 @@ function Syllabus(props) {
             {
                 field: 'week',
                 headerName: 'Week',
-                width: 90,
+                width: 10,
                 cellClassName: 'wrapText',
             },
             {
@@ -165,7 +165,8 @@ function Syllabus(props) {
         } else if (event.class_type === 'Lecture') {
             acc[week].lecture = event.event_name;
             acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
-        } else if (['Milestone', 'Break!'].includes(event.class_type)) {
+        } else if (['Milestone', 'Break!', 'Sprint'].includes(event.class_type)) {
+            acc[week].mondayLab += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
             acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
         } else if (event.class_type === 'Deliverable') {
             acc[week].deliverables.push(event.event_description);
@@ -197,13 +198,13 @@ function Syllabus(props) {
                     </div>
                 </div>
             )}
-            <div style={{ height: 500, width: '100%' }}>
+            <div style={{ height: 1020, width: '100%' }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}
                     {...(isMobile && { getRowHeight: () => 'auto' })} // Apply getRowHeight only for mobile
-                    autoPageSize
-                    disableColumnFilter
+                    {...(!docusaurusConfig.customFields.is_pdf && {autoPageSize: ()=>true})}
+                        disableColumnFilter
                     disableColumnSelector
                     disableDensitySelector
                     slots={{ toolbar: GridToolbar }}
