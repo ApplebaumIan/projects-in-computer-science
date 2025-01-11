@@ -126,11 +126,11 @@ function Syllabus(props) {
                 cellClassName: 'wrapText',
                 sortable: false,
                 renderCell: (params) => (
-                    <ul style={{ margin: 0, padding: 0 }}>
-                        {params.value.map((deliverable, index) => (
-                            <li key={index}>
+                    <ul style={{ margin: 0, padding: 0 , listStyleType: 'none'}}>
+                        {params.value.map((deliverable) => (
+                            <li key={deliverable.eventid}>
                                 <label>
-                                    <input type="checkbox" /> {deliverable}
+                                    <input type="checkbox" /> {deliverable.event_name}
                                 </label>
                             </li>
                         ))}
@@ -169,9 +169,8 @@ function Syllabus(props) {
             acc[week].mondayLab += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
             acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
         } else if (event.class_type === 'Deliverable') {
-            acc[week].deliverables.push(event.event_description);
+            acc[week].deliverables.push(event);
         }
-
         return acc;
     }, {}));
 
@@ -181,7 +180,7 @@ function Syllabus(props) {
                 <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px', marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
                     <div style={{ flex: 1, minWidth: '250px' }}>
                         <Calendar
-                            value={selectedDate} // Bind the calendar to the selectedDate state
+                            value={dayjs(selectedEvent[0].event_date)} // Bind the calendar to the selectedDate state
                             onChange={() => {}} // Keep it read-only for now
                             readOnly
                         />
@@ -202,9 +201,10 @@ function Syllabus(props) {
                 <DataGrid
                     rows={rows}
                     columns={columns}
+                    getRowHeight={() => 'auto'} getEstimatedRowHeight={() => 200}
                     {...(isMobile && { getRowHeight: () => 'auto' })} // Apply getRowHeight only for mobile
                     {...(!docusaurusConfig.customFields.is_pdf && {autoPageSize: ()=>true})}
-                        disableColumnFilter
+                    disableColumnFilter
                     disableColumnSelector
                     disableDensitySelector
                     slots={{ toolbar: GridToolbar }}

@@ -16,9 +16,20 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
+.quicklinks{
+  display: none;
+}
+@media screen and (max-width: 996px) {
+  #__docusaurus_skipToContent_fallback > header > div.container > div > div > div {
+    padding: 0;
+    margin: 0;
+    display: none;
+  }
+.quicklinks{
+  display: flex;
+}
 
-
-
+}
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --ifm-color-primary: #ff3858;

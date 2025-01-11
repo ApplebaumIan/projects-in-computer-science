@@ -5,7 +5,7 @@ import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
 export default function OfficeHours() {
     return (
         <div className="container">
-            <h2>Office Hours</h2>
+            <h2 id={"office-hours"}>Office Hours</h2>
             <details>
                 <summary className={"button button--primary button--outline margin--md"} >Professor Applebaum</summary>
                 <p>

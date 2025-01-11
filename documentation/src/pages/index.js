@@ -37,15 +37,15 @@ export function HomepageHeader() {
             <div className="container" style={{zIndex:100}}>
                 <div className={"row"}>
                     <div className={"col"}>
-                        <h1 className="hero__title">{siteConfig.customFields.course_number} <br/>
+                        <h1 className={styles.hero__title}>{siteConfig.customFields.course_number} <br/>
                             {siteConfig.title}
                         </h1>
-                        <p className="hero__subtitle">{siteConfig.customFields.semester} {siteConfig.tagline}</p>
+                        <p className={styles.hero__subtitle}>{siteConfig.customFields.semester} {siteConfig.tagline}</p>
                         <div className={"col button_group"}>
                             {/* TODO: Change me to your project's tutorial*/ }
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="#office-hours-professor-applebaum">
+                                to="#office-hours">
                                 Student Office Hours ️👨‍🏫
                             </Link>
                             <Link
