@@ -18,9 +18,10 @@ const main_template_jira_scripts = () => {
     return []
   }
 }
-const is_pdf = process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
+const is_pdf = process.env.PDF === undefined ? false :  process.env.PDF ; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
 const course_number = 'CIS 4398';
 const semester = process.env.SEMESTER_YEAR;
+
 // You can change the title here. The default is the name of the repository.
 const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
   return word[0].toUpperCase() + word.substring(1);
