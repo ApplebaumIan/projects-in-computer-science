@@ -132,16 +132,26 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },{
-            to: '/tutorial/Intro',
-            label: 'Docusaurus Tutorial',
+          type: 'dropdown',
+            label: 'Quick Links',
             position: 'left',
-            activeBaseRegex: `/tutorial/`,
+            className:'quicklinks',
+            items: [
+              {
+                to:'/#office-hours',
+                label: 'Office Hours',
+              },
+              {
+                to: '/#week-by-week-schedule',
+                label: 'Course Schedule 📆',
+              },
+              {
+                to: '/tutorial/Intro',
+                label: 'Docusaurus Tutorial',
+                activeBaseRegex: `/tutorial/`,
+              },
+            ],
           },
-          // {
-          //   to: '/slides',
-          //   label: 'Lecture Slides',
-          //   position: 'left',
-          // },
           {
             to: '/showcase',
             label: 'Capstone Showcase ⭐️',
@@ -171,7 +181,7 @@ const config = {
               },
               {
                 label: 'Course Schedule',
-                to:'/#course-schedule',
+                to:'/#week-by-week-schedule',
               },
               {
                 label: 'Docusaurus Tutorial',
@@ -189,15 +199,16 @@ const config = {
                 label: 'GPU Server',
                 to:'/gpu-server',
               },
+              {
+                label:'TA Resources',
+                to: '/ta-resource/intro'
+              }
+
             ],
           },
           {
             title: 'Communication',
             items: [
-              {
-                label: 'Class Discord',
-                href: '/#class-discord',
-              },
               {
                 label: 'Course Contacts',
                 href: '/#contact-professor-applebaum',
@@ -218,14 +229,6 @@ const config = {
               {
                 label: 'GitHub Org',
                 href: 'https://github.com/Capstone-Projects-2023-Spring',
-              },
-              {
-                label: 'Canvas Section 002',
-                href: 'https://templeu.instructure.com/courses/114625',
-              },
-              {
-                label: 'Canvas Section 704',
-                href: 'https://templeu.instructure.com/courses/124586',
               },
               {
                 label: 'Miro',
@@ -268,14 +271,22 @@ const config = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'ta-resource',
+        path: 'ta-resource',
+        routeBasePath: 'ta-resource',
+        sidebarPath: require.resolve('./sidebars.js'),
+        // ... other options
+      },
+    ],
+    [
       "docusaurus2-dotenv-2",
       {
         systemvars: true,
       },
     ],
     'plugin-image-zoom',
-
-
   ],
   scripts:['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
     {

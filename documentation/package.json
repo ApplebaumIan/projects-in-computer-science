@@ -23,9 +23,14 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mdx-js/react": "^3.0.0",
+    "@mui/material": "^6.3.1",
+    "@mui/styled-engine-sc": "^6.3.1",
+    "@mui/x-data-grid": "^7.23.6",
+    "@mui/x-date-pickers": "^7.23.6",
     "axios": "^1.2.2",
     "bufferutil": "^4.0.7",
     "clsx": "^2.0.0",
+    "dayjs": "^1.11.13",
     "docusaurus2-dotenv-2": "^1.4.1",
     "jsdom": "^22.1.0",
     "paper": "^0.12.17",
@@ -40,8 +45,8 @@
     "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.7.0",
-    "wait-on": "^8.0.2"
+    "wait-on": "^8.0.2",
+    "@docusaurus/module-type-aliases": "^3.7.0"
   },
   "browserslist": {
     "production": [

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -17,7 +19,8 @@ import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 import * as PropTypes from "prop-types";
-
+import Instructor from "../components/Instructor/Instructor";
+import OfficeHours from "../components/OfficeHours/OfficeHours";
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
     if (currentDate >= startDate && currentDate <= endDate) {
@@ -34,25 +37,20 @@ export function HomepageHeader() {
             <div className="container" style={{zIndex:100}}>
                 <div className={"row"}>
                     <div className={"col"}>
-                        <h1 className="hero__title">{siteConfig.customFields.course_number} <br/>
+                        <h1 className={styles.hero__title}>{siteConfig.customFields.course_number} <br/>
                             {siteConfig.title}
                         </h1>
-                        <p className="hero__subtitle">{siteConfig.customFields.semester} {siteConfig.tagline}</p>
+                        <p className={styles.hero__subtitle}>{siteConfig.customFields.semester} {siteConfig.tagline}</p>
                         <div className={"col button_group"}>
                             {/* TODO: Change me to your project's tutorial*/ }
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="#office-hours-professor-applebaum">
+                                to="#office-hours">
                                 Student Office Hours ️👨‍🏫
                             </Link>
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="#class-discord">
-                                Class Discord Server 💬
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="#course-schedule">
+                                to="#week-by-week-schedule">
                                 Course Schedule 📆
                             </Link>
                             <Link
@@ -63,7 +61,7 @@ export function HomepageHeader() {
                         </div>
 
                     </div>
-                    {docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}
+                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
 
 
                 </div>
@@ -158,6 +156,7 @@ function WatchLiveDemo() {
 export default function Home() {
     const {siteConfig} = useDocusaurusContext();
     return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Layout
             title={`Syllabus`}
             description="Professor Applebaum's Capstone Course Syllabus.">
@@ -165,15 +164,17 @@ export default function Home() {
             <main>
                 <div style={{zIndex:100000}}>
                     <MDXContent>
-                        {!docusaurusConfig.customFields.is_pdf && <div className={"mobile-live-demo"}>
-                            <h2>Watch Live 🔴</h2>
-                            <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>
-                            <DemoLineUp/>
-                        </div>}
+                        {/*<div className={"mobile-live-demo"}>*/}
+                        {/*    <h2>Watch Live 🔴</h2>*/}
+                        {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
+                        {/*    <DemoLineUp/>*/}
+                        {/*</div>*/}
+                        <Instructor/>
                         <SyllabusPage/>
                     </MDXContent>
                 </div>
             </main>
         </Layout>
+        </LocalizationProvider>
     );
 }

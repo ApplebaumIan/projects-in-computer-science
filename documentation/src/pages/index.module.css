@@ -14,6 +14,14 @@
   .heroBanner {
     padding: 2rem;
   }
+  .hero__title {
+    font-size: 2rem; /* Adjust this size as needed */
+  }
+
+  .hero__subtitle {
+    font-size: 1.5rem; /* Adjust this size as needed */
+    padding-bottom: 80px;
+  }
 }
 
 /*.buttons {*/
