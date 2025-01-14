@@ -30,16 +30,16 @@ export default function Instructor() {
                     <h2>Sections</h2>
                     <ul>
                         <li>
-                            <strong>Section 001:</strong> Lecture: Mon & Fri 9:30-10:50 AM,
-                            Lab: Wed 9:00-9:50 AM
+                            <strong>Section 001:</strong> Lab: Mon & Fri 9:30-10:50 AM,
+                            Lecture: Wed 9:00-9:50 AM
                         </li>
                         <li>
-                            <strong>Section 002:</strong> Lecture: Mon & Fri 12:30-1:50 PM,
-                            Lab: Wed 1:00-1:50 PM
+                            <strong>Section 002:</strong> Lab: Mon & Fri 12:30-1:50 PM,
+                            Lecture: Wed 1:00-1:50 PM
                         </li>
                         <li>
-                            <strong>Section 003:</strong> Lecture: Mon & Fri 3:30-4:50 PM,
-                            Lab: Wed 4:00-4:50 PM
+                            <strong>Section 003:</strong> Lab: Mon & Fri 3:30-4:50 PM,
+                            Lecture: Wed 4:00-4:50 PM
                         </li>
                     </ul>
                     <OfficeHours />
