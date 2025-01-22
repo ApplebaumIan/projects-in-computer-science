@@ -18,4 +18,4 @@ The requirements specification document should contain the following sections:
 
 Revise the Project Proposal document template.
 
-A sample Requirements document [TempleCatsRequirementsDoc_13_2.docx](https://templeu.instructure.com/courses/114202/files/19367286?wrap=1)  provided here for your reference.
+Examples of Requirements Documents from previous semesters can be found [here](/showcase)
