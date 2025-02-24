@@ -5,6 +5,30 @@ import TabItem from '@theme/TabItem'; import Figure from "../components/Figure";
 
 # GPU Server SSH Tutorial
 
+<detail>
+<summary>
+
+GPU Server System Summary
+
+</summary>
+
+* Intel Xeon Bronze 3104 CPUs with six cores each.
+    * Base frequencies: 1.3 GHz to 1.7 GHz.
+    * 8.4 MB cache for large data sets.
+    * Supports advanced instruction sets like FPU, VME, TSC.
+
+* Memory and Storage:
+    * 16 GB total memory; 6.5 GB available, 6.5 GB cached.
+    * 0.3 GB free memory; 30 GB unused swap memory.
+    * 512 GB SK hynix SSD for fast read/write.
+
+* GPU Capabilities:
+    * NVIDIA TITAN Xp GPU with Pascal architecture.
+    * 12 GB GDDR5X memory; 3840 CUDA cores.
+    * Peak single-precision performance: 12 TFLOPS.
+
+<detail>
+
 For machine learning applications, Prof. Wang left our class a 2017 Titan Xp GPU Server for training. Training machine learning models can be extremely time consuming and resource gating for personal computers. Not to mention, machine learning libraries such as Tensorflow, are optimized for NVidia Cuda cores. Developing on remote machines in the past used to be a pain, but now with IDEs like VSCode, we can work on code on remote servers as if they were running on our personal machines. To do this we will need to complete the following steps.
 
 1. Create an `.ssh/config` file with all of Temple's servers that we wish to tunnel through.
