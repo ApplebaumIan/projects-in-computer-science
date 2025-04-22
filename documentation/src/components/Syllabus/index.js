@@ -95,8 +95,8 @@ function Syllabus(props) {
                 cellClassName: 'wrapText',
             },
             {
-                field: 'mondayLab',
-                headerName: 'Monday Lab',
+                field: 'firstLab',
+                headerName: 'Lab',
                 width: 250,
                 flex: 1,
                 cellClassName: 'wrapText',
@@ -111,8 +111,8 @@ function Syllabus(props) {
                 sortable: false,
             },
             {
-                field: 'fridayLab',
-                headerName: 'Friday Lab',
+                field: 'secondLab',
+                headerName: 'Lab',
                 width: 250,
                 flex: 1,
                 cellClassName: 'wrapText',
@@ -224,7 +224,7 @@ function Syllabus(props) {
                 />
             </div>
             <div style={{paddingTop:50}}>
-                {!isMobile && <SyllabusGantt
+                {true && <SyllabusGantt
                     courseid={props.courseid}
                     events={events}
                     daysOff={props.daysOff}

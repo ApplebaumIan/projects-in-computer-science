@@ -68,14 +68,22 @@ export function formatEvent(syllabus, event, id) {
 
     switch (event.class_type) {
         case "Lab":
-            gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
-            break;
         case "Lecture":
-            gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
+            // gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
             break;
         case "Sprint":
-            const isOneWeekSprint = event.event_name === "Sprint 0" || event.event_name === "Final Sprint";
-            gantt_event = `${event.event_name}: ${status}, ${event.event_date}, ${isOneWeekSprint ? "1w" : "2w"}`;
+            switch (event.event_name) {
+                case "Sprint 0":
+                case "Final Sprint":
+                    gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1w`;
+                    break;
+                case "Final Summer Sprint":
+                    gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 10d`;
+                    break;
+                default:
+                    gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 2w`;
+                    break;
+            }
             break;
         case "Milestone":
             gantt_event = `${event.event_name}: crit, milestone, ${status}, ${event.event_date}, 1d`;
@@ -87,12 +95,11 @@ export function formatEvent(syllabus, event, id) {
             gantt_event = ``;
             break;
         default:
-            gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
+            // gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
             break;
     }
 
-    return `section ${phaseStr}
-     ${gantt_event}
+    return `${gantt_event}
     `;
 }
 
