@@ -97,7 +97,7 @@ function DemoLineUp(props) {
         </TabItem>
         <TabItem value="002" label={<>Section 002<br/>12:30pm to 1:50pm EST<br/>📍SERC 306</>}
                  default={isTimeBetween(props.startDate, props.endDate)}>
-            <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 002"}>
+            <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={"Section 002"}>
                 <iframe className={"youtube-player"}
                         src="https://www.youtube.com/embed/BDUngO0hlBk?si=v6yDyYEZCGdRAgOr"
                         title="YouTube video player" frameBorder="0"
@@ -115,7 +115,7 @@ function DemoLineUp(props) {
         </TabItem>
         <TabItem value="003" label={<>Section 003<br/>3:30pm to 4:50pm EST<br/>📍SERC 306</>}
                  default={isTimeBetween(props.startDate, props.endDate)}>
-            <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 003"}>
+            <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={"Section 003"}>
                 <iframe className={"youtube-player"}
                         src="https://www.youtube.com/embed/j1K0Ypl_iDk?si=OGWRYMr5kdTf5Nq5"
                         title="YouTube video player" frameBorder="0"
