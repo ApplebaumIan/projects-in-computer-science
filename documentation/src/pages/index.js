@@ -37,31 +37,26 @@ export function HomepageHeader() {
             <div className="container" style={{zIndex:100}}>
                 <div className={"row"}>
                     <div className={"col"}>
-                        <h1 className={styles.hero__title}>{siteConfig.customFields.course_number} <br/>
-                            {siteConfig.title}
-                        </h1>
-                        <p className={styles.hero__subtitle}>{siteConfig.customFields.semester} {siteConfig.tagline}</p>
-                        <div className={"col button_group"}>
-                            {/* TODO: Change me to your project's tutorial*/ }
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="#office-hours">
-                                Student Office Hours ️👨‍🏫
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="#week-by-week-schedule">
-                                Course Schedule 📆
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="/tutorial/intro">
-                                Docusaurus Tutorial 🦖
-                            </Link>
-                        </div>
+                        {/*<div className={"col button_group"}>*/}
+                        {/*    <Link*/}
+                        {/*        className="button button--secondary button--lg margin--md"*/}
+                        {/*        to="#office-hours">*/}
+                        {/*        Student Office Hours ️👨‍🏫*/}
+                        {/*    </Link>*/}
+                        {/*    <Link*/}
+                        {/*        className="button button--secondary button--lg margin--md"*/}
+                        {/*        to="#week-by-week-schedule">*/}
+                        {/*        Course Schedule 📆*/}
+                        {/*    </Link>*/}
+                        {/*    <Link*/}
+                        {/*        className="button button--secondary button--lg margin--md"*/}
+                        {/*        to="/tutorial/intro">*/}
+                        {/*        Docusaurus Tutorial 🦖*/}
+                        {/*    </Link>*/}
+                        {/*</div>*/}
 
                     </div>
-                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
+                    {docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}
 
 
                 </div>
@@ -84,9 +79,9 @@ export function HomepageHeader() {
 function DemoLineUp(props) {
     return <Tabs queryString="section" className={"unique-tabs"}>
         <TabItem value="001" label={<>Section 001<br/>9:30-10:50am EST<br/>📍SERC 306</>}>
-            <Figure caption={"Final Demos Fall Semester 2024 Live Stream"} subcaption={"Section 001"}>
+            <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={"Section 001"}>
                 <iframe className={"youtube-player"}
-                        src="https://www.youtube.com/embed/TE_P9Rks8LU?si=4z3PUN1UpntHSaHR"
+                        src="https://www.youtube.com/embed/y990YPLQf2Q?si=rvgBMORM2CBJw9BC"
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
@@ -96,7 +91,7 @@ function DemoLineUp(props) {
                     <summary className={"button button--outline button--primary margin-bottom--lg justify-center"}>
                         Click Here For the Demo Lineup!
                     </summary>
-                    <YouTubeVideoDescription videoId={"TE_P9Rks8LU"}/>
+                    <YouTubeVideoDescription videoId={"y990YPLQf2Q"}/>
                 </details>
             </div>
         </TabItem>
@@ -104,7 +99,7 @@ function DemoLineUp(props) {
                  default={isTimeBetween(props.startDate, props.endDate)}>
             <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 002"}>
                 <iframe className={"youtube-player"}
-                        src="https://www.youtube.com/embed/yFm41msA6Eg?si=uqBMHnvpnZMUG6Fx"
+                        src="https://www.youtube.com/embed/BDUngO0hlBk?si=v6yDyYEZCGdRAgOr"
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
@@ -114,7 +109,25 @@ function DemoLineUp(props) {
                     <summary className={"button button--outline button--primary margin-bottom--lg"}>
                         Click Here For the Demo Lineup!
                     </summary>
-                    <YouTubeVideoDescription videoId={"yFm41msA6Eg"}/>
+                    <YouTubeVideoDescription videoId={"BDUngO0hlBk"}/>
+                </details>
+            </div>
+        </TabItem>
+        <TabItem value="003" label={<>Section 003<br/>3:30pm to 4:50pm EST<br/>📍SERC 306</>}
+                 default={isTimeBetween(props.startDate, props.endDate)}>
+            <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 003"}>
+                <iframe className={"youtube-player"}
+                        src="https://www.youtube.com/embed/j1K0Ypl_iDk?si=OGWRYMr5kdTf5Nq5"
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </Figure>
+            <div className={"col"}>
+                <details>
+                    <summary className={"button button--outline button--primary margin-bottom--lg"}>
+                        Click Here For the Demo Lineup!
+                    </summary>
+                    <YouTubeVideoDescription videoId={"j1K0Ypl_iDk"}/>
                 </details>
             </div>
         </TabItem>
@@ -127,6 +140,8 @@ DemoLineUp.propTypes = {
 };
 
 function WatchLiveDemo() {
+    const {siteConfig} = useDocusaurusContext();
+
     // Section 002 should appear first
     var section002Start = new Date("2023-04-29T01:00:00");
     var section002End = new Date("2023-05-01T15:20:00");
@@ -135,14 +150,20 @@ function WatchLiveDemo() {
     var section003Start = new Date("2023-05-01T15:20:00");
     var section003End = new Date("2023-05-01T16:50:00");
 
-    return <div className={"live-demo card container shadow--tl margin--lg"}>
+    return <div className={"live-demo card container shadow--tl"}>
         <div className={"card__header row"}>
-            <div className={"col col--9"}>
-                <h2>Watch Live 🔴</h2>
-                <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>
+            <div className={"col"}>
+                <h1 className={styles.hero__title}>{siteConfig.customFields.course_number} <br/>
+                    {siteConfig.title}
+                </h1>
+                <p style={{margin:"0", padding:0}}>{siteConfig.customFields.semester} {siteConfig.tagline}</p>
+                <div className={"col col--9"}>
+                    {/*<h2>Watch Live 🔴</h2>*/}
+                    {/*<h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
+                </div>
 
             </div>
-            <div className={"col col--3"}>
+            <div className={"col col--2"}>
                 <DontPanic style={{width: "100%"}}
                            alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
             </div>
@@ -164,11 +185,11 @@ export default function Home() {
             <main>
                 <div style={{zIndex:100000}}>
                     <MDXContent>
-                        {/*<div className={"mobile-live-demo"}>*/}
-                        {/*    <h2>Watch Live 🔴</h2>*/}
-                        {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
-                        {/*    <DemoLineUp/>*/}
-                        {/*</div>*/}
+                        <div className={"mobile-live-demo"}>
+                            <h2>Watch Live 🔴</h2>
+                            <h3>April 28th 9:30am to 4:50pm EST on YouTube</h3>
+                            <DemoLineUp/>
+                        </div>
                         <Instructor/>
                         <SyllabusPage/>
                     </MDXContent>
