@@ -95,7 +95,7 @@ function DemoLineUp(props) {
                 </details>
             </div>
         </TabItem>
-        <TabItem value="002" label={<>Section 002<br/>2:00pm to 3:20pm EST<br/>📍SERC 306</>}
+        <TabItem value="002" label={<>Section 002<br/>12:30pm to 1:50pm EST<br/>📍SERC 306</>}
                  default={isTimeBetween(props.startDate, props.endDate)}>
             <Figure caption={"Final Demos Spring Semester 2024 Live Stream"} subcaption={"Section 002"}>
                 <iframe className={"youtube-player"}
