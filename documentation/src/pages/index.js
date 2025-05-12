@@ -20,6 +20,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
 import * as PropTypes from "prop-types";
 import Instructor from "../components/Instructor/Instructor";
+import TeachingAssistants from "../components/TeachingAssistants";
 import OfficeHours from "../components/OfficeHours/OfficeHours";
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
@@ -157,24 +158,25 @@ export default function Home() {
     const {siteConfig} = useDocusaurusContext();
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Layout
-            title={`Syllabus`}
-            description="Professor Applebaum's Capstone Course Syllabus.">
-            <HomepageHeader/>
-            <main>
-                <div style={{zIndex:100000}}>
-                    <MDXContent>
-                        {/*<div className={"mobile-live-demo"}>*/}
-                        {/*    <h2>Watch Live 🔴</h2>*/}
-                        {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
-                        {/*    <DemoLineUp/>*/}
-                        {/*</div>*/}
-                        <Instructor/>
-                        <SyllabusPage/>
-                    </MDXContent>
-                </div>
-            </main>
-        </Layout>
+            <Layout
+                title={`Syllabus`}
+                description="Professor Applebaum's Capstone Course Syllabus.">
+                <HomepageHeader/>
+                <main>
+                    <div style={{zIndex: 100000}}>
+                        <MDXContent>
+                            {/*<div className={"mobile-live-demo"}>*/}
+                            {/*    <h2>Watch Live 🔴</h2>*/}
+                            {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
+                            {/*    <DemoLineUp/>*/}
+                            {/*</div>*/}
+                            <Instructor/>
+                            {/*<TeachingAssistants/>*/}
+                            <SyllabusPage/>
+                        </MDXContent>
+                    </div>
+                </main>
+            </Layout>
         </LocalizationProvider>
     );
 }

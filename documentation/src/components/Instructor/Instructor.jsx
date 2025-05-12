@@ -42,18 +42,14 @@ export default function Instructor() {
                             Lecture: Wed 4:00-4:50 PM
                         </li>
                     </ul>
-                    <h2>Teaching Assistants</h2>
-                    <ul>
-                        <li>Kyle Dragon Lee: <a href={"mailto:kyle.d.lee@temple.edu"}>kyle.d.lee@temple.edu</a></li>
-                        <li>Thanh Nguyen: <a href={"mailto:thanh.png@temple.edu"}>thanh.png@temple.edu</a></li>
-                    </ul>
-                    <OfficeHours />
+                    <OfficeHours/>
                 </div>
 
                 {/* Third Column */}
                 <div className="col col--4">
                     <Figure caption={"Class Motto:"} subcaption={"Don't Panic, but expect the unexpected."}>
-                        <DontPanic style={{ width: "100%", height: 300 }} alt={"The words \"Don't panic\", written in large red friendly letters."} />
+                        <DontPanic style={{width: "100%", height: 300}}
+                                   alt={"The words \"Don't panic\", written in large red friendly letters."}/>
                     </Figure>
                 </div>
             </div>
