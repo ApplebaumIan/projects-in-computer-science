@@ -2,6 +2,23 @@ import React from 'react';
 import OfficeHours from "../OfficeHours/OfficeHours";
 import Figure from "../Figure";
 import DontPanic from "../../../static/img/dont-panic.svg";
+import Admonition from "@theme/Admonition";
+
+function CourseSections() {
+    return <>
+        <h2>Sections</h2>
+        <ul>
+            <li>
+                <strong>Section 701 ONLINE via Zoom:</strong>
+                <ul>
+                    <li>"Lab": Tues & Thurs 10:30-12:00 PM,</li>
+                    <li>"Lecture": Wed 10:30-11:30 AM</li>
+                </ul>
+            </li>
+        </ul>
+        <Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>
+    </>;
+}
 
 export default function Instructor() {
     return (
@@ -27,22 +44,7 @@ export default function Instructor() {
 
                 {/* Second Column */}
                 <div className="col col--4">
-                    <h2>Sections</h2>
-                    <ul>
-                        <li>
-                            <strong>Section 001:</strong> Lab: Mon & Fri 9:30-10:50 AM,
-                            Lecture: Wed 9:00-9:50 AM
-                        </li>
-                        <li>
-                            <strong>Section 002:</strong> Lab: Mon & Fri 12:30-1:50 PM,
-                            Lecture: Wed 1:00-1:50 PM
-                        </li>
-                        <li>
-                            <strong>Section 003:</strong> Lab: Mon & Fri 3:30-4:50 PM,
-                            Lecture: Wed 4:00-4:50 PM
-                        </li>
-                    </ul>
-                    <OfficeHours/>
+                    <CourseSections/>
                 </div>
 
                 {/* Third Column */}

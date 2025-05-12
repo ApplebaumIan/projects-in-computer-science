@@ -6,8 +6,8 @@ export default function OfficeHours() {
     return (
         <div className="container">
             <h2 id={"office-hours"}>Office Hours</h2>
-            <details>
-                <summary className={"button button--primary button--outline margin--md"} >Professor Applebaum</summary>
+            {/*<details>*/}
+            {/*    <summary className={"button button--primary button--outline margin--md"} >Professor Applebaum</summary>*/}
                 <p>
                     Office hours are by appointment via Calendly and can be held on Discord or
                     Zoom.
@@ -20,17 +20,7 @@ export default function OfficeHours() {
                 <a href="https://calendly.com/ian-tyler-applebaum/office-hours" target="_blank">
                     Schedule an Appointment
                 </a>
-            </details>
-            <details>
-                <summary className={"button button--primary button--outline margin--md"}>Teaching Assistant: Thanh Nguyen</summary>
-                <p>
-                    Office hours are available online via Zoom and can be scheduled through
-                    Calendly.
-                </p>
-                <a href="https://calendly.com/thanh-phuoc-nguyen/office-hours/" target="_blank">
-                    Schedule an Appointment
-                </a>
-            </details>
+            {/*</details>*/}
         </div>
     );
 }

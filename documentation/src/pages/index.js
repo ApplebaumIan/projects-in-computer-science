@@ -62,7 +62,7 @@ export function HomepageHeader() {
                         </div>
 
                     </div>
-                    {docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}
+                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
 
 
                 </div>
@@ -197,6 +197,8 @@ export default function Home() {
                             {/*    <DemoLineUp/>*/}
                             {/*</div>*/}
                             <Instructor/>
+                            <OfficeHours/>
+
                             {/*<TeachingAssistants/>*/}
                             <SyllabusPage/>
                         </MDXContent>
