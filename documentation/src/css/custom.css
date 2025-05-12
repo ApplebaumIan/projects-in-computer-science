@@ -208,7 +208,11 @@ main {
     background-position-x: -1000px;
   }
 }
-
+#__docusaurus_skipToContent_fallback > header > div.container > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > ul{
+font-size: smaller;
+  margin: 0;
+  padding: 0;
+}
 /*#__docusaurus_skipToContent_fallback > header > div.container > div > div > div > a:nth-child(1){*/
 /*  z-index: 5000;*/
 /*}*/
