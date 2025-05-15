@@ -18,16 +18,17 @@ jobs:
       - name: Determine Semester
         id: semester
         run: |
-          CURRENT_MONTH=$(date +%-m)
-          CURRENT_YEAR=$(date +%Y)
-          if [[ "$CURRENT_MONTH" -ge 1 && "$CURRENT_MONTH" -le 5 ]]; then
-              SEMESTER="Spring"
-          elif [[ "$CURRENT_MONTH" -ge 8 && "$CURRENT_MONTH" -le 12 ]]; then
-              SEMESTER="Fall"
-          else
-              SEMESTER="Summer"
-          fi
-          echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
+            echo "SEMESTER_YEAR=${SEMESTER_YEAR}" >> $GITHUB_ENV
+      #     CURRENT_MONTH=$(date +%-m)
+      #     CURRENT_YEAR=$(date +%Y)
+      #     if [[ "$CURRENT_MONTH" -ge 1 && "$CURRENT_MONTH" -le 5 ]]; then
+      #         SEMESTER="Spring"
+      #     elif [[ "$CURRENT_MONTH" -ge 8 && "$CURRENT_MONTH" -le 12 ]]; then
+      #         SEMESTER="Fall"
+      #     else
+      #         SEMESTER="Summer"
+      #     fi
+      #     echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
 
       - name: Deploy Website
         run: |
