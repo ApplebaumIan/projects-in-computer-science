@@ -22,6 +22,8 @@ import * as PropTypes from "prop-types";
 import Instructor from "../components/Instructor/Instructor";
 import TeachingAssistants from "../components/TeachingAssistants";
 import OfficeHours from "../components/OfficeHours/OfficeHours";
+import Projects from "./projects.mdx"
+
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
     if (currentDate >= startDate && currentDate <= endDate) {
@@ -197,8 +199,10 @@ export default function Home() {
                             {/*    <DemoLineUp/>*/}
                             {/*</div>*/}
                             <Instructor/>
+                            <h2>Working with Stakeholders</h2>
+                            <p>You will interact with stakeholders throughout the course, gaining insight into real-world project requirements and feedback processes. Stakeholder's visits may vary making attendance on these days essential.</p>
+                            <Projects/>
                             <OfficeHours/>
-
                             {/*<TeachingAssistants/>*/}
                             <SyllabusPage/>
                         </MDXContent>
