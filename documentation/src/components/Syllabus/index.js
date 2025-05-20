@@ -1,240 +1,228 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import {DataGrid, GridToolbar } from '@mui/x-data-grid';
-import {DateCalendar as Calendar} from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
-import {formatEvent, makeid, MermaidCodeBlock, SyllabusGantt, weeksBetween} from "./syllabusGantt";
-import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
-const api_key = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf"; // don't worry its READ ONLY
-const url = "https://courses.ianapplebaum.com";
+import dayjs from "dayjs";
 
-MermaidCodeBlock.propTypes = {chart: PropTypes.string};
+import {
+    Container,
+    Box,
+    Paper,
+    Typography,
+    List,
+} from "@mui/material";
 
-function Syllabus(props) {
-    const [events, setEvents] = useState([]);
-    const [syllabus, setSyllabus] = useState({});
-    const [selectedEvent, setSelectedEvent] = useState([]); // Changed to store multiple events
-    const [selectedDate, setSelectedDate] = useState(null); // State for calendar date
+import {
+    DateCalendar as Calendar,
+    PickersDay,
+} from "@mui/x-date-pickers";
+import { styled } from "@mui/material/styles";
+
+import {
+    formatEvent,
+    makeid,
+    MermaidCodeBlock,
+    SyllabusGantt,
+} from "./syllabusGantt";
+
+/** ─── CONFIGURATION ─────────────────────────────────────────────────────────── */
+// API credentials for fetching the syllabus data
+const API_KEY = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf";
+// Base URL of the syllabus API
+const BASE_URL = "https://courses.ianapplebaum.com";
+
+// Colors used to highlight days with events
+const HIGHLIGHT_COLOR = {
+    bg: (theme) => theme.palette.error.dark,       // background for highlighted days
+    hover: (theme) => theme.palette.error.light,   // background on hover
+    text: (theme) => theme.palette.secondary.contrastText, // text color on highlights
+};
+
+/** ─── HOOK: fetch syllabus + events ───────────────────────────────────────── */
+function useSyllabusEvents(courseId) {
+    const [data, setData] = useState({
+        syllabus: null,
+        events: [],
+    });
 
     useEffect(() => {
-        if (events.length === 0) {
-            fetch(`${url}/api/syllabus/${props.courseid}`, {
-                method: 'GET',
+        if (!data.syllabus) {
+            fetch(`${BASE_URL}/api/syllabus/${courseId}`, {
                 headers: {
-                    "Accept": "application/json",
-                    "Authorization": `Bearer ${api_key}`
+                    Accept: "application/json",
+                    Authorization: `Bearer ${API_KEY}`,
                 },
             })
-                .then(response => response.json())
-                .then(result => {
-                    setSyllabus(result.syllabus);
-                    setEvents(result.events);
+                .then((res) => res.json())
+                .then(({ syllabus, events }) => {
+                    setData({ syllabus, events }); // store fetched data
                 })
-                .catch(error => console.error('Error fetching syllabus:', error));
+                .catch(console.error);
         }
-    }, [events, props.courseid]);
+    }, [courseId, data.syllabus]);
 
-    const handleCellClick = (params) => {
-        if (['mondayLab', 'lecture', 'fridayLab', 'combinedEvents'].includes(params.field)) {
-            const weekEvents = events.filter(event => weeksBetween(syllabus.start_date, event.event_date) === params.row.week);
-            const matchingEvents = weekEvents.filter(event => {
-                if (params.value) {
-                    return params.value.split(', ').includes(event.event_name);
-                }
-                return false;
-            });
+    return data; // returns { syllabus, events }
+}
 
-            if (matchingEvents.length > 0) {
-                const sortedEvents = matchingEvents.sort((a, b) => {
-                    if (a.class_type === "Milestone" && b.class_type !== "Milestone") {
-                        return -1;
-                    } else if (a.class_type !== "Milestone" && b.class_type === "Milestone") {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                });
-                setSelectedEvent(sortedEvents); // Store all matching events, prioritizing milestones
-                const earliestDate = sortedEvents.reduce((earliest, event) =>
-                        new Date(event.event_date) < earliest ? new Date(event.event_date) : earliest,
-                    new Date(sortedEvents[0].event_date)
-                );
-                setSelectedDate(dayjs(earliestDate)); // Update the calendar to the earliest event date
-            }
-        }
-    };
+/** ─── STYLED DAY CELL ───────────────────────────────────────────────────────── */
+// Extend the default day cell to apply custom styles when hasEvent is true
+const CustomPickersDay = styled(PickersDay, {
+    shouldForwardProp: (prop) => prop !== "hasEvent",
+})(({ theme, hasEvent }) => ({
+    ...(hasEvent && {
+        backgroundColor: HIGHLIGHT_COLOR.bg(theme),
+        color: HIGHLIGHT_COLOR.text(theme),
+        "&:hover": {
+            backgroundColor: HIGHLIGHT_COLOR.hover(theme),
+        },
+        "&.Mui-selected": {
+            backgroundColor: HIGHLIGHT_COLOR.hover(theme),
+            color: HIGHLIGHT_COLOR.text(theme),
+        },
+    }),
+}));
 
-    const formatDate = (date) => {
-        return dayjs(date).format('dddd, MMMM D, YYYY');
-    };
-
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-
-    const columns = isMobile
-        ? [
-            {
-                field: 'week',
-                headerName: 'Week',
-                width: 10,
-                cellClassName: 'wrapText',
-            },
-            {
-                field: 'combinedEvents',
-                headerName: 'MWF Events',
-                width: 300,
-                flex: 1.5,
-                cellClassName: 'wrapText',
-                sortable: false,
-            }
-        ]
-        : [
-            {
-                field: 'week',
-                headerName: 'Week',
-                width: 90,
-                cellClassName: 'wrapText',
-            },
-            {
-                field: 'firstLab',
-                headerName: 'Lab',
-                width: 250,
-                flex: 1,
-                cellClassName: 'wrapText',
-                sortable: false,
-            },
-            {
-                field: 'lecture',
-                headerName: 'Lecture',
-                width: 250,
-                flex: 1,
-                cellClassName: 'wrapText',
-                sortable: false,
-            },
-            {
-                field: 'secondLab',
-                headerName: 'Lab',
-                width: 250,
-                flex: 1,
-                cellClassName: 'wrapText',
-                sortable: false,
-            },
-            {
-                field: 'deliverables',
-                headerName: 'Deliverables',
-                width: 300,
-                flex: 1.5,
-                cellClassName: 'wrapText',
-                sortable: false,
-                renderCell: (params) => (
-                    <ul style={{ margin: 0, padding: 0 , listStyleType: 'none'}}>
-                        {params.value.map((deliverable) => (
-                            <li key={deliverable.eventid}>
-                                <label>
-                                    <input type="checkbox" /> {deliverable.event_name}
-                                </label>
-                            </li>
-                        ))}
-                    </ul>
-                )
-            }
-        ];
-
-    const rows = Object.values(events.reduce((acc, event) => {
-        const week = weeksBetween(syllabus.start_date, event.event_date);
-        const eventDate = new Date(event.event_date);
-
-        if (!acc[week]) {
-            acc[week] = {
-                id: week,
-                week,
-                combinedEvents: '',
-                mondayLab: '',
-                lecture: '',
-                fridayLab: '',
-                deliverables: []
-            };
-        }
-
-        if (event.class_type === 'Lab') {
-            if (!acc[week].mondayLab) {
-                acc[week].mondayLab = event.event_name;
-            } else {
-                acc[week].fridayLab = event.event_name;
-            }
-            acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
-        } else if (event.class_type === 'Lecture') {
-            acc[week].lecture = event.event_name;
-            acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
-        } else if (['Milestone', 'Break!', 'Sprint'].includes(event.class_type)) {
-            acc[week].mondayLab += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
-            acc[week].combinedEvents += acc[week].combinedEvents ? `, ${event.event_name}` : event.event_name;
-        } else if (event.class_type === 'Deliverable') {
-            acc[week].deliverables.push(event);
-        }
-        return acc;
-    }, {}));
+// Day cell wrapper that checks if this date has any events
+function EventDay({ day, highlightedDates, outsideCurrentMonth, ...other }) {
+    const iso = day.format("YYYY-MM-DD");
+    const hasEvent = !outsideCurrentMonth && highlightedDates.includes(iso);
 
     return (
-        <>
-            {selectedEvent.length > 0 && (
-                <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px', marginBottom: 20, padding: 10, border: '1px solid #ccc', borderRadius: 4 }}>
-                    <div style={{ flex: 1, minWidth: '250px' }}>
-                        <Calendar
-                            value={dayjs(selectedEvent[0].event_date)} // Bind the calendar to the selectedDate state
-                            onChange={() => {}} // Keep it read-only for now
-                            readOnly
-                        />
-                    </div>
-                    <div style={{ flex: 1, minWidth: '250px' }}>
-                        <h4>Event Details:</h4>
-                        {selectedEvent.map((event, index) => (
-                            <div key={index} style={{ marginBottom: '1em' }}>
-                                <p><strong>Name:</strong> {event.event_name}</p>
-                                <p><strong>Description:</strong> {event.event_description}</p>
-                                <p><strong>Date:</strong> {formatDate(event.event_date)}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-            <div style={{ height: 1020, width: '100%' }}>
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    getRowHeight={() => 'auto'} getEstimatedRowHeight={() => 200}
-                    {...(isMobile && { getRowHeight: () => 'auto' })} // Apply getRowHeight only for mobile
-                    {...(!docusaurusConfig.customFields.is_pdf && {autoPageSize: ()=>true})}
-                    disableColumnFilter
-                    disableColumnSelector
-                    disableDensitySelector
-                    slots={{ toolbar: GridToolbar }}
-                    slotProps={{
-                        toolbar: {
-                            printOptions: { disableToolbarButton: true },
-                            showQuickFilter: true,
-                        },
-                    }}
-                    sx={{
-                        '& .wrapText': {
-                            whiteSpace: 'normal',
-                            wordWrap: 'break-word',
-                        },
-                    }}
-                    onCellClick={handleCellClick}
-                />
-            </div>
-            <div style={{paddingTop:50}}>
-                {true && <SyllabusGantt
-                    courseid={props.courseid}
-                    events={events}
-                    daysOff={props.daysOff}
-                    prop1={(event) => formatEvent(syllabus, event, makeid(event.event_name))}
-                    url={url}
-                />}
-            </div>
+        <CustomPickersDay
+            {...other}
+            day={day}
+            hasEvent={hasEvent}
+            outsideCurrentMonth={outsideCurrentMonth}
+        />
+    );
+}
+EventDay.propTypes = {
+    day: PropTypes.object.isRequired,
+    highlightedDates: PropTypes.arrayOf(PropTypes.string),
+    outsideCurrentMonth: PropTypes.bool,
+};
 
-        </>
+/** ─── CALENDAR COMPONENT ───────────────────────────────────────────────────── */
+function HighlightedCalendar({ value, onChange, minDate, maxDate, highlightedDates }) {
+    return (
+        <Calendar
+            value={value}
+            onChange={onChange}
+            minDate={minDate}
+            maxDate={maxDate}
+            slots={{ day: EventDay }}                // use our custom day renderer
+            slotProps={{ day: { highlightedDates } }} // pass dates to highlight
+        />
+    );
+}
+HighlightedCalendar.propTypes = {
+    value: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object,
+    highlightedDates: PropTypes.arrayOf(PropTypes.string),
+};
+
+/** ─── LIST OF EVENTS ────────────────────────────────────────────────────────── */
+function EventList({ events }) {
+    if (!events.length) {
+        return <Typography color="text.secondary">No events for this day.</Typography>;
+    }
+
+    return (
+        <List disablePadding>
+            {events.map((ev) => (
+                <Paper key={ev.id} elevation={2} sx={{ p: 2, mb: 2 }}>
+                    <Typography variant="subtitle1">{ev.event_name}</Typography>
+                    <Typography variant="body2" paragraph>
+                        {ev.event_description}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                        {ev.class_type}
+                    </Typography>
+                </Paper>
+            ))}
+        </List>
+    );
+}
+EventList.propTypes = {
+    events: PropTypes.array.isRequired,
+};
+
+/** ─── MAIN SYLLABUS COMPONENT ───────────────────────────────────────────────── */
+export default function Syllabus({ courseid, daysOff }) {
+    const { syllabus, events } = useSyllabusEvents(courseid);
+    const [selectedDate, setSelectedDate] = useState(dayjs());
+
+    // build a map of YYYY-MM-DD → [events]
+    const eventsByDate = React.useMemo(() => {
+        return events.reduce((acc, ev) => {
+            const key = dayjs(ev.event_date).format("YYYY-MM-DD");
+            acc[key] = acc[key] || [];
+            acc[key].push(ev);
+            return acc;
+        }, {});
+    }, [events]);
+
+    const highlightedDates = Object.keys(eventsByDate);
+
+    // choose today (clamped to the syllabus range) once data loads
+    useEffect(() => {
+        if (syllabus) {
+            const today = dayjs();
+            const start = dayjs(syllabus.start_date);
+            const end = dayjs(syllabus.end_date);
+            const clamped =
+                today.isBefore(start) ? start :
+                    today.isAfter(end) ? end :
+                        today;
+            setSelectedDate(clamped);
+        }
+    }, [syllabus]);
+
+    if (!syllabus) {
+        return <Typography>Loading syllabus…</Typography>;
+    }
+
+    const selectedKey = selectedDate.format("YYYY-MM-DD");
+    const todaysEvents = eventsByDate[selectedKey] || [];
+
+    return (
+        <Container maxWidth="lg" sx={{ py: 4 }}>
+            <Typography variant="h4" gutterBottom>
+                {syllabus.course_name} — Schedule
+            </Typography>
+
+            <Paper elevation={3} sx={{ p: 2, maxWidth: 500, mx: "auto" }}>
+                {/* calendar with highlighted event days */}
+                <HighlightedCalendar
+                    value={selectedDate}
+                    onChange={setSelectedDate}
+                    minDate={dayjs().startOf("day")}
+                    maxDate={dayjs(syllabus.end_date)}
+                    highlightedDates={highlightedDates}
+                />
+            </Paper>
+
+            <Box mt={4}>
+                <Typography variant="h6" gutterBottom>
+                    Events on {selectedDate.format("dddd, MMMM D, YYYY")}
+                </Typography>
+                <EventList events={todaysEvents} />
+            </Box>
+
+            <Box pt={6}>
+                <SyllabusGantt
+                    courseid={courseid}
+                    events={events}
+                    daysOff={daysOff}
+                    prop1={(ev) => formatEvent(syllabus, ev, makeid(ev.event_name))}
+                    url={BASE_URL}
+                />
+            </Box>
+        </Container>
     );
 }
 
-export default Syllabus;
+Syllabus.propTypes = {
+    courseid: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    daysOff: PropTypes.array,
+};
