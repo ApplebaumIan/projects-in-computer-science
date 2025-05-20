@@ -11,21 +11,26 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const logo = 'https://upload.wikimedia.org/wikipedia/commons/1/17/Temple_T_logo.svg';
 
 const main_template_jira_scripts = () => {
-  if (process.env.ORG_NAME === 'ApplebaumIan'){
-    return [    'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/8/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=50af7ec2',
+  if (process.env.ORG_NAME === 'ApplebaumIan') {
+    return ['https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/8/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=50af7ec2',
       'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/azc3hx/b/8/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=160e88a6',]
   } else {
     return []
   }
 }
-const is_pdf = process.env.PDF === undefined ? false :  process.env.PDF ; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
+const is_pdf = process.env.PDF === undefined ? false : process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
 const course_number = 'CIS 4398';
 const semester = process.env.SEMESTER_YEAR;
 
 // You can change the title here. The default is the name of the repository.
-const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((word) => {
-  return word[0].toUpperCase() + word.substring(1);
-}).join(' ');
+if (!process.env.PROJECT_NAME) {
+  console.warn('⚠️ PROJECT_NAME env variable not found. Using default.');
+}
+const title = (process.env.PROJECT_NAME || 'default-project')
+  .replaceAll('-', ' ')
+  .split(' ')
+  .map((word) => word[0].toUpperCase() + word.substring(1))
+  .join(' ');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -44,7 +49,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: process.env.ORG_NAME, // Usually your GitHub org/user name.
   projectName: process.env.PROJECT_NAME, // Usually your repo name.
-  customFields:{
+  customFields: {
     course_number: course_number,
     semester: semester,
     is_pdf: is_pdf,
@@ -59,7 +64,7 @@ const config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-live-codeblock','@docusaurus/theme-mermaid'],
+  themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
   presets: [
     [
       'classic',
@@ -73,7 +78,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME+'/edit/main/documentation/',
+            'https://github.com/' + process.env.ORG_NAME + '/' + process.env.PROJECT_NAME + '/edit/main/documentation/',
           // remarkPlugins: [require('mdx-mermaid')],
 
         },
@@ -131,14 +136,14 @@ const config = {
             docId: 'intro',
             position: 'left',
             label: 'Documentation',
-          },{
-          type: 'dropdown',
+          }, {
+            type: 'dropdown',
             label: 'Quick Links',
             position: 'left',
-            className:'quicklinks',
+            className: 'quicklinks',
             items: [
               {
-                to:'/#office-hours',
+                to: '/#office-hours',
                 label: 'Office Hours',
               },
               {
@@ -159,7 +164,7 @@ const config = {
           },
 
           {
-            href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
+            href: 'https://github.com/' + process.env.ORG_NAME + '/' + process.env.PROJECT_NAME,
             label: 'GitHub',
             position: 'right',
           },
@@ -181,11 +186,11 @@ const config = {
               },
               {
                 label: 'Course Schedule',
-                to:'/#week-by-week-schedule',
+                to: '/#week-by-week-schedule',
               },
               {
                 label: 'Docusaurus Tutorial',
-                to:'/tutorial/Intro',
+                to: '/tutorial/Intro',
               },
               {
                 label: 'Docusaurus Guide',
@@ -193,14 +198,14 @@ const config = {
               },
               {
                 label: 'GitHub Statistics',
-                to:'/github-statistics',
+                to: '/github-statistics',
               },
               {
                 label: 'GPU Server',
-                to:'/gpu-server',
+                to: '/gpu-server',
               },
               {
-                label:'TA Resources',
+                label: 'TA Resources',
                 to: '/ta-resource/intro'
               }
 
@@ -250,7 +255,7 @@ const config = {
         // see: https://www.npmjs.com/package/medium-zoom#options
         options: {
           margin: 24,
-          zIndex:100,
+          zIndex: 100,
           background: 'white',
           // scrollOffset: 10,
           // container: '#zoom-container',
@@ -288,12 +293,12 @@ const config = {
     ],
     'plugin-image-zoom',
   ],
-  scripts:['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+  scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
     {
-      src:"/js/userway.js",
-      async:false
+      src: "/js/userway.js",
+      async: false
     },
-  ...main_template_jira_scripts()
+    ...main_template_jira_scripts()
   ],
 };
 console.log(config.scripts)
