@@ -16,20 +16,24 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
-.quicklinks{
+
+.quicklinks {
   display: none;
 }
+
 @media screen and (max-width: 996px) {
-  #__docusaurus_skipToContent_fallback > header > div.container > div > div > div {
+  #__docusaurus_skipToContent_fallback>header>div.container>div>div>div {
     padding: 0;
     margin: 0;
     display: none;
   }
-.quicklinks{
-  display: flex;
-}
+
+  .quicklinks {
+    display: flex;
+  }
 
 }
+
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --ifm-color-primary: #ff3858;
@@ -42,61 +46,66 @@
   --ifm-footer-background-color: black;
 }
 
-.medium-zoom-overlay{
+.medium-zoom-overlay {
   /*background-color: #00a400 !important;*/
   z-index: 999;
 }
 
-.medium-zoom-image--opened{
+.medium-zoom-image--opened {
   z-index: 1000;
 }
 
-#atlwdg-trigger.atlwdg-trigger.atlwdg-RIGHT{
+#atlwdg-trigger.atlwdg-trigger.atlwdg-RIGHT {
   background-color: #9d2235;
 }
 
-[data-theme='dark'] .live-demo  {
+[data-theme='dark'] .live-demo {
   color: white !important;
 }
-.live-demo  {
+
+.live-demo {
   color: black !important;
 }
 
-.live-demo{
+.live-demo {
   text-align: justify;
 }
+
 .mobile-live-demo {
   display: none !important;
 }
 
-#docusaurus_skipToContent_fallback > header > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > div > div:nth-child(1) > div {
+#docusaurus_skipToContent_fallback>header>div>div.live-demo.card.container.shadow--tl.margin--lg>div.card__body>div>div>div:nth-child(1)>div {
   text-align: center;
 }
 
-#docusaurus_skipToContent_fallback > header > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > div > div:nth-child(1) > div > details > div{
+#docusaurus_skipToContent_fallback>header>div>div.live-demo.card.container.shadow--tl.margin--lg>div.card__body>div>div>div:nth-child(1)>div>details>div {
   text-align: justify;
 }
 
-.hero--primary{
+.hero--primary {
   /*height: 100vh;*/
-backdrop-filter: opacity(50%);
+  backdrop-filter: opacity(50%);
 }
+
 /*canvas {*/
 /*  filter: blur(15px);*/
 /*}*/
 #mobile-toc {
   display: none !important;
 
-/*visibility: hidden;*/
+  /*visibility: hidden;*/
 }
 
-.youtube-player{
+.youtube-player {
   width: 560px;
   height: 317px;
 }
+
 .syllabus-content {
   margin-top: 50px;
 }
+
 main {
   padding: 50px;
 }
@@ -105,18 +114,22 @@ main {
   .live-demo {
     display: none;
   }
-  .youtube-player{
+
+  .youtube-player {
     width: 330px;
     height: 208px;
   }
+
   .mobile-live-demo {
     display: inline !important;
   }
+
   #mobile-toc {
     display: flex !important;
     margin-top: 2rem;
     /*visibility: visible;*/
   }
+
   main {
     padding: 20px;
   }
@@ -138,7 +151,8 @@ main {
   /*background: #3586ff;*/
   overflow: hidden;
 }
-.hero--primary .air{
+
+.hero--primary .air {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -147,7 +161,8 @@ main {
   background: url(https://1.bp.blogspot.com/-xQUc-TovqDk/XdxogmMqIRI/AAAAAAAACvI/AizpnE509UMGBcTiLJ58BC6iViPYGYQfQCLcBGAsYHQ/s1600/wave.png);
   background-size: 1000px 100px;
 }
-[data-theme='dark'] .hero--primary .air{
+
+[data-theme='dark'] .hero--primary .air {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -157,7 +172,8 @@ main {
   background-size: 1000px 100px;
   filter: invert(89.1%);
 }
-.hero--primary .air.air1{
+
+.hero--primary .air.air1 {
   animation: wave 30s linear infinite;
   z-index: 5;
   opacity: 1;
@@ -166,7 +182,8 @@ main {
   background-blend-mode: multiply;
 
 }
-.hero--primary .air.air2{
+
+.hero--primary .air.air2 {
   animation: wave2 15s linear infinite;
   z-index: 6;
   opacity: 0.5;
@@ -174,7 +191,8 @@ main {
   bottom: 10px;
   background-blend-mode: multiply;
 }
-.hero--primary .air.air3{
+
+.hero--primary .air.air3 {
   animation: wave 30s linear infinite;
   z-index: 7;
   opacity: 0.2;
@@ -183,7 +201,8 @@ main {
   background-blend-mode: multiply;
 
 }
-.hero--primary .air.air4{
+
+.hero--primary .air.air4 {
   animation: wave2 5s linear infinite;
   z-index: 8;
   opacity: 0.7;
@@ -192,27 +211,33 @@ main {
   background-blend-mode: multiply;
 
 }
-@keyframes wave{
-  0%{
+
+@keyframes wave {
+  0% {
     background-position-x: 0px;
   }
-  100%{
+
+  100% {
     background-position-x: 1000px;
   }
 }
-@keyframes wave2{
-  0%{
+
+@keyframes wave2 {
+  0% {
     background-position-x: 0px;
   }
-  100%{
+
+  100% {
     background-position-x: -1000px;
   }
 }
-#__docusaurus_skipToContent_fallback > header > div.container > div > div.live-demo.card.container.shadow--tl.margin--lg > div.card__body > div > ul{
-font-size: smaller;
+
+#__docusaurus_skipToContent_fallback>header>div.container>div>div.live-demo.card.container.shadow--tl.margin--lg>div.card__body>div>ul {
+  font-size: smaller;
   margin: 0;
   padding: 0;
 }
+
 /*#__docusaurus_skipToContent_fallback > header > div.container > div > div > div > a:nth-child(1){*/
 /*  z-index: 5000;*/
 /*}*/
