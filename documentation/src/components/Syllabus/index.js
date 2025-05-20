@@ -5,9 +5,11 @@ import dayjs from "dayjs";
 import {
     Container,
     Box,
+    Grid,
     Paper,
     Typography,
     List,
+    Divider,
 } from "@mui/material";
 
 import {
@@ -24,24 +26,18 @@ import {
 } from "./syllabusGantt";
 
 /** ─── CONFIGURATION ─────────────────────────────────────────────────────────── */
-// API credentials for fetching the syllabus data
 const API_KEY = "0tkdWiE5SUuT8D9G5qQrFzdAmwluyLnZLgMn25xf";
-// Base URL of the syllabus API
 const BASE_URL = "https://courses.ianapplebaum.com";
 
-// Colors used to highlight days with events
 const HIGHLIGHT_COLOR = {
-    bg: (theme) => theme.palette.error.dark,       // background for highlighted days
-    hover: (theme) => theme.palette.error.light,   // background on hover
-    text: (theme) => theme.palette.secondary.contrastText, // text color on highlights
+    bg: (theme) => theme.palette.error.dark,
+    hover: (theme) => theme.palette.error.light,
+    text: (theme) => theme.palette.secondary.contrastText,
 };
 
 /** ─── HOOK: fetch syllabus + events ───────────────────────────────────────── */
 function useSyllabusEvents(courseId) {
-    const [data, setData] = useState({
-        syllabus: null,
-        events: [],
-    });
+    const [data, setData] = useState({ syllabus: null, events: [] });
 
     useEffect(() => {
         if (!data.syllabus) {
@@ -52,21 +48,18 @@ function useSyllabusEvents(courseId) {
                 },
             })
                 .then((res) => res.json())
-                .then(({ syllabus, events }) => {
-                    setData({ syllabus, events }); // store fetched data
-                })
+                .then(({ syllabus, events }) => setData({ syllabus, events }))
                 .catch(console.error);
         }
     }, [courseId, data.syllabus]);
 
-    return data; // returns { syllabus, events }
+    return data;
 }
 
 /** ─── STYLED DAY CELL ───────────────────────────────────────────────────────── */
-// Extend the default day cell to apply custom styles when hasEvent is true
 const CustomPickersDay = styled(PickersDay, {
-    shouldForwardProp: (prop) => prop !== "hasEvent",
-})(({ theme, hasEvent }) => ({
+    shouldForwardProp: (prop) => prop !== "hasEvent" && prop !== "isOff",
+})(({ theme, hasEvent, isOff }) => ({
     ...(hasEvent && {
         backgroundColor: HIGHLIGHT_COLOR.bg(theme),
         color: HIGHLIGHT_COLOR.text(theme),
@@ -78,18 +71,28 @@ const CustomPickersDay = styled(PickersDay, {
             color: HIGHLIGHT_COLOR.text(theme),
         },
     }),
+    ...(isOff && {
+        backgroundColor: theme.palette.action.disabledBackground,
+        color: theme.palette.text.disabled,
+        pointerEvents: "none",
+        "&:hover": {
+            backgroundColor: theme.palette.action.disabledBackground,
+        },
+    }),
 }));
 
-// Day cell wrapper that checks if this date has any events
-function EventDay({ day, highlightedDates, outsideCurrentMonth, ...other }) {
+function EventDay({ day, highlightedDates, daysOff, outsideCurrentMonth, ...other }) {
     const iso = day.format("YYYY-MM-DD");
     const hasEvent = !outsideCurrentMonth && highlightedDates.includes(iso);
+    const isOff = !outsideCurrentMonth && daysOff.includes(iso);
 
     return (
         <CustomPickersDay
             {...other}
             day={day}
             hasEvent={hasEvent}
+            isOff={isOff}
+            disabled={isOff}
             outsideCurrentMonth={outsideCurrentMonth}
         />
     );
@@ -97,19 +100,21 @@ function EventDay({ day, highlightedDates, outsideCurrentMonth, ...other }) {
 EventDay.propTypes = {
     day: PropTypes.object.isRequired,
     highlightedDates: PropTypes.arrayOf(PropTypes.string),
+    daysOff: PropTypes.arrayOf(PropTypes.string),
     outsideCurrentMonth: PropTypes.bool,
 };
 
 /** ─── CALENDAR COMPONENT ───────────────────────────────────────────────────── */
-function HighlightedCalendar({ value, onChange, minDate, maxDate, highlightedDates }) {
+function HighlightedCalendar({ value, onChange, minDate, maxDate, highlightedDates, daysOff }) {
     return (
         <Calendar
             value={value}
             onChange={onChange}
             minDate={minDate}
             maxDate={maxDate}
-            slots={{ day: EventDay }}                // use our custom day renderer
-            slotProps={{ day: { highlightedDates } }} // pass dates to highlight
+            shouldDisableDate={(d) => daysOff.includes(d.format("YYYY-MM-DD"))}
+            slots={{ day: EventDay }}
+            slotProps={{ day: { highlightedDates, daysOff } }}
         />
     );
 }
@@ -119,24 +124,23 @@ HighlightedCalendar.propTypes = {
     minDate: PropTypes.object,
     maxDate: PropTypes.object,
     highlightedDates: PropTypes.arrayOf(PropTypes.string),
+    daysOff: PropTypes.arrayOf(PropTypes.string),
 };
 
-/** ─── LIST OF EVENTS ────────────────────────────────────────────────────────── */
+/** ─── LIST OF EVENTS FOR A SINGLE DAY ───────────────────────────────────────── */
 function EventList({ events }) {
     if (!events.length) {
         return <Typography color="text.secondary">No events for this day.</Typography>;
     }
-
     return (
         <List disablePadding>
             {events.map((ev) => (
                 <Paper key={ev.id} elevation={2} sx={{ p: 2, mb: 2 }}>
-                    <Typography variant="subtitle1">{ev.event_name}</Typography>
-                    <Typography variant="body2" paragraph>
-                        {ev.event_description}
+                    <Typography variant="subtitle1">
+                        {ev.class_type} – {ev.event_name}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                        {ev.class_type}
+                    <Typography variant="body2" color="text.secondary">
+                        {ev.event_description}
                     </Typography>
                 </Paper>
             ))}
@@ -147,12 +151,42 @@ EventList.propTypes = {
     events: PropTypes.array.isRequired,
 };
 
+/** ─── LIST OF ALL EVENTS BY DATE ────────────────────────────────────────────── */
+function AllEventsByDate({ eventsByDate }) {
+    const sortedDates = Object.keys(eventsByDate).sort();
+    return (
+        <Box>
+            {sortedDates.map((date) => (
+                <Box key={date} mb={3}>
+                    <Typography variant="subtitle1" gutterBottom>
+                        {dayjs(date).format("dddd, MMMM D, YYYY")}
+                    </Typography>
+                    {eventsByDate[date].map((ev) => (
+                        <Box key={ev.id} pl={2} mb={1}>
+                            <Typography variant="body1">
+                                {ev.class_type} – {ev.event_name}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {ev.event_description}
+                            </Typography>
+                        </Box>
+                    ))}
+                    <Divider sx={{ mt: 2 }} />
+                </Box>
+            ))}
+        </Box>
+    );
+}
+AllEventsByDate.propTypes = {
+    eventsByDate: PropTypes.object.isRequired,
+};
+
 /** ─── MAIN SYLLABUS COMPONENT ───────────────────────────────────────────────── */
 export default function Syllabus({ courseid, daysOff }) {
     const { syllabus, events } = useSyllabusEvents(courseid);
     const [selectedDate, setSelectedDate] = useState(dayjs());
 
-    // build a map of YYYY-MM-DD → [events]
+    // map YYYY-MM-DD → [events]
     const eventsByDate = React.useMemo(() => {
         return events.reduce((acc, ev) => {
             const key = dayjs(ev.event_date).format("YYYY-MM-DD");
@@ -164,18 +198,17 @@ export default function Syllabus({ courseid, daysOff }) {
 
     const highlightedDates = Object.keys(eventsByDate);
 
-    // choose today (clamped to the syllabus range) once data loads
+    // clamp initial selected date
     useEffect(() => {
-        if (syllabus) {
-            const today = dayjs();
-            const start = dayjs(syllabus.start_date);
-            const end = dayjs(syllabus.end_date);
-            const clamped =
-                today.isBefore(start) ? start :
-                    today.isAfter(end) ? end :
-                        today;
-            setSelectedDate(clamped);
-        }
+        if (!syllabus) return;
+        const today = dayjs();
+        const start = dayjs(syllabus.start_date);
+        const end = dayjs(syllabus.end_date);
+        const clamped =
+            today.isBefore(start) ? start :
+                today.isAfter(end) ? end :
+                    today;
+        setSelectedDate(clamped);
     }, [syllabus]);
 
     if (!syllabus) {
@@ -191,23 +224,45 @@ export default function Syllabus({ courseid, daysOff }) {
                 {syllabus.course_name} — Schedule
             </Typography>
 
-            <Paper elevation={3} sx={{ p: 2, maxWidth: 500, mx: "auto" }}>
-                {/* calendar with highlighted event days */}
-                <HighlightedCalendar
-                    value={selectedDate}
-                    onChange={setSelectedDate}
-                    minDate={dayjs().startOf("day")}
-                    maxDate={dayjs(syllabus.end_date)}
-                    highlightedDates={highlightedDates}
-                />
-            </Paper>
+            <Grid container spacing={4}>
+                {/* Calendar + Today's events */}
+                <Grid item xs={12} md={6}>
+                    <Paper elevation={3} sx={{ p: 2 }}>
+                        <HighlightedCalendar
+                            value={selectedDate}
+                            onChange={setSelectedDate}
+                            minDate={dayjs().startOf("day")}
+                            maxDate={dayjs(syllabus.end_date)}
+                            highlightedDates={highlightedDates}
+                            daysOff={daysOff}
+                        />
+                    </Paper>
 
-            <Box mt={4}>
-                <Typography variant="h6" gutterBottom>
-                    Events on {selectedDate.format("dddd, MMMM D, YYYY")}
-                </Typography>
-                <EventList events={todaysEvents} />
-            </Box>
+                    <Box mt={4}>
+                        <Typography variant="h6" gutterBottom>
+                            Events on {selectedDate.format("dddd, MMMM D, YYYY")}
+                        </Typography>
+                        <EventList events={todaysEvents} />
+                    </Box>
+                </Grid>
+
+                {/* Scrollable All Events list */}
+                <Grid item xs={12} md={6}>
+                    <Paper
+                        elevation={3}
+                        sx={{
+                            p: 2,
+                            maxHeight: 600,
+                            overflowY: "auto",
+                        }}
+                    >
+                        <Typography variant="h6" gutterBottom>
+                            All Events
+                        </Typography>
+                        <AllEventsByDate eventsByDate={eventsByDate} />
+                    </Paper>
+                </Grid>
+            </Grid>
 
             <Box pt={6}>
                 <SyllabusGantt
@@ -224,5 +279,5 @@ export default function Syllabus({ courseid, daysOff }) {
 
 Syllabus.propTypes = {
     courseid: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    daysOff: PropTypes.array,
+    daysOff: PropTypes.arrayOf(PropTypes.string),
 };
