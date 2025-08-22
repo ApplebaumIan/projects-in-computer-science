@@ -191,7 +191,7 @@ export default function Home() {
                 description="Professor Applebaum's Capstone Course Syllabus.">
                 <HomepageHeader/>
                 <main>
-                    <div style={{zIndex: 100000}}>
+                    <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
                         <MDXContent>
                             {/*<div className={"mobile-live-demo"}>*/}
                             {/*    <h2>Watch Live 🔴</h2>*/}
@@ -199,11 +199,11 @@ export default function Home() {
                             {/*    <DemoLineUp/>*/}
                             {/*</div>*/}
                             <Instructor/>
+                            <TeachingAssistants/>
                             <h2>Working with Stakeholders</h2>
                             <p>You will interact with stakeholders throughout the course, gaining insight into real-world project requirements and feedback processes. Stakeholder's visits may vary making attendance on these days essential.</p>
                             <Projects/>
                             <OfficeHours/>
-                            {/*<TeachingAssistants/>*/}
                             <SyllabusPage/>
                         </MDXContent>
                     </div>

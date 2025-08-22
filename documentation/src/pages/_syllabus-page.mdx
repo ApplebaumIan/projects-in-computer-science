@@ -1,4 +1,5 @@
 import Syllabus from '../components/Syllabus';
+import Admonition from '@theme/Admonition';
 
 import Figure from "../components/Figure";
 
@@ -7,6 +8,9 @@ import feedback from "../../static/img/feedback-example.png"
 import jiraBoard from "../../static/img/jira-board-example.png"
 import Logo from "../../static/img/logo.svg"
 import TOCInline from "@theme/TOCInline"
+
+export const isOnlineClass = false;
+export const isSummerClass = false;
 
 <div id={"mobile-toc"} style={{display:"flex", justifyContent:"center", alignContent:"center"}}>
     <details style={{width:"75%"}}>
@@ -135,9 +139,13 @@ Feedback will be submitted as Jira tickets, allowing you to engage with comments
 
 ### Week-by-Week Schedule
 
-:::warning Summer Session
-Due to the condensed nature of the summer session, this course is going to be much more intense. **Lectures will be pre-recorded and uploaded to Panopoto** and available on Canvas. All synchronous class sessions will be considered working and meeting times for your teams. Please make sure to keep up with these lectures and be very active and present in the classroom with your teams. There's going to be very little wiggle room. Your success will be primarily measured in your participation in your project and team. [Please refer to the course moto!](#class-motto:)
-:::
+{isOnlineClass && (
+<div>
+<Admonition type="warning" title="Summer Session">
+Due to the condensed nature of the summer session, this course is going to be much more intense. <strong>Lectures will be pre-recorded and uploaded to Panopoto</strong> and available on Canvas. All synchronous class sessions will be considered working and meeting times for your teams. Please make sure to keep up with these lectures and be very active and present in the classroom with your teams. There's going to be very little wiggle room. Your success will be primarily measured in your participation in your project and team. <a href="#class-motto">Please refer to the course moto!</a>
+</Admonition>
+</div>
+)}
 
 <Syllabus courseid={13} daysOff={` 2025-09-01 2025-11-24 2025-11-25 2025-11-26 2025-11-27 2025-11-28 2025-11-29 2025-11-30 `} />
 
@@ -147,37 +155,40 @@ This course requires the use of Canvas, including access to materials and assign
 On-campus computer labs have resumed normal operations and are available for student use.
 Limited resources are available for students who do not have the technology they need for class. Students with educational technology needs, including no computer or camera or insufficient Wifi-access, should submit a Student Technology Assistance Application located in TUPortal and linked from the [Dean of Students Support and Resources webpage](https://deanofstudents.temple.edu/support-and-resources). The university will endeavor to meet needs, such as with a long-term loan of a laptop or Mifi device, a refurbished computer, or subsidized internet access. [Internet Essentials from Comcast](https://www.internetessentials.com/) provides the option to purchase a computer for $150 and high-speed Internet service for $9.95 a month, plus tax. The [Emergency Broadband Benefit (EBB)](https://www.fcc.gov/broadbandbenefit) is available to purchase Xfinity, Verizon, T-Mobile, and other internet services. Qualified households can receive a temporary monthly credit of up to $50/month toward their Internet service and leased Internet equipment until the program's funding runs out.
 
-#### Online Web Meeting Tool
+{isOnlineClass && (
+<div>
+<h4>Online Web Meeting Tool</h4>
 
-Online lectures will be conducted via **Zoom web conferencing**.
+<p>Online lectures will be conducted via <strong>Zoom web conferencing</strong>.
 Zoom is a web conferencing tool available to all students, faculty and staff. It is used in all lectures
 and labs. You can use this tool to meet with your team members or peers.
 To access Zoom, login to TUportal and select Zoom from the left navigation menu or go directly
 to temple.zoom.us. ZOOM training is provided by CAT. Zoom allows to share screens, slides,
-whiteboard, mobile devices and remote desktop controls.
+whiteboard, mobile devices and remote desktop controls.</p>
 
-:::note
+<Admonition type="note">
 Hardwired network connections are more consistent than Wi-Fi for Zoom sessions. If
 your network speeds are below the suggested rates, please try to move your
 computer closer to the Wi-Fi router or try to hardwire your connection.
-:::
+</Admonition>
 
-:::important Camera and Microphone Requirement for online class
-The expectation is that students participate both by video and audio in online classes. All students
-are required to have a working camera and headset during class times.
+<Admonition type="important" title="Camera and Microphone Requirement for online class">
+<p>The expectation is that students participate both by video and audio in online classes. All students
+are required to have a working camera and headset during class times.</p>
 
-- Microphone
-- Suggested models
-- [Samson Go Microphone (**I use this one its really good**)](https://www.amazon.com/dp/B001R76D42?ref=nb_sb_ss_w_as-reorder-t1_ypp_rep_k0_1_9&amp=&crid=20KF2NRV4ZUCT&amp=&sprefix=samson+go)
-- [Logitech H390 Computer Microphone, Over-the-Head (better if you want headphones for privacy)](https://www.staples.com/Logitech-H390-USB-Wired-PC-Headset-for-Internet-Calls-and-Music-981-000014/product_710265)
-- Webcam
-- Suggested models
-- [Logitech C270 HD Webcam](https://www.staples.com/Logitech-C270-HD-720p-Computer-Webcam-with-Microphone-960-000694/product_354562)
-- Recommended Internet Speed: 8mbps download & 5mbps upload (Test
-at [speedtest.net](https://speedtest.net))
-
-:::
-
+<ul>
+<li>Microphone</li>
+<li>Suggested models</li>
+<li><a href="https://www.amazon.com/dp/B001R76D42?ref=nb_sb_ss_w_as-reorder-t1_ypp_rep_k0_1_9&amp=&crid=20KF2NRV4ZUCT&amp=&sprefix=samson+go">Samson Go Microphone (<strong>I use this one its really good</strong>)</a></li>
+<li><a href="https://www.staples.com/Logitech-H390-USB-Wired-PC-Headset-for-Internet-Calls-and-Music-981-000014/product_710265">Logitech H390 Computer Microphone, Over-the-Head (better if you want headphones for privacy)</a></li>
+<li>Webcam</li>
+<li>Suggested models</li>
+<li><a href="https://www.staples.com/Logitech-C270-HD-720p-Computer-Webcam-with-Microphone-960-000694/product_354562">Logitech C270 HD Webcam</a></li>
+<li>Recommended Internet Speed: 8mbps download & 5mbps upload (Test at <a href="https://speedtest.net">speedtest.net</a>)</li>
+</ul>
+</Admonition>
+</div>
+)}
 
 <details>
     <summary>
