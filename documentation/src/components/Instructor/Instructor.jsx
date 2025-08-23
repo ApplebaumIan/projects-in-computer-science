@@ -31,7 +31,6 @@ function CourseSections() {
 
 export default function Instructor() {
     return (
-        // <div className="container">
             <div className="row">
                 {/* First Column */}
                 <div className="col col--4">
