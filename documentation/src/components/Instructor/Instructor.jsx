@@ -43,7 +43,7 @@ export default function Instructor() {
                         alt="Picture of Professor Ian Tyler Applebaum"
                     />
                     <p><b>Professor Ian Tyler Applebaum</b></p>
-            <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+            <ul className="instructor-contact-list">
                <li>📧 Email: <a href={"mailto:ian.tyler@temple.edu"}>ian.tyler@temple.edu</a></li>
                {/*<li>💬 Discord: Applebaumian#2888</li>*/}
                <li>🏢 Office: SERC 325</li>
