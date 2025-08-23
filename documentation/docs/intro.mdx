@@ -7,13 +7,21 @@ import Link from "@docusaurus/Link";
 
 # Project Documentation and Repository
 
+## Getting Started
+
+Click the button below to join GitHub Classroom and create your team.
+
 <div className={"col button_group"}>
     <Link
-        className="button button--primary button--outline button--lg "
+        className="button button--primary button--outline button--lg"
         to="https://classroom.github.com/a/MkrSAj-U">
         Create GitHub Team 🐙
     </Link>
 </div>
+
+For detailed setup instructions, see [Setting Up the Project](#setting-up-the-project).
+
+---
 
 ## Why Documentation Matters
 
@@ -69,9 +77,14 @@ Use the provided [Figure component](/tutorial/custom-components/figure) to inclu
 :::
 ---
 
+<details>
+<summary>
+
 ## Quick Markdown Tutorial
 
-Markdown is a simple way to format text, and Docusaurus transforms it into a professional-looking website. Here’s an example:
+</summary>
+
+Markdown is a simple way to format text, and Docusaurus transforms it into a professional-looking website. Here's an example:
 
 ```markdown
 # Heading 1
@@ -83,6 +96,8 @@ Markdown is a simple way to format text, and Docusaurus transforms it into a pro
 - **Heading 3** (###) appears as a sub-item under Heading 2.
 
 For advanced Markdown features, visit the [Docusaurus tutorial section](/tutorial/intro) or [Docusaurus Markdown Features](https://docusaurus.io/docs/markdown-features).
+
+</details>
 
 ---
 
@@ -101,27 +116,22 @@ For advanced Markdown features, visit the [Docusaurus tutorial section](/tutoria
 
 **One team member must complete this setup:**
 
-1. Generate a Personal Access Token:
-- Go to **Settings** → **Developer Settings** → **Personal Access Tokens** → **Generate new token**.
-- Select these permissions: `repo`, `workflow`, `admin:read:org`.
-- Set the expiration date to the course’s end.
-- Copy the token (you won’t be able to retrieve it later).
+1. **Enable GitHub Actions:**
+- Go to the **Actions** tab in your repository → Enable workflows if prompted.
 
-2. **Add the Token to the Repository:**
-- Navigate to the repository → **Settings** → **Secrets and Variables** → **Actions** → **New Repository Secret**.
-- Add the following secrets:
-- `TOKEN`: Your personal access token.
-- `USER`: Your GitHub username.
+2. **Enable GitHub Pages:**
+- Navigate to the repository → **Settings** → **Pages**.
+- Under "Source", select **Deploy from a branch**.
+- Select **gh-pages** as the branch and **/ (root)** as the folder.
 
-3. **Enable GitHub Actions:**
-- Go to the **Actions** tab → Enable workflows.
+3. **Deploy the Documentation Website:**
+- Make any edit to your repository (e.g., edit the README file) → Commit and push the changes to `main`.
+- GitHub Actions will automatically build and deploy your site to the `gh-pages` branch using the workflow in `.github/workflows/deploy.yml`.
 
-4. **Deploy the Documentation Website:**
-- Edit the README file → Commit and push the changes to `main`.
-- GitHub Actions will build and deploy your site.
-
-5. **View Your Website:**
-- Navigate to the repository homepage → Look for the “github-pages” environment → Click “View Deployment.”
+4. **View Your Website:**
+- After the workflow completes, navigate to the repository homepage → Look for the "github-pages" environment → Click "View Deployment."
+- Your site will be available at: `https://capstone-projects-YEAR-SEMESTER.github.io/project-PROJECT-NAME/`
+  - For example: `https://capstone-projects-2025-spring.github.io/project-acc-hungry-hippos/`
 
 ---
 
