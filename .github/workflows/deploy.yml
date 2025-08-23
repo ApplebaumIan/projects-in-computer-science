@@ -1,39 +1,29 @@
-# .github/workflows/deploy-docs.yml
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: Deploy Docs
 
 on:
   push:
     branches: [ "main" ]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      GIT_USER: ${{ secrets.USER }}
-      GIT_PASS: ${{ secrets.TOKEN }}
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
-      - name: Install Dependencies
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install
         run: cd documentation && yarn install
-      - name: Determine Semester
-        id: semester
-        run: |
-            echo "SEMESTER_YEAR=${SEMESTER_YEAR}" >> $GITHUB_ENV
-      #     CURRENT_MONTH=$(date +%-m)
-      #     CURRENT_YEAR=$(date +%Y)
-      #     if [[ "$CURRENT_MONTH" -ge 1 && "$CURRENT_MONTH" -le 5 ]]; then
-      #         SEMESTER="Spring"
-      #     elif [[ "$CURRENT_MONTH" -ge 8 && "$CURRENT_MONTH" -le 12 ]]; then
-      #         SEMESTER="Fall"
-      #     else
-      #         SEMESTER="Summer"
-      #     fi
-      #     echo "SEMESTER_YEAR=${SEMESTER} ${CURRENT_YEAR}" >> $GITHUB_ENV
 
       - name: Deploy Website
         run: |
           export ORG_NAME=$(echo ${GITHUB_REPOSITORY%/*})
           export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
-          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
-          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
-          cd documentation && yarn deploy
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cd documentation && NODE_ENV="production" GIT_USER="github-actions[bot]" GIT_PASS="${{ secrets.GITHUB_TOKEN }}" yarn deploy
