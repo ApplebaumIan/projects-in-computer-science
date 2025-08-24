@@ -3,6 +3,7 @@ import OfficeHours from "../OfficeHours/OfficeHours";
 import Figure from "../Figure";
 import DontPanic from "../../../static/img/dont-panic.svg";
 import Admonition from "@theme/Admonition";
+import TeachingAssistants from "../TeachingAssistants";
 
 function CourseSections() {
     return <>
@@ -46,12 +47,15 @@ export default function Instructor() {
                <li>📧 Email: <a href={"mailto:ian.tyler@temple.edu"}>ian.tyler@temple.edu</a></li>
                {/*<li>💬 Discord: Applebaumian#2888</li>*/}
                <li>🏢 Office: SERC 325</li>
+                <li><OfficeHours/></li>
+
             </ul>
                 </div>
 
                 {/* Second Column */}
                 <div className="col col--4">
                     <CourseSections/>
+                    <TeachingAssistants/>
                 </div>
 
                 {/* Third Column */}

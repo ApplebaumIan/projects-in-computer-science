@@ -282,7 +282,7 @@ main {
 /* Syllabus page specific styles */
 .grading-chart-container {
   float: right;
-  width: 800px;
+  width: 600px;
   max-width: 100vw;
   margin-left: 1em;
 }

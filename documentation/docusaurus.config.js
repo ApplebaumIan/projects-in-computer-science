@@ -132,11 +132,17 @@ const config = {
         },
         items: [
           {
+            to: '/syllabus/course-overview',
+            label: 'Syllabus',
+            position: 'left',
+          },
+          {
             type: 'doc',
             docId: 'intro',
             position: 'left',
             label: 'Documentation',
-          }, {
+          },
+          {
             type: 'dropdown',
             label: 'Quick Links',
             position: 'left',
@@ -147,7 +153,7 @@ const config = {
                 label: 'Office Hours',
               },
               {
-                to: '/#week-by-week-schedule',
+                to: '/syllabus/schedule',
                 label: 'Course Schedule 📆',
               },
               {
@@ -271,6 +277,15 @@ const config = {
         id: 'tutorial',
         path: 'tutorial',
         routeBasePath: 'tutorial',
+        sidebarPath: require.resolve('./sidebars.js'),
+        // ... other options
+      },
+    ],[
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'syllabus',
+        path: 'syllabus',
+        routeBasePath: 'syllabus',
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
       },
