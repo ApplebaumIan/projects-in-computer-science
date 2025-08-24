@@ -243,9 +243,38 @@ main {
   padding-left: 0;
 }
 
-/*#__docusaurus_skipToContent_fallback > header > div.container > div > div > div > a:nth-child(1){*/
-/*  z-index: 5000;*/
-/*}*/
-/*#__docusaurus_skipToContent_fallback > header > div.container > div > div > div > a:nth-child(4){*/
-/*  z-index: 1001;*/
-/*}*/
+/* Custom responsive layout styles for intro page */
+.benefits-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.benefits-text {
+  order: 2;
+}
+
+.benefits-image {
+  order: 1;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* Desktop layout - side by side like print */
+@media (min-width: 768px) {
+  .benefits-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .benefits-text {
+    order: 1;
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .benefits-image {
+    order: 2;
+    align-self: flex-start;
+  }
+}

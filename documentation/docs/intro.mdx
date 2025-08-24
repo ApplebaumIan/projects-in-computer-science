@@ -43,11 +43,9 @@ You might be wondering: "Why can't I just use Microsoft Word or Google Docs?" He
 **Docusaurus is a lightweight, open-source website builder** that uses React to build comprehensive web pages for your documentation. The best part? **You don't need to know React, JavaScript, CSS, or HTML** to use it.
 
 Key benefits for you:
-<div style={{float:"right", marginTop:"5px", marginRight:"15px", marginBottom:"5px"}}>
-    <Figure id="blastpad-example" caption={<a href="https://capstone-projects-2024-spring.github.io/project-blastpad/"><p>Project BlastPad Spring 2024</p></a>} subcaption={<p>A handsome example of a previous capstone project's <br/> Docusaurus-powered documentation site.</p>}>
-    <img src="/img/blastpad-example.png"  alt="Blastpad Example" style={{marginTop:"5px", marginLeft:"15px", marginBottom:"5px", maxWidth:"400px"}} />
-</Figure>
-</div>
+
+<div className="benefits-layout">
+<div className="benefits-text">
 
 - **Markdown Simplicity**: Just write in markdown (basically text formatting syntax) and get a professional website automatically
 - **Version Control Integration**: Documentation lives alongside your code in Git, with effortless versioning through GitHub
@@ -58,7 +56,14 @@ Key benefits for you:
 - **Industry Standard**: Most tech companies use similar documentation tools
 - **Developer Friendly**: Edit documentation right in your code repository
 
+</div>
 
+<div className="benefits-image">
+    <Figure id="blastpad-example" caption={<a href="https://capstone-projects-2024-spring.github.io/project-blastpad/"><p>Project BlastPad Spring 2024</p></a>} subcaption={<p>A handsome example of a previous capstone project's <br/> Docusaurus-powered documentation site.</p>}>
+    <img src="/img/blastpad-example.png"  alt="Blastpad Example" style={{maxWidth:"400px", width: "100%", height: "auto"}} />
+</Figure>
+</div>
+</div>
 
 **GitHub Codespaces Integration**: You can even edit your documentation entirely in the cloud using GitHub Codespaces - no local installation required. You could literally work on this documentation from an iPad!
 
