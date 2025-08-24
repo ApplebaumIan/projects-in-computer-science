@@ -34,14 +34,11 @@ export const isSummerClass = false;
 
 ## Course Summary
 
-This capstone course is the culmination of your Computer Science journey, focusing on team-based project design and implementation. You will collaborate on real-world projects, tackling technical and managerial challenges while refining your technical writing and presentation skills.
+Welcome to CIS 4398 Capstone Projects in Computer Science, your final course for the Computer Science Major! This course is designed to be the **culmination of your academic journey**, where you'll utilize all your previous coursework and outside experience **to build software as a team**. Our course motto, **"Don't Panic"**, is a reminder to embrace the unique challenges of this **purely project-driven and team-based environment**. It aims to prepare you for **real-world industry experiences** and provide a **tangible project to showcase on your resume**. You'll engage in an **agile software development environment** that's **user-focused, goal-driven, process-oriented, and emphasizes teamwork**. You will use industry-standard tools like **Jira software** for project management, planning, and estimating workload, **Docusaurus** for maintaining robust project documentation (a writing-intensive component making up 40% of your grade), and **GitHub** for managing code contributions, pull requests, and peer reviews, fostering heavy collaboration among team members.
 
-### Attendance Policy
+<img src="/img/temple_hci_lab_logo.jpeg" style={{float:"right", marginLeft:"15px", marginBottom:"5px", maxWidth:"300px"}} alt="Temple University Human-Computer Interaction Lab"/>
 
-:::danger Attendance
-**Attendance is mandatory for this course.** Each student is allowed a maximum of **3 absences** throughout the semester. Beyond this limit, your grade may be negatively affected. Attendance is crucial for success, as it ensures active participation in team projects and access to stakeholder feedback. Please make every effort to attend all classes and notify your instructor in advance if you must be absent.
-:::
-
+This semester, you'll experience an **authentic capstone project** by integrating **real-world research problems** from the Temple University Human-Computer Interaction (HCI) Lab, moving beyond traditionally self-chosen projects. It's important to understand that the **goal of this course is not to conduct research or to learn research methods, but rather to focus on the software engineering aspects** of developing these systems. Your technical contribution and creativity will come from applying your **problem-solving skills and technical creativity to build these significant software systems**. To emulate industry experiences, **research leads from the HCI Lab will act as external stakeholders**, providing feedback and navigating requirements, much like clients in a professional setting. See [projects](#projects) section for information on project details, topics, and stakeholders. These projects are chosen to be "resume-worthy" and will give you **hands-on experience** in the software development lifecycle, preparing you for the industry. You are encouraged to be **flexible with programming languages and technologies** such as JavaScript, Python, React, Next.js, and Docker, choosing what best fits your project rather than sticking to familiar languages if they are not the optimal choice.
 
 ### What You Will Learn
 
@@ -55,7 +52,26 @@ This capstone course is the culmination of your Computer Science journey, focusi
 
 Your project deliverables will involve writing-intensive components, iterating on feedback to produce high-quality work evaluated using rubrics.
 
+:::danger
+### Attendance Policy
+**Attendance is mandatory for this course.** Each student is allowed a maximum of **3 absences** throughout the semester. Beyond this limit, your grade may be negatively affected. Attendance is crucial for success, as it ensures active participation in team projects and access to stakeholder feedback. Please make every effort to attend all classes and notify your instructor in advance if you must be absent.
+:::
+
 ### How Your Work Will Be Evaluated
+
+<div className="grading-chart-container">
+
+```mermaid
+pie title Grading
+"Attendance & Participation" : 10
+"Requirements Gathering, and Elicitation" : 10
+"Project Documents" : 40
+"Project Management": 10
+"Project Presentation & Deliverables": 30
+```
+
+</div>
+
 
 #### Group Performance
 
@@ -70,15 +86,6 @@ Your project deliverables will involve writing-intensive components, iterating o
 - Positive and supportive team attitude.
 
 Using GitHub and Jira metrics, your participation and progress will be assessed to ensure fairness and alignment with industry practices.
-
-```mermaid
-pie title Grading
-    "Attendance & Participation" : 10
-    "Requirements Gathering, and Elicitation" : 10
-    "Project Documents" : 40
-    "Project Management": 10
-    "Project Presentation & Deliverables": 30
-```
 
 Your work will be graded based on:
 
@@ -125,11 +132,56 @@ As a writing-intensive course, your ability to document and communicate technica
 
 ### Docusaurus for Project Documentation
 
-<a href={"https://docusaurus.io/"} target="_blank">
-    <Logo style={{float:"left", marginRight:"50px"}}/>
-</a>
+<span className="docusaurus-logo-link">
+    <a href={"https://docusaurus.io/"} target="_blank" rel="noopener noreferrer">
+        <Logo style={{float:"left", marginRight:"50px"}}/>
+    </a>
+</span>
 
-[Docusaurus](https://docusaurus.io/) helps you create professional-grade documentation sites. Using basic Markdown, you'll structure your site with a table of contents, project details, and more. A custom course template simplifies setup, and GitHub Actions automate deployment, giving you real-world experience with modern tools.
+[Docusaurus](https://docusaurus.io/) is a lightweight, open-source website builder that transforms your project documentation into professional-grade websites. **The best part? You don't need to know React, JavaScript, CSS, or HTML** to create comprehensive documentation.
+
+#### Why Docusaurus Instead of Microsoft Word?
+
+Modern software projects require documentation that can:
+- **Live alongside your code** in Git for seamless version control
+- **Support collaborative editing** without file conflicts
+- **Deploy automatically** to create searchable, accessible websites
+- **Integrate with professional workflows** used by tech companies worldwide
+
+#### Your Documentation Portfolio
+
+<div className="blastpad-example-figure" style={{float:"right", marginTop:"5px", marginRight:"15px", marginBottom:"5px"}}>
+    <Figure
+        id="blastpad-example-syllabus"
+        caption={
+            <a href="https://capstone-projects-2024-spring.github.io/project-blastpad/">
+                <p>Project BlastPad Spring 2024</p>
+            </a>
+        }
+        subcaption={
+            <p>Example of a previous capstone project&#39;s <br/> Docusaurus-powered documentation site</p>
+        }
+    >
+        <img
+            src="/img/blastpad-example.png"
+            alt="Blastpad Example"
+            style={{marginTop:"5px", marginLeft:"15px", marginBottom:"5px", maxWidth:"400px", width:"100%"}}
+        />
+    </Figure>
+</div>
+
+Using basic Markdown syntax, you'll create and maintain the four core technical documents outlined above. These documents mirror industry standards and provide you with real-world experience in professional technical writing.
+
+#### Professional Development Experience
+
+Your Docusaurus site will be:
+- **Automatically deployed** via GitHub Actions to GitHub Pages
+- **Permanently accessible** at a stable URL you can share with employers
+- **Version-controlled** with complete revision history
+- **Professionally formatted** without wrestling with document formatting
+
+The custom course template simplifies setup, and GitHub Actions automate deployment, giving you real-world experience with modern documentation tools used at companies like Meta, Microsoft, and Netflix.
+
 
 ### Tracking Revisions and Feedback
 
