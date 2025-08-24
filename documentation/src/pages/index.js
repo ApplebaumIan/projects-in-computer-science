@@ -58,7 +58,7 @@ export function HomepageHeader() {
                             </Link>
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="/tutorial/intro">
+                                to="https://applebaumian.github.io/tu-cis-4398-docs-template/tutorial/Intro">
                                 Docusaurus Tutorial 🦖
                             </Link>
                         </div>
