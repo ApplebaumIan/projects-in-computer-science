@@ -16,10 +16,13 @@
   },
   "bin": "./.bin/bin.js",
   "dependencies": {
-    "@docusaurus/core": "^3.7.0",
-    "@docusaurus/preset-classic": "^3.7.0",
-    "@docusaurus/theme-live-codeblock": "^3.7.0",
-    "@docusaurus/theme-mermaid": "^3.7.0",
+    "@docusaurus/core": "^3.8.1",
+    "@docusaurus/faster": "^3.8.1",
+    "@docusaurus/plugin-google-gtag": "^3.8.1",
+    "@docusaurus/preset-classic": "^3.8.1",
+    "@docusaurus/theme-live-codeblock": "^3.8.1",
+    "@docusaurus/theme-mermaid": "^3.8.1",
+    "@docusaurus/types": "^3.8.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fullcalendar/daygrid": "^6.1.17",
@@ -45,13 +48,14 @@
     "react": "^18.2.0",
     "react-calendly": "^4.3.0",
     "react-dom": "^18.2.0",
+    "react-markdown": "^10.1.0",
     "react-medium-image-zoom": "^5.1.8",
     "redocusaurus": "^2.2.0",
     "styled-components": "^6.1.14",
     "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/module-type-aliases": "^3.8.1",
     "wait-on": "^8.0.2"
   },
   "browserslist": {

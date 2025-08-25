@@ -132,11 +132,17 @@ const config = {
         },
         items: [
           {
+            to: '/syllabus/course-overview',
+            label: 'Syllabus',
+            position: 'left',
+          },
+          {
             type: 'doc',
             docId: 'intro',
             position: 'left',
             label: 'Documentation',
-          }, {
+          },
+          {
             type: 'dropdown',
             label: 'Quick Links',
             position: 'left',
@@ -147,7 +153,7 @@ const config = {
                 label: 'Office Hours',
               },
               {
-                to: '/#week-by-week-schedule',
+                to: '/syllabus/schedule',
                 label: 'Course Schedule 📆',
               },
               {
@@ -181,46 +187,33 @@ const config = {
             title: 'Course Materials',
             items: [
               {
-                label: 'Documentation Reference',
+                label: 'Syllabus',
+                to: '/syllabus/course-overview',
+              },
+              {
+                label: 'Projects',
+                to: '/syllabus/projects',
+              },
+              {
+                label: 'Documentation',
                 to: '/docs/intro',
               },
               {
-                label: 'Course Schedule',
-                to: '/#week-by-week-schedule',
+                label: 'Schedule',
+                to: '/syllabus/schedule',
               },
-              {
-                label: 'Docusaurus Tutorial',
-                to: '/tutorial/Intro',
-              },
-              {
-                label: 'Docusaurus Guide',
-                href: 'https://docusaurus.io/docs/category/guides',
-              },
-              {
-                label: 'GitHub Statistics',
-                to: '/github-statistics',
-              },
-              {
-                label: 'GPU Server',
-                to: '/gpu-server',
-              },
-              {
-                label: 'TA Resources',
-                to: '/ta-resource/intro'
-              }
-
             ],
           },
           {
             title: 'Communication',
             items: [
               {
-                label: 'Course Contacts',
-                href: '/#contact-professor-applebaum',
+                label: 'Instructor',
+                to: '/#professor-applebaum',
               },
               {
                 label: 'Office Hours',
-                href: '/#office-hours-professor-applebaum',
+                to: '/#office-hours',
               },
             ],
           },
@@ -231,10 +224,10 @@ const config = {
                 label: 'Jira',
                 href: 'https://temple-cis-projects-in-cs.atlassian.net',
               },
-              {
-                label: 'GitHub Org',
-                href: 'https://github.com/Capstone-Projects-2023-Spring',
-              },
+{
+  label: 'GitHub Org',
+  href: `https://github.com/Capstone-Projects-${(process.env.SEMESTER_YEAR || '').split('-')[1]}-${(process.env.SEMESTER_YEAR || '').split('-')[0]}`,
+},
               {
                 label: 'Miro',
                 href: 'https://miro.com/',
@@ -274,6 +267,15 @@ const config = {
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
       },
+    ],[
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'syllabus',
+        path: 'syllabus',
+        routeBasePath: 'syllabus',
+        sidebarPath: require.resolve('./sidebars.js'),
+        // ... other options
+      },
     ],
     [
       '@docusaurus/plugin-content-docs',
@@ -283,6 +285,12 @@ const config = {
         routeBasePath: 'ta-resource',
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
+      },
+    ],[
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-R1E7W16998',
+        anonymizeIP: true,
       },
     ],
     [
@@ -300,6 +308,10 @@ const config = {
     },
     ...main_template_jira_scripts()
   ],
+  future: {
+      v4: true,
+    experimental_faster: true,
+  },
 };
 console.log(config.scripts)
 module.exports = config;

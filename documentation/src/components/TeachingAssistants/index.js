@@ -1,11 +1,17 @@
 import React from "react";
 
 export default function TeachingAssistants() {
+    const tas = [
+        { name: "Kyle Dragon Lee", email: "kyle.d.lee@temple.edu" },
+        // { name: "Thanh Nguyen", email: "thanh.png@temple.edu" }
+    ];
+
     return <>
-        <h2>Teaching Assistants</h2>
+        <h2>Teaching Assistant{tas.length > 1 ? 's' : ''}</h2>
         <ul>
-            <li>Kyle Dragon Lee: <a href={"mailto:kyle.d.lee@temple.edu"}>kyle.d.lee@temple.edu</a></li>
-            <li>Thanh Nguyen: <a href={"mailto:thanh.png@temple.edu"}>thanh.png@temple.edu</a></li>
+            {tas.map((ta, index) => (
+                <li key={index}>{ta.name}: <a href={`mailto:${ta.email}`}>{ta.email}</a></li>
+            ))}
         </ul>
     </>;
 }

@@ -1,6 +1,4 @@
 import React, {useEffect} from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -9,7 +7,7 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import ProjectReadme from "../components/ReademeMD";
 import styles from './index.module.css';
 //import Syllabus from '../components/Syllabus';
-import SyllabusPage from './_syllabus-page.mdx'
+//import SyllabusPage from './_syllabus-page.mdx'
 import MDXContent from '@theme/MDXContent';
 import Figure from "../components/Figure";
 import DontPanic from "../../static/img/dont-panic.svg"
@@ -22,7 +20,6 @@ import * as PropTypes from "prop-types";
 import Instructor from "../components/Instructor/Instructor";
 import TeachingAssistants from "../components/TeachingAssistants";
 import OfficeHours from "../components/OfficeHours/OfficeHours";
-import Projects from "./projects.mdx"
 
 function isTimeBetween(startDate, endDate) {
     var currentDate = new Date();
@@ -53,14 +50,19 @@ export function HomepageHeader() {
                             </Link>
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="#week-by-week-schedule">
-                                Course Schedule 📆
+                                to="/syllabus/course-overview">
+                                Course Syllabus 📋
                             </Link>
                             <Link
                                 className="button button--secondary button--lg margin--md"
-                                to="/tutorial/intro">
-                                Docusaurus Tutorial 🦖
+                                to="/syllabus/schedule">
+                                Course Schedule 📆
                             </Link>
+                            {/*<Link*/}
+                            {/*    className="button button--secondary button--lg margin--md"*/}
+                            {/*    to="https://applebaumian.github.io/tu-cis-4398-docs-template/tutorial/Intro">*/}
+                            {/*    Docusaurus Tutorial 🦖*/}
+                            {/*</Link>*/}
                         </div>
 
                     </div>
@@ -185,30 +187,28 @@ function WatchLiveDemo() {
 export default function Home() {
     const {siteConfig} = useDocusaurusContext();
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Layout
-                title={`Syllabus`}
-                description="Professor Applebaum's Capstone Course Syllabus.">
-                <HomepageHeader/>
-                <main>
-                    <div style={{zIndex: 100000}}>
-                        <MDXContent>
-                            {/*<div className={"mobile-live-demo"}>*/}
-                            {/*    <h2>Watch Live 🔴</h2>*/}
-                            {/*    <h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
-                            {/*    <DemoLineUp/>*/}
-                            {/*</div>*/}
-                            <Instructor/>
-                            <h2>Working with Stakeholders</h2>
-                            <p>You will interact with stakeholders throughout the course, gaining insight into real-world project requirements and feedback processes. Stakeholder's visits may vary making attendance on these days essential.</p>
-                            <Projects/>
-                            <OfficeHours/>
-                            {/*<TeachingAssistants/>*/}
-                            <SyllabusPage/>
-                        </MDXContent>
-                    </div>
-                </main>
-            </Layout>
-        </LocalizationProvider>
+        <Layout
+            title={`Home`}
+            description="Professor Applebaum's Capstone Course Homepage.">
+            <HomepageHeader/>
+            <main>
+                <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
+                        <Instructor/>
+
+                </div>
+                <nav className="pagination-nav docusaurus-mt-lg" aria-label="Docs pages" style={{justifyContent: 'center', margin: '2rem 0'}}>
+                    <Link className="pagination-nav__link pagination-nav__link--next" to="/syllabus/course-overview">
+                        <div className="pagination-nav__sublabel">Continue Reading</div>
+                        <div className="pagination-nav__label">Course Overview</div>
+                    </Link>
+                </nav>
+            </main>
+        </Layout>
     );
 }
+
+
+
+
+
+

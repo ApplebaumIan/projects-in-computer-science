@@ -69,7 +69,7 @@ export function formatEvent(syllabus, event, id) {
     switch (event.class_type) {
         case "Lab":
         case "Lecture":
-            // gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
+            gantt_event = `${event.event_name}: ${status}, ${event.event_date}, 1d`;
             break;
         case "Sprint":
             switch (event.event_name) {

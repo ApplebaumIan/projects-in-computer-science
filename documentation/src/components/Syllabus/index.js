@@ -220,9 +220,6 @@ export default function Syllabus({ courseid, daysOff }) {
 
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
-            <Typography variant="h4" gutterBottom>
-                {syllabus.course_name} — Schedule
-            </Typography>
 
             <Grid container spacing={4}>
                 {/* Calendar + Today's events */}
