@@ -286,6 +286,12 @@ const config = {
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
       },
+    ],[
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-R1E7W16998',
+        anonymizeIP: true,
+      },
     ],
     [
       "docusaurus2-dotenv-2",
