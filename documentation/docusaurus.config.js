@@ -302,6 +302,10 @@ const config = {
     },
     ...main_template_jira_scripts()
   ],
+  future: {
+      v4: true,
+    experimental_faster: true,
+  },
 };
 console.log(config.scripts)
 module.exports = config;
