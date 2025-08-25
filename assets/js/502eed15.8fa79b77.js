@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktu_cis_4398_docs_template=self.webpackChunktu_cis_4398_docs_template||[]).push([["1797"],{2067:function(e){e.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"ta-resource"}')}}]);

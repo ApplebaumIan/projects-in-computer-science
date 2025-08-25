@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunktu_cis_4398_docs_template=self.webpackChunktu_cis_4398_docs_template||[]).push([[2024],{82024:(e,c,t)=>{t.d(c,{createArchitectureServices:()=>s.S});var s=t(98815);t(73579)}}]);
