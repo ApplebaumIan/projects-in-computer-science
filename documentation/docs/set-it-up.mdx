@@ -1,0 +1,117 @@
+---
+sidebar_position: 3
+title: Assignment Overview
+---
+
+<img src="/img/docusaurus.png" style={{float:"right",
+}} alt="Docusaurus Logo" width="200"/>
+
+# Assignment Overview
+
+Your task is to create project documentation using Docusaurus and host it publicly on GitHub Pages.
+
+---
+
+# Setting Up the Project
+
+### Step 1: Join GitHub Classroom
+
+1. [Click here to join the GitHub Classroom and get the starter project](https://classroom.github.com/a/B0Pl5Vwl).
+2. Log in to your GitHub account or create one at [GitHub](https://github.com).
+3. Select your name and TUmail from the list.
+4. Join your team or create a new one if none exists.
+
+---
+
+### Step 2: Configure the GitHub Build Environment
+
+**One team member must complete this setup:**
+
+1. **Enable GitHub Actions:**
+- Go to the **Actions** tab in your repository → Enable workflows if prompted.
+
+2. **Make an initial commit to trigger the workflow:**
+- **Each team member should add their name to the `## Collaborators` section in the README.md file** and commit this change.
+- This will trigger GitHub Actions to build and deploy your site to the `gh-pages` branch using the workflow in `.github/workflows/deploy.yml`.
+- **Wait for the workflow to complete successfully** (you'll see a green checkmark in the Actions tab).
+
+3. **Enable GitHub Pages (after the workflow completes):**
+- Navigate to the repository → **Settings** → **Pages**.
+- Under "Source", select **Deploy from a branch**.
+- Select **gh-pages** as the branch and **/ (root)** as the folder.
+- **Note:** The `gh-pages` branch will only be available after the GitHub Actions workflow has run successfully at least once.
+
+4. **View Your Website:**
+- After GitHub Pages is configured, your site will be available at: `https://capstone-projects-YEAR-SEMESTER.github.io/project-PROJECT-NAME/`
+  - For example: `https://capstone-projects-2025-spring.github.io/project-acc-hungry-hippos/`
+
+---
+
+### Step 3: Repository Setup
+
+1. **Each team member should make their initial commit:**
+   - Add your name to the `## Collaborators` section in the README.md file
+   - Commit and push this change as your first contribution to the project
+
+:::info **Quick Git Refresher**
+
+<details>
+<summary>
+How to Add Yourself as a Collaborator in Git
+</summary>
+
+**Option 1: GitHub Web Interface (Easiest)**
+1. Navigate to your repository on GitHub
+2. Open `README.md` → Click the pencil icon (✏️) to edit
+3. Find the `## Collaborators` section and add your name
+4. Scroll down, add commit message: "Add [Your Name] to collaborators"
+5. Click "Commit changes"
+
+**Option 2: Git Command Line**
+Clone and navigate to repository
+```bash
+git clone [your-repository-url]
+cd [repository-name]
+```
+
+Edit README.md (add your name to ## Collaborators section) Then commit your changes
+```bash
+git add README.md
+git commit -m "Add [Your Name] to collaborators"
+git push origin main
+```
+
+**Need more help with Git?**
+- [GitHub's Git Tutorial](https://try.github.io/)
+- [Git Documentation](https://git-scm.com/docs)
+- [GitHub Desktop](https://desktop.github.com/) (GUI alternative, however I highly recommend learning command line Git)
+
+</details>
+
+:::
+
+2. **Edit the README.md file:**
+   - Add a project overview at the top
+3. **Lock the `main` branch:**
+   - [Set up branch protection rules](https://docs.github.com/en/github/administering-a-repository/managing-a-branch-protection-rule).
+
+---
+
+## Submission Instructions
+
+- Submit the link to your team’s **docusaurus website** after all members have joined.
+- Ensure all documentation requirements are complete.
+
+---
+
+## Grading
+
+- This is a **group assignment**.
+- Graded as **Complete/Incomplete**.
+- Incomplete submissions will be invited for resubmission until all requirements are met.
+
+---
+
+## Need Help?
+
+For questions or assistance, reach out to your [instructor or teaching assistant](/).
