@@ -26,7 +26,7 @@ The abstract should avoid phrases such as:
 - "Our team has decided to ..."
 
 :::warning
-The purpose of your abstract is to explain the project clearly and directly, not to market it or make it sound flashy. Focus on the problem, your approach, and the outcome in plain, professional language. **This should not read like a sales pitch, Apple advertisment, Kickstarter campaign, or like ChatGPT wrote it.**
+The purpose of your abstract is to explain the project clearly and directly, not to market it or make it sound flashy. Focus on the problem, your approach, and the outcome in plain, professional language. **This should not read like a sales pitch, Apple advertisement, Kickstarter campaign, or like ChatGPT wrote it.**
 :::
 
 :::info
