@@ -7,7 +7,6 @@ The requirements specification document should contain the following sections:
 
 - System Overview
 - System Block Diagram
-- Document Overview
 - General Requirements
 - Features and Requirements
 - Use-case descriptions:

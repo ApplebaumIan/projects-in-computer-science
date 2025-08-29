@@ -2,239 +2,51 @@
 sidebar_position: 1
 ---
 
-import MarkdownEditor from "../src/components/MarkdownEditor";import Link from "@docusaurus/Link";
-import Figure from "../src/components/Figure";
+import Link from "@docusaurus/Link";
 
+# Getting Started
 
-
-# Project Documentation and Repository
-
-## Getting Started
-
-Click the button below to join GitHub Classroom and create your team.
-
-<div className={"col button_group"}>
-    <Link
-        className="button button--primary button--outline button--lg"
-        to="https://classroom.github.com/a/MkrSAj-U">
-        <div>Create GitHub Team 🐙</div>
-    </Link>
+<div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', textAlign: 'center', margin: '20px 0'}}>
+    <iframe
+        src="https://www.youtube.com/embed/Vy3_7gpCImo?si=303_SZnbNfowsdyp"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%'
+        }}
+    >
+        This video cannot be displayed. You can watch it directly on
+        <a href="https://www.youtube.com/watch?v=Vy3_7gpCImo" target="_blank" rel="noopener noreferrer">YouTube</a>.
+        If you need a transcript, please see the
+        <a href="https://www.youtube.com/watch?v=Vy3_7gpCImo" target="_blank" rel="noopener noreferrer">video description</a>.
+    </iframe>
 </div>
+
 <br/>
 
-<img src="/img/docusaurus.png" style={{float:"right",
-}} alt="Docusaurus Logo" width="200"/>
-
-For detailed setup instructions, see [Setting Up the Project](#setting-up-the-project).
-
----
-
-## Assignment Overview
-
-Your task is to create project documentation using Docusaurus and host it publicly on GitHub Pages.
-
----
-
-## Why Docusaurus Instead of Microsoft Word?
-<img src="/img/undraw_docusaurus_react.svg" style={{float:"left", marginTop:"5px", marginRight:"15px", marginBottom:"5px"
-}} alt="Docusaurus Illustration" width="300"/>
-
-You might be wondering: "Why can't I just use Microsoft Word or Google Docs?" Here's why modern software projects use tools like Docusaurus:
-
-**Docusaurus is a lightweight, open-source website builder** that uses React to build comprehensive web pages for your documentation. The best part? **You don't need to know React, JavaScript, CSS, or HTML** to use it.
-
-Key benefits for you:
-
-<div className="benefits-layout">
-<div className="benefits-text">
-
-- **Markdown Simplicity**: Just write in markdown (basically text formatting syntax) and get a professional website automatically
-- **Version Control Integration**: Documentation lives alongside your code in Git, with effortless versioning through GitHub
-- **Zero Setup Required**: Your project already has Docusaurus configured - no installation needed
-- **Live Preview**: See your changes instantly while editing with the development server
-- **Professional Web Hosting**: Your documentation becomes a searchable, accessible website hosted free on GitHub Pages
-- **Permanent URL**: Your documentation URL never changes (unless you rename the project), so you can share it with employers or stakeholders forever
-- **Industry Standard**: Most tech companies use similar documentation tools
-- **Developer Friendly**: Edit documentation right in your code repository
-
+<div className="container">
+    <div className="row" style={{justifyContent: 'center', gap: '1rem'}}>
+        <div className="col col--4" style={{display: 'flex'}}>
+            <Link
+                className="button button--primary button--block button--lg"
+                style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                to="/docs/set-it-up">
+                <div>Set up the project 💻</div>
+            </Link>
+        </div>
+        <div className="col col--4" style={{display: 'flex'}}>
+            <Link
+                className="button button--secondary button--block button--lg"
+                style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                to="/docs/why-docusaurus">
+                <div>Why Docusaurus? 🦖</div>
+            </Link>
+        </div>
+    </div>
 </div>
-
-<div className="benefits-image">
-    <Figure id="blastpad-example" caption={<a href="https://capstone-projects-2024-spring.github.io/project-blastpad/"><p>Project BlastPad Spring 2024</p></a>} subcaption={<p>A handsome example of a previous capstone project's <br/> Docusaurus-powered documentation site.</p>}>
-    <img src="/img/blastpad-example.png"  alt="Blastpad Example" style={{maxWidth:"400px", width: "100%", height: "auto"}} />
-</Figure>
-</div>
-</div>
-
-**GitHub Codespaces Integration**: You can even edit your documentation entirely in the cloud using GitHub Codespaces - no local installation required. You could literally work on this documentation from an iPad!
-
-<div style={{textAlign: 'center', margin: '20px 0'}}>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Vy3_7gpCImo?si=303_SZnbNfowsdyp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
-The documentation folder is already built into your project repository, and when you write in simple markdown files located in the `documentation/docs/` directory, Docusaurus transforms them into a professional-looking website.
-
-
----
-
-## Why Documentation Matters
-
-Now that you understand the tool, here's why documentation itself is critical for software projects:
-
-When you're researching tools for your projects, you're more likely to use the one that has good documentation and an active community. If you see a project on GitHub with no README file, you probably skip it because you don't know where to start.
-
-Large companies expect you to document your code so that:
-- Management can add more team members when necessary
-- The codebase can be maintained 20 years down the road
-- New developers can onboard quickly
-- Knowledge isn't lost when team members leave
-
-For companies and open-source communities alike, documentation ensures:
-- Team scalability and onboarding
-- Long-term maintainability of the codebase
-- Clear communication of the project's purpose and functionality
-
----
-
-<details>
-<summary>
-
-## Quick Markdown Tutorial
-
-</summary>
-
-Markdown is a simple way to format text, and Docusaurus transforms it into a professional-looking website. Here's an example:
-
-```markdown
-# Heading 1
-## Heading 2
-### Heading 3
-```
-
-- **Heading 2** (##) appears in the right-hand sidebar as a table of contents.
-- **Heading 3** (###) appears as a sub-item under Heading 2.
-
-### Try It Yourself!
-
-Use the interactive editor below to experiment with markdown syntax:
-
-<MarkdownEditor />
-
-**Common Markdown Syntax:**
-- `# Heading 1`, `## Heading 2`, `### Heading 3`
-- `**bold text**` and `*italic text*`
-- `[link text](url)` for links
-- `![alt text](image-url)` for images
-- `` `inline code` `` and ` ```language ` for code blocks
-- `- item` or `1. item` for lists
-- `> text` for blockquotes
-
-For advanced Markdown features, visit the [Docusaurus tutorial section](/tutorial/intro) or [Docusaurus Markdown Features](https://docusaurus.io/docs/markdown-features).
-
-</details>
-
----
-
-## Setting Up the Project
-
-### Step 1: Join GitHub Classroom
-
-1. [Click here to join the GitHub Classroom and get the starter project](https://classroom.github.com/a/B0Pl5Vwl).
-2. Log in to your GitHub account or create one at [GitHub](https://github.com).
-3. Select your name and TUmail from the list.
-4. Join your team or create a new one if none exists.
-
----
-
-### Step 2: Configure the GitHub Build Environment
-
-**One team member must complete this setup:**
-
-1. **Enable GitHub Actions:**
-- Go to the **Actions** tab in your repository → Enable workflows if prompted.
-
-2. **Make an initial commit to trigger the workflow:**
-- **Each team member should add their name to the `## Collaborators` section in the README.md file** and commit this change.
-- This will trigger GitHub Actions to build and deploy your site to the `gh-pages` branch using the workflow in `.github/workflows/deploy.yml`.
-- **Wait for the workflow to complete successfully** (you'll see a green checkmark in the Actions tab).
-
-3. **Enable GitHub Pages (after the workflow completes):**
-- Navigate to the repository → **Settings** → **Pages**.
-- Under "Source", select **Deploy from a branch**.
-- Select **gh-pages** as the branch and **/ (root)** as the folder.
-- **Note:** The `gh-pages` branch will only be available after the GitHub Actions workflow has run successfully at least once.
-
-4. **View Your Website:**
-- After GitHub Pages is configured, your site will be available at: `https://capstone-projects-YEAR-SEMESTER.github.io/project-PROJECT-NAME/`
-  - For example: `https://capstone-projects-2025-spring.github.io/project-acc-hungry-hippos/`
-
----
-
-### Step 3: Repository Setup
-
-1. **Each team member should make their initial commit:**
-   - Add your name to the `## Collaborators` section in the README.md file
-   - Commit and push this change as your first contribution to the project
-
-:::info **Quick Git Refresher**
-
-<details>
-<summary>
-How to Add Yourself as a Collaborator in Git
-</summary>
-
-**Option 1: GitHub Web Interface (Easiest)**
-1. Navigate to your repository on GitHub
-2. Open `README.md` → Click the pencil icon (✏️) to edit
-3. Find the `## Collaborators` section and add your name
-4. Scroll down, add commit message: "Add [Your Name] to collaborators"
-5. Click "Commit changes"
-
-**Option 2: Git Command Line**
-Clone and navigate to repository
-```bash
-git clone [your-repository-url]
-cd [repository-name]
-```
-
-Edit README.md (add your name to ## Collaborators section) Then commit your changes
-```bash
-git add README.md
-git commit -m "Add [Your Name] to collaborators"
-git push origin main
-```
-
-**Need more help with Git?**
-- [GitHub's Git Tutorial](https://try.github.io/)
-- [Git Documentation](https://git-scm.com/docs)
-- [GitHub Desktop](https://desktop.github.com/) (GUI alternative, however I highly recommend learning command line Git)
-
-</details>
-
-:::
-
-2. **Edit the README.md file:**
-   - Add a project overview at the top
-3. **Lock the `main` branch:**
-   - [Set up branch protection rules](https://docs.github.com/en/github/administering-a-repository/managing-a-branch-protection-rule).
-
----
-
-## Submission Instructions
-
-- Submit the link to your team’s **docusaurus website** after all members have joined.
-- Ensure all documentation requirements are complete.
-
----
-
-## Grading
-
-- This is a **group assignment**.
-- Graded as **Complete/Incomplete**.
-- Incomplete submissions will be invited for resubmission until all requirements are met.
-
----
-
-## Need Help?
-
-For questions or assistance, reach out to your [instructor or teaching assistant](/).
