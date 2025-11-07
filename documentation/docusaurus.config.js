@@ -105,11 +105,12 @@ const config = {
             spec: 'static/openapi.yml.yaml',
             route: '/api/',
           },
-          {
-            id: 'using-single-yaml',
-            spec: 'https://courses.ianapplebaum.com/public/docs/openapi.yaml',
-            route: '/courses/api/',
-          },
+          // Commented out external spec that fails to load during build
+          // {
+          //   id: 'using-single-yaml',
+          //   spec: 'https://courses.ianapplebaum.com/public/docs/openapi.yaml',
+          //   route: '/courses/api/',
+          // },
         ],
         // Theme Options for modifying how redoc renders them
         theme: {
