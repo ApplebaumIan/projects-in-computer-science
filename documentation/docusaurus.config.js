@@ -301,12 +301,12 @@ const config = {
     ],
     'plugin-image-zoom',
   ],
-  scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+  scripts: [{src:'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', async: true},
     {
       src: "/js/userway.js",
-      async: false
+      async: true
     },
-    ...main_template_jira_scripts()
+    ...main_template_jira_scripts().map(script => ({src: script, async: true}))
   ],
   future: {
       v4: true,
