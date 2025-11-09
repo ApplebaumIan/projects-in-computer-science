@@ -2,11 +2,8 @@
 sidebar_position: 3
 title: Assignment Overview
 ---
-
-export const githubClassroomLink =
-  typeof window !== 'undefined' && window.location.origin === 'https://capstone.ianapplebaum.com'
-    ? "https://classroom.github.com/a/g1vGIH_d"
-    : "https://classroom.github.com/a/YOUR_SOFTWARE_DESIGN_CLASSROOM_ID";
+import GitHubClassroomButton from '@site/src/components/GitHubClassroomButton';
+import GitHubClassroomLink from '@site/src/components/GitHubClassroomLink';
 
 <img src="/img/docusaurus.png" style={{float:"right",
 }} alt="Docusaurus Logo" width="200"/>
@@ -23,18 +20,12 @@ import Link from "@docusaurus/Link";
 
 Click the button below to join GitHub Classroom and create your team.
 
-<div className={"col button_group"}>
-    <Link
-        className="button button--primary button--outline button--lg"
-        to={githubClassroomLink}>
-        <div>Create GitHub Team 🐙</div>
-    </Link>
-</div>
+<GitHubClassroomButton />
 
 ### Step 1: Join GitHub Classroom
 
 
-1. <a href={githubClassroomLink}>Click here to join the GitHub Classroom and get the starter project</a>.
+1. <GitHubClassroomLink />.
 2. Log in to your GitHub account or create one at [GitHub](https://github.com).
 3. Select your name and TUmail from the list.
 4. Join your team or create a new one if none exists.
