@@ -3,7 +3,10 @@ sidebar_position: 3
 title: Assignment Overview
 ---
 
-export const githubClassroomLink = "https://classroom.github.com/a/g1vGIH_d";
+export const githubClassroomLink =
+  typeof window !== 'undefined' && window.location.hostname === 'capstone.ianapplebaum.com'
+    ? "https://classroom.github.com/a/g1vGIH_d"
+    : "https://classroom.github.com/a/YOUR_OTHER_CLASSROOM_ID";
 
 <img src="/img/docusaurus.png" style={{float:"right",
 }} alt="Docusaurus Logo" width="200"/>
