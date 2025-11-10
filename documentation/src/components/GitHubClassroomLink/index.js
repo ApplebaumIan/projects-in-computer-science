@@ -7,8 +7,8 @@ const GitHubClassroomLink = () => {
     if (typeof window !== 'undefined') {
       const link =
         window.location.hostname === 'capstone.ianapplebaum.com'
-          ? 'https://classroom.github.com/a/g1vGIH_d'
-          : 'https://classroom.github.com/a/YOUR_SOFTWARE_DESIGN_CLASSROOM_ID';
+          ? 'https://classroom.github.com/a/g1vGIH_d' // capstone
+          : 'https://classroom.github.com/a/OnZTWK0I';// software design
       setGithubClassroomLink(link);
     }
   }, []);
