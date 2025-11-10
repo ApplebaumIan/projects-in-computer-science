@@ -9,7 +9,7 @@ const GitHubClassroomButton = () => {
       const link =
         window.location.hostname === 'capstone.ianapplebaum.com'
           ? 'https://classroom.github.com/a/g1vGIH_d'
-          : 'https://classroom.github.com/a/YOUR_SOFTWARE_DESIGN_CLASSROOM_ID';
+          : 'https://classroom.github.com/a/OnZTWK0I';
       setGithubClassroomLink(link);
     }
   }, []);
