@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
@@ -63,6 +63,10 @@ function getCardImage(user: User): string {
 
 function ShowcaseCard({user}: {user: User}) {
   const image = getCardImage(user);
+  const [expanded, setExpanded] = useState(false);
+  const MAX = 150;
+  const desc = user.description ?? '';
+  const isLong = desc.length > MAX;
   return (
     <li key={user.title} className="card shadow--md">
       <div className={clsx('card__image', styles.showcaseCardImage)}>
@@ -158,7 +162,27 @@ function ShowcaseCard({user}: {user: User}) {
             </Link>
           )}
         </div>
-        <p className={styles.showcaseCardBody}>{user.description}</p>
+        <p className={styles.showcaseCardBody}>
+          {isLong ? (
+            <>
+              <span>{expanded ? desc : desc.slice(0, MAX) + '...'}</span>
+              <button
+                type="button"
+                className={styles.readMoreBtn}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setExpanded((s) => !s);
+                }}
+                aria-expanded={expanded}
+              >
+                {expanded ? 'Read less' : 'Read more'}
+              </button>
+            </>
+          ) : (
+            desc
+          )}
+        </p>
       </div>
       <ul className={clsx('card__footer', styles.cardFooter)}>
         <ShowcaseCardTag tags={user.tags} />

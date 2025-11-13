@@ -15,6 +15,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+  /* allow visible overflow for buttons/icons so they are not clipped */
+  overflow: visible;
 }
 
 .showcaseCardTitle {
@@ -48,6 +50,8 @@
   padding-left: 12px;
   padding-right: 12px;
   border: none;
+  /* ensure button container doesn't clip inner SVG */
+  overflow: visible;
 }
 
 .showcaseCardSrcBtn:focus-visible,
@@ -101,23 +105,29 @@
 
 /* Icon + text helpers for small action buttons */
 .actionIcon {
-  width: 1em; /* scale with font-size of the button */
-  height: 1em;
-  vertical-align: middle;
-  margin-right: 0.4rem;
-  fill: currentColor; /* use button text color */
+  width: auto; /* allow natural aspect ratio */
+  height: 1.25em; /* slightly bigger to avoid appearing too small */
+  display: block; /* avoids baseline clipping */
   flex: 0 0 auto;
+  margin-right: 0.4rem;
+  margin-top: -0.08em; /* small upward nudge to center visually */
+  fill: currentColor; /* use button text color */
+  overflow: visible; /* ensure entire glyph is visible */
 }
 
-.buttonContent {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
+/* ensure any svg inside action buttons is not clipped */
+.showcaseCardBtn svg,
+.showcaseCardSrcBtn svg {
+  display: block;
+  overflow: visible;
 }
 
-/* Label text (hidden on small screens to show icon-only buttons) */
-.buttonText {
-  display: inline-block;
+/* give buttons a little more vertical room to avoid clipping */
+.showcaseCardSrcBtn,
+.showcaseCardBtn {
+  padding-top: 0.28rem;
+  padding-bottom: 0.28rem;
+  line-height: 1;
 }
 
 /* Responsive: on small screens show icon-only buttons to save horizontal space */
@@ -129,8 +139,73 @@
   .showcaseCardBtn {
     padding-left: 8px;
     padding-right: 8px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
   }
   .actionIcon {
     margin-right: 0;
+    height: 1.2em;
+    margin-top: -0.04em;
   }
+}
+
+.buttonContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1; /* prevent extra vertical spacing that could cause clipping */
+}
+
+/* Label text (hidden on small screens to show icon-only buttons) */
+.buttonText {
+  display: none; /* make icon-only by default */
+}
+
+/* Make icon-only buttons the default: tighten padding and remove icon margin */
+.showcaseCardSrcBtn,
+.showcaseCardBtn {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 0.28rem;
+  padding-bottom: 0.28rem;
+}
+
+.actionIcon {
+  margin-right: 0; /* no gap since text is hidden */
+  height: 1.25em;
+}
+
+/* Keep responsive adjustments minimal (icons remain icon-only) */
+@media (max-width: 480px) {
+  .showcaseCardSrcBtn,
+  .showcaseCardBtn {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+  .actionIcon {
+    height: 1.2em;
+    margin-top: -0.04em;
+  }
+}
+
+/* Read-more button: ensure it's visible and interactive */
+.readMoreBtn {
+  background: transparent;
+  border: none;
+  color: var(--ifm-color-primary);
+  cursor: pointer;
+  padding: 0 0.25rem;
+  margin-left: 0.5rem;
+  font-size: 0.9em;
+  line-height: 1;
+  display: inline-block;
+  pointer-events: auto; /* make sure it's clickable */
+}
+
+.readMoreBtn:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
