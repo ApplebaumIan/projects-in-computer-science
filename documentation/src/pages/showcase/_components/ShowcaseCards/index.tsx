@@ -8,7 +8,7 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
-import {sortedUsers, type User} from '@site/src/data/users';
+import {sortedUsers, type User} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
 import FavoriteIcon from '../FavoriteIcon';
 import ShowcaseCard from '../ShowcaseCard';

@@ -41,23 +41,28 @@
   margin-right: 0.25rem;
 }
 
-.showcaseCardSrcBtn {
+/* Shared small-action button used for source/website/docs/demo */
+.showcaseCardSrcBtn,
+.showcaseCardBtn {
   margin-left: 6px;
   padding-left: 12px;
   padding-right: 12px;
   border: none;
 }
 
-.showcaseCardSrcBtn:focus-visible {
+.showcaseCardSrcBtn:focus-visible,
+.showcaseCardBtn:focus-visible {
   background-color: var(--ifm-color-secondary-dark);
 }
 
-[data-theme='dark'] .showcaseCardSrcBtn {
+[data-theme='dark'] .showcaseCardSrcBtn,
+[data-theme='dark'] .showcaseCardBtn {
   background-color: var(--ifm-color-emphasis-200) !important;
   color: inherit;
 }
 
-[data-theme='dark'] .showcaseCardSrcBtn:hover {
+[data-theme='dark'] .showcaseCardSrcBtn:hover,
+[data-theme='dark'] .showcaseCardBtn:hover {
   background-color: var(--ifm-color-emphasis-300) !important;
 }
 
@@ -92,4 +97,40 @@
   border-radius: 50%;
   margin-left: 6px;
   margin-right: 6px;
+}
+
+/* Icon + text helpers for small action buttons */
+.actionIcon {
+  width: 1em; /* scale with font-size of the button */
+  height: 1em;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+  fill: currentColor; /* use button text color */
+  flex: 0 0 auto;
+}
+
+.buttonContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Label text (hidden on small screens to show icon-only buttons) */
+.buttonText {
+  display: inline-block;
+}
+
+/* Responsive: on small screens show icon-only buttons to save horizontal space */
+@media (max-width: 480px) {
+  .buttonText {
+    display: none;
+  }
+  .showcaseCardSrcBtn,
+  .showcaseCardBtn {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .actionIcon {
+    margin-right: 0;
+  }
 }
