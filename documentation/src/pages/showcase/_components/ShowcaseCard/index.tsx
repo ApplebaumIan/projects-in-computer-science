@@ -56,7 +56,7 @@ function getCardImage(user: User): string {
     user.preview ??
     // TODO make it configurable
     `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
-      user.website,
+      user.useDocsAsPreview ? user.website : user.documentation,
     )}/showcase`
   );
 }

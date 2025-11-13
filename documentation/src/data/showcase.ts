@@ -377,10 +377,19 @@ export const Tags: Record<
 // type errors we define a small shape and export an empty array. If you want, I can
 // merge back your actual `projects: Project[]` entries instead of this placeholder.
 export type Project = {
-  title?: string;
-  description?: string;
-  tags?: TagType[];
-  [key: string]: any;
+  title: string;
+  description: string;
+  website?: string; // deployed app link (button)
+  documentation?: string; // link to project documentation (button)
+  demo?: string; // link to demo video (button)
+  source?: string; // source/repository link (button)
+  tags: TagType[];
+  preview?: string;
+  semester?: string;
+  slug?: string;
+  members?: string[];
+  repo?: string;
+  useDocsAsPreview?: boolean;
 };
 
 // Example projects array; replace with real project data as needed.
@@ -388,27 +397,71 @@ export const projects: Project[] = [
   {
     title: 'Hip.io',
     description: 'Hip.io is a reimagined online multiplayer version of Hungry Hungry Hippo designed for children who use Augmentative and Alternative Communication (AAC) devices. Unlike traditional games, the AAC user leads gameplay by selecting which foods appear and applying special effects, while other players control hippos to catch the chosen foods. The system uses React for the UI, Phaser for game logic, and a WebSocket server for real-time multiplayer synchronization. The goal is to empower AAC users to direct group play, making fast-paced games more accessible and inclusive.',
-    website: 'https://capstone-projects-2025-spring.github.io/project-acc-hungry-hippos',
+    website: 'https://project-acc-hungry-hippos.vercel.app/',
+    documentation: 'https://capstone-projects-2025-spring.github.io/project-acc-hungry-hippos',
     demo: 'https://www.youtube.com/embed/tA-bBxNLHKY?start=2526',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-acc-hungry-hippos',
     tags: ['game', 'accessibility', 'multiplayer', 'aac'],
     semester: 'Summer 2025',
     slug: 'hip-io',
+    useDocsAsPreview: true,
+  },
+  {
+    title: 'Clover',
+    description: 'CLOVER is an AI-powered coding assistant designed for educational use. It integrates with Visual Studio Code to provide real-time code suggestions, track user interactions, and analyze coding habits. By logging mistakes and offering contextual feedback, it helps novice programmers learn and avoid over-reliance on AI. A dashboard allows users to review their progress and coding behavior, making the assistant both a learning tool and a productivity aid.\n',
+    website: 'https://clover.nickrucinski.com',
+    documentation: 'https://capstone-projects-2025-spring.github.io/project-copilot-clone-2/',
+    source: 'https://github.com/Capstone-Projects-2025-Spring/project-copilot-clone-2',
+    tags: ['ai', 'education', 'vscode-extension'],
+    semester: 'Spring 2025',
+    slug: 'clover',
+  },
+  {
+    title: 'OrderUp',
+    description: 'Order Up! is a web-based cooking game designed for elementary school children with communication challenges. The game uses AAC to empower nonverbal children as active game leaders, fostering social interaction and reducing isolation.\n',
+    documentation: 'https://capstone-projects-2025-spring.github.io/aac-go-fish/',
+    website: 'https://bankruptcyassociation.com',
+    source: 'https://github.com/Capstone-Projects-2025-Spring/aac-go-fish',
+    tags: ['game', 'accessibility', 'aac', 'education'],
+    semester: 'Spring 2025',
+    slug: 'order-up',
+  },
+  {
+    title: 'Piglet Prep',
+    description: 'This website is a child-friendly video platform designed to offer interactive educational content. Videos are enhanced with embedded Multiple Choice Questions (MCQs) and Object Detection (OD) questions to engage children and assess their understanding as they watch. The system allows users to answer MCQs and OD questions based on each video real-time, customize their preference for each video, and allows researchers to review performance analytics.\n',
+    documentation: 'https://capstone-projects-2025-spring.github.io/project-piggyback-learning-team-1/',
+    website: 'https://piglet-prep.vercel.app',
+    source: 'https://github.com/Capstone-Projects-2025-Spring/project-piggyback-learning-team-1',
+    tags: ['education', 'ml', 'computerVision', 'analytics'],
+    semester: 'Spring 2025',
+    slug: 'piglet-prep',
+    // useDocsAsPreview: true,
+  },
+  {
+    title: 'BioGenie',
+    description: 'The Bioinformatics Chatbot is a cutting-edge web application designed to assist bioinformatics researchers with complex problems more efficiently. The application enables users to ask the chatbot questions and receive relevant, accurate answers. Using innovative learning technology and human-like behavior, the chatbot guides the researchers with step-by-step tutorials (answers) for complex bioinformatics questions. The methods provided to the chatbot will serve as the foundation for generating precise responses, enabling users to save time and focus on advancing their research. By harnessing the strength of AI, the web application is transforming how researchers tackle heartfelt problems leading to rapid advancements.\n',
+    documentation: 'https://capstone-projects-2025-spring.github.io/project-003-bioinformatics-chatbot/',
+    source: 'https://github.com/Capstone-Projects-2025-Spring/project-003-bioinformatics-chatbot',
+    tags: ['bioinformatics', 'ai', 'llms', 'chatbot'],
+    semester: 'Spring 2025',
+    slug: 'biogenie',
   },
   {
     title: 'Whiteboard Assistant',
     description: 'WhiteBoardFlow is a tool to help professionals and students entering the development workforce practice whiteboard-style interview questions. It prompts users to reason out solutions through writing and speaking, generates feedback based on answers, and allows attempts with actual code or handwriting dictation.',
-    website: 'https://capstone-projects-2024-fall.github.io/project-whiteboardflow/',
+    documentation: 'https://capstone-projects-2024-fall.github.io/project-whiteboardflow/',
+    website: 'https://project-whiteboardflow-eowa.vercel.app',
     demo: 'https://www.youtube.com/embed/TE_P9Rks8LU?start=1719',
     source: 'https://github.com/Capstone-Projects-2024-Fall/project-whiteboardflow',
     tags: ['education', 'interview-prep', 'web'],
     semester: 'Fall 2024',
     slug: 'whiteboard-assistant',
+    // useDocsAsPreview: true
   },
   {
     title: 'BlastPad',
     description: 'The BlastPad is a kid-friendly handheld gaming device and block-based coding suite for creating, playing, and sharing custom games. Built around a Raspberry Pi, it offers an all-in-one solution for learning game development with sensors, buttons, and switches.',
-    website: 'https://capstone-projects-2024-spring.github.io/project-blastpad/',
+    documentation: 'https://capstone-projects-2024-spring.github.io/project-blastpad/',
     demo: 'https://www.youtube.com/embed/w5BaWx_9U6U?t=3527',
     source: 'https://github.com/Capstone-Projects-2024-Spring/project-blastpad',
     tags: ['gaming', 'education', 'hardware', 'raspberry-pi'],
@@ -418,17 +471,19 @@ export const projects: Project[] = [
   {
     title: 'SmartSpeech',
     description: 'A project focusing on AAC (augmentative and alternative communication) apps. It proposes a revamp of standard AAC tools, introducing ML drawing recognition for easier word finding and an optional extension using device cameras for word suggestions related to surrounding objects.',
-    website: 'https://capstone-projects-2023-fall.github.io/project-smartspeech/',
+    documentation: 'https://capstone-projects-2023-fall.github.io/project-smartspeech/',
     demo: 'https://www.youtube.com/embed/xYrKWJfFlUc?start=3327',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-smartspeech',
+    website: 'https://project-smartspeech.vercel.app',
     tags: ['accessibility', 'aac', 'ml', 'pwa'],
     semester: 'Fall 2023',
+    useDocsAsPreview: true,
     slug: 'smartspeech',
   },
   {
     title: 'Garden Sensor Array',
     description: 'Aims to assist community gardeners in Philadelphia by providing easily implementable sensors for gardens. These sensors provide information on sunlight, soil moisture, and temperature, helping reduce work hours and fresh food shortages in food-desert areas.',
-    website: 'https://capstone-projects-2023-fall.github.io/project-garden-sensor-array/',
+    documentation: 'https://capstone-projects-2023-fall.github.io/project-garden-sensor-array/',
     demo: 'https://www.youtube.com/embed/xYrKWJfFlUc?start=1430',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-garden-sensor-array',
     tags: ['iot', 'sensors', 'community', 'hardware'],
@@ -438,7 +493,7 @@ export const projects: Project[] = [
   {
     title: 'Lomo',
     description: 'An app that facilitates in-person gaming using real-time geolocation on a 2D map. Users can create or join gaming "Beacons," specifying game details and preferences, catering to those who prefer physical gaming environments.',
-    website: 'https://capstone-projects-2023-fall.github.io/project-lomo-in-person-gaming-app/',
+    documentation: 'https://capstone-projects-2023-fall.github.io/project-lomo-in-person-gaming-app/',
     demo: 'https://www.youtube.com/embed/xYrKWJfFlUc?start=176',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-lomo-in-person-gaming-app',
     tags: ['gaming', 'geolocation', 'social'],
@@ -448,7 +503,7 @@ export const projects: Project[] = [
   {
     title: 'Code Review Chatbot',
     description: 'This project addresses code review in software development. A chatbot integrated within an IDE conducts preliminary code reviews before peer review, aiming to improve code quality and educate users on effective code review practices.',
-    website: 'https://capstone-projects-2023-fall.github.io/project-code-review-chatbot/',
+    documentation: 'https://capstone-projects-2023-fall.github.io/project-code-review-chatbot/',
     demo: 'https://www.youtube.com/embed/Wge6Wd8ctRI?start=2596',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-code-review-chatbot',
     tags: ['ai', 'code-quality', 'vscode-extension', 'education'],
@@ -458,7 +513,7 @@ export const projects: Project[] = [
   {
     title: 'ARPetPals',
     description: 'An AR mobile app for both Android and iOS that promotes health and fitness through virtual pets interacting with real-world environments. The pet\'s health correlates with user diet and exercise habits, using object recognition to track nutrition.',
-    website: 'https://capstone-projects-2023-fall.github.io/project-ar-pet-pals/',
+    documentation: 'https://capstone-projects-2023-fall.github.io/project-ar-pet-pals/',
     demo: 'https://www.youtube.com/embed/XxRJPMJZ6Fk?start=3823',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-ar-pet-pals',
     tags: ['ar', 'mobile', 'health', 'fitness', 'unity'],
@@ -468,7 +523,7 @@ export const projects: Project[] = [
   {
     title: 'Study Buddy',
     description: 'Study Buddy is a progressive web application that helps students keep up with course work using gamification, featuring a virtual pet that you take care of by studying and completing assignments. The app can easily import existing Canvas LMS course assignments.',
-    website: 'https://capstone-projects-2023-spring.github.io/project-virtual-pet/',
+    documentation: 'https://capstone-projects-2023-spring.github.io/project-virtual-pet/',
     demo: 'https://www.youtube.com/embed/Xlta-ZZ4gPc',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet',
     tags: ['education', 'gamification', 'pwa', 'canvas-lms'],
@@ -478,17 +533,19 @@ export const projects: Project[] = [
   {
     title: 'TUTraffic',
     description: 'TUTraffic is an application that eases traffic and parking troubles on Temple\'s main campus. Using Raspberry Pi computers equipped with cameras, computer vision, and machine learning, it detects available parking spaces in real-time.',
-    website: 'https://capstone-projects-2023-spring.github.io/project-tutraffic/',
+    documentation: 'https://capstone-projects-2023-spring.github.io/project-tutraffic/',
+    website: 'https://tutrafficdatabase.web.app',
     demo: 'https://www.youtube.com/embed/s_Vt6rIZhMs',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-tutraffic',
     tags: ['ml', 'computer-vision', 'iot', 'raspberry-pi', 'parking'],
     semester: 'Spring 2023',
+    // useDocsAsPreview: true,
     slug: 'tu-traffic',
   },
   {
     title: 'Robocontrol',
     description: 'Robocontrol is a user-friendly interface for the Adeept RaspTank. Enhanced with an "Autonomous" mode, it allows the tank to navigate an obstacle course without human intervention.',
-    website: 'https://capstone-projects-2023-spring.github.io/project-robocontrol/',
+    documentation: 'https://capstone-projects-2023-spring.github.io/project-robocontrol/',
     demo: 'https://www.youtube.com/embed/hJrjVTWIg7o',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-robocontrol',
     tags: ['robotics', 'autonomous', 'hardware', 'raspberry-pi'],
@@ -498,17 +555,19 @@ export const projects: Project[] = [
   {
     title: 'Vehicle Collision Automatic Detection',
     description: 'An embedded device with a companion mobile app that provides peace of mind in the event of a car accident. When a severe collision is detected, the app automatically sends calls or text messages to emergency services or pre-set contacts.',
-    website: 'https://capstone-projects-2023-spring.github.io/project-vehicle-collision/',
+    // documentation: 'https://capstone-projects-2023-spring.github.io/project-vehicle-collision/',
     demo: 'https://www.youtube.com/embed/Wx4h5qCqgfw',
-    source: 'https://github.com/Capstone-Projects-2023-Spring/project-vehicle-collision',
+    source: 'https://github.com/Capstone-Projects-2023-Spring/project-vehicle-collision-automatic-detection',
+    website: 'https://github.com/Capstone-Projects-2023-Spring/project-vehicle-collision-automatic-detection',
     tags: ['iot', 'mobile', 'safety', 'bluetooth', 'embedded'],
     semester: 'Spring 2023',
     slug: 'vehicle-collision-detection',
+    useDocsAsPreview: true
   },
   {
     title: 'CollabyBot',
     description: 'CollabyBot is an application for communication and collaboration in Discord. Features real-time GitHub notifications, customizable updates, and Jira integration for tracking team progress and assigning tickets from chat.',
-    website: 'https://capstone-projects-2022-fall.github.io/project-collabybot/',
+    documentation: 'https://capstone-projects-2022-fall.github.io/project-collabybot/',
     demo: 'https://www.youtube.com/embed/JxB71ua5FB0',
     source: 'https://github.com/Capstone-Projects-2022-Fall/project-collabybot',
     tags: ['discordBot', 'github', 'jira', 'collaboration', 'devops'],
@@ -518,7 +577,8 @@ export const projects: Project[] = [
   {
     title: 'Sokroban',
     description: 'SOKROBAN is a puzzle game based on the 1982 classic "Sokoban" that challenges users\' problem-solving skills. Move crates on procedurally generated maps and place them on targets. Offers Normal, Challenge, Co-op, and VS modes.',
-    website: 'https://capstone-projects-2022-fall.github.io/project-sokroban/',
+    documentation: 'https://capstone-projects-2022-fall.github.io/project-sokroban/',
+    website: 'https://play.unity.com/mg/other/webgl-builds-281781',
     demo: 'https://www.youtube.com/embed/Do7IXoSzjHU',
     source: 'https://github.com/Capstone-Projects-2022-Fall/project-sokroban',
     tags: ['game', 'puzzle', 'multiplayer', 'unity', 'webgl'],
