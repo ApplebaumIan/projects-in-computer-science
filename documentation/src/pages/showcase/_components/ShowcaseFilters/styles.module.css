@@ -51,3 +51,28 @@
 .tagListItem:last-child {
   margin-right: 0;
 }
+
+.showMoreRow {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.showMoreButton {
+  background: transparent;
+  border: none;
+  color: var(--ifm-color-primary, #0d47a1);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.showMoreButton:hover {
+  text-decoration: underline;
+}
+
+.showMoreButton:focus {
+  outline: 2px solid rgba(13, 71, 161, 0.2);
+  outline-offset: 2px;
+}

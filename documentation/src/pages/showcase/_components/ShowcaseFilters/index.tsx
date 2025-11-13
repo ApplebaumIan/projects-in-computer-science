@@ -7,7 +7,8 @@
 
 import type {ReactNode, CSSProperties} from 'react';
 import clsx from 'clsx';
-import Translate from '@docusaurus/Translate';
+import {useState} from 'react';
+import Translate, {translate} from '@docusaurus/Translate';
 import FavoriteIcon from '@site/src/pages/showcase/_components/FavoriteIcon';
 import {Tags, TagList, type TagType} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
@@ -59,12 +60,63 @@ function ShowcaseTagListItem({tag}: {tag: TagType}) {
 }
 
 function ShowcaseTagList() {
+  const [expanded, setExpanded] = useState(false);
+  // Number of tags to show before the "Show more" button appears
+  const VISIBLE_COUNT = 8;
+
+  // Configure which tags should appear first (important filters). Edit this list
+  // to change what's prioritized in the UI. Items must be TagType values.
+  const TOP_TAGS: TagType[] = [
+    'education',
+    'game',
+    'ai',
+    'accessibility',
+    'multiplayer',
+    'ml',
+    'web',
+    'hardware',
+  ];
+
+  // Build an ordered list: top tags (in the order declared) followed by the rest
+  const remaining = TagList.filter((t) => !TOP_TAGS.includes(t));
+  const orderedTags = [
+    ...TOP_TAGS.filter((t) => TagList.includes(t)),
+    ...remaining,
+  ];
+
+  const total = orderedTags.length;
+  const shouldTruncate = total > VISIBLE_COUNT && !expanded;
+  const visibleTags = shouldTruncate ? orderedTags.slice(0, VISIBLE_COUNT) : orderedTags;
+
+  const moreCount = Math.max(0, total - VISIBLE_COUNT);
+  const moreLabel = translate({
+    id: 'showcase.filters.showMore',
+    message: 'Show {count} more',
+    values: {count: moreCount},
+  });
+  const lessLabel = translate({id: 'showcase.filters.showLess', message: 'Show less'});
+
   return (
-    <ul className={clsx('clean-list', styles.tagList)}>
-      {TagList.map((tag) => {
-        return <ShowcaseTagListItem key={tag} tag={tag} />;
-      })}
-    </ul>
+    <div>
+      <ul id="showcase-more-tags" className={clsx('clean-list', styles.tagList)}>
+        {visibleTags.map((tag) => {
+          return <ShowcaseTagListItem key={tag} tag={tag} />;
+        })}
+      </ul>
+
+      {total > VISIBLE_COUNT && (
+        <div className={styles.showMoreRow}>
+          <button
+            className={styles.showMoreButton}
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+            aria-controls="showcase-more-tags"
+          >
+            {expanded ? lessLabel : moreLabel}
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 

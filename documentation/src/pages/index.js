@@ -30,41 +30,49 @@ function isTimeBetween(startDate, endDate) {
     }
 }
 
-export function HomepageHeader() {
+function HeaderBody(props) {
+    return <>
+        <h1 className={styles.hero__title}>{props.siteConfig.customFields.course_number} <br/>
+            {props.siteConfig.title}
+        </h1>
+        <p className={styles.hero__subtitle}>{props.siteConfig.customFields.semester} {props.siteConfig.tagline}</p>
+        <div className={"col button_group"}>
+            {/* TODO: Change me to your project's tutorial*/}
+            <Link
+                className="button button--secondary button--lg margin--md"
+                to="#office-hours">
+                Student Office Hours ️👨‍🏫
+            </Link>
+            <Link
+                className="button button--secondary button--lg margin--md"
+                to="/syllabus/course-overview">
+                Course Syllabus 📋
+            </Link>
+            <Link
+                className="button button--secondary button--lg margin--md"
+                to="/syllabus/schedule">
+                Course Schedule 📆
+            </Link>
+            {/*<Link*/}
+            {/*    className="button button--secondary button--lg margin--md"*/}
+            {/*    to="https://applebaumian.github.io/tu-cis-4398-docs-template/tutorial/Intro">*/}
+            {/*    Docusaurus Tutorial 🦖*/}
+            {/*</Link>*/}
+        </div>
+    </>;
+}
+
+HeaderBody.propTypes = {siteConfig: PropTypes.any};
+
+export function HomepageHeader({children}) {
     const {siteConfig} = useDocusaurusContext();
     return (
         <header className={clsx('hero hero--primary', styles.heroBanner)}>
-            <div className="container" style={{zIndex:100}}>
+            <div className="container" style={{zIndex: 100}}>
                 <div className={"row"}>
                     <div className={"col"}>
-                        <h1 className={styles.hero__title}>{siteConfig.customFields.course_number} <br/>
-                            {siteConfig.title}
-                        </h1>
-                        <p className={styles.hero__subtitle}>{siteConfig.customFields.semester} {siteConfig.tagline}</p>
-                        <div className={"col button_group"}>
-                            {/* TODO: Change me to your project's tutorial*/ }
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="#office-hours">
-                                Student Office Hours ️👨‍🏫
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="/syllabus/course-overview">
-                                Course Syllabus 📋
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin--md"
-                                to="/syllabus/schedule">
-                                Course Schedule 📆
-                            </Link>
-                            {/*<Link*/}
-                            {/*    className="button button--secondary button--lg margin--md"*/}
-                            {/*    to="https://applebaumian.github.io/tu-cis-4398-docs-template/tutorial/Intro">*/}
-                            {/*    Docusaurus Tutorial 🦖*/}
-                            {/*</Link>*/}
-                        </div>
-
+                    {/* I want to add children here that are between the jsx   */}
+                        {children ? children : <HeaderBody siteConfig={siteConfig}/>}
                     </div>
                     {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
 
