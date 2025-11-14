@@ -332,3 +332,44 @@ main {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+/* Highlight for anchored showcase cards */
+.showcase-highlight {
+  animation: showcase-pulse 3s ease-in-out 1;
+  box-shadow: 0 6px 24px rgba(157, 34, 53, 0.18);
+  border-radius: 8px;
+  position: relative; /* enable box-shadow */
+}
+
+@keyframes showcase-pulse {
+  0% {
+    background-color: rgba(157,34,53,0.15);
+  }
+  40% {
+    background-color: rgba(157,34,53,0.05);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Small visual feedback when copying the share link (transient) */
+.share-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 24px;
+  background: var(--ifm-color-primary);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  z-index: 2000;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.share-toast.show {
+  opacity: 1;
+}

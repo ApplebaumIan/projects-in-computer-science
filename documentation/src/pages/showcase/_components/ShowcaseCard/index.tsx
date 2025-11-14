@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
@@ -68,14 +68,24 @@ function getCardImage(user: User): string {
   );
 }
 
+function makeSlug(s: string) {
+  return String(s)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9-\s]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+}
+
 function ShowcaseCard({user}: {user: User}) {
   const image = getCardImage(user);
   const [expanded, setExpanded] = useState(false);
   const MAX = 150;
   const desc = user.description ?? '';
   const isLong = desc.length > MAX;
+  const cardId = user.slug ?? makeSlug(user.title);
   return (
-    <li key={user.title} className="card shadow--md">
+    <li id={cardId} data-slug={cardId} key={user.title} className="card shadow--md">
       <div className={clsx('card__image', styles.showcaseCardImage)}>
         <Image img={image} alt={user.title} />
       </div>
@@ -85,6 +95,74 @@ function ShowcaseCard({user}: {user: User}) {
             <Link href={user.website} className={styles.showcaseCardLink}>
               {user.title}
             </Link>
+            <button
+              type="button"
+              title={`Copy link to ${user.title}`}
+              aria-label={`Copy link to ${user.title}`}
+              className={styles.shareBtn}
+              onClick={useCallback((e: React.MouseEvent) => {
+                e.preventDefault();
+                e.stopPropagation();
+                try {
+                  if (typeof window !== 'undefined') {
+                    const origin =
+                      window.location.origin ||
+                      `${window.location.protocol}//${window.location.host}`;
+                    const url = `${origin}/showcase#${cardId}`;
+                    const doToast = () => {
+                      try {
+                        const toast = document.createElement('div');
+                        toast.className = 'share-toast';
+                        toast.textContent = 'Link copied to clipboard';
+                        document.body.appendChild(toast);
+                        // force reflow then show
+                        // eslint-disable-next-line no-unused-expressions
+                        toast.offsetHeight;
+                        toast.classList.add('show');
+                        setTimeout(() => {
+                          toast.classList.remove('show');
+                          setTimeout(
+                            () => document.body.removeChild(toast),
+                            300,
+                          );
+                        }, 1800);
+                      } catch (err) {
+                        // ignore UI toast errors
+                      }
+                    };
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                      navigator.clipboard.writeText(url).then(doToast, doToast);
+                    } else {
+                      // fallback using temporary input
+                      const input = document.createElement('input');
+                      input.value = url;
+                      document.body.appendChild(input);
+                      input.select();
+                      document.execCommand('copy');
+                      document.body.removeChild(input);
+                      doToast();
+                    }
+                  }
+                } catch (err) {
+                  // ignore copy errors
+                }
+              }, [cardId])}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                <polyline points="16 6 12 2 8 6" />
+                <line x1="12" y1="2" x2="12" y2="15" />
+              </svg>
+            </button>
           </Heading>
           {user.tags.includes('favorite') && (
             <FavoriteIcon size="medium" style={{marginRight: '0.25rem'}} />

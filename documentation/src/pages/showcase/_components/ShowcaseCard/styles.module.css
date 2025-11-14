@@ -22,6 +22,8 @@
 .showcaseCardTitle {
   margin-bottom: 0;
   flex: 1 1 auto;
+  display: flex;
+  align-items: center;
 }
 
 .showcaseCardTitle a {
@@ -36,6 +38,28 @@
 
 .showcaseCardTitle a:not(:focus):hover {
   background-size: 100% 1px;
+}
+
+.shareBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.shareBtn svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--ifm-color-primary);
+  vertical-align: middle;
+}
+
+.showcaseCardTitle a:hover + .shareBtn,
+.shareBtn:hover {
+  opacity: 1;
 }
 
 .showcaseCardTitle,
