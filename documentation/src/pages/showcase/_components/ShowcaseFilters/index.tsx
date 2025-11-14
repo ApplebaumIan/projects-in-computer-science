@@ -122,7 +122,7 @@ function ShowcaseTagList() {
   const moreCount = Math.max(0, total - VISIBLE_COUNT);
   const moreLabel = translate({
     id: 'showcase.filters.showMore',
-    message: 'Show {count} more',
+    message: `Show ${moreCount} more`,
     values: {count: moreCount},
   });
   const lessLabel = translate({id: 'showcase.filters.showLess', message: 'Show less'});

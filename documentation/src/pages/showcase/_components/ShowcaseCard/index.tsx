@@ -35,7 +35,12 @@ function TagItem({
 }
 
 function ShowcaseCardTag({tags}: {tags: TagType[]}) {
-  const tagObjects = tags.map((tag) => ({tag, ...Tags[tag]}));
+  const tagObjects = tags.map((tag) => {
+    const meta = Tags[tag as TagType];
+    if (meta) return {tag, ...meta};
+    // Fallback metadata when tag is missing from Tags map
+    return {tag, label: String(tag), description: '', color: '#999'};
+  });
 
   // Keep same order for all tags
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
@@ -45,7 +50,9 @@ function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   return (
     <>
       {tagObjectsSorted.map((tagObject, index) => {
-        return <TagItem key={index} {...tagObject} />;
+        // Ensure label is a string before passing to TagItem
+        const {label = String(tagObject.tag), description = '', color = '#999'} = tagObject as any;
+        return <TagItem key={index} label={String(label)} description={description} color={color} />;
       })}
     </>
   );

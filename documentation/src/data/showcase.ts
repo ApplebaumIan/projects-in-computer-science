@@ -2,111 +2,101 @@
 // Showcase data for the Capstone showcase (new format).
 
 export type TagType =
-  | 'education'
-  | 'gamification'
-  | 'computerVision'
-  | 'iot'
-  | 'hardware'
-  | 'ar'
-  | 'robotics'
-  | 'safety'
-  | 'healthFitness'
-  | 'bioinformatics'
-  | 'devops'
-  | 'chatbot'
-  | 'accessibility'
-  | 'geolocation'
-  | 'collaboration'
-  | 'environmental'
-  | 'interviewPrep'
-  | 'game'
-  | 'blockCoding'
-  | 'analytics'
-  | 'research'
-  | 'llms'
-  // New tags found in the projects list (added to keep the type consistent)
-  | 'multiplayer'
-  | 'interview-prep'
-  | 'web'
-  | 'gaming'
-  | 'raspberry-pi'
   | 'aac'
-  | 'ml'
-  | 'pwa'
-  | 'sensors'
-  | 'community'
-  | 'social'
   | 'ai'
+  | 'analytics'
+  | 'ar'
+  | 'autonomous'
+  | 'accessibility'
+  | 'bioinformatics'
+  | 'bluetooth'
+  | 'canvas-lms'
+  | 'chatbot'
+  | 'collaboration'
   | 'code-quality'
-  | 'vscode-extension'
-  | 'mobile'
+  | 'community'
+  | 'computerVision'
+  | 'computer-vision'
+  | 'devops'
+  | 'discordBot'
+  | 'education'
+  | 'embedded'
+  | 'gamification'
+  | 'game'
+  | 'gaming'
+  | 'geolocation'
+  | 'github'
+  | 'hardware'
   | 'health'
   | 'fitness'
-  | 'unity'
-  | 'canvas-lms'
-  | 'computer-vision'
-  | 'parking'
-  | 'autonomous'
-  | 'bluetooth'
-  | 'embedded'
-  | 'discordBot'
-  | 'github'
+  | 'interview-prep'
+  | 'iot'
   | 'jira'
+  | 'llms'
+  | 'ml'
+  | 'mobile'
+  | 'multiplayer'
   | 'puzzle'
+  | 'parking'
+  | 'pwa'
+  | 'raspberry-pi'
+  | 'research'
+  | 'robotics'
+  | 'safety'
+  | 'sensors'
+  | 'social'
+  | 'unity'
+  | 'vscode-extension'
+  | 'web'
   | 'webgl';
 
 export const TagList: TagType[] = [
-  'education',
-  'gamification',
-  'computerVision',
-  'iot',
-  'hardware',
-  'ar',
-  'robotics',
-  'safety',
-  'healthFitness',
-  'bioinformatics',
-  'devops',
-  'chatbot',
-  'accessibility',
-  'geolocation',
-  'collaboration',
-  'environmental',
-  'interviewPrep',
-  'game',
-  'blockCoding',
-  'analytics',
-  'research',
-  'llms',
-  // New tags
-  'multiplayer',
-  'interview-prep',
-  'web',
-  'gaming',
-  'raspberry-pi',
   'aac',
-  'ml',
-  'pwa',
-  'sensors',
-  'community',
-  'social',
   'ai',
+  'analytics',
+  'ar',
+  'autonomous',
+  'accessibility',
+  'bioinformatics',
+  'bluetooth',
+  'canvas-lms',
+  'chatbot',
+  'collaboration',
   'code-quality',
-  'vscode-extension',
-  'mobile',
+  'community',
+  'computerVision',
+  'computer-vision',
+  'devops',
+  'discordBot',
+  'education',
+  'embedded',
+  'gamification',
+  'game',
+  'gaming',
+  'geolocation',
+  'github',
+  'hardware',
   'health',
   'fitness',
-  'unity',
-  'canvas-lms',
-  'computer-vision',
-  'parking',
-  'autonomous',
-  'bluetooth',
-  'embedded',
-  'discordBot',
-  'github',
+  'interview-prep',
+  'iot',
   'jira',
+  'llms',
+  'ml',
+  'mobile',
+  'multiplayer',
   'puzzle',
+  'parking',
+  'pwa',
+  'raspberry-pi',
+  'research',
+  'robotics',
+  'safety',
+  'sensors',
+  'social',
+  'unity',
+  'vscode-extension',
+  'web',
   'webgl',
 ];
 
@@ -114,262 +104,53 @@ export const Tags: Record<
   TagType,
   { label: string; description: string; color: string }
 > = {
-  education: {
-    label: 'Education',
-    description: 'Learning-focused platforms or tools',
-    color: '#3D7FFF',
-  },
-  gamification: {
-    label: 'Gamification',
-    description: 'Uses game mechanics to drive engagement',
-    color: '#FF8A00',
-  },
-  computerVision: {
-    label: 'Computer Vision',
-    description: 'Image / video recognition or detection',
-    color: '#8E44AD',
-  },
-  iot: {
-    label: 'IoT',
-    description: 'Internet-connected physical devices',
-    color: '#00A6A6',
-  },
-  hardware: {
-    label: 'Hardware',
-    description: 'Custom physical devices or embedded builds',
-    color: '#546E7A',
-  },
-  ar: {
-    label: 'Augmented Reality',
-    description: 'AR experience or AR-enhanced interaction',
-    color: '#B620E0',
-  },
-  robotics: {
-    label: 'Robotics',
-    description: 'Robotic platform or autonomous control',
-    color: '#37474F',
-  },
-  safety: {
-    label: 'Safety',
-    description: 'Emergency, collision, or risk mitigation',
-    color: '#D32F2F',
-  },
-  healthFitness: {
-    label: 'Health & Fitness',
-    description: 'Promotes wellness, exercise, or nutrition',
-    color: '#2ECC71',
-  },
-  bioinformatics: {
-    label: 'Bioinformatics',
-    description: 'Biological data analysis or research support',
-    color: '#1E88E5',
-  },
-  devops: {
-    label: 'DevOps',
-    description: 'Developer workflow, review, or automation',
-    color: '#FFB300',
-  },
-  chatbot: {
-    label: 'Chatbot',
-    description: 'Conversational AI or assistant interface',
-    color: '#2196F3',
-  },
-  accessibility: {
-    label: 'Accessibility',
-    description: 'Improves access for diverse users',
-    color: '#795548',
-  },
-  geolocation: {
-    label: 'Geolocation',
-    description: 'Uses real-time location or mapping',
-    color: '#009688',
-  },
-  collaboration: {
-    label: 'Collaboration',
-    description: 'Team communication or coordination',
-    color: '#FF7043',
-  },
-  environmental: {
-    label: 'Environmental',
-    description: 'Monitors or aids ecological conditions',
-    color: '#4CAF50',
-  },
-  interviewPrep: {
-    label: 'Interview Prep',
-    description: 'Practice and coaching for technical interviews',
-    color: '#0066CC',
-  },
-  game: {
-    label: 'Game',
-    description: 'Playable interactive entertainment',
-    color: '#FDD835',
-  },
-  blockCoding: {
-    label: 'Block Coding',
-    description: 'Visual programming or drag-and-drop coding',
-    color: '#9C27B0',
-  },
-  analytics: {
-    label: 'Analytics',
-    description: 'Performance metrics or data insights',
-    color: '#455A64',
-  },
-  research: {
-    label: 'Research',
-    description: 'Supports academic or scientific study',
-    color: '#5C6BC0',
-  },
-  llms: {
-    label: 'LLMs',
-    description: 'Large Language Models or NLP applications',
-    color: '#FF5722',
-  },
-  // Newly added tag definitions (minimal labels/descriptions/colors)
-  multiplayer: {
-    label: 'Multiplayer',
-    description: 'Real-time multiplayer or networked play',
-    color: '#6A1B9A',
-  },
-  'interview-prep': {
-    label: 'Interview Prep (hyphen)',
-    description: 'Interview practice and prep resources (alternate tag)',
-    color: '#0288D1',
-  },
-  web: {
-    label: 'Web',
-    description: 'Web application or web technology',
-    color: '#0D47A1',
-  },
-  gaming: {
-    label: 'Gaming',
-    description: 'Gaming projects (alternate to Game/Gamification)',
-    color: '#F39C12',
-  },
-  'raspberry-pi': {
-    label: 'Raspberry Pi',
-    description: 'Projects using Raspberry Pi hardware',
-    color: '#C62828',
-  },
-  aac: {
-    label: 'AAC',
-    description: 'Augmentative and Alternative Communication',
-    color: '#7B1FA2',
-  },
-  ml: {
-    label: 'ML',
-    description: 'Machine Learning',
-    color: '#1976D2',
-  },
-  pwa: {
-    label: 'PWA',
-    description: 'Progressive Web App',
-    color: '#43A047',
-  },
-  sensors: {
-    label: 'Sensors',
-    description: 'Sensor hardware and data collection',
-    color: '#3949AB',
-  },
-  community: {
-    label: 'Community',
-    description: 'Community-focused or civic tech projects',
-    color: '#00897B',
-  },
-  social: {
-    label: 'Social',
-    description: 'Social or location-based social features',
-    color: '#6D4C41',
-  },
-  ai: {
-    label: 'AI',
-    description: 'Artificial Intelligence features or models',
-    color: '#E64A19',
-  },
-  'code-quality': {
-    label: 'Code Quality',
-    description: 'Tools or workflows to improve code quality',
-    color: '#455A64',
-  },
-  'vscode-extension': {
-    label: 'VSCode Extension',
-    description: 'Extensions or IDE integrations for VSCode',
-    color: '#0078D7',
-  },
-  mobile: {
-    label: 'Mobile',
-    description: 'Mobile app or mobile-first projects',
-    color: '#D81B60',
-  },
-  health: {
-    label: 'Health',
-    description: 'Health-related features or apps',
-    color: '#43A047',
-  },
-  fitness: {
-    label: 'Fitness',
-    description: 'Fitness or activity-tracking features',
-    color: '#2E7D32',
-  },
-  unity: {
-    label: 'Unity',
-    description: 'Unity game engine projects',
-    color: '#8E24AA',
-  },
-  'canvas-lms': {
-    label: 'Canvas LMS',
-    description: 'Integrations or tools for Canvas Learning Management System',
-    color: '#3F51B5',
-  },
-  'computer-vision': {
-    label: 'Computer Vision (alt)',
-    description: 'Alternate tag for computer vision projects',
-    color: '#6A1B9A',
-  },
-  parking: {
-    label: 'Parking',
-    description: 'Parking/transportation-related solutions',
-    color: '#607D8B',
-  },
-  autonomous: {
-    label: 'Autonomous',
-    description: 'Autonomy, automated navigation, or control',
-    color: '#455A64',
-  },
-  bluetooth: {
-    label: 'Bluetooth',
-    description: 'Bluetooth connectivity or wireless protocols',
-    color: '#0288D1',
-  },
-  embedded: {
-    label: 'Embedded',
-    description: 'Embedded systems or firmware projects',
-    color: '#6D4C41',
-  },
-  discordBot: {
-    label: 'Discord Bot',
-    description: 'Bots or integrations for Discord',
-    color: '#7289DA',
-  },
-  github: {
-    label: 'GitHub',
-    description: 'GitHub integrations or tooling',
-    color: '#24292E',
-  },
-  jira: {
-    label: 'Jira',
-    description: 'Jira integrations or project tracking',
-    color: '#0052CC',
-  },
-  puzzle: {
-    label: 'Puzzle',
-    description: 'Puzzle or brain-teaser game mechanics',
-    color: '#FFB74D',
-  },
-  webgl: {
-    label: 'WebGL',
-    description: 'WebGL or browser-based graphics',
-    color: '#00ACC1',
-  },
+  aac: { label: 'AAC', description: 'Augmentative and Alternative Communication', color: '#7B1FA2' },
+  ai: { label: 'AI', description: 'Artificial Intelligence features or models', color: '#E64A19' },
+  analytics: { label: 'Analytics', description: 'Performance metrics or data insights', color: '#455A64' },
+  ar: { label: 'Augmented Reality', description: 'AR experience or AR-enhanced interaction', color: '#B620E0' },
+  autonomous: { label: 'Autonomous', description: 'Autonomy, automated navigation, or control', color: '#455A64' },
+  accessibility: { label: 'Accessibility', description: 'Improves access for diverse users', color: '#795548' },
+  bioinformatics: { label: 'Bioinformatics', description: 'Biological data analysis or research support', color: '#1E88E5' },
+  bluetooth: { label: 'Bluetooth', description: 'Bluetooth connectivity or wireless protocols', color: '#0288D1' },
+  'canvas-lms': { label: 'Canvas LMS', description: 'Integrations or tools for Canvas LMS', color: '#3F51B5' },
+  chatbot: { label: 'Chatbot', description: 'Conversational AI or assistant interface', color: '#2196F3' },
+  collaboration: { label: 'Collaboration', description: 'Team communication or coordination', color: '#FF7043' },
+  'code-quality': { label: 'Code Quality', description: 'Tools or workflows to improve code quality', color: '#455A64' },
+  community: { label: 'Community', description: 'Community-focused or civic tech projects', color: '#00897B' },
+  computerVision: { label: 'Computer Vision', description: 'Image / video recognition or detection', color: '#8E44AD' },
+  'computer-vision': { label: 'Computer Vision (alt)', description: 'Alternate tag for computer vision projects', color: '#6A1B9A' },
+  devops: { label: 'DevOps', description: 'Developer workflow, review, or automation', color: '#FFB300' },
+  discordBot: { label: 'Discord Bot', description: 'Bots or integrations for Discord', color: '#7289DA' },
+  education: { label: 'Education', description: 'Learning-focused platforms or tools', color: '#3D7FFF' },
+  embedded: { label: 'Embedded', description: 'Embedded systems or firmware projects', color: '#6D4C41' },
+  gamification: { label: 'Gamification', description: 'Uses game mechanics to drive engagement', color: '#FF8A00' },
+  game: { label: 'Game', description: 'Playable interactive entertainment', color: '#FDD835' },
+  gaming: { label: 'Gaming', description: 'Gaming projects (alternate to Game/Gamification)', color: '#F39C12' },
+  geolocation: { label: 'Geolocation', description: 'Uses real-time location or mapping', color: '#009688' },
+  github: { label: 'GitHub', description: 'GitHub integrations or tooling', color: '#24292E' },
+  hardware: { label: 'Hardware', description: 'Custom physical devices or embedded builds', color: '#546E7A' },
+  health: { label: 'Health', description: 'Health-related features or apps', color: '#43A047' },
+  fitness: { label: 'Fitness', description: 'Fitness or activity-tracking features', color: '#2E7D32' },
+  'interview-prep': { label: 'Interview Prep', description: 'Practice and coaching for technical interviews', color: '#0066CC' },
+  iot: { label: 'IoT', description: 'Internet-connected physical devices', color: '#00A6A6' },
+  jira: { label: 'Jira', description: 'Jira integrations or project tracking', color: '#0052CC' },
+  llms: { label: 'LLMs', description: 'Large Language Models or NLP applications', color: '#FF5722' },
+  ml: { label: 'ML', description: 'Machine Learning', color: '#1976D2' },
+  mobile: { label: 'Mobile', description: 'Mobile app or mobile-first projects', color: '#D81B60' },
+  multiplayer: { label: 'Multiplayer', description: 'Real-time multiplayer or networked play', color: '#6A1B9A' },
+  puzzle: { label: 'Puzzle', description: 'Puzzle or brain-teaser game mechanics', color: '#FFB74D' },
+  parking: { label: 'Parking', description: 'Parking/transportation-related solutions', color: '#607D8B' },
+  pwa: { label: 'PWA', description: 'Progressive Web App', color: '#43A047' },
+  'raspberry-pi': { label: 'Raspberry Pi', description: 'Projects using Raspberry Pi hardware', color: '#C62828' },
+  research: { label: 'Research', description: 'Supports academic or scientific study', color: '#5C6BC0' },
+  robotics: { label: 'Robotics', description: 'Robotic platform or autonomous control', color: '#37474F' },
+  safety: { label: 'Safety', description: 'Emergency, collision, or risk mitigation', color: '#D32F2F' },
+  sensors: { label: 'Sensors', description: 'Sensor hardware and data collection', color: '#3949AB' },
+  social: { label: 'Social', description: 'Social or location-based social features', color: '#6D4C41' },
+  unity: { label: 'Unity', description: 'Unity game engine projects', color: '#8E24AA' },
+  'vscode-extension': { label: 'VSCode Extension', description: 'Extensions or IDE integrations for VSCode', color: '#0078D7' },
+  web: { label: 'Web', description: 'Web application or web technology', color: '#0D47A1' },
+  webgl: { label: 'WebGL', description: 'WebGL or browser-based graphics', color: '#00ACC1' },
 };
 
 // Minimal Project type and placeholder projects array.
@@ -383,7 +164,7 @@ export type Project = {
   documentation?: string; // link to project documentation (button)
   demo?: string; // link to demo video (button)
   source?: string; // source/repository link (button)
-  tags: TagType[];
+  tags: (TagType | string)[];
   preview?: string;
   semester?: string;
   slug?: string;
@@ -401,7 +182,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2025-spring.github.io/project-acc-hungry-hippos',
     demo: 'https://www.youtube.com/embed/tA-bBxNLHKY?start=2526',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-acc-hungry-hippos',
-    tags: ['game', 'accessibility', 'multiplayer', 'aac'],
+    tags: ['game', 'accessibility', 'multiplayer', 'aac', 'research'],
     semester: 'Summer 2025',
     slug: 'hip-io',
     useDocsAsPreview: true,
@@ -412,7 +193,7 @@ export const projects: Project[] = [
     website: 'https://clover.nickrucinski.com',
     documentation: 'https://capstone-projects-2025-spring.github.io/project-copilot-clone-2/',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-copilot-clone-2',
-    tags: ['ai', 'education', 'vscode-extension'],
+    tags: ['ai', 'education', 'vscode-extension','research'],
     semester: 'Spring 2025',
     slug: 'clover',
   },
@@ -422,7 +203,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2025-spring.github.io/aac-go-fish/',
     website: 'https://bankruptcyassociation.com',
     source: 'https://github.com/Capstone-Projects-2025-Spring/aac-go-fish',
-    tags: ['game', 'accessibility', 'aac', 'education'],
+    tags: ['game', 'accessibility', 'aac', 'education','research'],
     semester: 'Spring 2025',
     slug: 'order-up',
   },
@@ -432,7 +213,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2025-spring.github.io/project-piggyback-learning-team-1/',
     website: 'https://piglet-prep.vercel.app',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-piggyback-learning-team-1',
-    tags: ['education', 'ml', 'computerVision', 'analytics'],
+    tags: ['education', 'ml', 'computerVision', 'analytics', 'research'],
     semester: 'Spring 2025',
     slug: 'piglet-prep',
     // useDocsAsPreview: true,
@@ -442,7 +223,7 @@ export const projects: Project[] = [
     description: 'The Bioinformatics Chatbot is a cutting-edge web application designed to assist bioinformatics researchers with complex problems more efficiently. The application enables users to ask the chatbot questions and receive relevant, accurate answers. Using innovative learning technology and human-like behavior, the chatbot guides the researchers with step-by-step tutorials (answers) for complex bioinformatics questions. The methods provided to the chatbot will serve as the foundation for generating precise responses, enabling users to save time and focus on advancing their research. By harnessing the strength of AI, the web application is transforming how researchers tackle heartfelt problems leading to rapid advancements.\n',
     documentation: 'https://capstone-projects-2025-spring.github.io/project-003-bioinformatics-chatbot/',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-003-bioinformatics-chatbot',
-    tags: ['bioinformatics', 'ai', 'llms', 'chatbot'],
+    tags: ['bioinformatics', 'ai', 'llms', 'chatbot', 'research'],
     semester: 'Spring 2025',
     slug: 'biogenie',
   },
