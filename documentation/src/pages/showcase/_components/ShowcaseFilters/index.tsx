@@ -7,7 +7,7 @@
 
 import type {ReactNode, CSSProperties} from 'react';
 import clsx from 'clsx';
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 import Translate, {translate} from '@docusaurus/Translate';
 import FavoriteIcon from '@site/src/pages/showcase/_components/FavoriteIcon';
 import {Tags, TagList, type TagType} from '@site/src/data/showcase';
@@ -15,7 +15,8 @@ import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
 import ClearAllButton from '../ClearAllButton';
-import {useFilteredUsers, useSiteCountPlural} from '../../_utils';
+import {useFilteredUsers, useSiteCountPlural, useSemester} from '../../_utils';
+import {sortedUsers} from '@site/src/data/showcase';
 
 import styles from './styles.module.css';
 
@@ -134,9 +135,47 @@ function HeadingText() {
 }
 
 function HeadingButtons() {
+  const [semester, setSemester] = useSemester();
+
+  // Build semester options from sortedUsers (unique, non-empty)
+  const semesterOptions = useMemo(() => {
+    const set = new Set<string>();
+    for (const u of sortedUsers) {
+      if (u.semester) set.add(u.semester);
+    }
+    // Convert to array and sort using a simple comparator that prefers newer semesters
+    const arr = Array.from(set);
+    const seasonOrder: Record<string, number> = { spring: 0, summer: 1, fall: 2, winter: 3 };
+    arr.sort((a, b) => {
+      const pa = a.split(/\s+/);
+      const pb = b.split(/\s+/);
+      const ya = parseInt(pa[1] || '0', 10);
+      const yb = parseInt(pb[1] || '0', 10);
+      if (ya !== yb) return yb - ya;
+      const sa = seasonOrder[(pa[0] || '').toLowerCase()] ?? 4;
+      const sb = seasonOrder[(pb[0] || '').toLowerCase()] ?? 4;
+      return sb - sa;
+    });
+    return arr;
+  }, []);
+
   return (
     <div className={styles.headingButtons} style={{alignItems: 'center'}}>
       <OperatorButton />
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <label htmlFor="semester-select" style={{marginRight: 8, fontSize: '0.9rem'}}>Semester</label>
+        <select
+          id="semester-select"
+          value={semester ?? ''}
+          onChange={(e) => setSemester(e.target.value || null)}
+          className={styles.semesterSelect}
+        >
+          <option value="">All</option>
+          {semesterOptions.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+      </div>
       <ClearAllButton />
     </div>
   );

@@ -526,6 +526,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2023-spring.github.io/project-virtual-pet/',
     demo: 'https://www.youtube.com/embed/Xlta-ZZ4gPc',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet',
+    website: 'https://studybuddy.life/',
     tags: ['education', 'gamification', 'pwa', 'canvas-lms'],
     semester: 'Spring 2023',
     slug: 'study-buddy',
@@ -559,7 +560,7 @@ export const projects: Project[] = [
     demo: 'https://www.youtube.com/embed/Wx4h5qCqgfw',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-vehicle-collision-automatic-detection',
     website: 'https://github.com/Capstone-Projects-2023-Spring/project-vehicle-collision-automatic-detection',
-    tags: ['iot', 'mobile', 'safety', 'bluetooth', 'embedded'],
+    tags: ['iot', 'mobile', 'safety', 'bluetooth', 'embedded','hardware'],
     semester: 'Spring 2023',
     slug: 'vehicle-collision-detection',
     useDocsAsPreview: true

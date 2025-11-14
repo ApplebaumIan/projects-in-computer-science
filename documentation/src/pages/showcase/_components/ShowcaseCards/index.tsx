@@ -12,7 +12,7 @@ import {sortedUsers, type User} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
 import FavoriteIcon from '../FavoriteIcon';
 import ShowcaseCard from '../ShowcaseCard';
-import {useFilteredUsers} from '../../_utils';
+import {useFilteredAndSortedUsers} from '../../_utils';
 
 import styles from './styles.module.css';
 
@@ -73,7 +73,7 @@ function NoResultSection() {
 }
 
 export default function ShowcaseCards() {
-  const filteredUsers = useFilteredUsers();
+  const filteredUsers = useFilteredAndSortedUsers();
 
   if (filteredUsers.length === 0) {
     return <NoResultSection />;
@@ -83,9 +83,9 @@ export default function ShowcaseCards() {
     <section className="margin-top--lg margin-bottom--xl">
       {filteredUsers.length === sortedUsers.length ? (
         <>
-          {/*<div className={styles.showcaseFavorite}>*/}
-          {/*  <CardList heading={<HeadingFavorites />} items={favoriteUsers} />*/}
-          {/*</div>*/}
+          <div className={styles.showcaseFavorite}>
+            <CardList heading={<HeadingFavorites />} items={favoriteUsers} />
+          </div>
           <div className="margin-top--lg">
             <CardList heading={<HeadingAllSites />} items={otherUsers} />
           </div>

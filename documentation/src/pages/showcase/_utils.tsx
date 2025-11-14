@@ -22,6 +22,11 @@ export function useTags() {
   return useQueryStringList('tags');
 }
 
+// Semester hook (single-value): store selected semester in the query string
+export function useSemester() {
+  return useQueryString('semester');
+}
+
 type Operator = 'OR' | 'AND';
 
 export function useOperator() {
@@ -39,17 +44,22 @@ function filterUsers({
   tags,
   operator,
   searchName,
+  semester,
 }: {
   users: User[];
   tags: TagType[];
   operator: Operator;
   searchName: string | null;
+  semester?: string | null;
 }) {
   if (searchName) {
     // eslint-disable-next-line no-param-reassign
     users = users.filter((user) =>
       user.title.toLowerCase().includes(searchName.toLowerCase()),
     );
+  }
+  if (semester) {
+    users = users.filter((user) => user.semester === semester);
   }
   if (tags.length === 0) {
     return users;
@@ -69,6 +79,7 @@ export function useFilteredUsers() {
   const [tags] = useTags();
   const [searchName] = useSearchName();
   const [operator] = useOperator();
+  const [semester] = useSemester();
   return useMemo(
     () =>
       filterUsers({
@@ -76,9 +87,36 @@ export function useFilteredUsers() {
         tags: tags as TagType[],
         operator,
         searchName,
+        semester,
       }),
-    [tags, operator, searchName],
+    [tags, operator, searchName, semester],
   );
+}
+
+// Helper: compute a sortable numeric key from semester strings like "Spring 2025"
+function semesterKey(sem?: string | null) {
+  if (!sem) return -Infinity;
+  const parts = sem.split(/\s+/);
+  if (parts.length < 2) return -Infinity;
+  const year = parseInt(parts[1], 10);
+  const season = parts[0].toLowerCase();
+  const seasonOrder: Record<string, number> = {
+    spring: 0,
+    summer: 1,
+    fall: 2,
+    winter: 3,
+  };
+  const s = seasonOrder[season] ?? 4;
+  // Compose key: year * 10 + seasonOrder, so newer years are larger.
+  return (Number.isFinite(year) ? year : 0) * 10 + s;
+}
+
+// Export a memoized sorted version of filtered users by semester (descending)
+export function useFilteredAndSortedUsers() {
+  const filtered = useFilteredUsers();
+  return useMemo(() => {
+    return [...filtered].sort((a, b) => semesterKey(b.semester) - semesterKey(a.semester));
+  }, [filtered]);
 }
 
 export function useSiteCountPlural() {
