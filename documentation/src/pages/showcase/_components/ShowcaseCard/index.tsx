@@ -77,17 +77,55 @@ function makeSlug(s: string) {
     .replace(/-+/g, '-');
 }
 
+function parseYoutubeUrl(url: string): {
+  videoId: string | null;
+  startTime: string | null;
+} {
+  if (!url) {
+    return {videoId: null, startTime: null};
+  }
+  const videoIdRegex =
+    /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const videoIdMatch = url.match(videoIdRegex);
+  const videoId =
+    videoIdMatch && videoIdMatch[2].length === 11 ? videoIdMatch[2] : null;
+
+  const timeRegex = /[?&](?:t|start)=(\d+)/;
+  const timeMatch = url.match(timeRegex);
+  const startTime = timeMatch ? timeMatch[1] : null;
+
+  return {videoId, startTime};
+}
+
 function ShowcaseCard({user}: {user: User}) {
   const image = getCardImage(user);
   const [expanded, setExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const {videoId: youtubeVideoId, startTime} = parseYoutubeUrl(user.demo);
+
   const MAX = 150;
   const desc = user.description ?? '';
   const isLong = desc.length > MAX;
   const cardId = user.slug ?? makeSlug(user.title);
   return (
     <li id={cardId} data-slug={cardId} key={user.title} className="card shadow--md">
-      <div className={clsx('card__image', styles.showcaseCardImage)}>
-        <Image img={image} alt={user.title} />
+      <div
+        className={clsx('card__image', styles.showcaseCardImage)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}>
+        {isHovered && youtubeVideoId ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1${
+              startTime ? `&start=${startTime}` : ''
+            }`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className={styles.youtubeEmbed}
+          />
+        ) : (
+          <Image img={image} alt={user.title} />
+        )}
       </div>
       <div className="card__body">
         <div className={clsx(styles.showcaseCardHeader)}>
