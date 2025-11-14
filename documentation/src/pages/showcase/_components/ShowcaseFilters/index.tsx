@@ -15,7 +15,7 @@ import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
 import ClearAllButton from '../ClearAllButton';
-import {useFilteredUsers, useSiteCountPlural, useSemester} from '../../_utils';
+import {useFilteredUsers, useSiteCountPlural, useSemester, useUsersForCounts} from '../../_utils';
 import {sortedUsers} from '@site/src/data/showcase';
 
 import styles from './styles.module.css';
@@ -36,12 +36,14 @@ function TagCircleIcon({color, style}: {color: string; style?: CSSProperties}) {
 
 function ShowcaseTagListItem({tag}: {tag: TagType}) {
   const {label, description, color} = Tags[tag];
+  // tag count will be provided via closure in ShowcaseTagList
   return (
     <li className={styles.tagListItem}>
       <ShowcaseTagSelect
         tag={tag}
         label={label}
         description={description}
+        count={(ShowcaseTagList as any).tagCounts?.[tag] ?? 0}
         icon={
           tag === 'favorite' ? (
             <FavoriteIcon size="small" style={{marginLeft: 8}} />
@@ -61,12 +63,30 @@ function ShowcaseTagListItem({tag}: {tag: TagType}) {
 }
 
 function ShowcaseTagList() {
+  // Users used to compute counts respect the current search and semester,
+  // but ignore tag selection so counts reflect how many projects would match
+  // each tag given the other active constraints.
+  const usersForCounts = useUsersForCounts();
+  // Build a lookup of tag -> count
+  const tagCounts = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const tag of TagList) {
+      map[tag] = 0;
+    }
+    for (const u of usersForCounts) {
+      for (const t of u.tags ?? []) {
+        if (map[t] !== undefined) map[t] += 1;
+      }
+    }
+    return map as Record<TagType, number>;
+  }, [usersForCounts]);
+  // Attach counts to the function so child list items can read it (minimal change)
+  (ShowcaseTagList as any).tagCounts = tagCounts;
   const [expanded, setExpanded] = useState(false);
   // Number of tags to show before the "Show more" button appears
   const VISIBLE_COUNT = 8;
 
-  // Configure which tags should appear first (important filters). Edit this list
-  // to change what's prioritized in the UI. Items must be TagType values.
+  // Configure which tags should appear first when counts tie (secondary priority)
   const TOP_TAGS: TagType[] = [
     'education',
     'game',
@@ -78,12 +98,22 @@ function ShowcaseTagList() {
     'hardware',
   ];
 
-  // Build an ordered list: top tags (in the order declared) followed by the rest
-  const remaining = TagList.filter((t) => !TOP_TAGS.includes(t));
-  const orderedTags = [
-    ...TOP_TAGS.filter((t) => TagList.includes(t)),
-    ...remaining,
-  ];
+  // Order tags primarily by count (descending), then by TOP_TAGS order, then alphabetically
+  const orderedTags = useMemo(() => {
+    return [...TagList].sort((a, b) => {
+      const ca = tagCounts[a] ?? 0;
+      const cb = tagCounts[b] ?? 0;
+      if (cb !== ca) return cb - ca; // larger counts first
+      const ia = TOP_TAGS.indexOf(a);
+      const ib = TOP_TAGS.indexOf(b);
+      if (ia !== -1 || ib !== -1) {
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib; // keep TOP_TAGS relative order
+      }
+      return a.localeCompare(b);
+    });
+  }, [tagCounts]);
 
   const total = orderedTags.length;
   const shouldTruncate = total > VISIBLE_COUNT && !expanded;

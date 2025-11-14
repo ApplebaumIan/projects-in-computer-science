@@ -93,6 +93,24 @@ export function useFilteredUsers() {
   );
 }
 
+// Return users filtered by the current searchName/semester but ignoring tag selection.
+// This is useful to compute per-tag counts without circular dependency on current tag selection.
+export function useUsersForCounts() {
+  const [searchName] = useSearchName();
+  const [semester] = useSemester();
+  return useMemo(
+    () =>
+      filterUsers({
+        users: sortedUsers,
+        tags: [],
+        operator: 'OR',
+        searchName,
+        semester,
+      }),
+    [searchName, semester],
+  );
+}
+
 // Helper: compute a sortable numeric key from semester strings like "Spring 2025"
 function semesterKey(sem?: string | null) {
   if (!sem) return -Infinity;

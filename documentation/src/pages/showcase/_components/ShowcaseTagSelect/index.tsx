@@ -36,6 +36,7 @@ interface Props extends ComponentProps<'input'> {
   label: string;
   description: string;
   icon: ReactElement<ComponentProps<'svg'>>;
+  count?: number;
 }
 
 export default function ShowcaseTagSelect({
@@ -43,6 +44,7 @@ export default function ShowcaseTagSelect({
   label,
   description,
   tag,
+  count,
   ...rest
 }: Props): ReactNode {
   const id = useId();
@@ -63,7 +65,12 @@ export default function ShowcaseTagSelect({
         {...rest}
       />
       <label htmlFor={id} className={styles.checkboxLabel} title={description}>
-        {label}
+        <span className={styles.labelText}>{label}</span>
+        {typeof count === 'number' && (
+          <span className={styles.countBadge} aria-hidden>
+            {count}
+          </span>
+        )}
         {icon}
       </label>
     </>
