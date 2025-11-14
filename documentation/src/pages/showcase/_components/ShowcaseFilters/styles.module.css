@@ -27,10 +27,13 @@
 .headingButtons {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .headingButtons > * {
   margin-left: 8px;
+  margin-top: 0.5rem;
 }
 
 .tagList {
