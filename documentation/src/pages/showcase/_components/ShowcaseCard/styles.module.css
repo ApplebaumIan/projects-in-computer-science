@@ -188,6 +188,24 @@
   display: none; /* make icon-only by default */
 }
 
+/* Show button text on hover */
+.showcaseCardBtn:hover .buttonText,
+.showcaseCardSrcBtn:hover .buttonText {
+  display: inline;
+  animation: slideInText 0.3s ease-out;
+}
+
+@keyframes slideInText {
+  from {
+    opacity: 0;
+    margin-left: -0.5rem;
+  }
+  to {
+    opacity: 1;
+    margin-left: 0.25rem;
+  }
+}
+
 /* Make icon-only buttons the default: tighten padding and remove icon margin */
 .showcaseCardSrcBtn,
 .showcaseCardBtn {
