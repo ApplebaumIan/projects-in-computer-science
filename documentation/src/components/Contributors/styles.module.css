@@ -1,13 +1,13 @@
 .contributors {
   text-align: center;
-  margin: 2rem 0;
-  padding: 1rem;
+  margin: 0.5rem 0;
+  padding: 0.25rem;
 }
 
 .contributors img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .contributors p {
@@ -15,4 +15,3 @@
   font-size: 0.9rem;
   color: var(--ifm-color-emphasis-700);
 }
-
