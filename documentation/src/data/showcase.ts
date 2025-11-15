@@ -48,7 +48,10 @@ export type TagType =
   | 'vscode-extension'
   | 'virtual-pet'
   | 'web'
-  | 'webgl';
+  | 'webgl'
+  | 'api'
+  | 'library'
+  | 'speech-to-text';
 
 export const TagList: TagType[] = [
   'aac',
@@ -98,6 +101,9 @@ export const TagList: TagType[] = [
   'virtual-pet',
   'web',
   'webgl',
+  'api',
+  'library',
+  'speech-to-text',
 ];
 
 export const Tags: Record<
@@ -151,6 +157,9 @@ export const Tags: Record<
   'virtual-pet': { label: 'Virtual Pet', description: 'Virtual pet or pet simulation gameplay', color: '#FF6F9E' },
   web: { label: 'Web', description: 'Web application or web technology', color: '#0D47A1' },
   webgl: { label: 'WebGL', description: 'WebGL or browser-based graphics', color: '#00ACC1' },
+  api: { label: 'API', description: 'APIs or backend services', color: '#00897B' },
+  library: { label: 'Library', description: 'Reusable code libraries or frameworks', color: '#6D4C41' },
+    'speech-to-text': { label: 'Speech-to-Text', description: 'Speech recognition or transcription features', color: '#F4511E' },
 };
 
 // Minimal Project type and placeholder projects array.
