@@ -55,7 +55,7 @@ function CardList({heading, items}: {heading?: ReactNode; items: User[]}) {
       {heading}
       <ul className={clsx('clean-list', styles.cardList)}>
         {items.map((item) => (
-          <ShowcaseCard key={item.title} user={item} />
+          <ShowcaseCard key={item.title} user={item} contributorsColumns={4} />
         ))}
       </ul>
     </div>

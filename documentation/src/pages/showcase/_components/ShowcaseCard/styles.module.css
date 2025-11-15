@@ -104,6 +104,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 0;
+  gap: 4px; /* add a little space between tag pills */
 }
 
 .tag {
@@ -258,4 +259,19 @@
 .youtubeEmbed {
   width: 100%;
   height: 100%;
+}
+
+/* Ensure contributors block sits on its own row beneath tag pills */
+.contributorsItem {
+  flex-basis: 100%; /* forces a line break */
+  display: flex;
+  justify-content: flex-start; /* was flex-end; now left-aligned to match tags */
+  align-items: center;
+  gap: 6px; /* spacing between contributor avatars/icons */
+  margin-top: 0.5rem; /* slightly larger top margin for separation */
+}
+
+/* Slightly reduce vertical stacking of long tag lists */
+.tag {
+  max-width: 140px; /* prevent overly wide tags when label is long */
 }

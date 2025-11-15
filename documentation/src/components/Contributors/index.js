@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-export default function Contributors({ orgName, projectName: projectNameProp , githubURL: githubURLProp}) {
+export default function Contributors({ orgName, projectName: projectNameProp , githubURL: githubURLProp, columns = 4}) {
     const {siteConfig} = useDocusaurusContext();
     const {organizationName: orgNameConfig, projectName: projectNameConfig} = siteConfig;
     const [imageError, setImageError] = useState(false);
@@ -19,7 +19,7 @@ export default function Contributors({ orgName, projectName: projectNameProp , g
 
     const contributorsImageSrc = imageError
         ? 'https://via.placeholder.com/400x100/f0f0f0/666666?text=Contributors+Not+Available'
-        : `https://contrib.rocks/image?columns=4&repo=${organizationName}/${projectName}`;
+        : `https://contrib.rocks/image?columns=${columns}&repo=${organizationName}/${projectName}`;
 
     const linkHref = imageError
         ? 'tutorial/tutorial-basics/set-environment-variables'

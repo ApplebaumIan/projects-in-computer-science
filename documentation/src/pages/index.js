@@ -62,83 +62,60 @@ export function HomepageHeader({children}) {
 function DemoLineUp() {
   const section001 = demoSections['001'];
   const section002 = demoSections['002'];
-
-  const section001Projects = demoLineupProjects.filter((project) =>
-    section001.projectSlugs.includes(project.slug)
-  );
-
-  const section002Projects = demoLineupProjects.filter((project) =>
-    section002.projectSlugs.includes(project.slug)
-  );
+  const section001Projects = demoLineupProjects.filter(p => section001.projectSlugs.includes(p.slug));
+  const section002Projects = demoLineupProjects.filter(p => section002.projectSlugs.includes(p.slug));
 
   return (
-    <Tabs queryString="section" className={"unique-tabs"}>
-      <TabItem
-        value="001"
-        label={
-          <>
-            {section001.name}
-            <br />
-            {section001.time}
-            <br />
-            📍{section001.location}
-          </>
-        }
-      >
-          <div style={{marginTop: '2rem'}}>
-              <h3>Presenting Projects</h3>
-              <ul
-                  className={clsx('clean-list')}
-                  style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                      gap: '1.5rem',
-                      listStyle: 'none',
-                      padding: 0,
-                  }}
-              >
-                  {section001Projects.map((project) => (
-                      <li key={project.slug}>
-                          <ShowcaseCard user={project} />
-                      </li>
-                  ))}
-              </ul>
+    <Tabs queryString="section" className={clsx("unique-tabs", styles.compactTabs)}>
+      <TabItem value="001" label={<>{section001.name}<br/>{section001.time}<br/>📍{section001.location}</>}>
+        <div className={styles.demoSectionGrid}>
+          <div className={styles.videoArea}>
+            <div className={styles.videoWrapper}>
+              <iframe
+                src={`https://www.youtube.com/embed/${section001.youtubeId}`}
+                title={`${section001.name} Live Stream`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
           </div>
-        <YouTubeVideoDescription videoId={section001.youtubeId} />
+          <div className={styles.descArea}>
+            <YouTubeVideoDescription videoId={section001.youtubeId} />
+          </div>
+          <div className={styles.projectsArea}>
+            <h3 style={{marginTop:0}}>Presenting Projects</h3>
+            <ul className={clsx('clean-list', styles.projectsGrid)}>
+              {section001Projects.map(project => (
+                <li key={project.slug}><ShowcaseCard user={project} contributorsColumns={6} /></li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </TabItem>
-
-      <TabItem
-        value="002"
-        label={
-          <>
-            {section002.name}
-            <br />
-            {section002.time}
-            <br />
-            📍{section002.location}
-          </>
-        }
-      >
-          <div style={{marginTop: '2rem'}}>
-              <h3>Presenting Projects</h3>
-              <ul
-                  className={clsx('clean-list')}
-                  style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                      gap: '1.5rem',
-                      listStyle: 'none',
-                      padding: 0,
-                  }}
-              >
-                  {section002Projects.map((project) => (
-                      <li key={project.slug}>
-                          <ShowcaseCard user={project} />
-                      </li>
-                  ))}
-              </ul>
+      <TabItem value="002" label={<>{section002.name}<br/>{section002.time}<br/>📍{section002.location}</>}>
+        <div className={styles.demoSectionGrid}>
+          <div className={styles.videoArea}>
+            <div className={styles.videoWrapper}>
+              <iframe
+                src={`https://www.youtube.com/embed/${section002.youtubeId}`}
+                title={`${section002.name} Live Stream`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
           </div>
-          <YouTubeVideoDescription videoId={section002.youtubeId} />
+          <div className={styles.descArea}>
+            <YouTubeVideoDescription videoId={section002.youtubeId} />
+          </div>
+          <div className={styles.projectsArea}>
+            <h3 style={{marginTop:0}}>Presenting Projects</h3>
+            <ul className={clsx('clean-list', styles.projectsGrid)}>
+              {section002Projects.map(project => (
+                <li key={project.slug}><ShowcaseCard user={project} contributorsColumns={6} /></li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </TabItem>
     </Tabs>
   );
@@ -175,9 +152,7 @@ export default function Home() {
         <Layout
             title={`Home`}
             description="Professor Applebaum's Capstone Course Homepage.">
-            <HomepageHeader>
-                {/*<WatchLiveDemo/>*/}
-            </HomepageHeader>
+            <HomepageHeader/>
             <main>
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
                     {/*<div className={"mobile-live-demo"}>*/}
@@ -197,9 +172,3 @@ export default function Home() {
         </Layout>
     );
 }
-
-
-
-
-
-
