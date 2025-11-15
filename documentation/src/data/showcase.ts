@@ -15,7 +15,6 @@ export type TagType =
   | 'collaboration'
   | 'code-quality'
   | 'community'
-  | 'computerVision'
   | 'computer-vision'
   | 'devops'
   | 'discordBot'
@@ -47,6 +46,7 @@ export type TagType =
   | 'social'
   | 'unity'
   | 'vscode-extension'
+  | 'virtual-pet'
   | 'web'
   | 'webgl';
 
@@ -64,7 +64,6 @@ export const TagList: TagType[] = [
   'collaboration',
   'code-quality',
   'community',
-  'computerVision',
   'computer-vision',
   'devops',
   'discordBot',
@@ -96,6 +95,7 @@ export const TagList: TagType[] = [
   'social',
   'unity',
   'vscode-extension',
+  'virtual-pet',
   'web',
   'webgl',
 ];
@@ -117,8 +117,7 @@ export const Tags: Record<
   collaboration: { label: 'Collaboration', description: 'Team communication or coordination', color: '#FF7043' },
   'code-quality': { label: 'Code Quality', description: 'Tools or workflows to improve code quality', color: '#455A64' },
   community: { label: 'Community', description: 'Community-focused or civic tech projects', color: '#00897B' },
-  computerVision: { label: 'Computer Vision', description: 'Image / video recognition or detection', color: '#8E44AD' },
-  'computer-vision': { label: 'Computer Vision (alt)', description: 'Alternate tag for computer vision projects', color: '#6A1B9A' },
+  'computer-vision': { label: 'Computer Vision', description: 'Image / video recognition or detection', color: '#8E44AD' },
   devops: { label: 'DevOps', description: 'Developer workflow, review, or automation', color: '#FFB300' },
   discordBot: { label: 'Discord Bot', description: 'Bots or integrations for Discord', color: '#7289DA' },
   education: { label: 'Education', description: 'Learning-focused platforms or tools', color: '#3D7FFF' },
@@ -149,6 +148,7 @@ export const Tags: Record<
   social: { label: 'Social', description: 'Social or location-based social features', color: '#6D4C41' },
   unity: { label: 'Unity', description: 'Unity game engine projects', color: '#8E24AA' },
   'vscode-extension': { label: 'VSCode Extension', description: 'Extensions or IDE integrations for VSCode', color: '#0078D7' },
+  'virtual-pet': { label: 'Virtual Pet', description: 'Virtual pet or pet simulation gameplay', color: '#FF6F9E' },
   web: { label: 'Web', description: 'Web application or web technology', color: '#0D47A1' },
   webgl: { label: 'WebGL', description: 'WebGL or browser-based graphics', color: '#00ACC1' },
 };
@@ -216,7 +216,7 @@ export const projects: Project[] = [
     website: 'https://piglet-prep.vercel.app',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-piggyback-learning-team-1',
     demo: 'https://www.youtube.com/embed/BDUngO0hlBk?start=1902&si=g9AsGnZFxogmHHsE',
-    tags: ['education', 'ml', 'computerVision', 'analytics', 'research'],
+    tags: ['education', 'ml', 'computer-vision', 'analytics', 'research'],
     semester: 'Spring 2025',
     slug: 'piglet-prep',
     // useDocsAsPreview: true,
@@ -271,7 +271,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2023-fall.github.io/project-garden-sensor-array/',
     demo: 'https://www.youtube.com/embed/xYrKWJfFlUc?si=Ce_4evGpIuqf4sjL&amp;start=1430',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-garden-sensor-array',
-    tags: ['iot', 'sensors', 'community', 'hardware'],
+    tags: ['iot', 'sensors', 'community', 'hardware', 'raspberry-pi', 'embedded','bluetooth'],
     semester: 'Fall 2023',
     slug: 'garden-sensor-array',
   },
@@ -301,7 +301,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2023-fall.github.io/project-ar-pet-pals/',
     demo: 'https://www.youtube.com/embed/XxRJPMJZ6Fk?start=3823',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-ar-pet-pals',
-    tags: ['ar', 'mobile', 'health', 'fitness', 'unity'],
+    tags: ['virtual-pet','ar', 'mobile', 'health', 'fitness', 'unity'],
     semester: 'Fall 2023',
     slug: 'ar-pet-pals',
   },
@@ -312,7 +312,7 @@ export const projects: Project[] = [
     demo: 'https://www.youtube.com/embed/Xlta-ZZ4gPc',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet',
     website: 'https://studybuddy.life/',
-    tags: ['education', 'gamification', 'pwa', 'canvas-lms'],
+    tags: ['virtual-pet','education', 'gamification', 'pwa', 'canvas-lms'],
     semester: 'Spring 2023',
     slug: 'study-buddy',
   },
