@@ -93,6 +93,7 @@ export default function ShowcaseCards() {
       ) : (
         <CardList items={filteredUsers} />
       )}
+        <p style={{textAlign: 'center', padding:40}}>Contributor Icons Made with<a href={"https://contrib.rocks"}> contrib.rocks</a>.</p>
     </section>
   );
 }

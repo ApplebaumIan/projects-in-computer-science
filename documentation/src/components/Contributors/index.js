@@ -19,7 +19,7 @@ export default function Contributors({ orgName, projectName: projectNameProp , g
 
     const contributorsImageSrc = imageError
         ? 'https://via.placeholder.com/400x100/f0f0f0/666666?text=Contributors+Not+Available'
-        : `https://contrib.rocks/image?repo=${organizationName}/${projectName}`;
+        : `https://contrib.rocks/image?columns=4&repo=${organizationName}/${projectName}`;
 
     const linkHref = imageError
         ? 'tutorial/tutorial-basics/set-environment-variables'
@@ -33,7 +33,5 @@ export default function Contributors({ orgName, projectName: projectNameProp , g
                 onError={handleImageError}
             />
         </a>
-        <p>Made with<a href={"https://contrib.rocks"}> contrib.rocks</a>.
-        </p>
     </div>;
 }
