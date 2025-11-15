@@ -1,195 +1,194 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import ProjectReadme from "../components/ReademeMD";
 import styles from './index.module.css';
-//import Syllabus from '../components/Syllabus';
-//import SyllabusPage from './_syllabus-page.mdx'
-import MDXContent from '@theme/MDXContent';
 import Figure from "../components/Figure";
 import DontPanic from "../../static/img/dont-panic.svg"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
-import BrowserOnly from "@docusaurus/BrowserOnly";
-import docusaurusConfig from "../../.docusaurus/docusaurus.config.mjs";
-import * as PropTypes from "prop-types";
 import Instructor from "../components/Instructor/Instructor";
 import TeachingAssistants from "../components/TeachingAssistants";
 import OfficeHours from "../components/OfficeHours/OfficeHours";
+import ShowcaseCard from "@site/src/pages/showcase/_components/ShowcaseCard";
+import {demoLineupProjects, demoSections} from "@site/src/data/demoLineup";
 
-function isTimeBetween(startDate, endDate) {
-    var currentDate = new Date();
-    if (currentDate >= startDate && currentDate <= endDate) {
-        return true;
-    } else {
-        return false;
-    }
+function HeaderBody({siteConfig}) {
+  return (
+    <>
+      <h1 className={styles.hero__title}>
+        {siteConfig.customFields.course_number} <br />
+        {siteConfig.title}
+      </h1>
+      <p className={styles.hero__subtitle}>
+        {siteConfig.customFields.semester} {siteConfig.tagline}
+      </p>
+      <div className={"col button_group"}>
+        <Link className="button button--secondary button--lg margin--md" to="#office-hours">
+          Student Office Hours ️👨‍🏫
+        </Link>
+        <Link className="button button--secondary button--lg margin--md" to="/syllabus/course-overview">
+          Course Syllabus 📋
+        </Link>
+        <Link className="button button--secondary button--lg margin--md" to="/syllabus/schedule">
+          Course Schedule 📆
+        </Link>
+      </div>
+    </>
+  );
 }
-
-function HeaderBody(props) {
-    return <>
-        <h1 className={styles.hero__title}>{props.siteConfig.customFields.course_number} <br/>
-            {props.siteConfig.title}
-        </h1>
-        <p className={styles.hero__subtitle}>{props.siteConfig.customFields.semester} {props.siteConfig.tagline}</p>
-        <div className={"col button_group"}>
-            {/* TODO: Change me to your project's tutorial*/}
-            <Link
-                className="button button--secondary button--lg margin--md"
-                to="#office-hours">
-                Student Office Hours ️👨‍🏫
-            </Link>
-            <Link
-                className="button button--secondary button--lg margin--md"
-                to="/syllabus/course-overview">
-                Course Syllabus 📋
-            </Link>
-            <Link
-                className="button button--secondary button--lg margin--md"
-                to="/syllabus/schedule">
-                Course Schedule 📆
-            </Link>
-            {/*<Link*/}
-            {/*    className="button button--secondary button--lg margin--md"*/}
-            {/*    to="https://applebaumian.github.io/tu-cis-4398-docs-template/tutorial/Intro">*/}
-            {/*    Docusaurus Tutorial 🦖*/}
-            {/*</Link>*/}
-        </div>
-    </>;
-}
-
-HeaderBody.propTypes = {siteConfig: PropTypes.any};
 
 export function HomepageHeader({children}) {
-    const {siteConfig} = useDocusaurusContext();
-    return (
-        <header className={clsx('hero hero--primary', styles.heroBanner)}>
-            <div className="container" style={{zIndex: 100}}>
-                <div className={"row"}>
-                    <div className={"col"}>
-                    {/* I want to add children here that are between the jsx   */}
-                        {children ? children : <HeaderBody siteConfig={siteConfig}/>}
-                    </div>
-                    {/*{docusaurusConfig.customFields.is_pdf ? <></> : <WatchLiveDemo/>}*/}
-
-
-                </div>
-            </div>
-            {/*<BrowserOnly  fallback={<div>Loading...</div>} >*/}
-            {/*    {() => {*/}
-            {/*        const AnimatedBackground =*/}
-            {/*            require('../components/AnimatedBackground/index').AnimatedBackground;*/}
-            {/*        return <AnimatedBackground/>;*/}
-            {/*    }}*/}
-            {/*</BrowserOnly>*/}
-            <div className='air air1'/>
-            <div className='air air2'/>
-            <div className='air air3'/>
-            <div className='air air4'/>
-        </header>
-    );
+  const {siteConfig} = useDocusaurusContext();
+  return (
+    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      <div className="container" style={{zIndex: 100}}>
+        <div className={"row"}>
+          <div className={"col"}>
+            {children ? children : <HeaderBody siteConfig={siteConfig} />}
+          </div>
+        </div>
+      </div>
+      <div className='air air1' />
+      <div className='air air2' />
+      <div className='air air3' />
+      <div className='air air4' />
+    </header>
+  );
 }
 
-function DemoLineUp(props) {
-    return <Tabs queryString="section" className={"unique-tabs"}>
-        <TabItem value="001" label={<>Section 001<br/>9:30-10:50am EST<br/>📍SERC 306</>}>
-            <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={"Section 001"}>
-                <iframe className={"youtube-player"}
-                        src="https://www.youtube.com/embed/y990YPLQf2Q?si=rvgBMORM2CBJw9BC"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-            </Figure>
-            <div className={"col"}>
-                <details>
-                    <summary className={"button button--outline button--primary margin-bottom--lg justify-center"}>
-                        Click Here For the Demo Lineup!
-                    </summary>
-                    <YouTubeVideoDescription videoId={"y990YPLQf2Q"}/>
-                </details>
-            </div>
-        </TabItem>
-        <TabItem value="002" label={<>Section 002<br/>12:30pm to 1:50pm EST<br/>📍SERC 306</>}
-                 default={isTimeBetween(props.startDate, props.endDate)}>
-            <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={"Section 002"}>
-                <iframe className={"youtube-player"}
-                        src="https://www.youtube.com/embed/BDUngO0hlBk?si=v6yDyYEZCGdRAgOr"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-            </Figure>
-            <div className={"col"}>
-                <details>
-                    <summary className={"button button--outline button--primary margin-bottom--lg"}>
-                        Click Here For the Demo Lineup!
-                    </summary>
-                    <YouTubeVideoDescription videoId={"BDUngO0hlBk"}/>
-                </details>
-            </div>
-        </TabItem>
-        <TabItem value="003" label={<>Section 003<br/>3:30pm to 4:50pm EST<br/>📍SERC 306</>}
-                 default={isTimeBetween(props.startDate, props.endDate)}>
-            <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={"Section 003"}>
-                <iframe className={"youtube-player"}
-                        src="https://www.youtube.com/embed/j1K0Ypl_iDk?si=OGWRYMr5kdTf5Nq5"
-                        title="YouTube video player" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-            </Figure>
-            <div className={"col"}>
-                <details>
-                    <summary className={"button button--outline button--primary margin-bottom--lg"}>
-                        Click Here For the Demo Lineup!
-                    </summary>
-                    <YouTubeVideoDescription videoId={"j1K0Ypl_iDk"}/>
-                </details>
-            </div>
-        </TabItem>
-    </Tabs>;
-}
+function DemoLineUp() {
+  const section001 = demoSections['001'];
+  const section002 = demoSections['002'];
 
-DemoLineUp.propTypes = {
-    startDate: PropTypes.any,
-    endDate: PropTypes.any
-};
+  const section001Projects = demoLineupProjects.filter((project) =>
+    section001.projectSlugs.includes(project.slug)
+  );
+
+  const section002Projects = demoLineupProjects.filter((project) =>
+    section002.projectSlugs.includes(project.slug)
+  );
+
+  return (
+    <Tabs queryString="section" className={"unique-tabs"}>
+      <TabItem
+        value="001"
+        label={
+          <>
+            {section001.name}
+            <br />
+            {section001.time}
+            <br />
+            📍{section001.location}
+          </>
+        }
+      >
+        <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={section001.name}>
+          <iframe
+            className={"youtube-player"}
+            src={`https://www.youtube.com/embed/${section001.youtubeId}`}
+            title={`${section001.name} Live Stream`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            style={{width: '100%', aspectRatio: '16 / 9'}}
+          />
+        </Figure>
+          <div style={{marginTop: '2rem'}}>
+              <h3>Presenting Projects</h3>
+              <ul
+                  className={clsx('clean-list')}
+                  style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                      gap: '1.5rem',
+                      listStyle: 'none',
+                      padding: 0,
+                  }}
+              >
+                  {section001Projects.map((project) => (
+                      <li key={project.slug}>
+                          <ShowcaseCard user={project} />
+                      </li>
+                  ))}
+              </ul>
+          </div>
+        <YouTubeVideoDescription videoId={section001.youtubeId} />
+      </TabItem>
+
+      <TabItem
+        value="002"
+        label={
+          <>
+            {section002.name}
+            <br />
+            {section002.time}
+            <br />
+            📍{section002.location}
+          </>
+        }
+      >
+        <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={section002.name}>
+          <iframe
+            className={"youtube-player"}
+            src={`https://www.youtube.com/embed/${section002.youtubeId}`}
+            title={`${section002.name} Live Stream`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            style={{width: '100%', aspectRatio: '16 / 9'}}
+          />
+        </Figure>
+          <div style={{marginTop: '2rem'}}>
+              <h3>Presenting Projects</h3>
+              <ul
+                  className={clsx('clean-list')}
+                  style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                      gap: '1.5rem',
+                      listStyle: 'none',
+                      padding: 0,
+                  }}
+              >
+                  {section002Projects.map((project) => (
+                      <li key={project.slug}>
+                          <ShowcaseCard user={project} />
+                      </li>
+                  ))}
+              </ul>
+          </div>
+          <YouTubeVideoDescription videoId={section002.youtubeId} />
+      </TabItem>
+    </Tabs>
+  );
+}
 
 function WatchLiveDemo() {
-    const {siteConfig} = useDocusaurusContext();
-
-    // Section 002 should appear first
-    var section002Start = new Date("2023-04-29T01:00:00");
-    var section002End = new Date("2023-05-01T15:20:00");
-
-    // refreshing the page should then show section 003
-    var section003Start = new Date("2023-05-01T15:20:00");
-    var section003End = new Date("2023-05-01T16:50:00");
-
-    return <div className={"live-demo card container shadow--tl"}>
-        <div className={"card__header row"}>
-            <div className={"col"}>
-                <h1 className={styles.hero__title}>{siteConfig.customFields.course_number} <br/>
-                    {siteConfig.title}
-                </h1>
-                <p style={{margin:"0", padding:0}}>{siteConfig.customFields.semester} {siteConfig.tagline}</p>
-                <div className={"col col--9"}>
-                    {/*<h2>Watch Live 🔴</h2>*/}
-                    {/*<h3>December 9th 9:30am to 3:20pm EST on YouTube</h3>*/}
-                </div>
-
-            </div>
-            <div className={"col col--2"}>
-                <DontPanic style={{width: "100%"}}
-                           alt={"The words \"Don\'t panic\", written in large red friendly letters."}/>
-            </div>
+  const {siteConfig} = useDocusaurusContext();
+  return (
+    <div className={"live-demo card container shadow--tl"}>
+      <div className={"card__header row"}>
+        <div className={"col"}>
+          <h1 className={styles.hero__title}>
+            {siteConfig.customFields.course_number} <br />
+            {siteConfig.title}
+          </h1>
+          <p style={{margin: 0, padding: 0}}>
+            {siteConfig.customFields.semester} {siteConfig.tagline}
+          </p>
         </div>
-        <div className={"card__body"}>
-            <DemoLineUp startDate={section002Start} endDate={section002End}/>
+        <div className={"col col--2"}>
+          <DontPanic style={{width: '100%'}} alt={"The words \"Don't panic\", written in large red friendly letters."} />
         </div>
-    </div>;
+      </div>
+      <div className={"card__body"}>
+        <DemoLineUp />
+      </div>
+    </div>
+  );
 }
 
 export default function Home() {
@@ -198,9 +197,16 @@ export default function Home() {
         <Layout
             title={`Home`}
             description="Professor Applebaum's Capstone Course Homepage.">
-            <HomepageHeader/>
+            <HomepageHeader>
+                <WatchLiveDemo/>
+            </HomepageHeader>
             <main>
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
+                    <div className={"mobile-live-demo"}>
+                        <h2>Watch Live 🔴</h2>
+                        <h3>April 28th 9:30am to 4:50pm EST on YouTube</h3>
+                        <DemoLineUp/>
+                    </div>
                         <Instructor/>
 
                 </div>
