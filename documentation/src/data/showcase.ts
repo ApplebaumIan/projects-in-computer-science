@@ -238,7 +238,7 @@ export const projects: Project[] = [
     website: 'https://project-whiteboardflow-eowa.vercel.app',
     demo: 'https://www.youtube.com/embed/TE_P9Rks8LU?start=1719',
     source: 'https://github.com/Capstone-Projects-2024-Fall/project-whiteboardflow',
-    tags: ['education', 'interview-prep', 'web'],
+    tags: ['education','ai', 'interview-prep', 'web'],
     semester: 'Fall 2024',
     slug: 'whiteboard-assistant',
     // useDocsAsPreview: true
