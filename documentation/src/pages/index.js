@@ -85,17 +85,6 @@ function DemoLineUp() {
           </>
         }
       >
-        <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={section001.name}>
-          <iframe
-            className={"youtube-player"}
-            src={`https://www.youtube.com/embed/${section001.youtubeId}`}
-            title={`${section001.name} Live Stream`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            style={{width: '100%', aspectRatio: '16 / 9'}}
-          />
-        </Figure>
           <div style={{marginTop: '2rem'}}>
               <h3>Presenting Projects</h3>
               <ul
@@ -130,17 +119,6 @@ function DemoLineUp() {
           </>
         }
       >
-        <Figure caption={"Final Demos Spring Semester 2025 Live Stream"} subcaption={section002.name}>
-          <iframe
-            className={"youtube-player"}
-            src={`https://www.youtube.com/embed/${section002.youtubeId}`}
-            title={`${section002.name} Live Stream`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            style={{width: '100%', aspectRatio: '16 / 9'}}
-          />
-        </Figure>
           <div style={{marginTop: '2rem'}}>
               <h3>Presenting Projects</h3>
               <ul
@@ -198,15 +176,14 @@ export default function Home() {
             title={`Home`}
             description="Professor Applebaum's Capstone Course Homepage.">
             <HomepageHeader>
-                <WatchLiveDemo/>
+                {/*<WatchLiveDemo/>*/}
             </HomepageHeader>
             <main>
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
-                    <div className={"mobile-live-demo"}>
-                        <h2>Watch Live 🔴</h2>
-                        <h3>April 28th 9:30am to 4:50pm EST on YouTube</h3>
+                    {/*<div className={"mobile-live-demo"}>*/}
+
                         <DemoLineUp/>
-                    </div>
+                    {/*</div>*/}
                         <Instructor/>
 
                 </div>

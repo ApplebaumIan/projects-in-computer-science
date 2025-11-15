@@ -83,7 +83,7 @@ export const demoSections = {
   },
   '002': {
     name: 'Section 002',
-    time: '12:30pm to 1:50pm EST',
+    time: '2:00pm to 3:20pm EST',
     location: 'SERC 306',
     youtubeId: 'BDUngO0hlBk',
     projectSlugs: ['ai-collab-agent-02','aac-api-02', 'aac-highlighting-02'],
