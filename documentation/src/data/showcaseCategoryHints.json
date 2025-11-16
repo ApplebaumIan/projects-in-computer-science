@@ -1,0 +1,196 @@
+{
+  "hip-io": [
+    "aac",
+    "accessibility",
+    "game",
+    "mobile",
+    "multiplayer",
+    "safety",
+    "social",
+    "unity",
+    "api",
+    "react"
+  ],
+  "clover": [
+    "ai",
+    "education",
+    "llms",
+    "vscode-extension",
+    "api"
+  ],
+  "order-up": [
+    "aac",
+    "game",
+    "social",
+    "react"
+  ],
+  "piglet-prep": [
+    "computer-vision",
+    "api",
+    "mongodb"
+  ],
+  "biogenie": [
+    "ai",
+    "llms",
+    "web",
+    "react",
+    "flask"
+  ],
+  "whiteboard-assistant": [
+    "ai",
+    "accessibility",
+    "education",
+    "game",
+    "web",
+    "api",
+    "library",
+    "speech-to-text",
+    "react"
+  ],
+  "blastpad": [
+    "education",
+    "embedded",
+    "game",
+    "gaming",
+    "raspberry-pi",
+    "sensors",
+    "library",
+    "react",
+    "flask"
+  ],
+  "smartspeech": [
+    "aac",
+    "ai",
+    "geolocation",
+    "ml",
+    "pwa",
+    "web",
+    "api",
+    "nextjs",
+    "react"
+  ],
+  "garden-sensor-array": [
+    "bluetooth",
+    "iot",
+    "raspberry-pi",
+    "sensors",
+    "web",
+    "api",
+    "react"
+  ],
+  "lomo": [
+    "game",
+    "gaming",
+    "geolocation",
+    "social",
+    "web",
+    "laravel",
+    "react",
+    "postgresql"
+  ],
+  "code-review-chatbot": [
+    "code-quality",
+    "education",
+    "llms",
+    "api",
+    "sqlite"
+  ],
+  "ar-pet-pals": [
+    "ai",
+    "ar",
+    "game",
+    "health",
+    "fitness",
+    "mobile",
+    "unity",
+    "virtual-pet",
+    "speech-to-text"
+  ],
+  "study-buddy": [
+    "education",
+    "gamification",
+    "mobile",
+    "pwa",
+    "virtual-pet",
+    "web",
+    "api",
+    "react",
+    "django",
+    "sqlite"
+  ],
+  "tu-traffic": [
+    "computer-vision",
+    "embedded",
+    "ml",
+    "mobile",
+    "raspberry-pi",
+    "web",
+    "react"
+  ],
+  "robocontrol": [
+    "computer-vision",
+    "embedded",
+    "raspberry-pi",
+    "robotics",
+    "sensors",
+    "library",
+    "react",
+    "flask"
+  ],
+  "collabybot": [
+    "discordBot",
+    "robotics",
+    "react"
+  ],
+  "sokroban": [
+    "game",
+    "geolocation",
+    "multiplayer",
+    "unity",
+    "webgl",
+    "api"
+  ],
+  "collaborative-agent-01": [
+    "ai",
+    "api",
+    "flask",
+    "postgresql"
+  ],
+  "sketch-to-screen-01": [
+    "ai",
+    "llms",
+    "web",
+    "api",
+    "library",
+    "react",
+    "django"
+  ],
+  "aaccommodate-api-01": [
+    "aac",
+    "devops",
+    "embedded",
+    "game",
+    "pwa",
+    "social",
+    "api",
+    "library",
+    "speech-to-text"
+  ],
+  "ai-collab-agent-02": [
+    "ai",
+    "code-quality",
+    "education",
+    "embedded",
+    "vscode-extension",
+    "api"
+  ],
+  "aac-api-02": [
+    "aac",
+    "game",
+    "api"
+  ],
+  "aac-highlighting-02": [
+    "aac",
+    "game"
+  ]
+}

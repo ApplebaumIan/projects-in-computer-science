@@ -288,7 +288,7 @@ export const projects: Project[] = [
     website: 'https://bankruptcyassociation.com',
     source: 'https://github.com/Capstone-Projects-2025-Spring/aac-go-fish',
     demo: 'https://www.youtube.com/watch?v=BDUngO0hlBk&t=781',
-    tags: ['game', 'accessibility', 'aac', 'education','research'],
+    tags: ['game', 'accessibility', 'aac', 'education','research', 'multiplayer'],
     semester: 'Spring 2025',
     slug: 'order-up',
   },
@@ -462,16 +462,18 @@ export const projects: Project[] = [
 // Using require to avoid TS2732 without resolveJsonModule
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const languagesMapping: Record<string, string[]> = require('./showcaseLanguages.json');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const categoryHints: Record<string, string[]> = require('./showcaseCategoryHints.json');
 
 function mergeLanguageTags(proj: Project): Project {
   try {
     const langs: string[] | undefined = (languagesMapping as any)[proj.slug ?? ''];
-    if (!langs || !Array.isArray(langs)) return proj;
-    const validLangTags = langs
-      .map((l) => l.toLowerCase())
-      .filter((l) => (Tags as any)[l]);
-    if (validLangTags.length === 0) return proj;
-    const merged = Array.from(new Set([...(proj.tags || []), ...validLangTags]));
+    const cats: string[] | undefined = (categoryHints as any)[proj.slug ?? ''];
+    const addable = (arr?: string[]) => Array.isArray(arr) ? arr.map((l) => l.toLowerCase()).filter((l) => (Tags as any)[l]) : [];
+    const validLangTags = addable(langs);
+    const validCatTags = addable(cats);
+    if (validLangTags.length === 0 && validCatTags.length === 0) return proj;
+    const merged = Array.from(new Set([...(proj.tags || []), ...validLangTags, ...validCatTags]));
     return { ...proj, tags: merged };
   } catch (e) {
     return proj;
