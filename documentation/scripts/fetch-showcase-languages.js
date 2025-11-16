@@ -31,12 +31,22 @@ const LANGUAGE_MAP = {
   'Python': 'python',
   'C#': 'csharp',
   'C++': 'cpp',
+  'C': 'c',
+  'Java': 'java',
+  'Ruby': 'ruby',
+  'Rust': 'rust',
+  'Dart': 'dart',
+  'Lua': 'lua',
+  'PHP': 'php',
   'HTML': 'html',
   'CSS': 'css',
   'Shell': 'shell',
   'Swift': 'swift',
   'Go': 'go',
-  'Kotlin': 'kotlin'
+  'Kotlin': 'kotlin',
+  'Dockerfile': 'dockerfile',
+  'docker-compose': 'docker-compose',
+  'Jupyter Notebook': 'jupyter-notebook',
 };
 // Languages we want to ignore entirely (do not output as tags)
 const IGNORE_GITHUB_LANGS = new Set(['HTML','CSS']);

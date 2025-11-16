@@ -52,6 +52,16 @@ export type TagType =
   | 'api'
   | 'library'
   | 'speech-to-text'
+  | 'laravel'
+  | 'nextjs'
+  | 'react'
+  | 'django'
+  | 'flask'
+  | 'sqlite'
+  | 'postgresql'
+  | 'mongodb'
+  | 'tensorflow'
+  | 'pytorch'
   // Language tags
   | 'typescript'
   | 'javascript'
@@ -61,7 +71,17 @@ export type TagType =
   | 'shell'
   | 'swift'
   | 'go'
-  | 'kotlin';
+  | 'kotlin'
+  | 'php'
+  | 'c'
+  | 'java'
+  | 'ruby'
+  | 'rust'
+  | 'dart'
+  | 'lua'
+  | 'dockerfile'
+  | 'docker-compose'
+  | 'jupyter-notebook';
 
 export const TagList: TagType[] = [
   'aac',
@@ -90,35 +110,45 @@ export const TagList: TagType[] = [
   'hardware',
   'health',
   'fitness',
-  'interview-prep',
-  'iot',
-  'jira',
-  'llms',
-  'ml',
-  'mobile',
-  'multiplayer',
-  'puzzle',
-  'parking',
-  'pwa',
-  'raspberry-pi',
-  'research',
-  'robotics',
-  'safety',
-  'sensors',
-  'social',
-  'unity',
-  'vscode-extension',
-  'virtual-pet',
-  'web',
-  'webgl',
-  'api',
-  'library',
-  'speech-to-text',
+  'interview-prep'
+  , 'iot'
+  , 'jira'
+  , 'llms'
+  , 'ml'
+  , 'mobile'
+  , 'multiplayer'
+  , 'puzzle'
+  , 'parking'
+  , 'pwa'
+  , 'raspberry-pi'
+  , 'research'
+  , 'robotics'
+  , 'safety'
+  , 'sensors'
+  , 'social'
+  , 'unity'
+  , 'vscode-extension'
+  , 'virtual-pet'
+  , 'web'
+  , 'webgl'
+  , 'api'
+  , 'library'
+  , 'speech-to-text'
+  , 'laravel'
+  , 'nextjs'
+  , 'react'
+  , 'django'
+  , 'flask'
+  , 'sqlite'
+  , 'postgresql'
+  , 'mongodb'
+  , 'tensorflow'
+  , 'pytorch'
   // Language tags appended
-  'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin'
+  , 'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin', 'php', 'c', 'java', 'ruby', 'rust', 'dart', 'lua','dockerfile','docker-compose','jupyter-notebook'
 ];
 
-export const LanguageTagList: TagType[] = ['typescript','javascript','python','csharp','cpp','shell','swift','go','kotlin'];
+export const LanguageTagList: TagType[] = ['typescript','javascript','python','csharp','cpp','shell','swift','go','kotlin','php','c','java','ruby','rust','dart','lua','dockerfile','docker-compose','jupyter-notebook'];
 
 export const Tags: Record<
   TagType,
@@ -173,7 +203,17 @@ export const Tags: Record<
   webgl: { label: 'WebGL', description: 'WebGL or browser-based graphics', color: '#00ACC1' },
   api: { label: 'API', description: 'APIs or backend services', color: '#00897B' },
   library: { label: 'Library', description: 'Reusable code libraries or frameworks', color: '#6D4C41' },
-    'speech-to-text': { label: 'Speech-to-Text', description: 'Speech recognition or transcription features', color: '#F4511E' },
+  'speech-to-text': { label: 'Speech-to-Text', description: 'Speech recognition or transcription features', color: '#F4511E' },
+  laravel: { label: 'Laravel', description: 'Laravel framework', color: '#FF2D20' },
+  nextjs: { label: 'Next.js', description: 'Next.js framework', color: '#000000' },
+  react: { label: 'React', description: 'React library', color: '#61DAFB' },
+  django: { label: 'Django', description: 'Django framework', color: '#092E20' },
+  flask: { label: 'Flask', description: 'Flask microframework', color: '#000000' },
+  sqlite: { label: 'SQLite', description: 'SQLite database', color: '#003B57' },
+  postgresql: { label: 'PostgreSQL', description: 'PostgreSQL database', color: '#336791' },
+  mongodb: { label: 'MongoDB', description: 'MongoDB database', color: '#47A248' },
+  tensorflow: { label: 'TensorFlow', description: 'TensorFlow ML framework', color: '#FF6F00' },
+  pytorch: { label: 'PyTorch', description: 'PyTorch ML framework', color: '#EE4C2C' },
   // Language tags metadata
   typescript: { label: 'TypeScript', description: 'TypeScript language', color: '#3178C6' },
   javascript: { label: 'JavaScript', description: 'JavaScript language', color: '#F7DF1E' },
@@ -184,6 +224,16 @@ export const Tags: Record<
   swift: { label: 'Swift', description: 'Swift language', color: '#FA7343' },
   go: { label: 'Go', description: 'Go language', color: '#00ADD8' },
   kotlin: { label: 'Kotlin', description: 'Kotlin language', color: '#7F52FF' },
+  php: { label: 'PHP', description: 'PHP language', color: '#777BB4' },
+  c: { label: 'C', description: 'C language', color: '#A8B9CC' },
+  java: { label: 'Java', description: 'Java language', color: '#007396' },
+  ruby: { label: 'Ruby', description: 'Ruby language', color: '#CC342D' },
+  rust: { label: 'Rust', description: 'Rust language', color: '#DEA584' },
+  dart: { label: 'Dart', description: 'Dart language', color: '#0175C2' },
+  lua: { label: 'Lua', description: 'Lua language', color: '#000080' },
+  dockerfile: { label: 'Dockerfile', description: 'Dockerfile configuration', color: '#2496ED' },
+  'docker-compose': { label: 'Docker Compose', description: 'Docker Compose configuration', color: '#2496ED' },
+  'jupyter-notebook': { label: 'Jupyter Notebook', description: 'Jupyter Notebook files', color: '#F37626' },
 };
 
 // Minimal Project type and placeholder projects array.
@@ -249,7 +299,7 @@ export const projects: Project[] = [
     website: 'https://piglet-prep.vercel.app',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-piggyback-learning-team-1',
     demo: 'https://www.youtube.com/watch?v=BDUngO0hlBk&t=1902',
-    tags: ['education', 'ml', 'computer-vision', 'analytics', 'research'],
+    tags: ['education', 'ml', 'computer-vision', 'analytics', 'research','nextjs'],
     semester: 'Spring 2025',
     slug: 'piglet-prep',
     // useDocsAsPreview: true,
@@ -271,7 +321,7 @@ export const projects: Project[] = [
     website: 'https://project-whiteboardflow-eowa.vercel.app',
     demo: 'https://www.youtube.com/watch?v=TE_P9Rks8LU&t=1719',
     source: 'https://github.com/Capstone-Projects-2024-Fall/project-whiteboardflow',
-    tags: ['education','ai', 'interview-prep', 'web'],
+    tags: ['education','ai', 'interview-prep', 'web','pwa'],
     semester: 'Fall 2024',
     slug: 'whiteboard-assistant',
     // useDocsAsPreview: true
@@ -282,7 +332,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2024-spring.github.io/project-blastpad/',
     demo: 'https://www.youtube.com/watch?v=w5BaWx_9U6U&t=3527',
     source: 'https://github.com/Capstone-Projects-2024-Spring/project-blastpad',
-    tags: ['gaming', 'education', 'hardware', 'raspberry-pi'],
+    tags: ['gaming', 'education', 'hardware', 'raspberry-pi', 'embedded','pwa'],
     semester: 'Spring 2024',
     slug: 'blastpad',
   },
@@ -293,7 +343,7 @@ export const projects: Project[] = [
     demo: 'https://www.youtube.com/watch?v=xYrKWJfFlUc&t=3327',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-smartspeech',
     website: 'https://project-smartspeech.vercel.app',
-    tags: ['accessibility', 'aac', 'ml', 'pwa'],
+    tags: ['accessibility', 'aac', 'ml', 'pwa','nextjs'],
     semester: 'Fall 2023',
     useDocsAsPreview: true,
     slug: 'smartspeech',
@@ -312,9 +362,10 @@ export const projects: Project[] = [
     title: 'Lomo',
     description: 'An app that facilitates in-person gaming using real-time geolocation on a 2D map. Users can create or join gaming "Beacons," specifying game details and preferences, catering to those who prefer physical gaming environments.',
     documentation: 'https://capstone-projects-2023-fall.github.io/project-lomo-in-person-gaming-app/',
+    website: 'https://lomogaming.netlify.app/',
     demo: 'https://www.youtube.com/watch?v=xYrKWJfFlUc&t=176',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-lomo-in-person-gaming-app',
-    tags: ['gaming', 'geolocation', 'social'],
+    tags: ['gaming', 'geolocation', 'social','pwa','laravel'],
     semester: 'Fall 2023',
     slug: 'lomo',
   },
@@ -324,7 +375,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2023-fall.github.io/project-code-review-chatbot/',
     demo: 'https://www.youtube.com/watch?v=Wge6Wd8ctRI&t=2596',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-code-review-chatbot',
-    tags: ['ai', 'code-quality', 'vscode-extension', 'education'],
+    tags: ['ai', 'code-quality', 'vscode-extension', 'education','laravel'],
     semester: 'Fall 2023',
     slug: 'code-review-chatbot',
   },
@@ -345,7 +396,7 @@ export const projects: Project[] = [
     demo: 'https://www.youtube.com/watch?v=Xlta-ZZ4gPc',
     source: 'https://github.com/Capstone-Projects-2023-Spring/project-virtual-pet',
     website: 'https://studybuddy.life/',
-    tags: ['virtual-pet','education', 'gamification', 'pwa', 'canvas-lms'],
+    tags: ['virtual-pet','education', 'gamification', 'pwa', 'canvas-lms','react','django','sqlite'],
     semester: 'Spring 2023',
     slug: 'study-buddy',
   },
@@ -408,7 +459,9 @@ export const projects: Project[] = [
 
 // Import generated language mapping (slug -> language tag array)
 // This file is produced at build time by scripts/fetch-showcase-languages.js
-import languagesMapping from './showcaseLanguages.json';
+// Using require to avoid TS2732 without resolveJsonModule
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const languagesMapping: Record<string, string[]> = require('./showcaseLanguages.json');
 
 function mergeLanguageTags(proj: Project): Project {
   try {

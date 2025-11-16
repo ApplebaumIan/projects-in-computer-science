@@ -76,15 +76,18 @@ function GenericTagList({tags, id}: {tags: TagType[]; id: string}) {
     return map as Record<TagType, number>;
   }, [usersForCounts, tags]);
   (GenericTagList as any).tagCounts = tagCounts;
+  // Remove zero-count tags (unless none would remain)
+  const nonZero = tags.filter(t => (tagCounts[t] ?? 0) > 0);
+  const displayTags = nonZero.length > 0 ? nonZero : tags; // fallback to showing all if all zero
   // Order by count desc, then alphabetical
   const ordered = useMemo(() => {
-    return [...tags].sort((a, b) => {
+    return [...displayTags].sort((a, b) => {
       const ca = tagCounts[a] ?? 0;
       const cb = tagCounts[b] ?? 0;
       if (cb !== ca) return cb - ca;
       return a.localeCompare(b);
     });
-  }, [tags, tagCounts]);
+  }, [displayTags, tagCounts]);
   return (
     <ul id={id} className={clsx('clean-list', styles.tagList)}>
       {ordered.map((tag) => (
@@ -133,7 +136,10 @@ function ShowcaseTagList() {
     'hardware',
   ];
   const orderedCategoryTags = useMemo(() => {
-    return [...categoryTags].sort((a, b) => {
+    // Exclude zero-count tags first (unless that would remove all tags)
+    const nonZero = categoryTags.filter(t => (tagCounts[t] ?? 0) > 0);
+    const base = nonZero.length > 0 ? nonZero : categoryTags;
+    return [...base].sort((a, b) => {
       const ca = tagCounts[a] ?? 0;
       const cb = tagCounts[b] ?? 0;
       if (cb !== ca) return cb - ca;
