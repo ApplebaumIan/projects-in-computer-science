@@ -27,7 +27,7 @@ function HeaderBody({siteConfig}) {
       </p>
       <div className={"col button_group"}>
           {buttons.map((btn) => (
-              <Link className="button button--secondary button--lg margin--md" to={btn.to}>
+              <Link key={btn.to} className="button button--secondary button--lg margin--md" to={btn.to}>
                   {btn.label}
               </Link>
           ))}
@@ -61,6 +61,7 @@ function DemoLineUp() {
 
   return (
       <section style={{ marginBottom: '6rem'}}>
+          <h1 style={{ marginBottom: '2rem'}}>Watch Live Stream <span className={styles.recordingDot} aria-label="Recording live" role="status" /></h1>
     <Tabs queryString="section" className={clsx("unique-tabs", styles.compactTabs)}>
       {sections.map(([id, section]) => {
         const sectionProjects = demoLineupProjects.filter(p => section.projectSlugs.includes(p.slug));

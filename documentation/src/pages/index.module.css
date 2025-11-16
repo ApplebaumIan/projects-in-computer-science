@@ -106,3 +106,44 @@
   .descArea { order: 2; }
   .projectsArea { order: 3; }
 }
+
+/* Pulsing red recording dot */
+.recordingDot {
+  display: inline-block;
+  width: 0.66em;
+  height: 0.66em;
+  border-radius: 50%;
+  background: #ff2d2d; /* accessible bright red */
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  position: relative;
+  box-shadow: 0 0 0 0 rgba(255, 45, 45, 0.7);
+  animation: recordingPulse 1.5s ease-out infinite;
+}
+
+@keyframes recordingPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 45, 0.6);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 45, 45, 0);
+    transform: scale(1.03);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 45, 0);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recordingDot {
+    animation: none;
+  }
+}
+
+/* Slight tweak for smaller headings if reused */
+.smallRecordingDot {
+  width: 0.5em;
+  height: 0.5em;
+}
