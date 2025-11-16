@@ -4,17 +4,17 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
-import Figure from "../components/Figure";
-import DontPanic from "../../static/img/dont-panic.svg"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
 import Instructor from "../components/Instructor/Instructor";
-import TeachingAssistants from "../components/TeachingAssistants";
-import OfficeHours from "../components/OfficeHours/OfficeHours";
 import ShowcaseCard from "@site/src/pages/showcase/_components/ShowcaseCard";
 import {demoLineupProjects, demoSections} from "@site/src/data/demoLineup";
-
+const buttons = [
+    { to: "#office-hours", label: "Student Office Hours ️👨‍🏫" },
+    { to: "/syllabus/course-overview", label: "Course Syllabus 📋" },
+    { to: "/syllabus/schedule", label: "Course Schedule 📆" },
+];
 function HeaderBody({siteConfig}) {
   return (
     <>
@@ -26,15 +26,11 @@ function HeaderBody({siteConfig}) {
         {siteConfig.customFields.semester} {siteConfig.tagline}
       </p>
       <div className={"col button_group"}>
-        <Link className="button button--secondary button--lg margin--md" to="#office-hours">
-          Student Office Hours ️👨‍🏫
-        </Link>
-        <Link className="button button--secondary button--lg margin--md" to="/syllabus/course-overview">
-          Course Syllabus 📋
-        </Link>
-        <Link className="button button--secondary button--lg margin--md" to="/syllabus/schedule">
-          Course Schedule 📆
-        </Link>
+          {buttons.map((btn) => (
+              <Link className="button button--secondary button--lg margin--md" to={btn.to}>
+                  {btn.label}
+              </Link>
+          ))}
       </div>
     </>
   );
@@ -60,94 +56,67 @@ export function HomepageHeader({children}) {
 }
 
 function DemoLineUp() {
-  const section001 = demoSections['001'];
-  const section002 = demoSections['002'];
-  const section001Projects = demoLineupProjects.filter(p => section001.projectSlugs.includes(p.slug));
-  const section002Projects = demoLineupProjects.filter(p => section002.projectSlugs.includes(p.slug));
+  // Sort sections by id for stable ordering like '001', '002', ...
+  const sections = Object.entries(demoSections).sort(([a],[b]) => a.localeCompare(b, undefined, {numeric: true}));
 
   return (
+      <section style={{ marginBottom: '6rem'}}>
     <Tabs queryString="section" className={clsx("unique-tabs", styles.compactTabs)}>
-      <TabItem value="001" label={<>{section001.name}<br/>{section001.time}<br/>📍{section001.location}</>}>
-        <div className={styles.demoSectionGrid}>
-          <div className={styles.videoArea}>
-            <div className={styles.videoWrapper}>
-              <iframe
-                src={`https://www.youtube.com/embed/${section001.youtubeId}`}
-                title={`${section001.name} Live Stream`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </div>
-          <div className={styles.descArea}>
-            <YouTubeVideoDescription videoId={section001.youtubeId} />
-          </div>
-          <div className={styles.projectsArea}>
-            <h3 style={{marginTop:0}}>Presenting Projects</h3>
-            <ul className={clsx('clean-list', styles.projectsGrid)}>
-              {section001Projects.map(project => (
-                <li key={project.slug}><ShowcaseCard user={project} contributorsColumns={6} /></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </TabItem>
-      <TabItem value="002" label={<>{section002.name}<br/>{section002.time}<br/>📍{section002.location}</>}>
-        <div className={styles.demoSectionGrid}>
-          <div className={styles.videoArea}>
-            <div className={styles.videoWrapper}>
-              <iframe
-                src={`https://www.youtube.com/embed/${section002.youtubeId}`}
-                title={`${section002.name} Live Stream`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </div>
-          <div className={styles.descArea}>
-            <YouTubeVideoDescription videoId={section002.youtubeId} />
-          </div>
-          <div className={styles.projectsArea}>
-            <h3 style={{marginTop:0}}>Presenting Projects</h3>
-            <ul className={clsx('clean-list', styles.projectsGrid)}>
-              {section002Projects.map(project => (
-                <li key={project.slug}><ShowcaseCard user={project} contributorsColumns={6} /></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </TabItem>
-    </Tabs>
-  );
-}
+      {sections.map(([id, section]) => {
+        const sectionProjects = demoLineupProjects.filter(p => section.projectSlugs.includes(p.slug));
+        return (
+          <TabItem
+            key={id}
+            value={id}
+            label={<>{section.name}<br/>{section.time}<br/>📍{section.location}</>}
+          >
+            <div className={styles.demoSectionGrid}>
+              <div className={styles.videoArea}>
+                <div className={styles.videoWrapper}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${section.youtubeId}`}
+                    title={`${section.name} Live Stream`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div className={styles.descArea}>
+                  <div style={{flexWrap: 'wrap', display: 'flex', gap: '12px', marginBottom: '12px', justifyContent: 'center'}}>
+                  <Link className="button button--primary button--lg margin--md" to='#presenting-projects'>
+                      Checkout the Projects 🚀
+                  </Link>
+                  </div>
+                <YouTubeVideoDescription videoId={section.youtubeId} />
 
-function WatchLiveDemo() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <div className={"live-demo card container shadow--tl"}>
-      <div className={"card__header row"}>
-        <div className={"col"}>
-          <h1 className={styles.hero__title}>
-            {siteConfig.customFields.course_number} <br />
-            {siteConfig.title}
-          </h1>
-          <p style={{margin: 0, padding: 0}}>
-            {siteConfig.customFields.semester} {siteConfig.tagline}
-          </p>
-        </div>
-        <div className={"col col--2"}>
-          <DontPanic style={{width: '100%'}} alt={"The words \"Don't panic\", written in large red friendly letters."} />
-        </div>
-      </div>
-      <div className={"card__body"}>
-        <DemoLineUp />
-      </div>
-    </div>
+              </div>
+
+              <div className={styles.projectsArea}>
+                <h3 id={'presenting-projects'} style={{marginTop:0}}>Presenting Projects</h3>
+                <ul className={clsx('clean-list', styles.projectsGrid)}>
+                  {sectionProjects.map(project => (
+                    <ShowcaseCard key={project.slug} user={project} contributorsColumns={6} />
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </TabItem>
+        );
+      })}
+    </Tabs>
+
+          <div style={{textAlign: 'center', marginTop: '2rem'}}>
+              <p style={{marginBottom: '1rem'}}>Still waiting? Checkout previous semesters' for more amazing projects!</p>
+              <Link className="button button--secondary button--lg" to='/showcase'>
+              Capstone Showcase ⭐️
+              </Link>
+          </div>
+
+      </section>
   );
 }
 
 export default function Home() {
-    const {siteConfig} = useDocusaurusContext();
     return (
         <Layout
             title={`Home`}
@@ -155,12 +124,8 @@ export default function Home() {
             <HomepageHeader/>
             <main>
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
-                    {/*<div className={"mobile-live-demo"}>*/}
-
-                        <DemoLineUp/>
-                    {/*</div>*/}
-                        <Instructor/>
-
+                    <DemoLineUp/>
+                    <Instructor/>
                 </div>
                 <nav className="pagination-nav docusaurus-mt-lg" aria-label="Docs pages" style={{justifyContent: 'center', margin: '2rem 0'}}>
                     <Link className="pagination-nav__link pagination-nav__link--next" to="/syllabus/course-overview">

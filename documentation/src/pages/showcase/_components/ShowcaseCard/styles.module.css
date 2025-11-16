@@ -98,6 +98,7 @@
   font-size: smaller;
   line-height: 1.66;
   margin-bottom: 0.5rem;
+  flex: 1 1 auto; /* fill remaining space inside card body */
 }
 
 .cardFooter {
@@ -275,3 +276,19 @@
 .tag {
   max-width: 140px; /* prevent overly wide tags when label is long */
 }
+
+:global(li.card) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Ensure the card body grows to fill available space so footer sits at bottom */
+:global(li.card) :global(.card__body) {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep footer at the end; no extra margin needed when body grows */
+/* .cardFooter stays as is; rely on parent flex layout */
