@@ -51,7 +51,17 @@ export type TagType =
   | 'webgl'
   | 'api'
   | 'library'
-  | 'speech-to-text';
+  | 'speech-to-text'
+  // Language tags
+  | 'typescript'
+  | 'javascript'
+  | 'python'
+  | 'csharp'
+  | 'cpp'
+  | 'shell'
+  | 'swift'
+  | 'go'
+  | 'kotlin';
 
 export const TagList: TagType[] = [
   'aac',
@@ -104,6 +114,8 @@ export const TagList: TagType[] = [
   'api',
   'library',
   'speech-to-text',
+  // Language tags appended
+  'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin'
 ];
 
 export const Tags: Record<
@@ -160,6 +172,16 @@ export const Tags: Record<
   api: { label: 'API', description: 'APIs or backend services', color: '#00897B' },
   library: { label: 'Library', description: 'Reusable code libraries or frameworks', color: '#6D4C41' },
     'speech-to-text': { label: 'Speech-to-Text', description: 'Speech recognition or transcription features', color: '#F4511E' },
+  // Language tags metadata
+  typescript: { label: 'TypeScript', description: 'TypeScript language', color: '#3178C6' },
+  javascript: { label: 'JavaScript', description: 'JavaScript language', color: '#F7DF1E' },
+  python: { label: 'Python', description: 'Python language', color: '#3776AB' },
+  csharp: { label: 'C#', description: 'C# language', color: '#9B4F96' },
+  cpp: { label: 'C++', description: 'C++ language', color: '#00599C' },
+  shell: { label: 'Shell', description: 'Shell scripting', color: '#4EAA25' },
+  swift: { label: 'Swift', description: 'Swift language', color: '#FA7343' },
+  go: { label: 'Go', description: 'Go language', color: '#00ADD8' },
+  kotlin: { label: 'Kotlin', description: 'Kotlin language', color: '#7F52FF' },
 };
 
 // Minimal Project type and placeholder projects array.
@@ -382,8 +404,29 @@ export const projects: Project[] = [
   },
 ];
 
+// Import generated language mapping (slug -> language tag array)
+// This file is produced at build time by scripts/fetch-showcase-languages.js
+import languagesMapping from './showcaseLanguages.json';
+
+function mergeLanguageTags(proj: Project): Project {
+  try {
+    const langs: string[] | undefined = (languagesMapping as any)[proj.slug ?? ''];
+    if (!langs || !Array.isArray(langs)) return proj;
+    const validLangTags = langs
+      .map((l) => l.toLowerCase())
+      .filter((l) => (Tags as any)[l]);
+    if (validLangTags.length === 0) return proj;
+    const merged = Array.from(new Set([...(proj.tags || []), ...validLangTags]));
+    return { ...proj, tags: merged };
+  } catch (e) {
+    return proj;
+  }
+}
+
+const enrichedProjects: Project[] = projects.map(mergeLanguageTags);
+
 // Provide backward-compatible exports used by older components (names like `sortedUsers`).
-export const sortedUsers = projects;
+export const sortedUsers = enrichedProjects;
 export type User = Project;
 
-export default projects;
+export default enrichedProjects;

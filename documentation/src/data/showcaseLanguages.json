@@ -1,0 +1,80 @@
+{
+  "hip-io": [
+    "typescript",
+    "javascript"
+  ],
+  "order-up": [
+    "javascript",
+    "python"
+  ],
+  "piglet-prep": [
+    "typescript",
+    "javascript"
+  ],
+  "biogenie": [
+    "python",
+    "javascript",
+    "shell"
+  ],
+  "whiteboard-assistant": [
+    "javascript",
+    "python"
+  ],
+  "blastpad": [
+    "javascript",
+    "python",
+    "shell"
+  ],
+  "smartspeech": [
+    "typescript",
+    "python",
+    "javascript"
+  ],
+  "garden-sensor-array": [
+    "javascript",
+    "cpp",
+    "python"
+  ],
+  "lomo": [
+    "javascript",
+    "shell"
+  ],
+  "code-review-chatbot": [
+    "typescript",
+    "javascript",
+    "shell"
+  ],
+  "ar-pet-pals": [
+    "csharp",
+    "typescript",
+    "shell"
+  ],
+  "study-buddy": [
+    "python",
+    "javascript",
+    "shell"
+  ],
+  "tu-traffic": [
+    "javascript",
+    "python"
+  ],
+  "robocontrol": [
+    "python",
+    "typescript",
+    "javascript",
+    "shell"
+  ],
+  "vehicle-collision-detection": [
+    "swift",
+    "kotlin",
+    "cpp"
+  ],
+  "collabybot": [
+    "python"
+  ],
+  "sokroban": [
+    "csharp",
+    "cpp",
+    "javascript"
+  ]
+}
