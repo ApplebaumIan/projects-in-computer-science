@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import {useState, useMemo} from 'react';
 import Translate, {translate} from '@docusaurus/Translate';
 import FavoriteIcon from '@site/src/pages/showcase/_components/FavoriteIcon';
-import {Tags, TagList, type TagType} from '@site/src/data/showcase';
+import {Tags, TagList, type TagType, LanguageTagList} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
@@ -62,31 +62,66 @@ function ShowcaseTagListItem({tag}: {tag: TagType}) {
   );
 }
 
-function ShowcaseTagList() {
-  // Users used to compute counts respect the current search and semester,
-  // but ignore tag selection so counts reflect how many projects would match
-  // each tag given the other active constraints.
+// New generic list that can render either language tags or category tags separately
+function GenericTagList({tags, id}: {tags: TagType[]; id: string}) {
   const usersForCounts = useUsersForCounts();
-  // Build a lookup of tag -> count
   const tagCounts = useMemo(() => {
     const map: Record<string, number> = {};
-    for (const tag of TagList) {
-      map[tag] = 0;
-    }
+    for (const tag of tags) map[tag] = 0;
     for (const u of usersForCounts) {
       for (const t of u.tags ?? []) {
         if (map[t] !== undefined) map[t] += 1;
       }
     }
     return map as Record<TagType, number>;
-  }, [usersForCounts]);
-  // Attach counts to the function so child list items can read it (minimal change)
+  }, [usersForCounts, tags]);
+  (GenericTagList as any).tagCounts = tagCounts;
+  // Order by count desc, then alphabetical
+  const ordered = useMemo(() => {
+    return [...tags].sort((a, b) => {
+      const ca = tagCounts[a] ?? 0;
+      const cb = tagCounts[b] ?? 0;
+      if (cb !== ca) return cb - ca;
+      return a.localeCompare(b);
+    });
+  }, [tags, tagCounts]);
+  return (
+    <ul id={id} className={clsx('clean-list', styles.tagList)}>
+      {ordered.map((tag) => (
+        <li key={tag} className={styles.tagListItem}>
+          <ShowcaseTagSelect
+            tag={tag}
+            label={Tags[tag].label}
+            description={Tags[tag].description}
+            count={tagCounts[tag] ?? 0}
+            icon={<TagCircleIcon color={Tags[tag].color} style={{marginLeft: 8}} />}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ShowcaseTagList() {
+  // Separate tag groups
+  const languageTags = LanguageTagList;
+  const categoryTags = TagList.filter((t) => !languageTags.includes(t));
+
+  // Existing truncation logic applies only to category tags (usually larger set)
+  const usersForCounts = useUsersForCounts();
+  const tagCounts = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const tag of categoryTags) map[tag] = 0;
+    for (const u of usersForCounts) {
+      for (const t of u.tags ?? []) {
+        if (map[t] !== undefined) map[t] += 1;
+      }
+    }
+    return map as Record<TagType, number>;
+  }, [usersForCounts, categoryTags]);
   (ShowcaseTagList as any).tagCounts = tagCounts;
   const [expanded, setExpanded] = useState(false);
-  // Number of tags to show before the "Show more" button appears
   const VISIBLE_COUNT = 8;
-
-  // Configure which tags should appear first when counts tie (secondary priority)
   const TOP_TAGS: TagType[] = [
     'education',
     'game',
@@ -97,28 +132,25 @@ function ShowcaseTagList() {
     'web',
     'hardware',
   ];
-
-  // Order tags primarily by count (descending), then by TOP_TAGS order, then alphabetically
-  const orderedTags = useMemo(() => {
-    return [...TagList].sort((a, b) => {
+  const orderedCategoryTags = useMemo(() => {
+    return [...categoryTags].sort((a, b) => {
       const ca = tagCounts[a] ?? 0;
       const cb = tagCounts[b] ?? 0;
-      if (cb !== ca) return cb - ca; // larger counts first
+      if (cb !== ca) return cb - ca;
       const ia = TOP_TAGS.indexOf(a);
       const ib = TOP_TAGS.indexOf(b);
       if (ia !== -1 || ib !== -1) {
         if (ia === -1) return 1;
         if (ib === -1) return -1;
-        return ia - ib; // keep TOP_TAGS relative order
+        return ia - ib;
       }
       return a.localeCompare(b);
     });
-  }, [tagCounts]);
+  }, [tagCounts, categoryTags]);
 
-  const total = orderedTags.length;
+  const total = orderedCategoryTags.length;
   const shouldTruncate = total > VISIBLE_COUNT && !expanded;
-  const visibleTags = shouldTruncate ? orderedTags.slice(0, VISIBLE_COUNT) : orderedTags;
-
+  const visibleCategoryTags = shouldTruncate ? orderedCategoryTags.slice(0, VISIBLE_COUNT) : orderedCategoryTags;
   const moreCount = Math.max(0, total - VISIBLE_COUNT);
   const moreLabel = translate({
     id: 'showcase.filters.showMore',
@@ -129,12 +161,14 @@ function ShowcaseTagList() {
 
   return (
     <div>
+      <Heading as="h3" style={{marginTop: '1.5rem'}}>Programming Languages</Heading>
+      <GenericTagList id="showcase-language-tags" tags={languageTags} />
+      {/*<Heading as="h3" style={{marginTop: '2rem'}}>Topics & Categories</Heading>*/}
       <ul id="showcase-more-tags" className={clsx('clean-list', styles.tagList)}>
-        {visibleTags.map((tag) => {
+        {visibleCategoryTags.map((tag) => {
           return <ShowcaseTagListItem key={tag} tag={tag} />;
         })}
       </ul>
-
       {total > VISIBLE_COUNT && (
         <div className={styles.showMoreRow}>
           <button

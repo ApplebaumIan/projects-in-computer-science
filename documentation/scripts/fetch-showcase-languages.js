@@ -3,10 +3,14 @@
  * Fetch GitHub repository languages for showcase projects and output a JSON
  * mapping from project slug -> array of language tag identifiers (lowercase).
  *
- * Uses the GitHub Languages API: GET /repos/:owner/:repo/languages
- * Respects GITHUB_TOKEN if provided (to increase rate limits).
+ * Caching behavior:
+ * - Reads existing showcaseLanguages.json if present.
+ * - Only fetches languages for slugs not already in the mapping or whose entry is empty.
+ * - Pass --refresh-all (or REFRESH_LANGS=1 env) to force refetch of all slugs.
+ * - Pass --prune to remove mapping entries for slugs no longer present in projects.
  *
- * Safe failure: If any request fails, it logs a warning and continues.
+ * Uses the GitHub Languages API: GET /repos/:owner/:repo/languages
+ * Respects GITHUB_TOKEN/GH_TOKEN if provided (to increase rate limits).
  */
 const fs = require('fs');
 const path = require('path');
@@ -14,6 +18,10 @@ const axios = require('axios');
 
 const SHOWCASE_FILE = path.join(__dirname, '..', 'src', 'data', 'showcase.ts');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'data', 'showcaseLanguages.json');
+
+const args = process.argv.slice(2);
+const REFRESH_ALL = args.includes('--refresh-all') || process.env.REFRESH_LANGS === '1';
+const PRUNE = args.includes('--prune');
 
 // Map GitHub language names -> tag identifiers defined in showcase.ts
 const LANGUAGE_MAP = {
@@ -82,6 +90,17 @@ function extractRepoInfo(sourceUrl) {
   return { owner: m[1], repo: m[2] };
 }
 
+function loadExistingMapping() {
+  if (!fs.existsSync(OUTPUT_FILE)) return {};
+  try {
+    const raw = fs.readFileSync(OUTPUT_FILE, 'utf8');
+    return JSON.parse(raw);
+  } catch (e) {
+    console.warn('[languages] Could not parse existing mapping, starting fresh.');
+    return {};
+  }
+}
+
 async function main() {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || null;
   const fileContent = fs.readFileSync(SHOWCASE_FILE, 'utf8');
@@ -90,12 +109,26 @@ async function main() {
     console.warn('[languages] No projects parsed, aborting.');
     return;
   }
-  console.log(`[languages] Found ${projects.length} projects.`);
+  console.log(`[languages] Found ${projects.length} projects. RefreshAll=${REFRESH_ALL ? 'yes' : 'no'} Prune=${PRUNE ? 'yes' : 'no'}`);
 
-  const output = {};
+  const mapping = loadExistingMapping();
+
+  let fetchedCount = 0;
+  let skippedCount = 0;
+  let updatedCount = 0;
+
+  const presentSlugs = new Set(projects.map(p => p.slug));
+
   for (const p of projects) {
+    const existing = mapping[p.slug];
+    const needsFetch = REFRESH_ALL || !existing || (Array.isArray(existing) && existing.length === 0);
+    if (!needsFetch) {
+      skippedCount++;
+      continue;
+    }
     if (!p.source) {
-      continue; // skip if no source repo
+      console.warn(`[languages] Skip slug=${p.slug} (no source repo)`);
+      continue;
     }
     const info = extractRepoInfo(p.source);
     if (!info) {
@@ -111,14 +144,27 @@ async function main() {
       .sort((a, b) => b.bytes - a.bytes);
     const tags = langEntries.map(e => LANGUAGE_MAP[e.name]);
     if (tags.length) {
-      output[p.slug] = tags;
+      if (existing) updatedCount++; else fetchedCount++;
+      mapping[p.slug] = tags;
       console.log(`[languages] ${p.slug} -> ${tags.join(', ')}`);
+    } else {
+      console.log(`[languages] ${p.slug} -> (no mapped languages)`);
+      mapping[p.slug] = [];
+    }
+  }
+
+  if (PRUNE) {
+    for (const slug of Object.keys(mapping)) {
+      if (!presentSlugs.has(slug)) {
+        delete mapping[slug];
+      }
     }
   }
 
   // Write JSON file
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
-  console.log(`[languages] Wrote ${Object.keys(output).length} entries to ${OUTPUT_FILE}`);
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(mapping, null, 2));
+  console.log(`[languages] Summary: fetched=${fetchedCount} updated=${updatedCount} skipped=${skippedCount} totalStored=${Object.keys(mapping).length}`);
+  console.log(`[languages] Wrote mapping to ${OUTPUT_FILE}`);
 }
 
 main().catch(err => {

@@ -118,6 +118,8 @@ export const TagList: TagType[] = [
   'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin'
 ];
 
+export const LanguageTagList: TagType[] = ['typescript','javascript','python','csharp','cpp','shell','swift','go','kotlin'];
+
 export const Tags: Record<
   TagType,
   { label: string; description: string; color: string }
