@@ -93,7 +93,7 @@ function DemoLineUp() {
               </div>
 
               <div className={styles.projectsArea}>
-                <h3 id={'presenting-projects'} style={{marginTop:0}}>Presenting Projects</h3>
+                <h3 id={'presenting-projects'} style={{marginTop:0, marginBottom:'3rem' }}>Presenting Projects</h3>
                 <ul className={clsx('clean-list', styles.projectsGrid)}>
                   {sectionProjects.map(project => (
                     <ShowcaseCard key={project.slug} user={project} contributorsColumns={6} />
