@@ -76,5 +76,34 @@
     "csharp",
     "cpp",
     "javascript"
+  ],
+  "collaborative-agent-01": [
+    "typescript",
+    "javascript",
+    "python"
+  ],
+  "sketch-to-screen-01": [
+    "typescript",
+    "python",
+    "javascript"
+  ],
+  "aaccommodate-api-01": [
+    "javascript",
+    "typescript",
+    "python"
+  ],
+  "ai-collab-agent-02": [
+    "typescript",
+    "javascript",
+    "python"
+  ],
+  "aac-api-02": [
+    "javascript",
+    "python"
+  ],
+  "aac-highlighting-02": [
+    "typescript",
+    "javascript",
+    "python"
   ]
 }

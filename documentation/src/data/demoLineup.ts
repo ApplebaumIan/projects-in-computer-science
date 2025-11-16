@@ -1,4 +1,4 @@
-import type { Project } from './showcase';
+import {Tags, type Project} from './showcase';
 
 // Demo Lineup data for current presenting projects
 // These are projects currently presenting that haven't been added to the showcase yet
@@ -72,6 +72,20 @@ export const demoLineupProjects: Project[] = [
 
 ];
 
+// Inject language tags (generated at build time) for demo lineup projects
+import languagesMapping from './showcaseLanguages.json';
+for (const proj of demoLineupProjects) {
+  try {
+    const langs: string[] | undefined = (languagesMapping as any)[proj.slug];
+    if (!langs || !Array.isArray(langs) || !langs.length) continue;
+    const validLangs = langs.filter(l => (Tags as any)[l]);
+    if (!validLangs.length) continue;
+    proj.tags = Array.from(new Set([...(proj.tags || []), ...validLangs]));
+  } catch (e) {
+    // swallow enrichment errors
+  }
+}
+
 // Sections configuration for demo lineup
 export const demoSections = {
   '001': {
@@ -89,4 +103,3 @@ export const demoSections = {
     projectSlugs: ['ai-collab-agent-02','aac-api-02', 'aac-highlighting-02'],
   },
 };
-

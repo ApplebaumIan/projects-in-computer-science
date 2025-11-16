@@ -17,6 +17,7 @@ const path = require('path');
 const axios = require('axios');
 
 const SHOWCASE_FILE = path.join(__dirname, '..', 'src', 'data', 'showcase.ts');
+const DEMO_FILE = path.join(__dirname, '..', 'src', 'data', 'demoLineup.ts');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'data', 'showcaseLanguages.json');
 
 const args = process.argv.slice(2);
@@ -43,6 +44,65 @@ const IGNORE_GITHUB_LANGS = new Set(['HTML','CSS']);
 function parseProjects(fileContent) {
   // Naive block parser for objects inside export const projects: Project[] = [ ... ];
   const startIdx = fileContent.indexOf('export const projects');
+  if (startIdx === -1) return [];
+  const arrayStart = fileContent.indexOf('[', startIdx);
+  if (arrayStart === -1) return [];
+  const arrayEnd = fileContent.indexOf('];', arrayStart);
+  if (arrayEnd === -1) return [];
+  const arrayContent = fileContent.slice(arrayStart + 1, arrayEnd);
+  const lines = arrayContent.split(/\r?\n/);
+  const projects = [];
+  let buffer = [];
+  let depth = 0;
+  for (const line of lines) {
+    if (line.includes('{')) depth++;
+    if (depth > 0) buffer.push(line);
+    if (line.includes('}')) depth--;
+    if (depth === 0 && buffer.length) {
+      const block = buffer.join('\n');
+      buffer = [];
+      const sourceMatch = block.match(/source:\s*'([^']+)'/);
+      const slugMatch = block.match(/slug:\s*'([^']+)'/);
+      if (slugMatch) {
+        projects.push({ slug: slugMatch[1], source: sourceMatch ? sourceMatch[1] : null });
+      }
+    }
+  }
+  return projects;
+}
+
+function parseProjectsFromSource(fileContent) {
+  const startIdx = fileContent.indexOf('export const projects');
+  if (startIdx === -1) return [];
+  const arrayStart = fileContent.indexOf('[', startIdx);
+  if (arrayStart === -1) return [];
+  const arrayEnd = fileContent.indexOf('];', arrayStart);
+  if (arrayEnd === -1) return [];
+  const arrayContent = fileContent.slice(arrayStart + 1, arrayEnd);
+  const lines = arrayContent.split(/\r?\n/);
+  const projects = [];
+  let buffer = [];
+  let depth = 0;
+  for (const line of lines) {
+    if (line.includes('{')) depth++;
+    if (depth > 0) buffer.push(line);
+    if (line.includes('}')) depth--;
+    if (depth === 0 && buffer.length) {
+      const block = buffer.join('\n');
+      buffer = [];
+      const sourceMatch = block.match(/source:\s*'([^']+)'/);
+      const slugMatch = block.match(/slug:\s*'([^']+)'/);
+      if (slugMatch) {
+        projects.push({ slug: slugMatch[1], source: sourceMatch ? sourceMatch[1] : null });
+      }
+    }
+  }
+  return projects;
+}
+
+// reuse existing parseProjects for showcase; add new demo parser
+function parseDemoLineup(fileContent) {
+  const startIdx = fileContent.indexOf('export const demoLineupProjects');
   if (startIdx === -1) return [];
   const arrayStart = fileContent.indexOf('[', startIdx);
   if (arrayStart === -1) return [];
@@ -105,11 +165,14 @@ async function main() {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || null;
   const fileContent = fs.readFileSync(SHOWCASE_FILE, 'utf8');
   const projects = parseProjects(fileContent);
-  if (!projects.length) {
+  const demoContent = fs.existsSync(DEMO_FILE) ? fs.readFileSync(DEMO_FILE,'utf8') : '';
+  const demoProjects = parseDemoLineup(demoContent);
+  const allProjects = [...projects, ...demoProjects];
+  if (!allProjects.length) {
     console.warn('[languages] No projects parsed, aborting.');
     return;
   }
-  console.log(`[languages] Found ${projects.length} projects. RefreshAll=${REFRESH_ALL ? 'yes' : 'no'} Prune=${PRUNE ? 'yes' : 'no'}`);
+  console.log(`[languages] Found ${projects.length} showcase projects + ${demoProjects.length} demo lineup projects (total ${allProjects.length}). RefreshAll=${REFRESH_ALL ? 'yes' : 'no'} Prune=${PRUNE ? 'yes' : 'no'}`);
 
   const mapping = loadExistingMapping();
 
@@ -117,9 +180,8 @@ async function main() {
   let skippedCount = 0;
   let updatedCount = 0;
 
-  const presentSlugs = new Set(projects.map(p => p.slug));
-
-  for (const p of projects) {
+  const presentSlugs = new Set(allProjects.map(p => p.slug));
+  for (const p of allProjects) {
     const existing = mapping[p.slug];
     const needsFetch = REFRESH_ALL || !existing || (Array.isArray(existing) && existing.length === 0);
     if (!needsFetch) {
