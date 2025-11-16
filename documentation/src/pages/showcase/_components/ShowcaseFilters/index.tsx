@@ -161,7 +161,6 @@ function ShowcaseTagList() {
 
   return (
     <div>
-      <Heading as="h3" style={{marginTop: '1.5rem'}}>Filters</Heading>
       <GenericTagList id="showcase-language-tags" tags={languageTags} />
       {/*<Heading as="h3" style={{marginTop: '2rem'}}>Topics & Categories</Heading>*/}
       <ul id="showcase-more-tags" className={clsx('clean-list', styles.tagList)}>
