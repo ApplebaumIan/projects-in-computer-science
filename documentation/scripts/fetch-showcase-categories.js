@@ -33,6 +33,7 @@ const EXCLUDED_AUTOTAGS = new Set(['github', 'jira']);
 // Per-slug exclusions: tags that should be removed even if keyword detection matches
 const PER_SLUG_EXCLUDED_TAGS = {
   'piglet-prep': ['embedded'],
+  'hip-io': ['collision', 'unity','game engine', 'safety'],
 };
 
 function readFileIfExists(p) {
