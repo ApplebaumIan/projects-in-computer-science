@@ -1,0 +1,124 @@
+{
+  "hip-io": [
+    "typescript",
+    "javascript"
+  ],
+  "order-up": [
+    "javascript",
+    "python",
+    "dockerfile"
+  ],
+  "piglet-prep": [
+    "typescript",
+    "javascript"
+  ],
+  "biogenie": [
+    "python",
+    "javascript",
+    "shell"
+  ],
+  "whiteboard-assistant": [
+    "javascript",
+    "python"
+  ],
+  "blastpad": [
+    "javascript",
+    "python",
+    "shell"
+  ],
+  "smartspeech": [
+    "typescript",
+    "jupyter-notebook",
+    "python",
+    "javascript",
+    "dockerfile"
+  ],
+  "garden-sensor-array": [
+    "javascript",
+    "c",
+    "cpp",
+    "python"
+  ],
+  "lomo": [
+    "php",
+    "javascript",
+    "dockerfile",
+    "shell"
+  ],
+  "code-review-chatbot": [
+    "php",
+    "typescript",
+    "javascript",
+    "shell",
+    "dockerfile"
+  ],
+  "ar-pet-pals": [
+    "csharp",
+    "typescript",
+    "java",
+    "shell"
+  ],
+  "study-buddy": [
+    "python",
+    "javascript",
+    "shell",
+    "dockerfile"
+  ],
+  "tu-traffic": [
+    "javascript",
+    "python"
+  ],
+  "robocontrol": [
+    "python",
+    "typescript",
+    "javascript",
+    "shell"
+  ],
+  "vehicle-collision-detection": [
+    "swift",
+    "kotlin",
+    "cpp",
+    "c"
+  ],
+  "collabybot": [
+    "python",
+    "dockerfile"
+  ],
+  "sokroban": [
+    "csharp",
+    "cpp",
+    "javascript"
+  ],
+  "collaborative-agent-01": [
+    "typescript",
+    "javascript",
+    "python"
+  ],
+  "sketch-to-screen-01": [
+    "typescript",
+    "python",
+    "javascript"
+  ],
+  "aaccommodate-api-01": [
+    "javascript",
+    "typescript",
+    "python"
+  ],
+  "ai-collab-agent-02": [
+    "typescript",
+    "javascript",
+    "java",
+    "python"
+  ],
+  "aac-api-02": [
+    "javascript",
+    "python"
+  ],
+  "aac-highlighting-02": [
+    "typescript",
+    "jupyter-notebook",
+    "javascript",
+    "python",
+    "dockerfile"
+  ]
+}
