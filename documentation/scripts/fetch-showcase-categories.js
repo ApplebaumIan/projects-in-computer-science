@@ -34,6 +34,7 @@ const EXCLUDED_AUTOTAGS = new Set(['github', 'jira']);
 const PER_SLUG_EXCLUDED_TAGS = {
   'piglet-prep': ['embedded'],
   'hip-io': ['collision', 'unity','game engine', 'safety'],
+  'collabybot': ['robotics']
 };
 
 function readFileIfExists(p) {
