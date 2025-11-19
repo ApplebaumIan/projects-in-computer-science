@@ -385,7 +385,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2023-fall.github.io/project-ar-pet-pals/',
     demo: 'https://www.youtube.com/watch?v=XxRJPMJZ6Fk&t=3823',
     source: 'https://github.com/Capstone-Projects-2023-Fall/project-ar-pet-pals',
-    tags: ['virtual-pet','ar', 'mobile', 'health', 'fitness', 'unity'],
+    tags: ['virtual-pet','ar', 'mobile', 'health', 'fitness', 'unity','gamification'],
     semester: 'Fall 2023',
     slug: 'ar-pet-pals',
   },

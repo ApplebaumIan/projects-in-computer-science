@@ -38,7 +38,6 @@
     "ai",
     "accessibility",
     "education",
-    "game",
     "web",
     "api",
     "library",
@@ -48,7 +47,6 @@
   "blastpad": [
     "education",
     "embedded",
-    "game",
     "gaming",
     "raspberry-pi",
     "sensors",
@@ -77,7 +75,6 @@
     "react"
   ],
   "lomo": [
-    "game",
     "gaming",
     "geolocation",
     "social",
@@ -96,7 +93,6 @@
   "ar-pet-pals": [
     "ai",
     "ar",
-    "game",
     "health",
     "fitness",
     "mobile",
