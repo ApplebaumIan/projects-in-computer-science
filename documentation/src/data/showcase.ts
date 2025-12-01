@@ -81,7 +81,12 @@ export type TagType =
   | 'lua'
   | 'dockerfile'
   | 'docker-compose'
-  | 'jupyter-notebook';
+  | 'jupyter-notebook'
+  | 'matlab'
+  | 'r'
+  | 'objective-c'
+  | 'haskell'
+  | 'perl';
 
 export const TagList: TagType[] = [
   'aac',
@@ -145,7 +150,7 @@ export const TagList: TagType[] = [
   , 'tensorflow'
   , 'pytorch'
   // Language tags appended
-  , 'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin', 'php', 'c', 'java', 'ruby', 'rust', 'dart', 'lua','dockerfile','docker-compose','jupyter-notebook'
+  , 'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin', 'php', 'c', 'java', 'ruby', 'rust', 'dart', 'lua','dockerfile','docker-compose','jupyter-notebook','matlab','r','objective-c','haskell','perl'
 ];
 
 export const LanguageTagList: TagType[] = ['typescript','javascript','python','csharp','cpp','shell','swift','go','kotlin','php','c','java','ruby','rust','dart','lua','dockerfile','docker-compose','jupyter-notebook'];
@@ -234,6 +239,11 @@ export const Tags: Record<
   dockerfile: { label: 'Dockerfile', description: 'Dockerfile configuration', color: '#2496ED' },
   'docker-compose': { label: 'Docker Compose', description: 'Docker Compose configuration', color: '#2496ED' },
   'jupyter-notebook': { label: 'Jupyter Notebook', description: 'Jupyter Notebook files', color: '#F37626' },
+  'matlab': { label: 'MATLAB', description: 'MATLAB language', color: '#0076A8' },
+  'r': { label: 'R', description: 'R language', color: '#276DC3' },
+  'objective-c': { label: 'Objective-C', description: 'Objective-C language', color: '#438EFF' },
+  'haskell': { label: 'Haskell', description: 'Haskell language', color: '#5E5086' },
+  'perl': { label: 'Perl', description: 'Perl language', color: '#39457E' },
 };
 
 // Minimal Project type and placeholder projects array.
@@ -270,17 +280,17 @@ export const projects: Project[] = [
     slug: 'hip-io',
     useDocsAsPreview: true,
   },
-  {
-    title: 'Clover',
-    description: 'CLOVER is an AI-powered coding assistant designed for educational use. It integrates with Visual Studio Code to provide real-time code suggestions, track user interactions, and analyze coding habits. By logging mistakes and offering contextual feedback, it helps novice programmers learn and avoid over-reliance on AI. A dashboard allows users to review their progress and coding behavior, making the assistant both a learning tool and a productivity aid.\n',
-    website: 'https://clover.nickrucinski.com',
-    documentation: 'https://capstone-projects-2025-spring.github.io/project-copilot-clone-2/',
-    source: 'https://github.com/Capstone-Projects-2025-Spring/project-copilot-clone-2',
-    demo: 'https://www.youtube.com/watch?v=y990YPLQf2Q&t=725',
-    tags: ['ai', 'education', 'vscode-extension','research'],
-    semester: 'Spring 2025',
-    slug: 'clover',
-  },
+  // {
+  //   title: 'Clover',
+  //   description: 'CLOVER is an AI-powered coding assistant designed for educational use. It integrates with Visual Studio Code to provide real-time code suggestions, track user interactions, and analyze coding habits. By logging mistakes and offering contextual feedback, it helps novice programmers learn and avoid over-reliance on AI. A dashboard allows users to review their progress and coding behavior, making the assistant both a learning tool and a productivity aid.\n',
+  //   website: 'https://clover.nickrucinski.com',
+  //   documentation: 'https://capstone-projects-2025-spring.github.io/project-copilot-clone-2/',
+  //   source: 'https://github.com/Capstone-Projects-2025-Spring/project-copilot-clone-2',
+  //   demo: 'https://www.youtube.com/watch?v=y990YPLQf2Q&t=725',
+  //   tags: ['ai', 'education', 'vscode-extension','research'],
+  //   semester: 'Spring 2025',
+  //   slug: 'clover',
+  // },
   {
     title: 'OrderUp',
     description: 'Order Up! is a web-based cooking game designed for elementary school children with communication challenges. The game uses AAC to empower nonverbal children as active game leaders, fostering social interaction and reducing isolation.\n',
@@ -455,6 +465,19 @@ export const projects: Project[] = [
     semester: 'Fall 2022',
     slug: 'sokroban',
   },
+  {
+    title: 'Wildlife Odyssey',
+    description: 'This project is a cooperative 2D platforming game with RPG-style progression, built in Unity using Alteruna Multiplayer. Players join or create online lobbies, choose from a roster of characters—each with unique attacks and stat distributions—and work together to fight enemies and advance through levels.\n' +
+        'As the party defeats enemies, the group level increases, allowing each character to improve their stats and unlock new attacks. Players can customize their movesets by choosing which attacks to equip and assigning directional inputs to them. Attacks can also be upgraded for more power and efficiency. While players are free to explore levels independently, they can warp back to teammates if needed.\n' +
+        'Menus such as move selection or control rebinding are player-specific and do not pause gameplay for others, though indicators show when someone is in a menu. Players cannot damage each other, but all can damage enemies.\n' +
+        'The game blends fast-paced platform fighter mechanics (similar to Super Smash Bros. or Kirby) with RPG progression systems (similar to Pokémon or Xenoblade Chronicles), creating a customizable and cooperative action experience.',
+    documentation: 'https://capstone-projects-2024-spring.github.io/project-rpg-elements-game/',
+    source: 'https://github.com/Capstone-Projects-2024-Spring/project-rpg-elements-game/',
+    semester: 'Spring 2024',
+    slug: 'wildlife-odyssey',
+
+
+  }
 ];
 
 // Import generated language mapping (slug -> language tag array)

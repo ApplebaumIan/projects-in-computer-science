@@ -120,5 +120,12 @@
     "javascript",
     "python",
     "dockerfile"
+  ],
+  "wildlife-odyssey": [
+    "csharp",
+    "python",
+    "javascript",
+    "dockerfile",
+    "shell"
   ]
 }

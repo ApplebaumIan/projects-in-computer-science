@@ -47,6 +47,11 @@ const LANGUAGE_MAP = {
   'Dockerfile': 'dockerfile',
   'docker-compose': 'docker-compose',
   'Jupyter Notebook': 'jupyter-notebook',
+  'Matlab': 'matlab',
+  'Objective-C': 'objective-c',
+  'R': 'r',
+  'Perl': 'perl',
+  'Haskell': 'haskell',
 };
 // Languages we want to ignore entirely (do not output as tags)
 const IGNORE_GITHUB_LANGS = new Set(['HTML','CSS']);

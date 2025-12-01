@@ -185,5 +185,11 @@
   "aac-highlighting-02": [
     "aac",
     "game"
+  ],
+  "wildlife-odyssey": [
+    "game",
+    "mobile",
+    "multiplayer",
+    "unity"
   ]
 }
