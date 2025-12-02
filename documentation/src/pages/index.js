@@ -125,7 +125,7 @@ export default function Home() {
             <HomepageHeader/>
             <main>
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
-                    {/*<DemoLineUp/>*/}
+                    <DemoLineUp/>
                     <Instructor/>
                 </div>
                 <nav className="pagination-nav docusaurus-mt-lg" aria-label="Docs pages" style={{justifyContent: 'center', margin: '2rem 0'}}>

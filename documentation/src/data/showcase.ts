@@ -347,6 +347,15 @@ export const projects: Project[] = [
     slug: 'blastpad',
   },
   {
+    title: 'Wildlife Odyssey',
+    description: 'This project is a cooperative 2D platforming game with RPG-style progression, built in Unity using Alteruna Multiplayer. Players join or create online lobbies, choose from a roster of characters—each with unique attacks and stat distributions—and work together to fight enemies and advance through levels. As the party defeats enemies, the group level increases, allowing each character to improve their stats and unlock new attacks. Players can customize their movesets by choosing which attacks to equip and assigning directional inputs to them. Attacks can also be upgraded for more power and efficiency. While players are free to explore levels independently, they can warp back to teammates if needed. Menus such as move selection or control rebinding are player-specific and do not pause gameplay for others, though indicators show when someone is in a menu. Players cannot damage each other, but all can damage enemies. The game blends fast-paced platform fighter mechanics (similar to Super Smash Bros. or Kirby) with RPG progression systems (similar to Pokémon or Xenoblade Chronicles), creating a customizable and cooperative action experience.',
+    documentation: 'https://capstone-projects-2024-spring.github.io/project-rpg-elements-game/',
+    source: 'https://github.com/Capstone-Projects-2024-Spring/project-rpg-elements-game/',
+    semester: 'Spring 2024',
+    slug: 'wildlife-odyssey',
+    tags: ['game', 'multiplayer', 'unity','csharp', "matlab"],
+  },
+  {
     title: 'SmartSpeech',
     description: 'A project focusing on AAC (augmentative and alternative communication) apps. It proposes a revamp of standard AAC tools, introducing ML drawing recognition for easier word finding and an optional extension using device cameras for word suggestions related to surrounding objects.',
     documentation: 'https://capstone-projects-2023-fall.github.io/project-smartspeech/',
@@ -465,19 +474,7 @@ export const projects: Project[] = [
     semester: 'Fall 2022',
     slug: 'sokroban',
   },
-  {
-    title: 'Wildlife Odyssey',
-    description: 'This project is a cooperative 2D platforming game with RPG-style progression, built in Unity using Alteruna Multiplayer. Players join or create online lobbies, choose from a roster of characters—each with unique attacks and stat distributions—and work together to fight enemies and advance through levels.\n' +
-        'As the party defeats enemies, the group level increases, allowing each character to improve their stats and unlock new attacks. Players can customize their movesets by choosing which attacks to equip and assigning directional inputs to them. Attacks can also be upgraded for more power and efficiency. While players are free to explore levels independently, they can warp back to teammates if needed.\n' +
-        'Menus such as move selection or control rebinding are player-specific and do not pause gameplay for others, though indicators show when someone is in a menu. Players cannot damage each other, but all can damage enemies.\n' +
-        'The game blends fast-paced platform fighter mechanics (similar to Super Smash Bros. or Kirby) with RPG progression systems (similar to Pokémon or Xenoblade Chronicles), creating a customizable and cooperative action experience.',
-    documentation: 'https://capstone-projects-2024-spring.github.io/project-rpg-elements-game/',
-    source: 'https://github.com/Capstone-Projects-2024-Spring/project-rpg-elements-game/',
-    semester: 'Spring 2024',
-    slug: 'wildlife-odyssey',
 
-
-  }
 ];
 
 // Import generated language mapping (slug -> language tag array)

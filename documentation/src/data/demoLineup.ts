@@ -53,7 +53,7 @@ export const demoLineupProjects: Project[] = [
         '\n' +
         'This project implements a Speech-to-Text API designed for use with AAC systmes. The API receives an audio file (such as a spoken message or sound recording), processes it through a Python-base speech recognizer, and returns a JSON response contaning the recognized text, metadata, and error information in order for game developers developing AAC based games to map the returned response to a game input',
     source: 'https://github.com/Capstone-Projects-2025-Fall/project-002-aac-api',
-    documentation: 'https://capstone-projects-2025-fall.github.io/project-002-aac-api/tic-tac-toe',
+    documentation: 'https://capstone-projects-2025-fall.github.io/project-002-aac-api/',
     tags: ['aac', 'accessibility', 'games','api', 'communication','library','speech-to-text'],
     semester: 'Fall 2025',
     slug: 'aac-api-02',
@@ -93,14 +93,14 @@ export const demoSections = {
     name: 'Section 001',
     time: '9:30-10:50am EST',
     location: 'SERC 306',
-    youtubeId: 'y990YPLQf2Q',
+    youtubeId: 'qJpyvVroTCU',
     projectSlugs: ['collaborative-agent-01','sketch-to-screen-01', 'aaccommodate-api-01'],
   },
   '002': {
     name: 'Section 002',
     time: '2:00pm to 3:20pm EST',
     location: 'SERC 306',
-    youtubeId: 'BDUngO0hlBk',
+    youtubeId: 'UQQAnY94y7U',
     projectSlugs: ['ai-collab-agent-02','aac-api-02', 'aac-highlighting-02'],
   },
 };
