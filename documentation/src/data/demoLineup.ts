@@ -37,7 +37,7 @@ export const demoLineupProjects: Project[] = [
     useDocsAsPreview: false,
   },
   {
-    title: 'AI Collab Agent',
+    title: 'Pallas AI',
     description: 'Effective collaboration is a fundamental aspect of modern software development, yet student teams often struggle with organizing responsibilities, maintaining communication, and aligning on project goals. While version control systems like GitHub and collaboration tools like Live Share make it easier to code together, they don\'t solve the deeper challenges of task distribution, team coordination, or shared understanding of project requirements. To address these gaps, this project introduces a VS Code extension that combines real-time collaboration with AI-driven task management and feedback. The extension enables users to form teams, define project goals, and receive automated task assignments based on individual skills and learning objectives. Throughout the development process, an AI agent provides real-time coding feedback and synthesizes team input to offer high-level project guidance.By integrating these features directly into the coding environment, this tool aims to streamline collaborative development for students, promote more efficient teamwork, and enhance the overall learning experience.',
     source: 'https://github.com/Capstone-Projects-2025-Fall/project-002-ai-collaborative-agent',
     documentation: 'https://capstone-projects-2025-fall.github.io/project-002-ai-collaborative-agent/',
