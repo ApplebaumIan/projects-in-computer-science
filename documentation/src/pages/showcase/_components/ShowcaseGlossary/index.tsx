@@ -67,17 +67,15 @@ export default function ShowcaseGlossary(): JSX.Element {
   const compactCategory = categoryTags.slice(0, 24); // cap to avoid extremely long lists
 
   return (
-    <section id="showcase-glossary" className="margin-top--lg margin-bottom--lg">
-      <div className="container">
-        <Heading as="h3">
-          <Translate id="showcase.glossary.title">Glossary</Translate>
-        </Heading>
-        <p className={styles.intro}>
-          <Translate id="showcase.glossary.intro">
-            Helpful explanations for the topic and language filters used on this page.
-          </Translate>
-        </p>
-      </div>
+    <section id="showcase-glossary" className="container margin-top--lg margin-bottom--lg">
+      <Heading as="h3">
+        <Translate id="showcase.glossary.title">Glossary</Translate>
+      </Heading>
+      <p className={styles.intro}>
+        <Translate id="showcase.glossary.intro">
+          Helpful explanations for the topic and language filters used on this page.
+        </Translate>
+      </p>
       <div className={styles.grid}>
         {compactCategory.map((tag) => {
           const meta = Tags[tag as TagType];

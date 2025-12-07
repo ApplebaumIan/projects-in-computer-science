@@ -31,6 +31,15 @@
   }
 }
 
+/* Desktop: force three equal columns to ensure 3-column layout inside the page container */
+@media (min-width: 900px) {
+  .grid {
+    /* force 3 equal columns earlier to make layout appear reliably on typical desktops */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem 1.5rem;
+  }
+}
+
 .entry {
   background: var(--ifm-background-color, #fff);
   border: 1px solid rgba(0,0,0,0.06);
