@@ -87,3 +87,22 @@
   border: 1px solid rgba(0, 0, 0, 0.12);
   background: var(--ifm-background-color, #fff);
 }
+
+.glossaryButton {
+  background: var(--ifm-color-primary, #0d47a1);
+  color: var(--ifm-color-white, #fff);
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.glossaryButton:hover {
+  opacity: 0.95;
+}
+
+.glossaryButton:focus {
+  outline: 2px solid rgba(13, 71, 161, 0.2);
+  outline-offset: 2px;
+}

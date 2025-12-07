@@ -228,6 +228,16 @@ function HeadingButtons() {
     return arr;
   }, []);
 
+  // Smooth-scroll to glossary
+  function goToGlossary() {
+    try {
+      const el = document.getElementById('showcase-glossary');
+      if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    } catch (e) {
+      // ignore (SSR or restricted environments)
+    }
+  }
+
   return (
     <div className={styles.headingButtons} style={{alignItems: 'center'}}>
       <OperatorButton />
@@ -245,6 +255,15 @@ function HeadingButtons() {
           ))}
         </select>
       </div>
+      <button
+        type="button"
+        className={styles.glossaryButton}
+        onClick={goToGlossary}
+        aria-controls="showcase-glossary"
+        aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
+      >
+        {translate({id: 'showcase.filters.gotoGlossaryShort', message: 'Glossary'})}
+      </button>
       <ClearAllButton />
     </div>
   );

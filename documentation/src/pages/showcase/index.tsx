@@ -13,6 +13,7 @@ import Layout from '@theme/Layout';
 import ShowcaseSearchBar from '@site/src/pages/showcase/_components/ShowcaseSearchBar';
 import ShowcaseCards from './_components/ShowcaseCards';
 import ShowcaseFilters from './_components/ShowcaseFilters';
+import ShowcaseGlossary from './_components/ShowcaseGlossary';
 
 const TITLE = translate({message: 'Capstone Showcase ⭐️'});
 const DESCRIPTION = translate({
@@ -69,6 +70,7 @@ export default function Showcase(): ReactNode {
           <ShowcaseSearchBar />
         </div>
         <ShowcaseCards />
+        <ShowcaseGlossary />
       </main>
     </Layout>
   );
