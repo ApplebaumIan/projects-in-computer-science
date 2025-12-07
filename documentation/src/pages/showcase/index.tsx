@@ -5,8 +5,8 @@
  * Welcome to the Capstone Showcase, where we proudly present the innovative projects developed by student groups from Temple University's CIS4398 capstone course. This course allows students to utilize the culmination of all their previous coursework and outside experience to build software as a team. This page highlights the exceptional documentation, presentation, and technical skills demonstrated in these collaborative efforts. Over 17 weeks, students tackle projects in diverse domains, from AI and accessibility to IoT and computer science education tools, using Agile methodologies and tools like Jira and GitHub. Many projects also involve hardware challenges, such as soldering and working with embedded systems. As a writing-intensive course, students thoroughly document their projects using Docusaurus. Explore these achievements and witness the future potential of these emerging professionals.
  */
 import type {ReactNode} from 'react';
-import React, {useEffect} from 'react';
-import Translate, {translate} from '@docusaurus/Translate';
+import React, {useEffect, useState} from 'react';
+import {translate} from '@docusaurus/Translate';
 
 import Layout from '@theme/Layout';
 
@@ -59,6 +59,8 @@ export default function Showcase(): ReactNode {
     return () => window.removeEventListener('hashchange', scrollToHash);
   }, []);
 
+  // Glossary is rendered eagerly; entries inside the glossary will lazy-load as the user scrolls.
+
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
       <main className="margin-vert--lg">
@@ -71,7 +73,7 @@ export default function Showcase(): ReactNode {
         </div>
         <ShowcaseCards />
         <ShowcaseGlossary />
-      </main>
-    </Layout>
-  );
-}
+       </main>
+     </Layout>
+   );
+ }

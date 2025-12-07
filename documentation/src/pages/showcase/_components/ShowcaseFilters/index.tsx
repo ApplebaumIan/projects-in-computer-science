@@ -231,11 +231,54 @@ function HeadingButtons() {
   // Smooth-scroll to glossary
   function goToGlossary() {
     try {
-      const el = document.getElementById('showcase-glossary');
-      if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+      // Ask the page to load the glossary (Showcase page listens for this event)
+      window.dispatchEvent(new Event('showcase:loadGlossary'));
+
+      const scrollTo = () => {
+        const el = document.getElementById('showcase-glossary');
+        if (el) {
+          el.scrollIntoView({behavior: 'smooth', block: 'start'});
+          // After scrolling, place keyboard focus on the glossary for accessibility
+          // Use a short timeout to avoid fighting the smooth scroll animation
+          window.setTimeout(() => {
+            try {
+              (el as HTMLElement).focus();
+            } catch (e) {
+              // ignore if focus isn't supported in the environment
+            }
+          }, 400);
+          return true;
+        }
+        return false;
+      };
+
+      // If it's already present, scroll immediately
+      if (scrollTo()) return;
+
+      // Otherwise poll for the element for up to ~4 seconds
+      let attempts = 0;
+      const maxAttempts = 40; // 40 * 100ms = 4000ms
+      const intervalMs = 100;
+      const timer = window.setInterval(() => {
+        attempts += 1;
+        if (scrollTo() || attempts >= maxAttempts) {
+          clearInterval(timer);
+        }
+      }, intervalMs);
     } catch (e) {
-      // ignore (SSR or restricted environments)
+      // ignore in SSR or restricted environments
     }
+  }
+
+  let glossaryPrefetched = false;
+
+  function prefetchGlossary() {
+    if (glossaryPrefetched) return;
+    glossaryPrefetched = true;
+    // Dynamic import to warm the chunk (path relative to this file)
+    import('../ShowcaseGlossary').catch(() => {
+      // ignore failures; load will be attempted again when requested
+    });
   }
 
   return (
@@ -259,6 +302,7 @@ function HeadingButtons() {
         type="button"
         className={styles.glossaryButton}
         onClick={goToGlossary}
+        onMouseEnter={prefetchGlossary}
         aria-controls="showcase-glossary"
         aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
       >
