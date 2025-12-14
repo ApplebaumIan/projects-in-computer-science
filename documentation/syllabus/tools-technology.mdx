@@ -6,10 +6,10 @@ import Figure from "../src/components/Figure";
 import jiraBoard from "../static/img/jira-board-example.webp"
 import Logo from "../static/img/logo.svg"
 import Admonition from '@theme/Admonition';
+import ShowcaseCard from "../src/pages/showcase/_components/ShowcaseCard";
+import { sortedUsers } from "../src/data/showcase";
 
-# Tools & Technology
-
-## Tools and Technologies
+# Tools and Technologies
 
 In this course, you will use tools like Jira for project management and GitHub for version control, ensuring you are prepared for industry practices.
 
@@ -36,23 +36,18 @@ Modern software projects require documentation that can:
 ### Your Documentation Portfolio
 
 <div className="blastpad-example-figure" style={{float:"right", marginTop:"5px", marginRight:"15px", marginBottom:"5px"}}>
-    <Figure
-        id="blastpad-example-syllabus"
-        caption={
-            <a href="https://capstone-projects-2024-spring.github.io/project-blastpad/">
-                <p>Project BlastPad Spring 2024</p>
-            </a>
-        }
-        subcaption={
-            <p>Example of a previous capstone project&#39;s <br/> Docusaurus-powered documentation site</p>
-        }
-    >
-        <img
-            src="/img/blastpad-example.webp"
-            alt="Blastpad Example"
-            style={{marginTop:"5px", marginLeft:"15px", marginBottom:"5px", maxWidth:"400px", width:"100%"}}
-        />
-    </Figure>
+    {(() => {
+      const blastpad = sortedUsers.find((u) => u.slug === 'blastpad');
+      if (!blastpad) return null;
+      return (
+        <div style={{maxWidth: 400}}>
+          <ul className="clean-list" style={{margin: 0}}>
+            <ShowcaseCard user={blastpad} contributorsColumns={4} />
+          </ul>
+        </div>
+      );
+    })()}
+
 </div>
 
 Using basic Markdown syntax, you'll create and maintain the four core technical documents outlined above. These documents mirror industry standards and provide you with real-world experience in professional technical writing.
