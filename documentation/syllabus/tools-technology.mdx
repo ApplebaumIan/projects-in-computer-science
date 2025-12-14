@@ -36,17 +36,41 @@ Modern software projects require documentation that can:
 ### Your Documentation Portfolio
 
 <div className="blastpad-example-figure" style={{float:"right", marginTop:"5px", marginRight:"15px", marginBottom:"5px"}}>
-    {(() => {
-      const blastpad = sortedUsers.find((u) => u.slug === 'blastpad');
-      if (!blastpad) return null;
-      return (
-        <div style={{maxWidth: 400}}>
+
+        <div style={{maxWidth: 400 }}>
           <ul className="clean-list" style={{margin: 0}}>
-            <ShowcaseCard user={blastpad} contributorsColumns={4} />
+              <Figure
+                  id="blastpad-example-syllabus"
+                  caption={
+                      <a href="https://capstone-projects-2024-spring.github.io/project-blastpad/" >
+                          <p style={{
+                              marginTop: '25px',
+                          }}>Project BlastPad Spring 2024</p>
+                      </a>
+                  }
+                  subcaption={
+                      <><p>Example of a previous capstone project&#39;s <br/> Docusaurus-powered documentation site</p> <button onClick={()=>{
+                            window.location.href = '/showcase';
+                      }} className="button button--small button--primary button--outline" style={{marginTop: '10px'}}>
+                              More examples in Project Showcase ⭐️
+                        </button>
+                      </>
+
+                  }
+              >
+
+                      <ShowcaseCard user={{
+                title: '',
+                description: 'The BlastPad is a kid-friendly handheld gaming device and block-based coding suite for creating, playing, and sharing custom games. Built around a Raspberry Pi, it offers an all-in-one solution for learning game development with sensors, buttons, and switches.',
+                documentation: 'https://capstone-projects-2024-spring.github.io/project-blastpad/',
+                source: null,
+                tags: [],
+                semester: 'Spring 2024',
+                slug: 'blastpad',
+            }} contributorsColumns={0}  />
+              </Figure>
           </ul>
         </div>
-      );
-    })()}
 
 </div>
 

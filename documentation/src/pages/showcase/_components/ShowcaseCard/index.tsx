@@ -313,7 +313,7 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
         <ShowcaseCardTag tags={user.tags} />
         {/* Contributors wrapped in a list item for valid HTML and layout control */}
         <li className={styles.contributorsItem}>
-          <Contributors githubURL={user.source} columns={contributorsColumns} />
+          {user.source && <Contributors githubURL={user.source} columns={contributorsColumns} />}
         </li>
       </ul>
     </li>
