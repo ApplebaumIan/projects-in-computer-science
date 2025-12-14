@@ -1,5 +1,8 @@
 import React from 'react';
-
+// Try to import a static index to avoid runtime require.context/eval issues in dev server.
+// Use the same named export `ShowcaseCardTag` from the ShowcaseCard index so we reuse the
+// tags component used by showcase cards.
+import { ShowcaseCardTag } from '../pages/showcase/_components/ShowcaseCard';
 // Try to import a static index to avoid runtime require.context/eval issues in dev server.
 let STATIC_INDEX = null;
 try {
@@ -10,28 +13,10 @@ try {
 }
 
 function loadProjects() {
+  // Only use the static prebuilt index to avoid runtime eval errors in dev server.
   if (Array.isArray(STATIC_INDEX) && STATIC_INDEX.length) return STATIC_INDEX;
-
-  const projects = [];
-  try {
-    // relative to this file (documentation/src/data/projects)
-    const context = require.context('../data/projects', false, /\.json$/);
-    context.keys().forEach((key) => {
-      try {
-        const p = context(key);
-        const data = p && p.default ? p.default : p;
-        // ignore the index file if present
-        if (key === './_index.json') return;
-        projects.push(data);
-      } catch (e) {
-        // skip bad files
-      }
-    });
-  } catch (e) {
-    // If require.context is not available, return empty list
-    return [];
-  }
-  return projects;
+  // If no static index is present, return an empty array (no dynamic require.context fallback)
+  return [];
 }
 
 function groupBySemester(projects) {
@@ -80,9 +65,9 @@ const ProjectsFromData = () => {
                   <td style={{verticalAlign: 'top'}}>
                     <p>{p.description}</p>
                     {p.tags && p.tags.length ? (
-                      <div style={{marginTop: '0.5rem'}}><em>Tags: {p.tags.join(', ')}</em></div>
+                        <ShowcaseCardTag tags={p.tags} />
                     ) : null}
-                    {p.website ? (<div><a href={p.website}>Website</a></div>) : null}
+                    {p.website ? (<div><a href={p.website}>More Information</a></div>) : null}
                   </td>
                 </tr>
               ))}

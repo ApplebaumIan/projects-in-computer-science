@@ -34,7 +34,7 @@ function TagItem({
   );
 }
 
-function ShowcaseCardTag({tags}: {tags: TagType[]}) {
+export function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   const tagObjects = tags.map((tag) => {
     const meta = Tags[tag as TagType];
     if (meta) return {tag, ...meta};

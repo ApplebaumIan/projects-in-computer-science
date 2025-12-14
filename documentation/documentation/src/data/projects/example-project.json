@@ -1,0 +1,13 @@
+{
+  "title": "From Sketch to Screen",
+  "slug": "from-sketch-to-screen",
+  "description": "A collaborative UI design tool tailored for non-programmers.",
+  "contact": "rahad@example.com",
+  "tags": ["ui","design"],
+  "semester": "Fall 2025",
+  "website": "https://example.com/project",
+  "documentation": "https://example.com/docs",
+  "source": "https://github.com/example/repo",
+  "demo": "https://example.com/demo",
+  "archived": false
+}
