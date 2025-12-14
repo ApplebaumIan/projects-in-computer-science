@@ -1,6 +1,6 @@
 ---
 name: Add project
-about: Submit a project to the capstone showcase (creates a PR)
+about: Submit a project to run in the CIS Capstone Course (creates a PR)
 title: ''
 labels: add-project
 assignees: ''
