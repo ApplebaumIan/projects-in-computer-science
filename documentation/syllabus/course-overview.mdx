@@ -4,6 +4,7 @@ sidebar_position: 1
 
 import Figure from "../src/components/Figure";
 import DontPanic from "../static/img/dont-panic.svg";
+import Link from "@docusaurus/Link";
 
 # Course Overview
 
@@ -14,23 +15,28 @@ import DontPanic from "../static/img/dont-panic.svg";
     </Figure>
 </div>
 
-## Course Summary
 
 Welcome to CIS 4398 Capstone Projects in Computer Science, your final course for the Computer Science Major! This course is designed to be the *culmination of your academic journey*, where you'll utilize all your previous coursework and outside experience *to build software as a team*. Our course motto, **"Don't Panic"**, is a reminder to embrace the unique challenges of this *purely project-driven and team-based environment*. It aims to prepare you for *real-world industry experiences* and provide a *tangible project to showcase on your resume*. You'll engage in an *agile software development environment* that's *user-focused, goal-driven, process-oriented, and emphasizes teamwork*. You will use industry-standard tools like **Jira software** for project management, planning, and estimating workload, **Docusaurus** for maintaining robust project documentation (a writing-intensive component making up 40% of your grade), and **GitHub** for managing code contributions, pull requests, and peer reviews, fostering heavy collaboration among team members.
 
 
-
-## What You Will Learn
-
-- **Hands-On Experience**: Work in an environment that mirrors professional software development.
-- **Project Development**: Navigate all stages of project design, from ideation to final deployment.
-- **Real-World Applications**: Apply knowledge from previous courses to create functional and impactful projects.
-- **Teamwork**: Collaborate effectively with peers to achieve shared goals.
-- **Project Management**: Master Agile techniques, Jira, and GitHub for efficient project workflows.
-- **Documentation Skills**: Learn to create comprehensive technical documents that reflect industry standards.
-- **Literature Review**: Students will learn to conduct a literature search to support their design decisions and to cite sources appropriately.
-
-:::warning Writing-Intensive Course
-This course is identified as a Writing-Intensive Course in CIS. You are expected to learn about writing relevant technical software design and development documents along the course of your project development and generate all the documents and their revisions in the entire duration of the course. The requirement involves a process of writing, submitting, receiving feedback, revising, and resubmitting documentation. See *[Documentation and Writing Requirements](/syllabus/wrtiting-intensive)*.
-:::
+<div className="container">
+    <div className="row" style={{justifyContent: 'center', gap: '1rem'}}>
+        <div className="col col--4" style={{display: 'flex'}}>
+            <Link
+                className="button button--primary button--block button--lg"
+                style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                to="/syllabus/projects">
+                <div>👩‍💻 The Projects!</div>
+            </Link>
+        </div>
+        <div className="col col--4" style={{display: 'flex'}}>
+            <Link
+                className="button button--secondary button--block button--lg"
+                style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                to="/syllabus/what-you-will-learn">
+                <div>What you will Learn</div>
+            </Link>
+        </div>
+    </div>
+</div>
 
