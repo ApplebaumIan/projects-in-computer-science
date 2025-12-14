@@ -269,6 +269,17 @@ export type Project = {
 // Example projects array; replace with real project data as needed.
 export const projects: Project[] = [
   {
+    title: 'AACcommodate API',
+    description: 'This application programming interface (API) supports AAC games. The API allows users to play AAC games like StoryQuest through external AAC board interaction, rather than relying on an embedded AAC board in the game. Users can relay game inputs by either speaking verbally or speaking through the board. The API will enable audio-controlled games, which will promote social and communication skills in children who use AAC devices by enabling AAC users to play games alongside non-AAC users.',
+    source: 'https://github.com/Capstone-Projects-2025-Fall/project-001-aac-api',
+    documentation: 'https://capstone-projects-2025-fall.github.io/project-001-aac-api/',
+    website: 'https://www.npmjs.com/package/aac-voice-api',
+    tags: ['aac', 'accessibility', 'games','api', 'communication','library','speech-to-text'],
+    semester: 'Fall 2025',
+    slug: 'aaccommodate',
+    useDocsAsPreview: false,
+  },
+  {
     title: 'Hip.io',
     description: 'Hip.io is a reimagined online multiplayer version of Hungry Hungry Hippo designed for children who use Augmentative and Alternative Communication (AAC) devices. Unlike traditional games, the AAC user leads gameplay by selecting which foods appear and applying special effects, while other players control hippos to catch the chosen foods. The system uses React for the UI, Phaser for game logic, and a WebSocket server for real-time multiplayer synchronization. The goal is to empower AAC users to direct group play, making fast-paced games more accessible and inclusive.',
     website: 'https://project-acc-hungry-hippos.vercel.app/',
@@ -280,17 +291,17 @@ export const projects: Project[] = [
     slug: 'hip-io',
     useDocsAsPreview: true,
   },
-  // {
-  //   title: 'Clover',
-  //   description: 'CLOVER is an AI-powered coding assistant designed for educational use. It integrates with Visual Studio Code to provide real-time code suggestions, track user interactions, and analyze coding habits. By logging mistakes and offering contextual feedback, it helps novice programmers learn and avoid over-reliance on AI. A dashboard allows users to review their progress and coding behavior, making the assistant both a learning tool and a productivity aid.\n',
-  //   website: 'https://clover.nickrucinski.com',
-  //   documentation: 'https://capstone-projects-2025-spring.github.io/project-copilot-clone-2/',
-  //   source: 'https://github.com/Capstone-Projects-2025-Spring/project-copilot-clone-2',
-  //   demo: 'https://www.youtube.com/watch?v=y990YPLQf2Q&t=725',
-  //   tags: ['ai', 'education', 'vscode-extension','research'],
-  //   semester: 'Spring 2025',
-  //   slug: 'clover',
-  // },
+  {
+    title: 'Clover',
+    description: 'CLOVER is an AI-powered coding assistant designed for educational use. It integrates with Visual Studio Code to provide real-time code suggestions, track user interactions, and analyze coding habits. By logging mistakes and offering contextual feedback, it helps novice programmers learn and avoid over-reliance on AI. A dashboard allows users to review their progress and coding behavior, making the assistant both a learning tool and a productivity aid.\n',
+    website: 'https://clover.nickrucinski.com',
+    documentation: 'https://capstone-projects-2025-spring.github.io/project-copilot-clone-2/',
+    source: 'https://github.com/Capstone-Projects-2025-Spring/project-copilot-clone-2',
+    demo: 'https://www.youtube.com/watch?v=y990YPLQf2Q&t=725',
+    tags: ['ai', 'education', 'vscode-extension','research'],
+    semester: 'Spring 2025',
+    slug: 'clover',
+  },
   {
     title: 'OrderUp',
     description: 'Order Up! is a web-based cooking game designed for elementary school children with communication challenges. The game uses AAC to empower nonverbal children as active game leaders, fostering social interaction and reducing isolation.\n',
