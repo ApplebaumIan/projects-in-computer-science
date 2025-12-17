@@ -373,3 +373,15 @@ main {
 .share-toast.show {
   opacity: 1;
 }
+
+/* file: src/styles/logo.css */
+.logo {
+  opacity: 0;
+  transform: translateY(12px) scale(.98);
+  transform-origin: center;
+  transition: opacity 400ms ease, transform 400ms cubic-bezier(.2,.8,.2,1);
+}
+.logo.enter {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
