@@ -275,6 +275,8 @@ const config = {
         routeBasePath: 'syllabus',
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
+        // Provide an editUrl so the plugin generates `editUrl` metadata for pages
+        editUrl: 'https://github.com/' + process.env.ORG_NAME + '/' + process.env.PROJECT_NAME + '/edit/main/documentation/',
       },
     ],
     [
