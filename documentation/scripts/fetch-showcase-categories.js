@@ -35,7 +35,7 @@ const PER_SLUG_EXCLUDED_TAGS = {
   'piglet-prep': ['embedded'],
   'hip-io': ['collision', 'unity','game engine', 'safety'],
   'collabybot': ['robotics'],
-  'whiteboard-assistant':['game'],
+  'whiteboard-assistant':['game','accessibility'],
   'ar-pet-pals': ['game'],
   'blastpad': ['game'],
   'lomo': ['game'],
