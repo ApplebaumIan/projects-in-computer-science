@@ -8,86 +8,78 @@ import Logo from "../static/img/logo.svg"
 import Admonition from '@theme/Admonition';
 import ShowcaseCard from "../src/pages/showcase/_components/ShowcaseCard";
 import { sortedUsers } from "../src/data/showcase";
+import IframeWindow from '@site/src/components/BrowserWindow/IframeWindow';
+
 
 # Tools and Technologies
 
+<div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center' , gap: '24px', marginBottom: '20px'}}>
+  <a href="#jira" style={{textAlign: 'center', textDecoration: 'none', color: 'inherit', flex: 1}}>
+    <img src="https://raw.githubusercontent.com/get-icon/geticon/refs/heads/master/icons/jira.svg" width={120} alt="Jira" />
+    <div style={{marginTop: 8, fontWeight:"bold", fontSize:"1.2rem"}}>Jira</div>
+  </a>
+  <a href="#github" style={{textAlign: 'center', textDecoration: 'none', color: 'inherit', flex: 1}}>
+    <img src="https://raw.githubusercontent.com/get-icon/geticon/refs/heads/master/icons/github-icon.svg" width={120} alt="GitHub" />
+    <div style={{marginTop: 8, fontWeight:"bold", fontSize:"1.2rem"}}>GitHub</div>
+  </a>
+  <a href="#docusaurus" style={{textAlign: 'center', textDecoration: 'none', color: 'inherit', flex: 1}}>
+    <Logo style={{width: 120, height: 'auto', display: 'block', margin: '0 auto'}}/>
+    <div style={{marginTop: 8, fontWeight:"bold", fontSize:"1.2rem"}}>Docusaurus</div>
+  </a>
+</div>
+
+## Jira
 In this course, you will use tools like Jira for project management and GitHub for version control, ensuring you are prepared for industry practices.
 
 <Figure src={jiraBoard} caption="Jira Software Scrum Board"/>
 
-## Docusaurus for Project Documentation
+## GitHub
 
-<span className="docusaurus-logo-link">
-    <a href={"https://docusaurus.io/"} target="_blank" rel="noopener noreferrer">
-        <Logo style={{float:"left", marginRight:"50px"}}/>
-    </a>
-</span>
+import pr from "../static/img/github-pr-example.png"
+import merge from "../static/img/merge-conflict-example.png"
 
-[Docusaurus](https://docusaurus.io/) is a lightweight, open-source website builder that transforms your project documentation into professional-grade websites. **The best part? You don't need to know React, JavaScript, CSS, or HTML** to create comprehensive documentation.
+<Figure src={pr} caption="GitHub Pull Request"/>
 
-### Why Docusaurus Instead of Microsoft Word?
+GitHub is a web-based platform used for version control and collaborative software development. It allows multiple team members to work on the same codebase simultaneously, track changes, and manage project workflows efficiently.
+In this course, you will use GitHub to host your project repositories, manage code versions, and collaborate with your team members.
 
-Modern software projects require documentation that can:
-- **Live alongside your code** in Git for seamless version control
-- **Support collaborative editing** without file conflicts
-- **Deploy automatically** to create searchable, accessible websites
-- **Integrate with professional workflows** used by tech companies worldwide
+<Figure src={merge} caption="Merge Conflict in Jetbrains IDE"/>
 
-### Your Documentation Portfolio
+## Docusaurus
 
+[//]: # (<span className="docusaurus-logo-link">)
+
+[//]: # (    <a href={"https://docusaurus.io/"} target="_blank" rel="noopener noreferrer">)
+
+[//]: # (        <Logo style={{float:"left", marginRight:"50px"}}/>)
+
+[//]: # (    </a>)
+
+[//]: # (</span>)
 <div className="blastpad-example-figure" style={{float:"right", marginTop:"5px", marginRight:"15px", marginBottom:"5px"}}>
 
-        <div style={{maxWidth: 400 }}>
-          <ul className="clean-list" style={{margin: 0}}>
-              <Figure
-                  id="blastpad-example-syllabus"
-                  caption={
-                      <a href="https://capstone-projects-2024-spring.github.io/project-blastpad/" >
-                          <p style={{
-                              marginTop: '25px',
-                          }}>Project BlastPad Spring 2024</p>
-                      </a>
-                  }
-                  subcaption={
-                      <><p>Example of a previous capstone project&#39;s <br/> Docusaurus-powered documentation site</p> <button onClick={()=>{
-                            window.location.href = '/showcase';
-                      }} className="button button--small button--primary button--outline" style={{marginTop: '10px'}}>
-                              More examples in Project Showcase ⭐️
-                        </button>
-                      </>
-
-                  }
-              >
-
-                      <ShowcaseCard user={{
-                title: '',
-                description: 'The BlastPad is a kid-friendly handheld gaming device and block-based coding suite for creating, playing, and sharing custom games. Built around a Raspberry Pi, it offers an all-in-one solution for learning game development with sensors, buttons, and switches.',
-                documentation: 'https://capstone-projects-2024-spring.github.io/project-blastpad/',
-                source: null,
-                tags: [],
-                semester: 'Spring 2024',
-                slug: 'blastpad',
-            }} contributorsColumns={0}  />
-              </Figure>
-          </ul>
-        </div>
+    <div style={{maxWidth: 570 }}>
+        <ul style={{margin: 0}}>
+            <Figure id="blastpad" caption={
+                <a href={"https://capstone-projects-2024-spring.github.io/project-blastpad/"} target="_blank" rel="noopener noreferrer">
+                    BlastPad Docusaurus Site Example
+                </a>
+            }>
+                <IframeWindow url={"https://capstone-projects-2024-spring.github.io/project-blastpad/"} />
+            </Figure>
+        </ul>
+    </div>
 
 </div>
 
-Using basic Markdown syntax, you'll create and maintain the four core technical documents outlined above. These documents mirror industry standards and provide you with real-world experience in professional technical writing.
 
-### Professional Development Experience
-
-Your Docusaurus site will be:
-- **Automatically deployed** via GitHub Actions to GitHub Pages
-- **Permanently accessible** at a stable URL you can share with employers
-- **Version-controlled** with complete revision history
-- **Professionally formatted** without wrestling with document formatting
-
-The custom course template simplifies setup, and GitHub Actions automate deployment, giving you real-world experience with modern documentation tools used at companies like Meta, Microsoft, and Netflix.
+- Docusaurus Advantages: Lightweight, open-source website builder that transforms project documentation into professional-grade websites without needing to know React, JavaScript, CSS, or HTML.
+- Modern Documentation Needs: Modern software projects require documentation that supports version control, collaborative editing, automatic deployment, and professional workflows.
+- Professional Development Benefits: Docusaurus site provides automatically deployed, permanently accessible, version-controlled, and professionally formatted documentation, mirroring industry standards and providing real-world experience.
 
 ## Technology Specifications
 
 This course requires the use of Canvas, including access to materials and assignment submission.
 On-campus computer labs have resumed normal operations and are available for student use.
 Limited resources are available for students who do not have the technology they need for class. Students with educational technology needs, including no computer or camera or insufficient Wifi-access, should submit a Student Technology Assistance Application located in TUPortal and linked from the [Dean of Students Support and Resources webpage](https://deanofstudents.temple.edu/support-and-resources). The university will endeavor to meet needs, such as with a long-term loan of a laptop or Mifi device, a refurbished computer, or subsidized internet access. [Internet Essentials from Comcast](https://www.internetessentials.com/) provides the option to purchase a computer for $150 and high-speed Internet service for $9.95 a month, plus tax. The [Emergency Broadband Benefit (EBB)](https://www.fcc.gov/broadbandbenefit) is available to purchase Xfinity, Verizon, T-Mobile, and other internet services. Qualified households can receive a temporary monthly credit of up to $50/month toward their Internet service and leased Internet equipment until the program's funding runs out.
+
