@@ -47,8 +47,9 @@ export default function Instructor() {
                     <img
                         id="professor-applebaum"
                         className="masked"
-                        src="https://s.gravatar.com/avatar/d7050d71af151b8db6f046e33e9e8e2e?s=300"
+                        src="https://s.gravatar.com/avatar/d7050d71af151b8db6f046e33e9e8e2e?s=500"
                         alt="Picture of Professor Ian Tyler Applebaum"
+                        width={"300px"}
                     />
                     <p><b>Professor Ian Tyler Applebaum</b></p>
                     <ul className="instructor-contact-list">
