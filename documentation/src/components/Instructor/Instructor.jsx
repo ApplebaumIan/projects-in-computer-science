@@ -12,21 +12,29 @@ function CourseSections() {
             <li>
                 <strong>Section 001:</strong>
                 <ul>
-                    <li>Lecture: MF 9:30 am - 10:50 am</li>
-                    <li>Laboratory: W 10:00 am - 10:50 am</li>
-                    <li>Location: SERC 214</li>
+                    <li>Lecture: W 9:00 am - 9:50 am</li>
+                    <li>Laboratory: MF 9:30 am - 10:50 am</li>
+                    <li>Location: Science Ed and Research Ctr 00214 (SERC 214)</li>
                 </ul>
             </li>
             <li>
                 <strong>Section 002:</strong>
                 <ul>
-                    <li>Lecture: MF 2:00 pm - 3:20 pm</li>
-                    <li>Laboratory: W 2:00 pm - 2:50 pm</li>
-                    <li>Location: SERC 214</li>
+                    <li>Lecture: W 1:00 pm - 1:50 pm</li>
+                    <li>Laboratory: MF 12:30 pm - 1:50 pm</li>
+                    <li>Location: Science Ed and Research Ctr 00214 (SERC 214)</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Section 003:</strong>
+                <ul>
+                    <li>Lecture: W 4:00 pm - 4:50 pm</li>
+                    <li>Laboratory: MF 3:30 pm - 4:50 pm</li>
+                    <li>Location: Science Ed and Research Ctr 00214 (SERC 214)</li>
                 </ul>
             </li>
         </ul>
-        <Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>
+        {/*<Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>*/}
     </>;
 }
 
