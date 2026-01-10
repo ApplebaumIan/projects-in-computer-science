@@ -35,43 +35,48 @@
   margin-top: 0.5rem;
 }
 
-/* Affordance cue - initially hidden and revealed on hover or focus within the card */
+/* Affordance cue - styled to match Docusaurus theme variables and look-and-feel */
 .cardAffordance {
   position: absolute;
   right: 12px;
   bottom: 10px;
   font-size: 0.875rem;
-  color: var(--ifm-color-emphasis-600);
-  background: rgba(255,255,255,0.9);
-  padding: 4px 12px 4px 8px; /* extra right padding for arrow */
-  border-radius: 12px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  /* use Docusaurus theme tokens for a more native look */
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-900);
+  padding: 6px 14px 6px 10px; /* room on right for arrow */
+  border-radius: 999px; /* fully rounded pill like Docusaurus */
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 180ms ease, transform 180ms ease;
   pointer-events: none;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-width: 88px; /* avoid collapsing too small */
-  max-width: 240px; /* reasonable upper bound */
+  min-width: 88px;
+  max-width: 260px;
+  font-weight: 600;
 }
 
 .cardAffordanceLabel {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 8px; /* spacing before arrow */
+  padding-right: 10px; /* spacing before the arrow */
   display: block;
-  min-width: 0; /* allow ellipsis inside flex */
+  min-width: 0;
+  color: inherit; /* inherit contrast from pill */
 }
 
 .cardAffordanceArrow {
   position: absolute;
-  right: 8px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   flex: 0 0 auto;
+  color: var(--ifm-color-primary); /* accent the arrow with primary color */
+  font-weight: 700;
 }
 
 .cardContainer:hover .cardAffordance,
@@ -80,8 +85,18 @@
   transform: translateY(0);
 }
 
-/* Dark theme tweak so the affordance stays readable */
+/* Dark theme: use subtle translucent pill and keep the arrow using primary color */
 [data-theme='dark'] .cardAffordance {
-  background: rgba(20,20,20,0.85);
+  background: rgba(255,255,255,0.04);
   color: var(--ifm-color-emphasis-200);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .cardAffordanceLabel {
+  color: inherit;
+}
+
+[data-theme='dark'] .cardAffordanceArrow {
+  color: var(--ifm-color-primary);
 }
