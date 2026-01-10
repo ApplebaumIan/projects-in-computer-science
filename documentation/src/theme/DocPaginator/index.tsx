@@ -32,7 +32,8 @@ export default function DocPaginator(props: Props): ReactNode {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const docHookResult = useDoc();
     metadata = docHookResult?.metadata;
-    frontMatter = metadata ?? {};
+    // IMPORTANT: frontMatter is a property on metadata
+    frontMatter = metadata?.frontMatter;
   } catch (e) {
     // Not in a DocProvider context — fall back to no frontMatter.
     metadata = undefined;
