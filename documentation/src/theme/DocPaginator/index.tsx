@@ -3,6 +3,10 @@ import clsx from 'clsx';
 import Translate, {translate} from '@docusaurus/Translate';
 import PaginatorNavLink from '@theme/PaginatorNavLink';
 import type {Props} from '@theme/DocPaginator';
+// useDoc throws a helpful error when called outside the DocProvider. During
+// SSG some pages (category pages) may render this component without a
+// provider. We keep the hook call but guard it with a try/catch so the
+// paginator becomes a no-op when not inside docs context.
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
 
 // Custom DocPaginator: honors front-matter flags to hide the "next" link for specific docs.
@@ -16,8 +20,24 @@ export default function DocPaginator(props: Props): ReactNode {
   const {className, previous} = props;
   let {next} = props as { next?: any };
 
-  const {metadata} = useDoc();
-  const {frontMatter} = metadata ?? {};
+  // Try to read doc metadata from the docs context. If this component is
+  // rendered outside of a DocProvider (e.g. in category listing pages),
+  // `useDoc()` will throw; gracefully handle that and treat the paginator
+  // as if there is no frontMatter-controlled next link.
+  let metadata: any | undefined;
+  let frontMatter: Record<string, any> | undefined;
+  try {
+    // We call the hook unconditionally (hook rules preserved), but wrap it
+    // so the thrown ReactContextError doesn't abort the build.
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const docHookResult = useDoc();
+    metadata = docHookResult?.metadata;
+    frontMatter = metadata ?? {};
+  } catch (e) {
+    // Not in a DocProvider context — fall back to no frontMatter.
+    metadata = undefined;
+    frontMatter = undefined;
+  }
 
   // If the doc defines a `next` front-matter string, prefer that as the next link.
   // frontMatter.next should be a permalink (absolute or site-relative). Optionally frontMatter.nextTitle
