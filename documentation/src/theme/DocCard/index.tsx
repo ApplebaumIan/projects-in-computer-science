@@ -29,7 +29,9 @@ function iconForKey(key?: string): ReactNode {
     case 'tools':
       return '👥️🛠';
     case 'impact':
-      return '🌍';
+      return '🌐';
+    case 'learn':
+        return '🧠';
     default:
       return null;
   }
@@ -56,16 +58,23 @@ function CardContainer({
   className,
   href,
   children,
+  affordanceLabel,
 }: {
   className?: string;
   href: string;
-  children: ReactNode;
+  children?: ReactNode;
+  affordanceLabel?: string;
 }): ReactNode {
   return (
     <Link
       href={href}
       className={clsx('card padding--lg', styles.cardContainer, className)}>
       {children}
+      {/* affordance cue shown on hover/focus; label supplied via customProps.affordanceText */}
+      <span className={styles.cardAffordance} aria-hidden="true">
+        <span className={styles.cardAffordanceLabel}>{affordanceLabel ?? 'Explore this section'}</span>
+        <span className={styles.cardAffordanceArrow}>→</span>
+      </span>
     </Link>
   );
 }
@@ -76,15 +85,17 @@ function CardLayout({
   icon,
   title,
   description,
+  affordanceLabel,
 }: {
   className?: string;
   href: string;
   icon: ReactNode;
   title: string;
   description?: string;
+  affordanceLabel?: string;
 }): ReactNode {
   return (
-    <CardContainer href={href} className={className}>
+    <CardContainer href={href} className={className} affordanceLabel={affordanceLabel}>
       <Heading
         as="h2"
         className={clsx('text--truncate', styles.cardTitle)}
@@ -109,6 +120,7 @@ function CardCategory({item}: {item: PropSidebarItemCategory}): ReactNode {
 
   const iconKey = (item as any)?.customProps?.icon as string | undefined;
   const customIcon = iconForKey(iconKey);
+  const affordanceLabel = (item as any)?.customProps?.affordanceText as string | undefined;
 
   return (
       <CardLayout
@@ -117,10 +129,10 @@ function CardCategory({item}: {item: PropSidebarItemCategory}): ReactNode {
           icon={customIcon ?? '🗂️'}
           title={item.label}
           description={item.description ?? categoryItemsPlural(item.items.length)}
+          affordanceLabel={affordanceLabel}
       />
   );
 }
-
 
 
 function CardLink({item}: {item: PropSidebarItemLink}): ReactNode {
@@ -128,6 +140,9 @@ function CardLink({item}: {item: PropSidebarItemLink}): ReactNode {
 
   const iconKey = (item as any)?.customProps?.icon as string | undefined;
   const customIcon = iconForKey(iconKey);
+  // prefer affordance text from the doc's front matter, then fall back to sidebar item's customProps
+  const affordanceLabel = (doc as any)?.frontMatter?.affordanceText as string |
+    undefined || (item as any)?.customProps?.affordanceText as string | undefined;
 
   const fallbackIcon = isInternalUrl(item.href) ? '📄️' : '🔗';
 
@@ -138,6 +153,7 @@ function CardLink({item}: {item: PropSidebarItemLink}): ReactNode {
           icon={customIcon ?? fallbackIcon}
           title={item.label}
           description={item.description ?? doc?.description}
+          affordanceLabel={affordanceLabel}
       />
   );
 }

@@ -3,15 +3,23 @@
   --ifm-link-hover-color: var(--ifm-color-emphasis-700);
   --ifm-link-hover-decoration: none;
 
-  box-shadow: 0 1.5px 3px 0 rgb(0 0 0 / 15%);
-  border: 1px solid var(--ifm-color-emphasis-200);
+  /* increased prominence */
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
+  border: 1.5px solid var(--ifm-color-emphasis-200);
   transition: all var(--ifm-transition-fast) ease;
-  transition-property: border, box-shadow;
+  transition-property: border, box-shadow, transform;
+
+  /* give cards a slightly taller appearance */
+  padding-top: 1.25rem; /* padding--lg already applies, this nudges vertical space */
+  padding-bottom: 1.25rem;
+  min-height: 100px; /* slightly increase minimum height */
+  position: relative; /* enable absolute-positioned affordance */
 }
 
 .cardContainer:hover {
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 8px 20px 0 rgb(0 0 0 / 25%);
+  transform: translateY(-2px);
 }
 
 .cardContainer *:last-child {
@@ -23,5 +31,57 @@
 }
 
 .cardDescription {
-  font-size: 0.8rem;
+  font-size: 0.9rem; /* slightly larger for readability */
+  margin-top: 0.5rem;
+}
+
+/* Affordance cue - initially hidden and revealed on hover or focus within the card */
+.cardAffordance {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  background: rgba(255,255,255,0.9);
+  padding: 4px 12px 4px 8px; /* extra right padding for arrow */
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 88px; /* avoid collapsing too small */
+  max-width: 240px; /* reasonable upper bound */
+}
+
+.cardAffordanceLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 8px; /* spacing before arrow */
+  display: block;
+  min-width: 0; /* allow ellipsis inside flex */
+}
+
+.cardAffordanceArrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex: 0 0 auto;
+}
+
+.cardContainer:hover .cardAffordance,
+.cardContainer:focus-within .cardAffordance {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dark theme tweak so the affordance stays readable */
+[data-theme='dark'] .cardAffordance {
+  background: rgba(20,20,20,0.85);
+  color: var(--ifm-color-emphasis-200);
 }

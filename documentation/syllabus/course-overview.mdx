@@ -69,12 +69,16 @@ import DocCardList from '@theme/DocCardList';
             label: 'The Projects!',
             description: 'Skip straight to the project descriptions.',
             href: '/syllabus/projects/intro',
-        },
+            customProps: { icon: 'impact',
+                affordanceText: 'Skip to the Projects!'
+            }, // <-- add this
+    },
         {
             type: 'link',
             label: 'What you will Learn',
             description: 'Continue to the learning outcomes for this course.',
-            href: '/syllabus/what-you-will-learn',
+            customProps: { icon: 'learn' , affordanceText: 'Continue to Learning Outcomes'},
+    href: '/syllabus/what-you-will-learn',
         },
     ]
 }/>
