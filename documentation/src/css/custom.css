@@ -15,6 +15,10 @@
   --ifm-color-primary-lightest: #cc2c45;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* lighter divider for subtle appearance (slightly darker per request) */
+  --divider-light: rgba(0,0,0,0.08);
+  --divider-dark: rgba(255,255,255,0.06);
+  --divider: var(--divider-light);
 }
 
 .quicklinks {
@@ -214,7 +218,7 @@ main {
 
 @keyframes wave {
   0% {
-    background-position-x: 0px;
+    background-position-x: 0;
   }
 
   100% {
@@ -224,7 +228,7 @@ main {
 
 @keyframes wave2 {
   0% {
-    background-position-x: 0px;
+    background-position-x: 0;
   }
 
   100% {
@@ -384,4 +388,68 @@ main {
 .logo.enter {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+/* Stakeholders section divider and layout (moved from section MDX inline styles)
+   Use theme tokens so the divider is visible in both light and dark modes. */
+:root {
+  /* prefer the Docusaurus emphasis token when available, otherwise use a lighter fallback */
+  --divider: var(--divider-light);
+}
+
+/* Docusaurus switches theme by adding data-theme='dark' to <html> - use that hook */
+[data-theme='dark'] {
+  --divider: var(--divider-dark);
+}
+
+.stakeholders { display: flex; gap: 1rem; align-items: stretch; }
+.stakeholders figure { padding: 0.5rem 0; position: relative; margin: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+/* Put a subtle dotted left border on the second figure */
+.stakeholders figure + figure {
+  margin-left: 1rem;
+  padding-left: 1.25rem; /* leave space between border and content */
+  border-left-width: 1px;
+  border-left-style: dotted;
+  border-left-color: var(--divider);
+  align-self: stretch; /* ensure the second figure fills parent's height so border spans fully */
+}
+
+/* Styling for content inside stakeholders to replace inline styles */
+.stakeholders img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+.stakeholders figure > figcaption:first-of-type {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.stakeholders figure > figcaption:nth-of-type(2) {
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--ifm-color-emphasis-600, rgba(0,0,0,0.6));
+}
+
+.stakeholders figure p {
+  margin-top: 0.5rem;
+  text-align: left;
+  max-width: 48ch;
+}
+
+/* Provide an explicit light-mode fallback (subtle dotted line) */
+html:not([data-theme='dark']) .stakeholders figure + figure {
+  border-left-color: rgba(0,0,0,0.08) !important;
+}
+
+@media (max-width: 600px) {
+  .stakeholders { flex-direction: column; align-items: center; }
+  .stakeholders figure { width: 100%; padding-top: 1rem; margin-top: 1rem; display: block; }
+  .stakeholders figure + figure { padding-left: 0; margin-left: 0; border-left: none; }
+  .stakeholders figure { border-top: 1px solid var(--divider); }
 }
