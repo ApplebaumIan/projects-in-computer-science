@@ -275,6 +275,9 @@ const config = {
         routeBasePath: 'syllabus',
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
+        // Provide an editUrl so the plugin generates `editUrl` metadata for pages
+        // TODO: Change this to main branch when live.
+        editUrl: 'https://github.com/Applebaumian/projects-in-computer-science/edit/staging/documentation/',
       },
     ],
     [

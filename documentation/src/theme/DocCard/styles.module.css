@@ -1,0 +1,123 @@
+.cardContainer {
+  --ifm-link-color: var(--ifm-color-emphasis-800);
+  --ifm-link-hover-color: var(--ifm-color-emphasis-700);
+  --ifm-link-hover-decoration: none;
+
+  /* increased prominence */
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
+  border: 1.5px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border, box-shadow, transform;
+
+  /* give cards a slightly taller appearance */
+  padding-top: 1.25rem; /* padding--lg already applies, this nudges vertical space */
+  padding-bottom: 1.25rem;
+  min-height: 150px; /* slightly increase minimum height */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* enable absolute-positioned affordance */
+}
+
+.cardContainer:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 8px 20px 0 rgb(0 0 0 / 25%);
+  transform: translateY(-2px);
+}
+
+.cardContainer *:last-child {
+  margin-bottom: 0;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+}
+
+.cardDescription {
+  font-size: 0.9rem; /* slightly larger for readability */
+  margin-top: 0.6rem;
+  color: var(--ifm-color-emphasis-700);
+
+  /* Truncate description to two lines with an ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  /* allow normal wrapping for long words/phrases */
+  white-space: normal;
+}
+
+/* helper to push a CTA to the bottom of the card */
+.cardCta {
+  margin-top: auto;
+}
+
+/* Affordance cue - styled to match Docusaurus theme variables and look-and-feel */
+.cardAffordance {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 0.875rem;
+  /* use Docusaurus theme tokens for a more native look */
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-900);
+  padding: 6px 14px 6px 10px; /* room on right for arrow */
+  border-radius: 999px; /* fully rounded pill like Docusaurus */
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  min-width: 88px;
+  max-width: 260px;
+  font-weight: 600;
+}
+
+.cardAffordanceLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px; /* spacing before the arrow */
+  display: block;
+  min-width: 0;
+  color: var(--ifm-color-emphasis-900); /* explicit default for light mode */
+  -webkit-font-smoothing: antialiased;
+}
+
+.cardAffordanceArrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex: 0 0 auto;
+  color: var(--ifm-color-primary); /* accent the arrow with primary color */
+  font-weight: 700;
+}
+
+.cardContainer:hover .cardAffordance,
+.cardContainer:focus-within .cardAffordance {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dark theme: use subtle translucent pill and keep the arrow using primary color */
+[data-theme='dark'] .cardAffordance {
+  background: rgba(255,255,255,0.04);
+  color: #f8fafc !important; /* ensure the pill text is light */
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .cardAffordanceLabel {
+  /* explicitly use a light color in dark mode so the label remains visible */
+  color: #f8fafc !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme='dark'] .cardAffordanceArrow {
+  color: var(--ifm-color-primary);
+}

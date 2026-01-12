@@ -34,7 +34,7 @@ function TagItem({
   );
 }
 
-function ShowcaseCardTag({tags}: {tags: TagType[]}) {
+export function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   const tagObjects = tags.map((tag) => {
     const meta = Tags[tag as TagType];
     if (meta) return {tag, ...meta};
@@ -286,6 +286,10 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
             </Link>
           )}
         </div>
+        {/* Contributors wrapped in a list item for valid HTML and layout control */}
+        {/*<li className={styles.contributorsItem}>*/}
+          {user.source && <Contributors githubURL={user.source} columns={7} />}
+        {/*</li>*/}
         <p className={styles.showcaseCardBody}>
           {isLong ? (
             <>
@@ -311,10 +315,6 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
       <ul className={clsx('card__footer', styles.cardFooter)}>
         {/* Tags (each already rendered as <li>) */}
         <ShowcaseCardTag tags={user.tags} />
-        {/* Contributors wrapped in a list item for valid HTML and layout control */}
-        <li className={styles.contributorsItem}>
-          <Contributors githubURL={user.source} columns={contributorsColumns} />
-        </li>
       </ul>
     </li>
   );

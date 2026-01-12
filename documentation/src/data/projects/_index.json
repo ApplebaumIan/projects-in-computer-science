@@ -1,0 +1,19 @@
+[
+  {
+    "title": "From Sketch to Screen Rahad Arman Nabid",
+    "slug": "from-sketch-to-screen-rahad-arman-nabid",
+    "description": "A collaborative UI design tool tailored for non-programmers. It allows multiple users to sketch interfaces, render designs in real time, finalize CSS, and specify page interactions—all without needing coding skills.",
+    "contact": "rahad@example.com",
+    "tags": [
+      "aac",
+      "design",
+      "collaborative"
+    ],
+    "semester": "Fall 2025",
+    "website": "https://example.com/project",
+    "documentation": "https://example.com/docs",
+    "source": "https://github.com/example/repo",
+    "demo": "https://example.com/demo",
+    "archived": false
+  }
+]

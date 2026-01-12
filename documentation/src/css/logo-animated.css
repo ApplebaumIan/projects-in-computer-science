@@ -1,0 +1,57 @@
+/* Styles for the animated logo. Uses CSS variables to stagger per-path animations if present.
+   Disables animations for users who prefer reduced motion. */
+
+.logo-animated {
+  display: inline-block;
+}
+
+.logo-animated .dont-panic-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: translateY(8px) scale(0.995);
+  transition: opacity 420ms cubic-bezier(.22,.9,.36,1), transform 480ms cubic-bezier(.22,.9,.36,1);
+}
+
+.logo-animated.is-visible .dont-panic-svg {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Optional staggered path fade-in: target each path and use --i as its index */
+.logo-animated .dont-panic-svg path{
+  /* default index so calc() can be resolved by static analysis; overridden by inline styles in the SVG */
+  --i: 0;
+  opacity: 0;
+  transform-origin: center;
+  transition: opacity 360ms ease, transform 360ms ease;
+  transition-delay: calc(var(--i, 0) * 70ms + 120ms);
+  transform: translateY(6px);
+}
+
+.logo-animated.is-visible .dont-panic-svg path{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stroke-draw variant (not enabled by default): if you want stroke reveal,
+   uncomment below and tweak path styles in the SVG to have stroke and no fill.
+.logo-animated .dont-panic-svg path{
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 800ms ease, opacity 360ms ease;
+}
+.logo-animated.is-visible .dont-panic-svg path{
+  stroke-dashoffset: 0;
+}
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-animated .dont-panic-svg,
+  .logo-animated .dont-panic-svg path {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

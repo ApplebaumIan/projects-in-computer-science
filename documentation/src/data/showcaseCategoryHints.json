@@ -36,7 +36,6 @@
   ],
   "whiteboard-assistant": [
     "ai",
-    "accessibility",
     "education",
     "web",
     "api",
@@ -191,5 +190,16 @@
     "mobile",
     "multiplayer",
     "unity"
+  ],
+  "aaccommodate": [
+    "aac",
+    "devops",
+    "embedded",
+    "game",
+    "pwa",
+    "social",
+    "api",
+    "library",
+    "speech-to-text"
   ]
 }

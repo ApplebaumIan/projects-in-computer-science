@@ -127,5 +127,10 @@
     "javascript",
     "dockerfile",
     "shell"
+  ],
+  "aaccommodate": [
+    "typescript",
+    "javascript",
+    "python"
   ]
 }
