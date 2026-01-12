@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TeachingAssistants() {
     const tas = [
-        { name: "Elmira Talebianaraki", email: ""},
+        { name: "Elmira Talebianaraki", email: "elmira.talebianaraki@temple.edu"},
         { name: "Jess Hutchison", email: "tuq69738@temple.edu" },
         { name: "Jaime Nguyen", email: "jaime.nguyen@temple.edu" },
         // { name: "Kyle Dragon Lee", email: "kyle.d.lee@temple.edu" },
