@@ -19,6 +19,9 @@
   --divider-light: rgba(0,0,0,0.08);
   --divider-dark: rgba(255,255,255,0.06);
   --divider: var(--divider-light);
+
+  /* provide a fallback emphasis color used by job-title; keep it generic for light theme */
+  --ifm-color-emphasis-600: rgba(0,0,0,0.6);
 }
 
 .quicklinks {
@@ -48,6 +51,8 @@
   --ifm-color-primary-lighter: #ff677f;
   --ifm-color-primary-lightest: #ff7087;
   --ifm-footer-background-color: black;
+  /* slightly lighter emphasis color for dark backgrounds */
+  --ifm-color-emphasis-600: rgba(255,255,255,0.7);
 }
 
 .medium-zoom-overlay {
@@ -424,16 +429,27 @@ main {
   margin: 0 auto;
 }
 
-.stakeholders figure > figcaption:first-of-type {
+/* Replace fragile multi-figcaption selectors with explicit class selectors.
+   Use one <figcaption> per <figure>, and put the person name in an element
+   with class="name" and the job/title in an element with class="job-title".
+   This avoids invalid HTML and screen-reader issues. */
+
+.stakeholders figure figcaption .name {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.stakeholders figure figcaption  {
   margin-top: 0.5rem;
   font-size: 0.9rem;
   text-align: center;
 }
 
-.stakeholders figure > figcaption:nth-of-type(2) {
+.stakeholders figure figcaption .job-title {
   font-size: 0.8rem;
   text-align: center;
   color: var(--ifm-color-emphasis-600, rgba(0,0,0,0.6));
+  margin: 0;
 }
 
 .stakeholders figure p {
