@@ -1,0 +1,59 @@
+---
+sidebar_position: 7
+title: Course Schedule
+---
+
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import Syllabus from '../src/components/Syllabus';
+import Admonition from '@theme/Admonition';
+
+# Course Schedule (Overview)
+
+## How the Semester Is Structured
+
+This course follows an Agile, sprint-based structure modeled after real-world software teams.
+While specific lecture topics may shift based on project needs, sprint goals and milestone expectations remain consistent throughout the semester.
+
+- The semester is divided into **six sprints**
+- Early sprints emphasize **problem understanding and documentation**
+- Later sprints emphasize **development, iteration, and delivery**
+- Stakeholder feedback is incorporated throughout the process
+
+```mermaid
+gantt
+    title Course Sprint Timeline (Conceptual)
+    dateFormat  YYYY-MM-DD
+    axisFormat  Week %V
+    tickInterval 1week
+    weekday monday
+
+    section Foundations & MVP
+    Sprint 0:  des1, 2024-01-08, 1w
+    Sprint 1:  des2, after des1, 2w
+    Sprint 2:  des3, after des2, 2w
+
+    section Development & Refinement
+    Sprint 3:  dev1, after des3, 2w
+    Milestone Demo 1 : crit, milestone, m1, after dev1, 0d
+    Sprint 4:  dev2, after dev1, 2w
+    Milestone Demo 2 : crit, milestone, m2, after dev2, 0d
+    Sprint 5:  dev3, after dev2, 2w
+    Milestone Demo 3 : crit, milestone, m3, after dev3, 0d
+
+    section Final Delivery
+    Sprint 6:  dev4, after dev3, 1w
+    Final Demo: crit, milestone, m4, after dev4, 0d
+```
+:::warning Disclaimer
+This is a 17 week course including breaks. The timeline above is conceptual and the week axis may not correspond to this because of Holidays and Breaks.
+:::
+
+## Weekly Rhythm
+
+This course follows a consistent weekly structure designed to balance instruction, collaboration, and project work:
+- **Mondays:** Team Meetings / Stakeholder Meetings / Project Work
+- **Wednesdays:** Lectures / Workshops
+- **Fridays:** Team Meetings / Project Work
+
+On the next page, you can find a detailed breakdown of the sprint timeline and key milestones.
