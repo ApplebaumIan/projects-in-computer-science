@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunktu_cis_4398_docs_template=self.webpackChunktu_cis_4398_docs_template||[]).push([["4539"],{73265:function(t,e,s){s.d(e,{Z:()=>a});var i=s(53763),r=s(26652);let a=(t,e)=>i.Z.lang.round(r.Z.parse(t)[e])},86266:function(t,e,s){s.d(e,{G:()=>i});var i=(0,s(4171).eW)(()=>`
+"use strict";(self.webpackChunktu_cis_4398_docs_template=self.webpackChunktu_cis_4398_docs_template||[]).push([["3241"],{73265:function(t,e,s){s.d(e,{Z:()=>a});var i=s(53763),r=s(26652);let a=(t,e)=>i.Z.lang.round(r.Z.parse(t)[e])},86266:function(t,e,s){s.d(e,{G:()=>i});var i=(0,s(4171).eW)(()=>`
   /* Font Awesome icon styling - consolidated */
   .label-icon {
     display: inline-block;
