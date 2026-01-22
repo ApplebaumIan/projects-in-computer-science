@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Add Students to Jira
 ---
 
@@ -34,3 +34,4 @@ Upon receiving the invite, students need to:
 - Advise students to reset their password if they’ve forgotten it.
 
 By following these steps, you will ensure a smooth onboarding process for students into your Jira Cloud organization, minimizing potential login and account setup issues.
+
