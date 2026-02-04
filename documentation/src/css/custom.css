@@ -469,3 +469,21 @@ html:not([data-theme='dark']) .stakeholders figure + figure {
   .stakeholders figure + figure { padding-left: 0; margin-left: 0; border-left: none; }
   .stakeholders figure { border-top: 1px solid var(--divider); }
 }
+
+/* Keep in DOM for crawlers, hide from humans */
+/*.pdf-crawler-only {*/
+/*  position: absolute !important;*/
+/*  left: -10000px !important;*/
+/*  top: auto !important;*/
+/*  width: 1px !important;*/
+/*  height: 1px !important;*/
+/*  overflow: hidden !important;*/
+/*  */
+/*}*/
+.pdf-crawler-only {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  opacity: 0 !important;
+  z-index: 999999 !important;
+}
