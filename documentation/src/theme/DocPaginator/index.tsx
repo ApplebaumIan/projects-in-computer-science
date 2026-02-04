@@ -8,6 +8,7 @@ import type {Props} from '@theme/DocPaginator';
 // provider. We keep the hook call but guard it with a try/catch so the
 // paginator becomes a no-op when not inside docs context.
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 // Custom DocPaginator: honors front-matter flags to hide the "next" link for specific docs.
 // Supported front-matter flags (any truthy):
@@ -26,9 +27,12 @@ export default function DocPaginator(props: Props): ReactNode {
   // as if there is no frontMatter-controlled next link.
   let metadata: any | undefined;
   let frontMatter: Record<string, any> | undefined;
-  try {
-    // We call the hook unconditionally (hook rules preserved), but wrap it
-    // so the thrown ReactContextError doesn't abort the build.
+const {siteConfig} = useDocusaurusContext();
+const isPdf =
+        String(siteConfig.customFields?.is_pdf || '').toLowerCase() === 'true' ||
+        String(siteConfig.customFields?.is_pdf || '') === '1';
+
+    try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const docHookResult = useDoc();
     metadata = docHookResult?.metadata;
@@ -40,61 +44,80 @@ export default function DocPaginator(props: Props): ReactNode {
     frontMatter = undefined;
   }
 
-  // If the doc defines a `next` front-matter string, prefer that as the next link.
-  // frontMatter.next should be a permalink (absolute or site-relative). Optionally frontMatter.nextTitle
-  // can provide a custom title for the link.
-  if (frontMatter && typeof frontMatter.next === 'string') {
+  // Optional: allow doc to override next link
+    // If PDF build and doc defines pdfNext, prefer that
+    if (frontMatter && isPdf && typeof frontMatter.pdfNext === 'string') {
+        next = {
+            permalink: frontMatter.pdfNext,
+            title:
+                (frontMatter.pdfNextTitle as string) ??
+                (frontMatter.nextTitle as string) ??
+                'Next',
+        } as any;
+    } else if (frontMatter && typeof frontMatter.next === 'string') {
     next = {
       permalink: frontMatter.next,
-      title: (frontMatter.nextTitle as string) ?? (frontMatter.next_label as string) ?? 'Next',
+      title: (frontMatter.nextTitle as string) ?? 'Next',
     } as any;
   }
 
-  const shouldHideNext = !!(
-    frontMatter && (
-      frontMatter.hideNext === true ||
-      frontMatter.hidePaginationNext === true ||
-      frontMatter.hidePagination === true
-    )
+  const shouldHideNextCompletely = !!(
+      frontMatter && (
+          frontMatter.hideNext === true ||
+          frontMatter.hidePaginationNext === true ||
+          frontMatter.hidePagination === true
+      )
   );
 
-  if (shouldHideNext) {
+  // NEW: hide next visually but keep it in DOM for crawlers
+  const shouldHideNextVisually = !!(
+      frontMatter && (
+          frontMatter.hidePaginationNextVisually === true ||
+          frontMatter.hideNextVisually === true
+      )
+  );
+
+  if (shouldHideNextCompletely) {
     next = undefined;
   }
 
   return (
-    <nav
-      className={clsx(className, 'pagination-nav')}
-      aria-label={translate({
-        id: 'theme.docs.paginator.navAriaLabel',
-        message: 'Docs pages',
-        description: 'The ARIA label for the docs pagination',
-      })}>
-      {previous && (
-        <PaginatorNavLink
-          {...previous}
-          subLabel={
-            <Translate
-              id="theme.docs.paginator.previous"
-              description="The label used to navigate to the previous doc">
-              Previous
-            </Translate>
-          }
-        />
-      )}
-      {next && (
-        <PaginatorNavLink
-          {...next}
-          subLabel={
-            <Translate
-              id="theme.docs.paginator.next"
-              description="The label used to navigate to the next doc">
-              Next
-            </Translate>
-          }
-          isNext
-        />
-      )}
-    </nav>
+      <nav
+          className={clsx(className, 'pagination-nav')}
+          aria-label={translate({
+            id: 'theme.docs.paginator.navAriaLabel',
+            message: 'Docs pages',
+            description: 'The ARIA label for the docs pagination',
+          })}
+      >
+        {previous && (
+            <PaginatorNavLink
+                {...previous}
+                subLabel={
+                  <Translate id="theme.docs.paginator.previous">
+                    Previous
+                  </Translate>
+                }
+            />
+        )}
+
+        {next && (
+            <div
+                className={clsx(
+                    shouldHideNextVisually && 'pdf-crawler-only'
+                )}
+            >
+              <PaginatorNavLink
+                  {...next}
+                  subLabel={
+                    <Translate id="theme.docs.paginator.next">
+                      Next
+                    </Translate>
+                  }
+                  isNext
+              />
+            </div>
+        )}
+      </nav>
   );
 }

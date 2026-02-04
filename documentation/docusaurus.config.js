@@ -26,6 +26,9 @@ const semester = process.env.SEMESTER_YEAR;
 if (!process.env.PROJECT_NAME) {
   console.warn('⚠️ PROJECT_NAME env variable not found. Using default.');
 }
+if (is_pdf) {
+  console.log("PDF Mode")
+}
 const title = (process.env.PROJECT_NAME || 'default-project')
   .replaceAll('-', ' ')
   .split(' ')
