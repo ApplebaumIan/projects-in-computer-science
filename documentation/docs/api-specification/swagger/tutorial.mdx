@@ -1,0 +1,74 @@
+---
+sidebar_position: 2
+title: "How to Add Your Spec"
+description: "Step-by-step tutorial to add your OpenAPI spec to Redocusaurus and Docusaurus"
+sidebar_custom_props:
+    icon: tip
+    affordanceText: "Add Your Spec"
+---
+
+# Redocusaurus Tutorial: Adding Your OpenAPI Spec
+## 1) Add your OpenAPI file
+
+- Place your OpenAPI YAML/JSON under the site `static/` folder so it will be served (example: `static/api/your-api.yml`).
+
+## 2) Update `docusaurus.config.js`
+
+Open the repository `docusaurus.config.js` (or `docusaurus.config.mjs`) and find the `plugins` array. Look for an entry that configures Redocusaurus. It will look similar to this:
+
+```js
+{
+  name: 'redocusaurus',
+  options: {
+    specs: [
+      {
+        id: 'using-single-yaml',
+        spec: 'static/openapi.yml.yaml',
+        route: '/api/',
+      }
+    ],
+  },
+}
+```
+
+## 3) Change the `spec` path and `id`
+
+- Update `spec` to point to your file, e.g. `static/api/your-api.yml`.
+- Choose a unique `id` (used by the MDX pages that reference the spec).
+- Optionally change `route` to control where the API docs live on the site (for example, `/api/courses/`).
+
+## 4) Update or add MDX pages
+
+- The MDX docs that render Redocusaurus content use a theme component, for example:
+
+```jsx
+import ApiDocMdx from '@theme/ApiDocMdx';
+<ApiDocMdx id="using-single-yaml" />
+```
+
+- Make sure the `id` passed to `ApiDocMdx` matches the `id` you set in the plugin config.
+
+## 5) Rebuild the site
+
+- Run your normal Docusaurus start/build commands (for example `npm run start` or `npm run build`) to pick up the config change and render the new API docs.
+
+Notes and tips
+
+- Keep your spec small and focused for doc pages; large monolithic specs can be split by references.
+- If you have multiple specs, add multiple entries in `specs` with unique `id`s and routes.
+- If you use TypeScript or ESM for the site config, ensure you update the correct file extension (`.mjs` / `.cjs`) and import/export style used by the project.
+
+<details>
+    <summary>
+
+        ## Live Demo
+        Example OpenAPI rendered below.
+
+    </summary>
+
+    Change the id to `using-single-yaml` and the spec path to `static/openapi.yml.yaml` to see the example spec rendered in this page:
+    ```jsx live
+    <ApiDocMdx id="using-petstore-yaml" />
+    ```
+
+</details>

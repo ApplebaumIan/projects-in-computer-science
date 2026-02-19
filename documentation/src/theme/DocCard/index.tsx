@@ -32,6 +32,14 @@ function iconForKey(key?: string): ReactNode {
       return '🌐';
     case 'learn':
         return '🧠';
+    case 'tip':
+        return '💡';
+    case 'warning':
+        return '⚠️';
+    case 'example':
+        return '📚';
+    case 'best-practice':
+        return '🏆';
     default:
       return null;
   }
