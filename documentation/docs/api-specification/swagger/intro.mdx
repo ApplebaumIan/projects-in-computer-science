@@ -6,9 +6,29 @@ sidebar_position: 1
 import DocCardList from '@theme/DocCardList';
 import ApiDocMdx from '@theme/ApiDocMdx';
 
-# Using Redocusaurus — quick tutorial
+# HTTP API Contract (OpenAPI)
 
-This site includes Redocusaurus (a Redoc-powered Docusaurus plugin) to render OpenAPI/Swagger YAML files inside the docs. The plugin is already installed in the site config; follow these steps to point it at your own spec.
+Your team must define and maintain a complete OpenAPI specification that describes your system’s external REST interface.
+
+This document is the formal contract between your backend and any external client.
+
+## What You Must Produce
+
+Your OpenAPI specification must:
+
+- Define all implemented endpoints
+- Include request and response schemas
+- Include error responses
+- Declare authentication mechanisms
+- Include meaningful operation summaries and descriptions
+
+The specification must always reflect the current implementation. If the API changes, the contract must change.
+
+
+[//]: # (# Using Redocusaurus — quick tutorial)
+
+[//]: # ()
+[//]: # (This site includes Redocusaurus &#40;a Redoc-powered Docusaurus plugin&#41; to render OpenAPI/Swagger YAML files inside the docs. The plugin is already installed in the site config; follow these steps to point it at your own spec.)
 
 <DocCardList />
 

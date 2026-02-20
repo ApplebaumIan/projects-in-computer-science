@@ -1,0 +1,38 @@
+---
+sidebar_position: 1
+---
+
+# Guidelines for Internal Code Contracts
+
+This page describes the template you should use when documenting classes and modules.
+
+For each class document the following:
+
+- Purpose of the class (one-line summary).
+- Data fields: name, type, purpose, visibility (public/private), and invariants.
+- Methods: name, signature (parameters + types), return type, purpose, side-effects.
+- Preconditions: what must be true for callers.
+- Postconditions: guarantees after the method returns.
+- Exceptions: which exceptions may be thrown and when (see exceptions page for policies).
+- Examples: short code snippets showing typical usage.
+
+Template (copy into your class docs):
+
+``````
+Class: ExampleClass
+Purpose: Short description.
+Fields:
+  - name: type — purpose (visibility, invariants)
+Methods:
+  - doWork(param: Type): ResultType — description
+    Preconditions: ...
+    Postconditions: ...
+    Throws: ExampleException when ...
+    Example:
+    ```java
+    ExampleClass e = new ExampleClass(...);
+    e.doWork(...);
+    ```
+``````
+
+

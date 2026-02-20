@@ -1,27 +1,11 @@
 # Internal Code Contracts
 
-## What are they?
-Internal code contracts are a set of rules and expectations that govern how different components of a software system should interact with each other. They define the responsibilities, inputs, outputs, and behaviors of various modules, functions, or classes within the codebase. These contracts help ensure that different parts of the system can work together seamlessly and that any changes made to one component do not break the functionality of others.
+This section covers the project's internal code contract guidance: what to document for each class, examples, and recommended error/exception handling.
 
-An Example of this that you should be familar with is JavaDoc. JavaDoc is a documentation tool for Java that allows developers to create API documentation in a standardized format. It uses special comments in the code to generate HTML documentation that describes the classes, methods, and fields in a Java program. This documentation serves as an internal code contract by providing clear information about how to use the various components of the codebase, what parameters they expect, and what they return. By adhering to these contracts, developers can ensure that their code is maintainable, understandable, and less prone to errors when integrated with other parts of the system.
+Use the pages below to navigate the detailed guidance:
 
-**For each class define the data fields, methods.**
-- The purpose of the class.
-- The purpose of each data field.
-- The purpose of each method
-- Pre-conditions if any.
-- Post-conditions if any.
-- Parameters and data types
-- Return value and output variables
-- Exceptions thrown\* (PLEASE see note below for details).
+- [Guidelines for each class](./guidelines.mdx)
+- [Examples and previous class specs](./examples.mdx)
+- [Exceptions and error-handling guidance](./exceptions.mdx)
 
-## Previous Class Examples
-
-An example of an auto-generated API specification is here ([Patreon Shout API Specification](https://capstone-projects-2022-fall.github.io/project-patreon-shout/docs/api-specification/api-documentation "Patreon Shout API Specification") )
-
-Another example of an auto-generated API specification is here ([AACcomodate API](https://capstone-projects-2025-fall.github.io/project-001-aac-api/docs/api-specification) )
-
-:::note
-\*At the top level, or where appropriate, all exceptions should be caught and an error message that is meaningful to the user generated. It is not OK to say ("xxxx has encountered a problem and will now close `OK`"). Error messages and recovery procedures should be documented in the README/User’s Manual.
-:::
-
+Refer to the top-level notes in each page for templates and concrete examples you can copy into auto-generated API/spec docs.

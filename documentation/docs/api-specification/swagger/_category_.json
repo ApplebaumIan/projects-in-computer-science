@@ -4,5 +4,10 @@
   "link": {
     "type": "doc",
     "id": "intro"
+  },
+  description: "External Contract — how the outside world talks to your system.",
+  customProps: {
+    icon: "impact"
   }
+
 }

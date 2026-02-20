@@ -1,0 +1,37 @@
+---
+sidebar_position: 3
+---
+
+# Troubleshooting & Tips
+
+Common issues and how to fix them.
+
+Q: My generated Javadoc isn't visible in the dev site or 404s when I click the link.
+
+- The Docusaurus dev server caches static files. Restart the dev server (`yarn start` from `documentation/`) after adding files to `static/`.
+- Ensure the path is correct: a file at `documentation/static/javadoc/index.html` is served at `/javadoc/index.html`.
+- Use an anchor with target="_blank" to bypass the client-side router.
+
+Q: Links in the Javadoc point to local file system paths or don't work.
+
+- The Javadoc generator may create relative links that assume a certain base path. If links are broken, ensure all assets (CSS/JS) are in the same structure under `static/`.
+- If necessary, adjust the Javadoc `-link` or `-linkoffline` options when generating to make cross-links correct.
+
+Q: I want to include only public APIs, not private/internal classes.
+
+- Set visibility in the IDE generation dialog to `public` or `protected` instead of `private`.
+
+Q: The Javadoc index is being routed by Docusaurus and the page renders as 404.
+
+- Always add `target="_blank"` on the anchor to open the generated HTML in a new browser tab, which avoids the router.
+
+Q: I want to automate the generation and deployment.
+
+- Create a script that runs the javadoc tool and copies the output into `documentation/static/javadoc/`. Run it as part of your CI before the site build.
+
+Q: Build size concerns — Javadoc can be large.
+
+- Consider publishing the Javadoc as a separate static site (GitHub Pages on a different repo or gh-pages branch) and link to it, or archive old versions to keep build sizes small.
+
+
+

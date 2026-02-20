@@ -4,5 +4,10 @@
   "link": {
     "type": "doc",
     "id": "intro"
+  },
+  description: "Internal Contract — how developers structure and maintain the code inside it.",
+  "customProps": {
+    "icon": "blocks"
   }
+
 }

@@ -58,17 +58,9 @@ Notes and tips
 - If you have multiple specs, add multiple entries in `specs` with unique `id`s and routes.
 - If you use TypeScript or ESM for the site config, ensure you update the correct file extension (`.mjs` / `.cjs`) and import/export style used by the project.
 
-<details>
-    <summary>
 
-        ## Live Demo
-        Example OpenAPI rendered below.
+import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
 
-    </summary>
+import Demo from './\_demo.mdx';
 
-    Change the id to `using-single-yaml` and the spec path to `static/openapi.yml.yaml` to see the example spec rendered in this page:
-    ```jsx live
-    <ApiDocMdx id="using-petstore-yaml" />
-    ```
-
-</details>
+{!docusaurusConfig.customFields.is_pdf && <Demo />}

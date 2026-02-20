@@ -1,0 +1,47 @@
+---
+sidebar_position: 2
+---
+
+# Step-by-step: Export Javadocs and host in Docusaurus
+
+This is a cleaned, easy-to-follow version of the walkthrough.
+
+Checklist
+
+- Export Javadoc from IntelliJ
+- Put the generated Javadoc into the Docusaurus `static/` folder (or a subfolder)
+- Link to the Javadoc from an MDX doc and make the link open in a new tab
+- Commit and push
+
+1) Export Javadoc from IntelliJ
+
+- In IntelliJ: Tools → Generate JavaDoc...
+- Scope: choose the project or a specific module
+- Visibility: choose the level you want exposed (public, protected, package, private)
+- Output directory: point to a folder inside your project. Example: `<project-root>/documentation/static/javadoc`
+- Generate the docs
+
+2) Add Javadoc to Docusaurus
+
+- Place the entire generated folder under `documentation/static/javadoc/`.
+  Files placed in `static/` are served verbatim at the site root when the site is built.
+  For example: documentation/static/javadoc/index.html will be available at `/javadoc/index.html`.
+
+3) Link from an MDX page
+
+- Create a docs page (MDX) where you want to reference the Javadoc.
+- Use an anchor with target="_blank" to avoid Docusaurus router intercepting the link. Example:
+
+```mdx
+<a href="/javadoc/index.html" target="_blank" rel="noopener noreferrer">Open Javadoc</a>
+```
+
+4) Commit and deploy
+
+- Add the static files and your MDX doc to git and push. The static assets will be deployed with the site.
+
+Tips
+
+- If you don't see your static files when running the dev server, try restarting the dev server or run `yarn start` from the `documentation` folder.
+- Keep generated docs in a separate folder (eg: `documentation/static/javadoc/`) so they don't clutter source.
+

@@ -1,0 +1,36 @@
+---
+sidebar_position: 2
+---
+
+# Exceptions and Error-handling Guidance
+
+This page documents the project's policies for exceptions and error handling.
+
+Key policies:
+
+- Prefer typed exceptions over string codes for internal logic.
+- Use checked exceptions for recoverable errors where the caller must handle them.
+- Use unchecked/runtime exceptions for programming errors (invariants violated).
+- Always include a clear message and, where appropriate, structured metadata (error code, context fields).
+
+Recommended structure for exception docs:
+
+- ExceptionName: description
+  - When thrown: ...
+  - Fields: code, message, context
+  - Example:
+    ```java
+    throw new ValidationException("email invalid", Map.of("field", "email"));
+    ```
+
+Logging and telemetry:
+
+- Log exceptions at the appropriate level (WARN for expected recoverable, ERROR for unexpected).
+- Attach correlation IDs where available.
+
+Retry and idempotency:
+
+- Document whether an operation is idempotent and whether callers may retry.
+
+
+

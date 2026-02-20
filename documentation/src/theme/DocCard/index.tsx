@@ -40,6 +40,8 @@ function iconForKey(key?: string): ReactNode {
         return '📚';
     case 'best-practice':
         return '🏆';
+    case 'blocks':
+        return '🧱';
     default:
       return null;
   }
