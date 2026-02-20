@@ -1,0 +1,78 @@
+---
+sidebar_position: 3
+title: Generating the Contract from Controller Stubs
+---
+
+# Generating the Contract from Controller Stubs
+
+In this course, you are encouraged to define your API early by writing controller stubs and generating the OpenAPI specification from those stubs.
+
+The purpose is not to avoid YAML. The purpose is to establish a clear contract between the backend and frontend teams.
+
+---
+
+## Why This Matters
+
+When the API contract is defined early:
+
+- Backend developers can implement endpoints incrementally.
+- Frontend developers can build against the contract immediately.
+- Teams can work in parallel.
+- Integration becomes predictable.
+- API disagreements are resolved before implementation is complete.
+
+The OpenAPI document becomes the shared agreement between teams.
+
+---
+
+## Stub-First Workflow
+:::important
+You'll need to find a package or library that supports generating OpenAPI specifications from controller stubs in your chosen backend framework.
+Examples include:
+- For Node.js/Express: [swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc) or [tsoa](https://www.npmjs.com/package/tsoa)
+- For Python/Flask: [flasgger](https://github.com/flasgger/flasgger)
+- FastAPI (Python) has built-in support for OpenAPI generation from path operation functions.
+- For Java/Spring Boot: [springdoc-openapi](https://springdoc.org/)
+- PHP/Laravel: [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger) or [Scribe](https://scribe.knuckles.wtf/laravel)
+:::
+
+
+1. Define controller classes and endpoint method signatures.
+2. Annotate routes, parameters, request bodies, and responses.
+3. Generate the OpenAPI specification.
+4. Render the generated specification in Redocusaurus.
+5. Implement method bodies throughout the semester.
+
+Writing controller stubs early is equivalent to writing the specification. It is simply expressed in code rather than YAML.
+
+---
+
+## Contract Ownership
+
+Even when generated automatically, the team remains responsible for the quality of the contract.
+
+- The contract must include complete request and response schemas.
+- Error responses must be documented.
+- Authentication requirements must be declared.
+- Descriptions must be meaningful.
+- The contract must stay synchronized with implementation.
+
+Automated generation does not remove responsibility.
+
+The contract defines the system boundary.
+
+:::tip Use GitHub Actions to Automate Contract Generation
+
+You can configure a [GitHub Action](https://docs.github.com/en/actions/get-started/quickstart) to automatically generate your OpenAPI specification whenever changes are pushed to the repository.
+
+A typical workflow might:
+
+- Build the project
+- Generate the OpenAPI specification from your controller stubs
+- Publish or commit the generated spec
+- Deploy the updated documentation site
+
+This helps keep the rendered contract synchronized with your implementation.
+
+Automation does not remove responsibility. You must still review the generated specification to ensure it is complete, accurate, and meets the quality standards defined in this course.
+:::
