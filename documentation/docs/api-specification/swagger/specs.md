@@ -53,5 +53,5 @@ A complete specification must include:
 
 - OpenAPI Specification: https://spec.openapis.org
 - Spectral docs: https://meta.stoplight.io/docs/spectral
-- Redocusaurus README (in this repository) — shows how the plugin is integrated into Docusaurus.
+- Redocusaurus README: https://github.com/rohit-gohri/redocusaurus
 
