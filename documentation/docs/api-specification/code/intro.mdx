@@ -1,11 +1,62 @@
+import DocCardList from "@theme/DocCardList";
+
 # Internal Code Contracts
 
-This section covers the project's internal code contract guidance: what to document for each class, examples, and recommended error/exception handling.
+Your team must define and maintain **internal code contracts** for the core classes in your system.
 
-Use the pages below to navigate the detailed guidance:
+An internal code contract documents how your system is structured and what each class or method guarantees to other developers working on the project.
 
-- [Guidelines for each class](./guidelines.mdx)
-- [Examples and previous class specs](./examples.mdx)
-- [Exceptions and error-handling guidance](./exceptions.mdx)
+Internal contracts reduce ambiguity inside your team. They define behavioral guarantees between modules, make refactoring safer, improve onboarding, and support reliable testing.
 
-Refer to the top-level notes in each page for templates and concrete examples you can copy into auto-generated API/spec docs.
+---
+
+## What You Must Produce
+
+Each **core class** must include:
+
+- A clear class-level purpose statement
+- Documentation for all public methods and fields
+- Parameter descriptions and return values
+- Declared exceptions and when they are thrown
+- Preconditions and postconditions where applicable
+- Example usage where helpful
+
+If the implementation changes, the internal contract must change.
+
+---
+
+## Contract Synchronization
+
+Internal documentation must remain synchronized with the implementation at all times.
+
+- If a method signature changes, the documentation must change.
+- If an exception condition changes, the documentation must change.
+- If behavior changes, the contract must change.
+
+Documentation drift is considered a **contract violation**.
+
+---
+
+## Quality Standards
+
+- Documentation must describe behavior, not restate method names.
+- Preconditions and postconditions must reflect real constraints.
+- Exceptions must be documented with specific triggering conditions.
+- Method signatures in documentation must match the implementation.
+- Public APIs must not be undocumented.
+
+Missing or inaccurate documentation is considered a defect.
+
+---
+
+## Scope of Documentation
+
+You are not required to document private helper methods unless they affect public behavior. Focus on documenting the public surface area and core architectural components.
+
+---
+
+## Detailed Guidance
+
+Use the pages below for templates, examples, and exception/error-handling policies:
+
+<DocCardList />

@@ -1,0 +1,71 @@
+---
+sidebar_position: 3
+sidebar_custom_props:
+    icon: example
+    affordanceText: "View an Example Class Spec"
+---
+
+# Example Class Specification
+
+The examples below demonstrate the **expected structure and level of detail** for internal code contracts.
+
+These are not informal notes — they model the documentation standard required for your project.
+
+:::warning
+These should match your class diagrams from the System Architecture document. If your implementation changes, these must be updated to reflect the current design.
+:::
+---
+
+## Example: `UserService`
+
+### Class Overview
+
+**Class Name:** `UserService`
+**Purpose:** Encapsulates business logic for user account management, including validation, persistence, and audit logging.
+
+**Responsibilities:**
+- Validate incoming user data
+- Persist user records
+- Enqueue onboarding side effects
+- Emit audit logs
+
+---
+
+### Fields
+
+| Field | Type | Visibility | Description |
+|-------|------|------------|------------|
+| userRepository | `UserRepository` | private | Handles data persistence |
+| logger | `Logger` | private | Records audit and diagnostic logs |
+
+---
+
+### Public Methods
+
+---
+
+#### `createUser(req: CreateUserRequest): User`
+
+**Description:**
+Creates and persists a new user account.
+
+**Preconditions:**
+- `req.email` is a valid email format
+- `req.password` satisfies complexity rules
+- Email must not already exist in the system
+
+**Postconditions:**
+- A new `User` record is persisted
+- A welcome email event is enqueued
+- Audit log entry is recorded
+
+**Throws:**
+- `ValidationException` — if input fails validation
+- `DuplicateUserException` — if email already exists
+
+**Example Usage:**
+```java
+UserService svc = new UserService(userRepository, logger);
+User user = svc.createUser(
+    new CreateUserRequest("a@b.com", "P@ssw0rd")
+);
