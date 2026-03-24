@@ -42,6 +42,10 @@ function iconForKey(key?: string): ReactNode {
         return '🏆';
     case 'blocks':
         return '🧱';
+    case 'bye':
+      return '👋';
+    case 'test':
+      return '🧪';
     default:
       return null;
   }
