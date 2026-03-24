@@ -164,5 +164,9 @@ echo "Syncing HTML..."
 mkdir -p "$DEST_HTML_DIR"
 rsync -a --delete "$TMP_HTML_DIR"/ "$DEST_HTML_DIR"/
 
+echo "Generating manifest..."
+node "$(dirname "$0")/generate-slides-manifest.js"
+
 echo "Done."
+
 

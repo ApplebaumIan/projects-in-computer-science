@@ -264,6 +264,15 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        id: 'slides',
+        path: 'slides-docs',
+        routeBasePath: 'slides',
+        sidebarPath: require.resolve('./sidebarsSlides.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         id: 'tutorial',
         path: 'tutorial',
         routeBasePath: 'tutorial',

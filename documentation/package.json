@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "yarn fetch-languages && yarn fetch-categories && docusaurus start --host 0.0.0.0",
-    "build": "yarn fetch-languages && yarn fetch-categories && docusaurus build",
+    "start": "yarn fetch-languages && yarn fetch-categories && yarn generate-slides-manifest && docusaurus start --host 0.0.0.0",
+    "build": "yarn fetch-languages && yarn fetch-categories && yarn generate-slides-manifest && docusaurus build",
+    "generate-slides-manifest": "node scripts/generate-slides-manifest.js",
     "export-keynote": "./scripts/export-keynote.sh",
     "export-keynote:changed": "./scripts/export-keynote.sh --changed-only",
     "export-keynote:dry-run": "./scripts/export-keynote.sh --dry-run",
