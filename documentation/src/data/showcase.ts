@@ -317,7 +317,7 @@ export const projects: Project[] = [
     title: 'Piglet Prep',
     description: 'This website is a child-friendly video platform designed to offer interactive educational content. Videos are enhanced with embedded Multiple Choice Questions (MCQs) and Object Detection (OD) questions to engage children and assess their understanding as they watch. The system allows users to answer MCQs and OD questions based on each video real-time, customize their preference for each video, and allows researchers to review performance analytics.\n',
     documentation: 'https://capstone-projects-2025-spring.github.io/project-piggyback-learning-team-1/',
-    website: 'https://piglet-prep.vercel.app',
+    website: 'https://pigletprep.vercel.app',
     source: 'https://github.com/Capstone-Projects-2025-Spring/project-piggyback-learning-team-1',
     demo: 'https://www.youtube.com/watch?v=BDUngO0hlBk&t=1902',
     tags: ['education', 'ml', 'computer-vision', 'analytics', 'research','nextjs'],
