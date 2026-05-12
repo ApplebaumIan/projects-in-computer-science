@@ -55,7 +55,8 @@ const config = {
   projectName: process.env.PROJECT_NAME, // Usually your repo name.
   customFields: {
     course_number: course_number,
-    semester: semester,
+    // courseFormat first letter should be capitalized
+    semester: `${courseFormat.charAt(0).toUpperCase() + courseFormat.slice(1)} ${semester}`,
     is_pdf: is_pdf,
     course_format: courseFormat,
     co_instructor: {

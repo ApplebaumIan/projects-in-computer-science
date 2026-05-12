@@ -26,4 +26,4 @@ jobs:
           export PROJECT_NAME=$(echo ${GITHUB_REPOSITORY#*/})
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cd documentation && NODE_ENV="production" GIT_USER="github-actions[bot]" GIT_PASS="${{ secrets.GITHUB_TOKEN }}" SEMESTER_YEAR={{ secrets.SEMESTER_YEAR }} SEMESTER_YEAR={{ secrets.SEMESTER }} yarn deploy
+          cd documentation && NODE_ENV="production" GIT_USER="github-actions[bot]" GIT_PASS="${{ secrets.GITHUB_TOKEN }}" SEMESTER_YEAR=${{ secrets.SEMESTER_YEAR }} SEMESTER=${{ secrets.SEMESTER }} yarn deploy
