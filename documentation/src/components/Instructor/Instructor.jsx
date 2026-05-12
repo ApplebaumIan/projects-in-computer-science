@@ -51,7 +51,7 @@ function CourseSections() {
     return <>
         <h2>Sections</h2>
         {isSummerCourse ? summerSemester() : springSemester()}
-        <Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course
+        <Admonition type={"note"}>{<>The only difference between lab and lecture is the <b>amount of time</b>. All course
             sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>
     </>;
 }
