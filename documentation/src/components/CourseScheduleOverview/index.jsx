@@ -21,7 +21,7 @@ export default function CourseScheduleOverview() {
       <table>
         <thead>
           <tr>
-            <th>Phase</th>
+            <th>Sprint</th>
             <th>Weeks</th>
             <th>Focus</th>
           </tr>
