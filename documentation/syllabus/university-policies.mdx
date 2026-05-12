@@ -4,8 +4,7 @@ title: University Policies
 ---
 
 import Admonition from '@theme/Admonition';
-
-export const isOnlineClass = false;
+import { isOnlineCourse } from '../src/config/courseFormat';
 
 # University Policies
 
@@ -68,7 +67,7 @@ commit, aid, encourage, facilitate, or solicit the commission of academic dishon
 impropriety including plagiarism, academic cheating, and selling lecture notes or other information
 provided by an instructor without the instructor's authorization. Violations may result in failing the assignment and/or failing the course, and/or other sanctions as enumerated in the [University Code of Conduct](https://studentconduct.temple.edu/policies).
 
-{isOnlineClass && (
+{isOnlineCourse && (
 <div>
 
 ## Online Web Meeting Tool

@@ -10,6 +10,66 @@
   overflow: hidden;
 }
 
+.summerSun {
+  position: absolute;
+  top: -88px;
+  right: -68px;
+  width: 240px;
+  height: 240px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.summerSunSvg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 16px 32px rgba(77, 35, 18, 0.22));
+}
+
+.summerSunOrbit {
+  transform-origin: 110px 110px;
+  animation: summerSunSpin 22s linear infinite;
+}
+
+.summerSunRing {
+  fill: none;
+  stroke: rgba(255, 246, 196, 0.45);
+  stroke-width: 4;
+}
+
+.summerSunRay {
+  stroke: #ffd76a;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.summerSunCore {
+  fill: #ffcf48;
+  stroke: #fff4b0;
+  stroke-width: 6;
+}
+
+.summerSunFace {
+  fill: #854c1b;
+}
+
+.summerSunSmile {
+  fill: none;
+  stroke: #854c1b;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+@keyframes summerSunSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* 3-project responsive grid */
 .projectsGrid {
   display: grid;
@@ -36,6 +96,12 @@
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
+  }
+  .summerSun {
+    width: 180px;
+    height: 180px;
+    top: -70px;
+    right: -54px;
   }
   .hero__title {
     font-size: 2rem; /* Adjust this size as needed */
@@ -137,6 +203,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .summerSunOrbit {
+    animation: none;
+  }
   .recordingDot {
     animation: none;
   }

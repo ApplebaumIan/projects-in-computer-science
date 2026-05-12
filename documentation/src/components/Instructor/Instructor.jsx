@@ -6,9 +6,8 @@ import Admonition from "@theme/Admonition";
 import TeachingAssistants from "../TeachingAssistants";
 
 function CourseSections() {
-    return <>
-        <h2>Sections</h2>
-        <ul>
+    function springSemester() {
+        return <ul>
             <li>
                 <strong>Section 001:</strong>
                 <ul>
@@ -33,8 +32,26 @@ function CourseSections() {
                     <li>Location: Science Ed and Research Ctr 00214 (SERC 214)</li>
                 </ul>
             </li>
-        </ul>
-        {/*<Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>*/}
+        </ul>;
+    }function summerSemester() {
+        return <ul>
+            <li>
+                <strong>Section 701:</strong>
+                <ul>
+                    <li>Labratory: W 10:30 am - 11:30 am</li>
+                    <li>Lecture: TR 10:30 am - 12:00 pm</li>
+                    <li>Location: Zoom link provided on Canvas</li>
+                </ul>
+            </li>
+        </ul>;
+    }
+
+    return <>
+        <h2>Sections</h2>
+        {/*{springSemester()}*/}
+        {summerSemester()}
+        <Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course
+            sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>
     </>;
 }
 
@@ -63,7 +80,7 @@ export default function Instructor() {
                 {/* Second Column */}
                 <div className="col col--4">
                     <CourseSections/>
-                    <TeachingAssistants/>
+                    {/*<TeachingAssistants/>*/}
                 </div>
 
                 {/* Third Column */}

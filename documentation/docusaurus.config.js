@@ -21,6 +21,7 @@ const main_template_jira_scripts = () => {
 const is_pdf = process.env.PDF === undefined ? false : process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
 const course_number = 'CIS 4398';
 const semester = process.env.SEMESTER_YEAR;
+const courseFormat = 'summer';
 
 // You can change the title here. The default is the name of the repository.
 if (!process.env.PROJECT_NAME) {
@@ -56,6 +57,7 @@ const config = {
     course_number: course_number,
     semester: semester,
     is_pdf: is_pdf,
+    course_format: courseFormat,
   },
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want

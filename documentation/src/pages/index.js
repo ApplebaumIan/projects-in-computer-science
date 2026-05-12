@@ -15,6 +15,40 @@ const buttons = [
     { to: "/syllabus/course-overview", label: "Course Syllabus 📋" },
     { to: "/syllabus/schedule", label: "Course Schedule 📆" },
 ];
+
+function SummerSun() {
+  return (
+    <div className={styles.summerSun} aria-hidden="true">
+      <svg viewBox="0 0 220 220" className={styles.summerSunSvg}>
+        <g className={styles.summerSunOrbit}>
+          <circle cx="110" cy="110" r="64" className={styles.summerSunRing} />
+          {[...Array(12)].map((_, index) => {
+            const angle = (index * Math.PI) / 6;
+            const x1 = 110 + Math.cos(angle) * 82;
+            const y1 = 110 + Math.sin(angle) * 82;
+            const x2 = 110 + Math.cos(angle) * 102;
+            const y2 = 110 + Math.sin(angle) * 102;
+            return (
+              <line
+                key={index}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                className={styles.summerSunRay}
+              />
+            );
+          })}
+        </g>
+        <circle cx="110" cy="110" r="48" className={styles.summerSunCore} />
+        <circle cx="92" cy="98" r="5" className={styles.summerSunFace} />
+        <circle cx="128" cy="98" r="5" className={styles.summerSunFace} />
+        <path d="M88 126 Q110 144 132 126" className={styles.summerSunSmile} />
+      </svg>
+    </div>
+  );
+}
+
 function HeaderBody({siteConfig}) {
   return (
     <>
@@ -38,8 +72,10 @@ function HeaderBody({siteConfig}) {
 
 export function HomepageHeader({children}) {
   const {siteConfig} = useDocusaurusContext();
+  const isSummer = siteConfig.customFields.course_format === 'summer';
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      {isSummer && <SummerSun />}
       <div className="container" style={{zIndex: 100}}>
         <div className={"row"}>
           <div className={"col"}>
