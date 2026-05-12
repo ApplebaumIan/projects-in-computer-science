@@ -1,7 +1,7 @@
 import React from "react";
 import Admonition from "@theme/Admonition";
 
-import { courseFormat, COURSE_FORMAT } from "../../config/courseFormat";
+import { courseFormat } from "../../config/courseFormat";
 
 export default function CourseScheduleOverview() {
   return (
@@ -12,10 +12,6 @@ export default function CourseScheduleOverview() {
         </p>
         <p>{courseFormat.cadenceSummary}</p>
         <p>{courseFormat.scheduleNote}</p>
-        {/*<p>*/}
-        {/*  To switch formats later, update <code>COURSE_FORMAT</code> in{" "}*/}
-        {/*  <code>src/config/courseFormat.js</code>. Current value: <code>{COURSE_FORMAT}</code>.*/}
-        {/*</p>*/}
       </Admonition>
 
       <h2>How the Semester Is Structured</h2>

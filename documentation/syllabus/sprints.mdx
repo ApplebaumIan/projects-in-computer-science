@@ -77,26 +77,7 @@ In the current syllabus format, this stage is centered on **{refinementSprintRan
 
 ## Sprint Timing by Term Format
 
-The exact week ranges depend on whether the course is running in the regular semester or the condensed summer term. The current configuration is **{courseFormat.label}**.
-
-<table>
-  <thead>
-    <tr>
-      <th>Sprint</th>
-      <th>Week Range</th>
-      <th>Focus</th>
-    </tr>
-  </thead>
-  <tbody>
-    {courseFormat.sprintWindows.map((item) => (
-      <tr key={item.sprint}>
-        <td>{item.sprint}</td>
-        <td>{item.weeks}</td>
-        <td>{item.focus}</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+The current syllabus format is **{courseFormat.label}**. For the full week-by-week timing overview, see the [Course Schedule](./schedule.mdx) page. This page focuses on what happens within each sprint and when milestone demos occur.
 
 :::important
 ## Milestone Demos & Deliverables
@@ -104,13 +85,38 @@ The exact week ranges depend on whether the course is running in the regular sem
 Teams should plan deliverables accordingly to ensure readiness for these demos.
 
 [//]: # (table of Milestone Deliverables)
-| Sprint | Milestone Deliverable                     |
-|--------|------------------------------------------|
-| End of Sprint 2      | {sprint2Milestone} |
-| End of Sprint 3      | {sprint3Milestone} |
-| End of Sprint 4      | {sprint4Milestone} |
-| End of Sprint 5      | {sprint5Milestone} |
-{!isSummerCourse && `| End of Sprint 6      | ${sprint6Milestone} |`}
+<table>
+  <thead>
+    <tr>
+      <th>Sprint</th>
+      <th>Milestone Deliverable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>End of Sprint 2</td>
+      <td>{sprint2Milestone}</td>
+    </tr>
+    <tr>
+      <td>End of Sprint 3</td>
+      <td>{sprint3Milestone}</td>
+    </tr>
+    <tr>
+      <td>End of Sprint 4</td>
+      <td>{sprint4Milestone}</td>
+    </tr>
+    <tr>
+      <td>End of Sprint 5</td>
+      <td>{sprint5Milestone}</td>
+    </tr>
+    {!isSummerCourse && (
+      <tr>
+        <td>End of Sprint 6</td>
+        <td>{sprint6Milestone}</td>
+      </tr>
+    )}
+  </tbody>
+</table>
 
 Milestone demos are graded checkpoints and are required for continued project progress.
 

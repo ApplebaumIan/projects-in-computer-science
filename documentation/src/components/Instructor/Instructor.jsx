@@ -5,6 +5,7 @@ import DontPanic from "../../../static/img/dont-panic.svg";
 import Admonition from "@theme/Admonition";
 import TeachingAssistants from "../TeachingAssistants";
 import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
+import { isSummerCourse } from "../../config/courseFormat";
 
 function CourseSections() {
     function springSemester() {
@@ -49,8 +50,7 @@ function CourseSections() {
 
     return <>
         <h2>Sections</h2>
-        {/*{springSemester()}*/}
-        {summerSemester()}
+        {isSummerCourse ? summerSemester() : springSemester()}
         <Admonition type={"note"}>{<>The only difference between lab in lecture is the <b>amount of time</b>. All course
             sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>
     </>;
