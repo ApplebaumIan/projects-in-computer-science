@@ -22,7 +22,8 @@ const is_pdf = process.env.PDF === undefined ? false : process.env.PDF; // helpe
 const course_number = 'CIS 4398 & 4396';
 const semester = process.env.SEMESTER_YEAR;
 // Source of truth for term format: the SEMESTER environment variable.
-const courseFormat = (process.env.SEMESTER || 'summer').toLowerCase();
+const normalizedSemester = (process.env.SEMESTER || '').toLowerCase();
+const courseFormat = normalizedSemester === 'summer' ? 'summer' : 'regular';
 
 // You can change the title here. The default is the name of the repository.
 if (!process.env.PROJECT_NAME) {
