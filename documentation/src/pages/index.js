@@ -41,8 +41,11 @@ function SummerSun() {
           })}
         </g>
         <circle cx="110" cy="110" r="48" className={styles.summerSunCore} />
-        <circle cx="92" cy="98" r="5" className={styles.summerSunFace} />
-        <circle cx="128" cy="98" r="5" className={styles.summerSunFace} />
+        <g className={styles.summerSunShades}>
+          <rect x="76" y="84" width="28" height="20" rx="8" className={styles.summerSunShadeLens} />
+          <rect x="116" y="84" width="28" height="20" rx="8" className={styles.summerSunShadeLens} />
+          <rect x="104" y="91" width="12" height="4" rx="2" className={styles.summerSunShadeBridge} />
+        </g>
         <path d="M88 126 Q110 144 132 126" className={styles.summerSunSmile} />
       </svg>
     </div>

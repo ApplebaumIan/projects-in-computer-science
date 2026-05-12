@@ -12,10 +12,10 @@
 
 .summerSun {
   position: absolute;
-  top: -88px;
-  right: -68px;
-  width: 240px;
-  height: 240px;
+  top: -62px;
+  right: 180px;
+  width: 270px;
+  height: 270px;
   z-index: 2;
   pointer-events: none;
   opacity: 0.95;
@@ -50,8 +50,16 @@
   stroke-width: 6;
 }
 
-.summerSunFace {
-  fill: #854c1b;
+.summerSunShades {
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
+}
+
+.summerSunShadeLens {
+  fill: #2b1d22;
+}
+
+.summerSunShadeBridge {
+  fill: #5f4348;
 }
 
 .summerSunSmile {
@@ -98,10 +106,10 @@
     padding: 2rem;
   }
   .summerSun {
-    width: 180px;
-    height: 180px;
-    top: -70px;
-    right: -54px;
+    width: 170px;
+    height: 170px;
+    top: -52px;
+    right: -8px;
   }
   .hero__title {
     font-size: 2rem; /* Adjust this size as needed */

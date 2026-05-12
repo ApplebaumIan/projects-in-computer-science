@@ -19,9 +19,9 @@ const main_template_jira_scripts = () => {
   }
 }
 const is_pdf = process.env.PDF === undefined ? false : process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
-const course_number = 'CIS 4398';
+const course_number = 'CIS 4398 & 4396';
 const semester = process.env.SEMESTER_YEAR;
-const courseFormat = 'summer';
+const courseFormat = process.env.SEMESTER;
 
 // You can change the title here. The default is the name of the repository.
 if (!process.env.PROJECT_NAME) {
@@ -40,7 +40,7 @@ const title = (process.env.PROJECT_NAME || 'default-project')
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Professor Applebaum',
+  tagline: '',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://capstone.ianapplebaum.com/',
   baseUrl: '/',

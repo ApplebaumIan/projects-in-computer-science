@@ -83,25 +83,27 @@ export default function Instructor() {
         <div className="row">
             <div className="col col--4">
                 <h2>{coInstructor ? "Instructors" : "Instructor"}</h2>
-                {instructors.map((instructor, index) => (
-                    <React.Fragment key={instructor.id}>
-                        {index > 0 && <hr/>}
-                        <img
-                            id={instructor.id}
-                            className="masked"
-                            src={instructor.image}
-                            alt={`Picture of Professor ${instructor.name}`}
-                            width={"300px"}
-                        />
-                        <p><b>Professor {instructor.name}</b></p>
-                        <ul className="instructor-contact-list">
-                            <li>📧 Email: <a href={`mailto:${instructor.email}`}>{instructor.email}</a></li>
-                            <li>📚 Course: {instructor.course}</li>
-                            <li>🏢 Office: {instructor.office}</li>
-                        </ul>
-                        {instructor.includeOfficeHours && <OfficeHours/>}
-                    </React.Fragment>
-                ))}
+                <div className={`row ${coInstructor ? "instructor-grid" : ""}`}>
+                    {instructors.map((instructor) => (
+                        <div
+                            key={instructor.id}
+                            className={coInstructor ? "col col--6 instructor-grid__item" : "col col--12"}
+                        >
+                            <img
+                                id={instructor.id}
+                                className="masked instructor-portrait"
+                                src={instructor.image}
+                                alt={`Picture of Professor ${instructor.name}`}
+                            />
+                            <p><b>Professor {instructor.name}</b></p>
+                            <ul className="instructor-contact-list">
+                                <li>📧 Email: <a href={`mailto:${instructor.email}`}>{instructor.email}</a></li>
+                                <li>📚 Course: {instructor.course}</li>
+                                <li>🏢 Office: {instructor.office}</li>
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className="col col--4">
@@ -113,6 +115,9 @@ export default function Instructor() {
                     <DontPanic style={{width: "100%", height: 300}}
                                alt={"The words \"Don't panic\", written in large red friendly letters."}/>
                 </Figure>
+                <div style={{marginTop: "2rem"}}>
+                    <OfficeHours/>
+                </div>
             </div>
         </div>
     );

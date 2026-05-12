@@ -252,6 +252,28 @@ main {
   padding-left: 0;
 }
 
+.instructor-grid {
+  row-gap: 1rem;
+}
+
+.instructor-grid__item p {
+  margin-bottom: 0.5rem;
+}
+
+.instructor-portrait {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@media (max-width: 996px) {
+  .instructor-portrait {
+    max-width: 300px;
+  }
+}
+
 /* Custom responsive layout styles for intro page */
 .benefits-layout {
   display: flex;
