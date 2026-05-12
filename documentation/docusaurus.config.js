@@ -58,6 +58,14 @@ const config = {
     semester: semester,
     is_pdf: is_pdf,
     course_format: courseFormat,
+    co_instructor: {
+      name: 'Andrew Rosen',
+      title: 'Associate Professor of Instruction',
+      image: 'https://cis.temple.edu/assets/img/people/8ed26f93e9846048112b8f4896fc29d8.jpg',
+      email: 'andrew.rosen@temple.edu',
+      office: 'SERC 349',
+      course: 'CIS 4396',
+    },
   },
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want

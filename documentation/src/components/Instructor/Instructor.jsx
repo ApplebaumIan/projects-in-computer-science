@@ -4,6 +4,7 @@ import Figure from "../Figure";
 import DontPanic from "../../../static/img/dont-panic.svg";
 import Admonition from "@theme/Admonition";
 import TeachingAssistants from "../TeachingAssistants";
+import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
 
 function CourseSections() {
     function springSemester() {
@@ -38,7 +39,7 @@ function CourseSections() {
             <li>
                 <strong>Section 701:</strong>
                 <ul>
-                    <li>Labratory: W 10:30 am - 11:30 am</li>
+                    <li>Laboratory: W 10:30 am - 11:30 am</li>
                     <li>Lecture: TR 10:30 am - 12:00 pm</li>
                     <li>Location: Zoom link provided on Canvas</li>
                 </ul>
@@ -56,40 +57,63 @@ function CourseSections() {
 }
 
 export default function Instructor() {
+    const coInstructor = docusaurusConfig.customFields.co_instructor;
+    const instructors = [
+        {
+            id: "professor-applebaum",
+            name: "Ian Tyler Applebaum",
+            email: "ian.tyler@temple.edu",
+            course: "CIS 4398",
+            office: "SERC 325",
+            image: "https://s.gravatar.com/avatar/d7050d71af151b8db6f046e33e9e8e2e?s=500",
+            includeOfficeHours: true,
+        },
+        ...(coInstructor ? [{
+            id: "professor-rosen",
+            name: coInstructor.name,
+            email: coInstructor.email,
+            course: coInstructor.course,
+            office: coInstructor.office,
+            image: coInstructor.image,
+            includeOfficeHours: false,
+        }] : []),
+    ];
+
     return (
-            <div className="row">
-                {/* First Column */}
-                <div className="col col--4">
-                    <h2>Instructor</h2>
-                    <img
-                        id="professor-applebaum"
-                        className="masked"
-                        src="https://s.gravatar.com/avatar/d7050d71af151b8db6f046e33e9e8e2e?s=500"
-                        alt="Picture of Professor Ian Tyler Applebaum"
-                        width={"300px"}
-                    />
-                    <p><b>Professor Ian Tyler Applebaum</b></p>
-                    <ul className="instructor-contact-list">
-                        <li>📧 Email: <a href={"mailto:ian.tyler@temple.edu"}>ian.tyler@temple.edu</a></li>
-                        {/*<li>💬 Discord: Applebaumian#2888</li>*/}
-                        <li>🏢 Office: SERC 325</li>
-                    </ul>
-                    <OfficeHours/>
-                </div>
+        <div className="row">
+            <div className="col col--4">
+                <h2>{coInstructor ? "Instructors" : "Instructor"}</h2>
+                {instructors.map((instructor, index) => (
+                    <React.Fragment key={instructor.id}>
+                        {index > 0 && <hr/>}
+                        <img
+                            id={instructor.id}
+                            className="masked"
+                            src={instructor.image}
+                            alt={`Picture of Professor ${instructor.name}`}
+                            width={"300px"}
+                        />
+                        <p><b>Professor {instructor.name}</b></p>
+                        <ul className="instructor-contact-list">
+                            <li>📧 Email: <a href={`mailto:${instructor.email}`}>{instructor.email}</a></li>
+                            <li>📚 Course: {instructor.course}</li>
+                            <li>🏢 Office: {instructor.office}</li>
+                        </ul>
+                        {instructor.includeOfficeHours && <OfficeHours/>}
+                    </React.Fragment>
+                ))}
+            </div>
 
-                {/* Second Column */}
-                <div className="col col--4">
-                    <CourseSections/>
-                    {/*<TeachingAssistants/>*/}
-                </div>
+            <div className="col col--4">
+                <CourseSections/>
+            </div>
 
-                {/* Third Column */}
-                <div className="col col--4">
-                    <Figure caption={"Class Motto:"} subcaption={"Don't Panic, but expect the unexpected."}>
-                        <DontPanic style={{width: "100%", height: 300}}
-                                   alt={"The words \"Don't panic\", written in large red friendly letters."}/>
-                    </Figure>
-                </div>
+            <div className="col col--4">
+                <Figure caption={"Class Motto:"} subcaption={"Don't Panic, but expect the unexpected."}>
+                    <DontPanic style={{width: "100%", height: 300}}
+                               alt={"The words \"Don't panic\", written in large red friendly letters."}/>
+                </Figure>
+            </div>
         </div>
     );
 }
