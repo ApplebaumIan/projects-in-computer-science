@@ -3,12 +3,25 @@ title: Sprints & Milestones
 sidebar_position: 8
 ---
 
+import { courseFormat, isSummerCourse } from '../src/config/courseFormat';
+
+export const phase2SprintRange = isSummerCourse ? 'Sprints 3–5' : 'Sprints 3–6';
+export const refinementSprintRange = isSummerCourse ? 'Sprint 5' : 'Sprints 5–6';
+export const sprint2Milestone = isSummerCourse ? 'Milestone Demo 1' : 'Typically no milestone demo';
+export const sprint3Milestone = isSummerCourse ? 'Milestone Demo 2' : 'Milestone Demo 1';
+export const sprint4Milestone = isSummerCourse ? 'Milestone Demo 3' : 'Milestone Demo 2';
+export const sprint5Milestone = isSummerCourse ? 'Final Demo & Delivery' : 'Milestone Demo 3';
+export const sprint6Milestone = 'Final Demo & Delivery';
+export const milestoneSummary = isSummerCourse
+  ? 'Milestone demos occur at the end of Sprints 2, 3, and 4 to showcase progress to stakeholders and gather feedback.'
+  : 'Milestone demos occur at the end of Sprints 3, 4, and 5 to showcase progress to stakeholders and gather feedback.';
+
 # Agile Sprint Breakdown and Phases
 
 ## Phase 1: Documentation & MVP Development (Sprints 0–2)
 
 **Primary Goal:**
-Primary Goal: Establish a shared understanding of the problem domain and deliver a documented, testable MVP.
+Establish a shared understanding of the problem domain and deliver a documented, testable MVP.
 
 ### Sprint 0 — Project Framing & Setup
 - Stakeholder onboarding
@@ -37,7 +50,9 @@ While early sprints focus on documentation, teams are encouraged to begin protot
 
 ---
 
-## Phase 2: Development, Refinement & Delivery (Sprints 3–6)
+## Phase 2: Development, Refinement & Delivery
+
+In the current syllabus format, this phase spans **{phase2SprintRange}**.
 
 **Primary Goal:**
 Iteratively build, refine, and harden the system based on stakeholder feedback.
@@ -50,35 +65,59 @@ This phase focuses on turning your MVP into a robust system through iterative de
 - Integration work
 - Regular stakeholder demos
 
-### Sprints 5–6 — Refinement & Delivery
+### Refinement & Delivery
+
+In the current syllabus format, this stage is centered on **{refinementSprintRange}**.
 - Testing and validation
 - Performance and usability improvements
 - Final documentation
 - Presentation and delivery preparation
 
-📌 **By the end of Sprint 6, teams should have a polished, deployable system with complete documentation.**
+📌 **By the end of the final sprint, teams should have a polished, deployable system with complete documentation.**
+
+## Sprint Timing by Term Format
+
+The current syllabus format is **{courseFormat.label}**. For the full week-by-week timing overview, see the [Course Schedule](./schedule.mdx) page. This page focuses on what happens within each sprint and when milestone demos occur.
 
 :::important
 ## Milestone Demos & Deliverables
-Milestone Demos occur at the end of Sprints 3, 4, 5, and 6 to showcase progress to stakeholders and gather feedback.
+{milestoneSummary}
 Teams should plan deliverables accordingly to ensure readiness for these demos.
 
 [//]: # (table of Milestone Deliverables)
-| Sprint | Milestone Deliverable                     |
-|--------|------------------------------------------|
-| End of Sprint 3      | Milestone Demo 1                        |
-| End of Sprint 4      | Milestone Demo 2                   |
-| End of Sprint 5      | Milestone Demo 3             |
-| End of Sprint 6      | Final Demo & and Delivery     |
+<table>
+  <thead>
+    <tr>
+      <th>Sprint</th>
+      <th>Milestone Deliverable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>End of Sprint 2</td>
+      <td>{sprint2Milestone}</td>
+    </tr>
+    <tr>
+      <td>End of Sprint 3</td>
+      <td>{sprint3Milestone}</td>
+    </tr>
+    <tr>
+      <td>End of Sprint 4</td>
+      <td>{sprint4Milestone}</td>
+    </tr>
+    <tr>
+      <td>End of Sprint 5</td>
+      <td>{sprint5Milestone}</td>
+    </tr>
+    {!isSummerCourse && (
+      <tr>
+        <td>End of Sprint 6</td>
+        <td>{sprint6Milestone}</td>
+      </tr>
+    )}
+  </tbody>
+</table>
 
 Milestone demos are graded checkpoints and are required for continued project progress.
 
 :::
-
-
-
-[//]: # (<LocalizationProvider dateAdapter={AdapterDayjs}>)
-
-[//]: # (    <Syllabus courseid={13} daysOff={` 2025-09-01 2025-11-24 2025-11-25 2025-11-26 2025-11-27 2025-11-28 2025-11-29 2025-11-30 `} />)
-
-[//]: # (</LocalizationProvider>)

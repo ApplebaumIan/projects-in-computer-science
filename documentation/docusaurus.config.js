@@ -19,8 +19,11 @@ const main_template_jira_scripts = () => {
   }
 }
 const is_pdf = process.env.PDF === undefined ? false : process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
-const course_number = 'CIS 4398';
+const course_number = 'CIS 4398 & 4396';
 const semester = process.env.SEMESTER_YEAR;
+// Source of truth for term format: the SEMESTER environment variable.
+const normalizedSemester = (process.env.SEMESTER || '').toLowerCase();
+const courseFormat = normalizedSemester === 'summer' ? 'summer' : 'regular';
 
 // You can change the title here. The default is the name of the repository.
 if (!process.env.PROJECT_NAME) {
@@ -39,7 +42,7 @@ const title = (process.env.PROJECT_NAME || 'default-project')
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Professor Applebaum',
+  tagline: '',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://capstone.ianapplebaum.com/',
   baseUrl: '/',
@@ -54,8 +57,18 @@ const config = {
   projectName: process.env.PROJECT_NAME, // Usually your repo name.
   customFields: {
     course_number: course_number,
-    semester: semester,
+    // courseFormat first letter should be capitalized
+    semester: `${courseFormat.charAt(0).toUpperCase() + courseFormat.slice(1)} ${semester}`,
     is_pdf: is_pdf,
+    course_format: courseFormat,
+    co_instructor: {
+      name: 'Andrew Rosen',
+      title: 'Associate Professor of Instruction',
+      image: 'https://cis.temple.edu/assets/img/people/8ed26f93e9846048112b8f4896fc29d8.jpg',
+      email: 'andrew.rosen@temple.edu',
+      office: 'SERC 349',
+      course: 'CIS 4396',
+    },
   },
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want

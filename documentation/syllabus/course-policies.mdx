@@ -3,6 +3,8 @@ sidebar_position: 9
 title: Course Policies
 ---
 
+import { courseFormat, isOnlineCourse } from '../src/config/courseFormat';
+
 # Course Policies
 These course policies define the expectations, responsibilities, and professional
 standards for CIS 4398. They are designed to mirror industry norms and to support
@@ -32,20 +34,20 @@ You may not use AI such as ChatGPT to write your documentation for you. You may 
 :::
 
 ## Attendance
-**Attendance to both lab and lecture is mandatory in this course**, as it is essential for successful project development in a team setting. We will use Qwickly in Canvas to track students’ attendance. Unexcused absences will not only negatively impact your personal performance, but also the performance of your team. As a result, it may result in a reduction of your final grade. Please make every effort to attend all lecture and lab sessions on time. If you are unable to attend a class for any reason, please inform your team members and the instructor ahead of time as a courtesy. During class sessions, please keep your mobile phone on vibrate mode.
+**Attendance at {courseFormat.attendanceLabel} is mandatory in this course**, as it is essential for successful project development in a team setting. {courseFormat.attendanceDetail} Please make every effort to attend all required meetings on time. If you are unable to attend a class activity for any reason, please inform your team members and the instructor ahead of time as a courtesy. {courseFormat.policyDetail}
 
 :::danger working a fulltime job
 
-Tell your manager that you can't work during this class as it is highly interactive and requires your full attention, particularly when we begin the project. I expect that since you registered for this course, you can fully participate. If you are unable to interact, give presentations, turn on your camera, or communicate with your teammates during lab or lecture, this course may not be a good fit at this time.
+Tell your manager that you can't work during this class as it is highly interactive and requires your full attention, particularly when we begin the project. I expect that since you registered for this course, you can fully participate. If you are unable to interact, give presentations, or communicate reliably with your teammates during required course meetings, this course may not be a good fit at this time.
 
 :::
 
 :::note
-## Online & In person Classroom etiquette
+## Classroom Etiquette
 
 It is expected that each student attends every class on time for the full duration of each
 class and behaves, in the same professional manner, as if you are in a regular classroom.
-This refers in particular to your location and attire. It is not appropriate to eat a large meal, be in the midst of commuting or driving a motorized vehicle, drink alcohol, smoke, or getting up often during an online class.
+This refers in particular to your location and attire. It is not appropriate to eat a large meal, be in the midst of commuting or driving a motorized vehicle, drink alcohol, smoke, or get up frequently during a class meeting. {isOnlineCourse && <>For online meetings, students should join from a distraction-limited environment and be ready to participate when called upon.</>}
 :::
 
 These policies are subject to adjustment with notice as required by project needs or institutional guidance.
