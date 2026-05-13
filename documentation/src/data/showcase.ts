@@ -43,6 +43,7 @@ export type TagType =
   | 'robotics'
   | 'safety'
   | 'sensors'
+  | 'slack'
   | 'social'
   | 'unity'
   | 'vscode-extension'
@@ -130,6 +131,7 @@ export const TagList: TagType[] = [
   , 'robotics'
   , 'safety'
   , 'sensors'
+  , 'slack'
   , 'social'
   , 'unity'
   , 'vscode-extension'
@@ -200,6 +202,7 @@ export const Tags: Record<
   robotics: { label: 'Robotics', description: 'Robotic platform or autonomous control', color: '#37474F' },
   safety: { label: 'Safety', description: 'Emergency, collision, or risk mitigation', color: '#D32F2F' },
   sensors: { label: 'Sensors', description: 'Sensor hardware and data collection', color: '#3949AB' },
+  slack: { label: 'Slack', description: 'Slack bots, apps, or workspace integrations', color: '#4A154B' },
   social: { label: 'Social', description: 'Social or location-based social features', color: '#6D4C41' },
   unity: { label: 'Unity', description: 'Unity game engine projects', color: '#8E24AA' },
   'vscode-extension': { label: 'VSCode Extension', description: 'Extensions or IDE integrations for VSCode', color: '#0078D7' },
@@ -268,6 +271,17 @@ export type Project = {
 
 // Example projects array; replace with real project data as needed.
 export const projects: Project[] = [
+  {
+    title: 'VibeCheck',
+    description: 'VibeCheck is a BeReal-like chatbot for professional work environments that helps new and veteran members connect through daily Slack prompts. After being added to a Slack group, it sends fun and interesting discussion topics at scheduled times, and users can also create their own prompts to share with everyone in the channel.',
+    website: 'https://capstone-projects-2026-spring.github.io/project-bereal-chatbot/',
+    documentation: 'https://capstone-projects-2026-spring.github.io/project-bereal-chatbot/',
+    source: 'https://github.com/Capstone-Projects-2026-spring/project-bereal-chatbot',
+    tags: ['chatbot', 'ai', 'web', 'python', 'mongodb', 'slack', 'social'],
+    semester: 'Spring 2026',
+    slug: 'bereal-chatbot',
+    useDocsAsPreview: true,
+  },
   {
     title: 'AACcommodate API',
     description: 'This application programming interface (API) supports AAC games. The API allows users to play AAC games like StoryQuest through external AAC board interaction, rather than relying on an embedded AAC board in the game. Users can relay game inputs by either speaking verbally or speaking through the board. The API will enable audio-controlled games, which will promote social and communication skills in children who use AAC devices by enabling AAC users to play games alongside non-AAC users.',
@@ -470,7 +484,7 @@ export const projects: Project[] = [
     documentation: 'https://capstone-projects-2022-fall.github.io/project-collabybot/',
     demo: 'https://www.youtube.com/watch?v=JxB71ua5FB0',
     source: 'https://github.com/Capstone-Projects-2022-Fall/project-collabybot',
-    tags: ['discordBot', 'github', 'jira', 'collaboration', 'devops'],
+    tags: ['discordBot', 'chatbot', 'github', 'jira', 'collaboration', 'devops'],
     semester: 'Fall 2022',
     slug: 'collabybot',
   },

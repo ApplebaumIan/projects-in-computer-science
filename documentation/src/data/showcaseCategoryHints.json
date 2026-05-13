@@ -201,5 +201,11 @@
     "api",
     "library",
     "speech-to-text"
+  ],
+  "bereal-chatbot": [
+    "devops",
+    "social",
+    "api",
+    "mongodb"
   ]
 }
