@@ -217,6 +217,10 @@ const config = {
                 to: '/syllabus/projects',
               },
               {
+                label: 'Project Expectations',
+                to: '/authentic-capstone-project',
+              },
+              {
                 label: 'Documentation',
                 to: '/docs/intro',
               },
@@ -319,6 +323,15 @@ const config = {
         routeBasePath: 'ta-resource',
         sidebarPath: require.resolve('./sidebars.js'),
         // ... other options
+      },
+    ],[
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'authentic-capstone-guide',
+        path: 'authentic-capstone-guide',
+        routeBasePath: 'authentic-capstone-project',
+        sidebarPath: require.resolve('./sidebars.js'),
+        editUrl: 'https://github.com/Applebaumian/projects-in-computer-science/edit/staging/documentation/',
       },
     ],[
       '@docusaurus/plugin-google-gtag',

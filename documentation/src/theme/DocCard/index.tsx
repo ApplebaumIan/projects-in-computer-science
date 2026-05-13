@@ -20,6 +20,12 @@ import styles from './styles.module.css';
 
 function iconForKey(key?: string): ReactNode {
   switch (key) {
+    case 'expectations':
+      return '🧭';
+    case 'stakeholders':
+      return '🤝';
+    case 'rubric':
+      return '📋';
     case 'community':
       return '🤝';
     case 'accessibility':
