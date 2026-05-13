@@ -38,10 +38,18 @@ function CourseSections() {
     }function summerSemester() {
         return <ul>
             <li>
-                <strong>Section 701:</strong>
+                <strong>CIS 4398:</strong>
                 <ul>
                     <li>Laboratory: W 10:30 am - 11:30 am</li>
                     <li>Lecture: TR 10:30 am - 12:00 pm</li>
+                    <li>Location: Zoom link provided on Canvas</li>
+                </ul>
+            </li>
+            <li>
+                <strong>CIS 4396:</strong>
+                <ul>
+                    <li>Lecture: TR 10:30 am - 12:00 pm</li>
+                    <li>Laboratory: W 10:30 am - 12:30 pm</li>
                     <li>Location: Zoom link provided on Canvas</li>
                 </ul>
             </li>
