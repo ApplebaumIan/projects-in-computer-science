@@ -49,6 +49,7 @@
     "jsdom": "^22.1.0",
     "paper": "^0.12.17",
     "plugin-image-zoom": "flexanalytics/plugin-image-zoom",
+    "posthog-docusaurus": "^2.0.5",
     "prism-react-renderer": "^1.3.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
