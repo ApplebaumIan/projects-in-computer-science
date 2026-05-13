@@ -293,7 +293,7 @@
   display: grid;
   grid-template-columns: 210px minmax(0, 1fr);
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .discordSection :global(.alert) {
@@ -309,14 +309,25 @@
   border-radius: 20px;
   background: var(--ifm-background-surface-color);
   box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+  height: 100%;
 }
 
 .discordQrCard {
   max-width: 210px;
+  display: flex;
+  align-items: stretch;
 }
 
 .discordQrCard :global(figure) {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.discordQrCard :global(img) {
+  width: 100%;
+  height: auto;
 }
 
 .discordWidget {
@@ -324,6 +335,27 @@
   min-height: 360px;
   border: 0;
   border-radius: 16px;
+}
+
+.discordCta {
+  min-height: 100%;
+  border-radius: 16px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.discordCta h3 {
+  margin: 0;
+}
+
+.discordCta p {
+  margin: 0;
+  max-width: 28rem;
 }
 
 @media (max-width: 996px) {
@@ -352,5 +384,9 @@
 
   .discordWidget {
     min-height: 420px;
+  }
+
+  .discordCta {
+    min-height: auto;
   }
 }

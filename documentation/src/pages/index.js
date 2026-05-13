@@ -202,14 +202,20 @@ export default function Home() {
                                 />
                             </div>
                             <div className={styles.discordWidgetCard}>
-                                <iframe
-                                    className={styles.discordWidget}
-                                    src="https://discord.com/widget?id=687852908754239555&theme=dark"
-                                    title="Discord server widget"
-                                    allowtransparency="true"
-                                    frameBorder="0"
-                                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-                                />
+                                <div className={styles.discordCta}>
+                                    <h3>Join the Discord</h3>
+                                    <p>
+                                        Get announcements, team updates, and fast help from instructors and classmates.
+                                    </p>
+                                    <a
+                                        className="button button--primary button--lg"
+                                        href="https://discord.com/invite/97hbYEH5"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Join Discord
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </section>
