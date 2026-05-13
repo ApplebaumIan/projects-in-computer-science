@@ -18,6 +18,7 @@ const buttons = [
 import Discord from "../../static/img/discord_logo.svg"
 import Figure from "../components/Figure";
 import Admonition from "@theme/Admonition";
+import { projectsCourseLabel } from "../config/courseIdentity";
 
 function SummerSun() {
   return (
@@ -185,7 +186,7 @@ export default function Home() {
                                 <p>
                                     You are free to conduct team meetings, have discussions about your projects, get advice, or
                                     talk with your instructors using this platform. In addition, you may talk about your projects
-                                    and assignments with other students in all the sections of the CIS 4398 Projects course.
+                                    and assignments with other students in all the sections of the {projectsCourseLabel}.
                                 </p>
                             </div>
                         </div>

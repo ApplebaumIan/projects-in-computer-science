@@ -19,7 +19,10 @@ const main_template_jira_scripts = () => {
   }
 }
 const is_pdf = process.env.PDF === undefined ? false : process.env.PDF; // helper env variable to ignore parts that shouldn't be a part of the PDF. Basically tell docusaurus whether its being rendered as a PDF or not.
-const course_number = 'CIS 4398 & 4396';
+const teachBothCourses = ['1', 'true', 'yes', 'on'].includes((process.env.TEACH_BOTH_COURSES || '').toLowerCase());
+const primaryCourseNumber = 'CIS 4398';
+const secondaryCourseNumber = 'CIS 4396';
+const course_number = teachBothCourses ? `${primaryCourseNumber} & ${secondaryCourseNumber}` : primaryCourseNumber;
 const semester = process.env.SEMESTER_YEAR;
 // Source of truth for term format: the SEMESTER environment variable.
 const normalizedSemester = (process.env.SEMESTER || '').toLowerCase();
@@ -57,18 +60,21 @@ const config = {
   projectName: process.env.PROJECT_NAME, // Usually your repo name.
   customFields: {
     course_number: course_number,
+    primary_course_number: primaryCourseNumber,
+    secondary_course_number: secondaryCourseNumber,
+    teach_both_courses: teachBothCourses,
     // courseFormat first letter should be capitalized
     semester: `${courseFormat.charAt(0).toUpperCase() + courseFormat.slice(1)} ${semester}`,
     is_pdf: is_pdf,
     course_format: courseFormat,
-    co_instructor: {
+    co_instructor: teachBothCourses ? {
       name: 'Andrew Rosen',
       title: 'Associate Professor of Instruction',
       image: 'https://cis.temple.edu/assets/img/people/8ed26f93e9846048112b8f4896fc29d8.jpg',
       email: 'andrew.rosen@temple.edu',
       office: 'SERC 349',
       course: 'CIS 4396',
-    },
+    } : null,
   },
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want

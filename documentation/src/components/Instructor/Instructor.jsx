@@ -1,11 +1,14 @@
 import React from 'react';
-import OfficeHours from "../OfficeHours/OfficeHours";
 import Figure from "../Figure";
 import DontPanic from "../../../static/img/dont-panic.svg";
 import Admonition from "@theme/Admonition";
-import TeachingAssistants from "../TeachingAssistants";
 import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
 import { isSummerCourse } from "../../config/courseFormat";
+import {
+    primaryCourseNumber,
+    secondaryCourseNumber,
+    teachBothCourses,
+} from "../../config/courseIdentity";
 
 function CourseSections() {
     function springSemester() {
@@ -38,26 +41,29 @@ function CourseSections() {
     }function summerSemester() {
         return <ul>
             <li>
-                <strong>CIS 4398:</strong>
+                <strong>{primaryCourseNumber}:</strong>
                 <ul>
                     <li>Laboratory: W 10:30 am - 11:30 am</li>
                     <li>Lecture: TR 10:30 am - 12:00 pm</li>
                     <li>Location: Zoom link provided on Canvas</li>
                 </ul>
             </li>
-            <li>
-                <strong>CIS 4396:</strong>
-                <ul>
-                    <li>Lecture: TR 10:30 am - 12:00 pm</li>
-                    <li>Laboratory: W 10:30 am - 12:30 pm</li>
-                    <li>Location: Zoom link provided on Canvas</li>
-                </ul>
-            </li>
+            {teachBothCourses && (
+                <li>
+                    <strong>{secondaryCourseNumber}:</strong>
+                    <ul>
+                        <li>Lecture: TR 10:30 am - 12:00 pm</li>
+                        <li>Laboratory: W 10:30 am - 12:30 pm</li>
+                        <li>Location: Zoom link provided on Canvas</li>
+                    </ul>
+                </li>
+            )}
         </ul>;
     }
 
     return <>
         <h2>Sections</h2>
+        {teachBothCourses && <p><strong>{primaryCourseNumber}</strong> and <strong>{secondaryCourseNumber}</strong> are both operating under this shared syllabus.</p>}
         {isSummerCourse ? summerSemester() : springSemester()}
         <Admonition type={"note"}>{<>The only difference between lab and lecture is the <b>amount of time</b>. All course
             sessions will be considered <b>synchronous</b> working sessions.</>}</Admonition>
@@ -71,7 +77,7 @@ export default function Instructor() {
             id: "professor-applebaum",
             name: "Ian Tyler Applebaum",
             email: "ian.tyler@temple.edu",
-            course: "CIS 4398",
+            course: primaryCourseNumber,
             office: "SERC 325",
             image: "https://s.gravatar.com/avatar/d7050d71af151b8db6f046e33e9e8e2e?s=500",
             includeOfficeHours: true,
