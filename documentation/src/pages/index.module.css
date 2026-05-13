@@ -224,3 +224,133 @@
   width: 0.5em;
   height: 0.5em;
 }
+
+.discordSection {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  grid-template-areas:
+    "hero alert"
+    "hero details";
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  max-width: 1140px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(88, 101, 242, 0.08), rgba(88, 101, 242, 0.02));
+}
+
+.discordHero {
+  grid-area: hero;
+  display: block;
+  margin-bottom: 0;
+  max-width: 360px;
+}
+
+.discordHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+}
+
+.discordLogoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 180px;
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  flex: 0 0 auto;
+}
+
+.discordLogo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.discordCopy {
+  max-width: 640px;
+}
+
+.discordCopy h2 {
+  margin: 0;
+}
+
+.discordCopy p:last-child {
+  margin-bottom: 0;
+}
+
+.discordDetails {
+  grid-area: details;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.discordSection :global(.alert) {
+  grid-area: alert;
+  align-self: start;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
+.discordQrCard,
+.discordWidgetCard {
+  padding: 0.75rem;
+  border-radius: 20px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+}
+
+.discordQrCard {
+  max-width: 210px;
+}
+
+.discordQrCard :global(figure) {
+  margin: 0;
+}
+
+.discordWidget {
+  width: 100%;
+  min-height: 360px;
+  border: 0;
+  border-radius: 16px;
+}
+
+@media (max-width: 996px) {
+  .discordSection {
+    display: block;
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+
+  .discordDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .discordHeading {
+    gap: 0.35rem;
+  }
+
+  .discordLogoWrap {
+    width: 140px;
+  }
+
+  .discordHero,
+  .discordCopy {
+    max-width: 100%;
+  }
+
+  .discordWidget {
+    min-height: 420px;
+  }
+}
