@@ -132,5 +132,8 @@
     "typescript",
     "javascript",
     "python"
+  ],
+  "bereal-chatbot": [
+    "python"
   ]
 }
