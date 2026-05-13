@@ -115,9 +115,6 @@ export default function Instructor() {
                     <DontPanic style={{width: "100%", height: 300}}
                                alt={"The words \"Don't panic\", written in large red friendly letters."}/>
                 </Figure>
-                <div style={{marginTop: "2rem"}}>
-                    <OfficeHours/>
-                </div>
             </div>
         </div>
     );
