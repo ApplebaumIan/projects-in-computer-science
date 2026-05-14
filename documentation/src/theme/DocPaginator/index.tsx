@@ -77,7 +77,7 @@ const isPdf =
       )
   );
 
-  if (shouldHideNextCompletely) {
+  if (shouldHideNextCompletely || (shouldHideNextVisually && !isPdf)) {
     next = undefined;
   }
 
@@ -104,7 +104,7 @@ const isPdf =
         {next && (
             <div
                 className={clsx(
-                    shouldHideNextVisually && 'pdf-crawler-only'
+                    shouldHideNextVisually && isPdf && 'pdf-crawler-only'
                 )}
             >
               <PaginatorNavLink

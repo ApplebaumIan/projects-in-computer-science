@@ -214,7 +214,7 @@ const config = {
               },
               {
                 label: 'Projects',
-                to: '/syllabus/projects',
+                to: '/syllabus/projects/intro',
               },
               {
                 label: 'Documentation',
