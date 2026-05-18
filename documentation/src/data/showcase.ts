@@ -265,6 +265,7 @@ export type Project = {
   semester?: string;
   slug?: string;
   members?: string[];
+  highlights?: string[];
   repo?: string;
   useDocsAsPreview?: boolean;
 };
@@ -280,6 +281,14 @@ export const projects: Project[] = [
     tags: ['chatbot', 'ai', 'web', 'python', 'mongodb', 'slack', 'social'],
     semester: 'Spring 2026',
     slug: 'bereal-chatbot',
+    members: [
+      'Justin Pham',
+      'Khai Thach',
+      'John Livezey',
+      'Chris Breeden',
+      'Nathan Hollick',
+      'Carl Pierre-Louis',
+    ],
     useDocsAsPreview: true,
   },
   {
@@ -291,6 +300,13 @@ export const projects: Project[] = [
     tags: ['aac', 'accessibility', 'games','api', 'communication','library','speech-to-text'],
     semester: 'Fall 2025',
     slug: 'aaccommodate',
+    members: [
+      'Michael Colbert',
+      'Jessica Hutchison',
+      'Hena Patel',
+      'Gino Russo',
+      'Tam Trang',
+    ],
     useDocsAsPreview: false,
   },
   {
@@ -303,6 +319,13 @@ export const projects: Project[] = [
     tags: ['game', 'accessibility', 'multiplayer', 'aac', 'research'],
     semester: 'Summer 2025',
     slug: 'hip-io',
+    members: [
+      'Arvindh Velrajan',
+      'Mohammed Karim',
+      'Kostandin Jorgji',
+      'Jasmine Liu',
+      'Omais Khan',
+    ],
     useDocsAsPreview: true,
   },
   {

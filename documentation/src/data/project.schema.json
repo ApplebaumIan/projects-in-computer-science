@@ -12,6 +12,14 @@
       "type": "array",
       "items": { "type": "string" }
     },
+    "members": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "highlights": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
     "semester": { "type": "string" },
     "website": { "type": "string", "format": "uri" },
     "documentation": { "type": "string", "format": "uri" },
@@ -21,4 +29,3 @@
   },
   "additionalProperties": false
 }
-

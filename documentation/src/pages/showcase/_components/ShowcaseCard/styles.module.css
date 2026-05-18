@@ -101,6 +101,24 @@
   flex: 1 1 auto; /* fill remaining space inside card body */
 }
 
+.highlightSummary {
+  margin: -0.1rem 0 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.contributorBlock {
+  margin-bottom: 0.85rem;
+}
+
+.memberList {
+  margin: 0.35rem 0 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
 .cardFooter {
   display: flex;
   flex-wrap: wrap;

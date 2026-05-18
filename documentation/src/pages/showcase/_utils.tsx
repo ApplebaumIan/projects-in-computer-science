@@ -22,9 +22,12 @@ export function useTags() {
   return useQueryStringList('tags');
 }
 
-// Semester hook (single-value): store selected semester in the query string
 export function useSemester() {
   return useQueryString('semester');
+}
+
+export function useCohort() {
+  return useQueryString('cohort');
 }
 
 type Operator = 'OR' | 'AND';
@@ -45,21 +48,31 @@ function filterUsers({
   operator,
   searchName,
   semester,
+  cohort,
 }: {
   users: User[];
   tags: TagType[];
   operator: Operator;
   searchName: string | null;
   semester?: string | null;
+  cohort?: string | null;
 }) {
   if (searchName) {
+    const normalizedSearch = searchName.toLowerCase();
     // eslint-disable-next-line no-param-reassign
-    users = users.filter((user) =>
-      user.title.toLowerCase().includes(searchName.toLowerCase()),
-    );
+    users = users.filter((user) => {
+      const searchableFields = [user.title, ...(user.members ?? [])]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return searchableFields.includes(normalizedSearch);
+    });
   }
   if (semester) {
     users = users.filter((user) => user.semester === semester);
+  }
+  if (cohort) {
+    users = users.filter((user) => semesterToCohort(user.semester) === cohort);
   }
   if (tags.length === 0) {
     return users;
@@ -80,6 +93,7 @@ export function useFilteredUsers() {
   const [searchName] = useSearchName();
   const [operator] = useOperator();
   const [semester] = useSemester();
+  const [cohort] = useCohort();
   return useMemo(
     () =>
       filterUsers({
@@ -88,8 +102,9 @@ export function useFilteredUsers() {
         operator,
         searchName,
         semester,
+        cohort,
       }),
-    [tags, operator, searchName, semester],
+    [tags, operator, searchName, semester, cohort],
   );
 }
 
@@ -98,6 +113,7 @@ export function useFilteredUsers() {
 export function useUsersForCounts() {
   const [searchName] = useSearchName();
   const [semester] = useSemester();
+  const [cohort] = useCohort();
   return useMemo(
     () =>
       filterUsers({
@@ -106,18 +122,49 @@ export function useUsersForCounts() {
         operator: 'OR',
         searchName,
         semester,
+        cohort,
       }),
-    [searchName, semester],
+    [searchName, semester, cohort],
   );
+}
+
+export function useUsersForCohortCounts() {
+  const [tags] = useTags();
+  const [searchName] = useSearchName();
+  const [operator] = useOperator();
+  return useMemo(
+    () =>
+      filterUsers({
+        users: sortedUsers,
+        tags: tags as TagType[],
+        operator,
+        searchName,
+      }),
+    [tags, operator, searchName],
+  );
+}
+
+function parseSemester(sem?: string | null) {
+  if (!sem) return null;
+  const parts = sem.split(/\s+/);
+  if (parts.length < 2) return null;
+  const season = parts[0].toLowerCase();
+  const year = parseInt(parts[1], 10);
+  if (!Number.isFinite(year)) return null;
+  return {season, year};
+}
+
+export function semesterToCohort(sem?: string | null) {
+  const parsed = parseSemester(sem);
+  if (!parsed) return null;
+  return String(parsed.season === 'fall' ? parsed.year + 1 : parsed.year);
 }
 
 // Helper: compute a sortable numeric key from semester strings like "Spring 2025"
 function semesterKey(sem?: string | null) {
-  if (!sem) return -Infinity;
-  const parts = sem.split(/\s+/);
-  if (parts.length < 2) return -Infinity;
-  const year = parseInt(parts[1], 10);
-  const season = parts[0].toLowerCase();
+  const parsed = parseSemester(sem);
+  if (!parsed) return -Infinity;
+  const {year, season} = parsed;
   const seasonOrder: Record<string, number> = {
     spring: 0,
     summer: 1,

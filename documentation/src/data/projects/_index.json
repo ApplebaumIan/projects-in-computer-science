@@ -4,6 +4,13 @@
     "slug": "from-sketch-to-screen-rahad-arman-nabid",
     "description": "A collaborative UI design tool tailored for non-programmers. It allows multiple users to sketch interfaces, render designs in real time, finalize CSS, and specify page interactions—all without needing coding skills.",
     "contact": "rahad@example.com",
+    "members": [
+      "Rahad Arman Nabid"
+    ],
+    "highlights": [
+      "Real-time collaboration",
+      "No-code UI prototyping"
+    ],
     "tags": [
       "aac",
       "design",

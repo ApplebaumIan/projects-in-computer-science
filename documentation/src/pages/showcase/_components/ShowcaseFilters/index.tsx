@@ -15,8 +15,14 @@ import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
 import ClearAllButton from '../ClearAllButton';
-import {useFilteredUsers, useSiteCountPlural, useSemester, useUsersForCounts} from '../../_utils';
-import {sortedUsers} from '@site/src/data/showcase';
+import {
+  semesterToCohort,
+  useCohort,
+  useFilteredUsers,
+  useSiteCountPlural,
+  useUsersForCohortCounts,
+  useUsersForCounts,
+} from '../../_utils';
 
 import styles from './styles.module.css';
 
@@ -204,30 +210,6 @@ function HeadingText() {
 }
 
 function HeadingButtons() {
-  const [semester, setSemester] = useSemester();
-
-  // Build semester options from sortedUsers (unique, non-empty)
-  const semesterOptions = useMemo(() => {
-    const set = new Set<string>();
-    for (const u of sortedUsers) {
-      if (u.semester) set.add(u.semester);
-    }
-    // Convert to array and sort using a simple comparator that prefers newer semesters
-    const arr = Array.from(set);
-    const seasonOrder: Record<string, number> = { spring: 0, summer: 1, fall: 2, winter: 3 };
-    arr.sort((a, b) => {
-      const pa = a.split(/\s+/);
-      const pb = b.split(/\s+/);
-      const ya = parseInt(pa[1] || '0', 10);
-      const yb = parseInt(pb[1] || '0', 10);
-      if (ya !== yb) return yb - ya;
-      const sa = seasonOrder[(pa[0] || '').toLowerCase()] ?? 4;
-      const sb = seasonOrder[(pb[0] || '').toLowerCase()] ?? 4;
-      return sb - sa;
-    });
-    return arr;
-  }, []);
-
   // Smooth-scroll to glossary
   function goToGlossary() {
     try {
@@ -284,20 +266,6 @@ function HeadingButtons() {
   return (
     <div className={styles.headingButtons} style={{alignItems: 'center'}}>
       <OperatorButton />
-      <div style={{display: 'flex', alignItems: 'center'}}>
-        <label htmlFor="semester-select" style={{marginRight: 8, fontSize: '0.9rem'}}>Semester</label>
-        <select
-          id="semester-select"
-          value={semester ?? ''}
-          onChange={(e) => setSemester(e.target.value || null)}
-          className={styles.semesterSelect}
-        >
-          <option value="">All</option>
-          {semesterOptions.map((s) => (
-            <option key={s} value={s}>{s}</option>
-          ))}
-        </select>
-      </div>
       <button
         type="button"
         className={styles.glossaryButton}
@@ -309,6 +277,49 @@ function HeadingButtons() {
         {translate({id: 'showcase.filters.gotoGlossaryShort', message: 'Glossary'})}
       </button>
       <ClearAllButton />
+    </div>
+  );
+}
+
+function CohortFilters() {
+  const [cohort, setCohort] = useCohort();
+  const usersForCounts = useUsersForCohortCounts();
+  const cohortOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    usersForCounts.forEach((user) => {
+      const label = semesterToCohort(user.semester);
+      if (!label) return;
+      counts.set(label, (counts.get(label) ?? 0) + 1);
+    });
+    return [...counts.entries()]
+      .sort(([a], [b]) => Number(b) - Number(a))
+      .map(([label, count]) => ({label, count}));
+  }, [usersForCounts]);
+
+  if (cohortOptions.length <= 1) {
+    return null;
+  }
+
+  return (
+    <div className={styles.cohortFilters}>
+      <span className={styles.cohortLabel}>Academic year</span>
+      <ul className={clsx('clean-list', styles.cohortList)}>
+        {cohortOptions.map(({label, count}) => {
+          const selected = cohort === label;
+          return (
+            <li key={label}>
+              <button
+                type="button"
+                className={clsx(styles.cohortButton, selected && styles.cohortButtonActive)}
+                aria-pressed={selected}
+                onClick={() => setCohort(selected ? null : label)}>
+                <span>{label}</span>
+                <span className={styles.cohortCount}>{count}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
@@ -326,6 +337,7 @@ export default function ShowcaseFilters(): ReactNode {
   return (
     <section className="container margin-top--l margin-bottom--lg">
       <HeadingRow />
+      <CohortFilters />
       <ShowcaseTagList />
     </section>
   );

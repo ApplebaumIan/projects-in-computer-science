@@ -11,17 +11,54 @@
   gap: 24px;
 }
 
-.showcaseFavorite {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background-color: #f6fdfd;
+.yearSection {
+  margin-top: 1.75rem;
 }
 
-html[data-theme='dark'] .showcaseFavorite {
-  background-color: #232525;
+.yearSectionLayout {
+  display: grid;
+  grid-template-columns: minmax(150px, 210px) minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
 }
 
-.headingFavorites {
+.yearSectionHeader {
+  position: sticky;
+  top: 5.75rem;
+  padding-top: 0.2rem;
+}
+
+.yearSectionTitle {
+  margin-bottom: 0.45rem;
+}
+
+.projectCount {
+  margin: 0 0 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+.semesterList {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.semesterPill {
+  padding: 0.26rem 0.62rem;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .yearSectionLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .yearSectionHeader {
+    position: static;
+  }
 }
