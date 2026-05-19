@@ -5,24 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
-import {sortedUsers, type User} from '@site/src/data/showcase';
+import {type User} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
-import FavoriteIcon from '../FavoriteIcon';
 import ShowcaseCard from '../ShowcaseCard';
-import {useFilteredAndSortedUsers} from '../../_utils';
+import {cohortToAcademicYearLabel, semesterToCohort, useFilteredAndSortedUsers} from '../../_utils';
 
 import styles from './styles.module.css';
-
-const favoriteUsers = sortedUsers.filter((user) =>
-  user.tags.includes('favorite'),
-);
-
-const otherUsers = sortedUsers.filter(
-  (user) => !user.tags.includes('favorite'),
-);
 
 function HeadingNoResult() {
   return (
@@ -32,33 +22,65 @@ function HeadingNoResult() {
   );
 }
 
-function HeadingFavorites() {
-  return (
-    <Heading as="h2" className={styles.headingFavorites}>
-      <Translate id="showcase.favoritesList.title">Our favorites</Translate>
-      <FavoriteIcon size="large" style={{marginLeft: '1rem'}} />
-    </Heading>
-  );
+function semesterSortKey(semester?: string) {
+  if (!semester) return Infinity;
+  const [seasonRaw = '', yearRaw = '0'] = semester.split(/\s+/);
+  const year = Number.parseInt(yearRaw, 10);
+  const season = seasonRaw.toLowerCase();
+  const seasonOrder: Record<string, number> = {
+    fall: 0,
+    spring: 1,
+    summer: 2,
+    winter: 3,
+  };
+  return ((Number.isFinite(year) ? year : 0) * 10) + (seasonOrder[season] ?? 9);
 }
 
-function HeadingAllSites() {
-  return (
-    <Heading as="h2">
-      <Translate id="showcase.usersList.allUsers">All sites</Translate>
-    </Heading>
-  );
+function getCohortGroups(items: User[]) {
+  const groups = new Map<string, User[]>();
+  items.forEach((item) => {
+    const cohort = semesterToCohort(item.semester) ?? 'Archive';
+    const group = groups.get(cohort);
+    if (group) {
+      group.push(item);
+    } else {
+      groups.set(cohort, [item]);
+    }
+  });
+
+  return [...groups.entries()].sort(([cohortA], [cohortB]) => {
+    if (cohortA === 'Archive') return 1;
+    if (cohortB === 'Archive') return -1;
+    return Number(cohortB) - Number(cohortA);
+  });
 }
 
-function CardList({heading, items}: {heading?: ReactNode; items: User[]}) {
+function CohortSection({cohort, items}: {cohort: string; items: User[]}) {
+  const semesters = Array.from(
+    new Set(items.map((item) => item.semester).filter(Boolean)),
+  ).sort((a, b) => semesterSortKey(a) - semesterSortKey(b)) as string[];
+
   return (
-    <div className="container">
-      {heading}
-      <ul className={clsx('clean-list', styles.cardList)}>
-        {items.map((item) => (
-          <ShowcaseCard key={item.title} user={item} contributorsColumns={4} />
-        ))}
-      </ul>
-    </div>
+    <section
+      id={`showcase-cohort-${cohort}`}
+      className={styles.yearSection}
+      aria-labelledby={`showcase-cohort-heading-${cohort}`}>
+      <div className={clsx('container', styles.yearSectionLayout)}>
+        <div className={styles.yearSectionHeader}>
+          <Heading as="h2" id={`showcase-cohort-heading-${cohort}`} className={styles.yearSectionTitle}>
+            {cohortToAcademicYearLabel(cohort)}
+          </Heading>
+          <p className={styles.projectCount}>{items.length} project{items.length === 1 ? '' : 's'}</p>
+        </div>
+        <div>
+          <ul className={clsx('clean-list', styles.cardList)}>
+            {items.map((item) => (
+              <ShowcaseCard key={item.title} user={item} contributorsColumns={5} />
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -79,21 +101,22 @@ export default function ShowcaseCards() {
     return <NoResultSection />;
   }
 
+  const groupedUsers = getCohortGroups(filteredUsers);
+
   return (
     <section className="margin-top--lg margin-bottom--xl">
-      {filteredUsers.length === sortedUsers.length ? (
-        <>
-          {/*<div className={styles.showcaseFavorite}>*/}
-          {/*  <CardList heading={<HeadingFavorites />} items={favoriteUsers} />*/}
-          {/*</div>*/}
-          <div className="margin-top--lg">
-            <CardList heading={<HeadingAllSites />} items={otherUsers} />
-          </div>
-        </>
-      ) : (
-        <CardList items={filteredUsers} />
-      )}
-        <p style={{textAlign: 'center', padding:40}}>Contributor Icons Made with<a href={"https://contrib.rocks"}> contrib.rocks</a>.<br/> This page's design borrows heavily from <a href={'https://docusaurus.io/showcase'}>Facebook's Docusaurus Site Showcase</a> Page.</p>
+      {groupedUsers.map(([cohort, items]) => (
+        <CohortSection key={cohort} cohort={cohort} items={items} />
+      ))}
+      <p style={{textAlign: 'center', padding: 40}}>
+        Contributor Icons Made with
+        <a href={'https://contrib.rocks'}> contrib.rocks</a>.
+        <br />
+        This page&apos;s design borrows heavily from
+        <a href={'https://docusaurus.io/showcase'}> Facebook&apos;s Docusaurus Site Showcase</a>
+        {' '}
+        Page.
+      </p>
     </section>
   );
 }

@@ -265,6 +265,7 @@ export type Project = {
   semester?: string;
   slug?: string;
   members?: string[];
+  highlights?: string[];
   repo?: string;
   useDocsAsPreview?: boolean;
 };
@@ -280,6 +281,14 @@ export const projects: Project[] = [
     tags: ['chatbot', 'ai', 'web', 'python', 'mongodb', 'slack', 'social'],
     semester: 'Spring 2026',
     slug: 'bereal-chatbot',
+    members: [
+      'Justin Pham',
+      'Khai Thach',
+      'John Livezey',
+      'Chris Breeden',
+      'Nathan Hollick',
+      'Carl Pierre-Louis',
+    ],
     useDocsAsPreview: true,
   },
   {
@@ -291,6 +300,13 @@ export const projects: Project[] = [
     tags: ['aac', 'accessibility', 'games','api', 'communication','library','speech-to-text'],
     semester: 'Fall 2025',
     slug: 'aaccommodate',
+    members: [
+      'Michael Colbert',
+      'Jessica Hutchison',
+      'Hena Patel',
+      'Gino Russo',
+      'Tam Trang',
+    ],
     useDocsAsPreview: false,
   },
   {
@@ -303,6 +319,13 @@ export const projects: Project[] = [
     tags: ['game', 'accessibility', 'multiplayer', 'aac', 'research'],
     semester: 'Summer 2025',
     slug: 'hip-io',
+    members: [
+      'Arvindh Velrajan',
+      'Mohammed Karim',
+      'Kostandin Jorgji',
+      'Jasmine Liu',
+      'Omais Khan',
+    ],
     useDocsAsPreview: true,
   },
   {
@@ -315,6 +338,8 @@ export const projects: Project[] = [
     tags: ['ai', 'education', 'vscode-extension','research'],
     semester: 'Spring 2025',
     slug: 'clover',
+    members: ['Jaime Nguyen', 'Antonio M Mongeluzi', 'Sophia Mettille', 'Nick Rucinski', 'Jack Martin'],
+
   },
   {
     title: 'OrderUp',
@@ -326,6 +351,7 @@ export const projects: Project[] = [
     tags: ['game', 'accessibility', 'aac', 'education','research', 'multiplayer'],
     semester: 'Spring 2025',
     slug: 'order-up',
+    members: ['Seth Bernstein', 'Akhil Kasturi', 'Matt Littlefield', 'Andriy Luchko', 'TJ McBride', 'Addison Migash', 'Jonathan Zhang'],
   },
   {
     title: 'Piglet Prep',
@@ -337,6 +363,7 @@ export const projects: Project[] = [
     tags: ['education', 'ml', 'computer-vision', 'analytics', 'research','nextjs'],
     semester: 'Spring 2025',
     slug: 'piglet-prep',
+    members: ['Hirab Abdourazak', 'Noel Chacko', 'Henry Nguyen', 'Andrew Tran', 'Sophie Chen', 'Ernest Wong'],
     // useDocsAsPreview: true,
   },
   {
@@ -348,6 +375,7 @@ export const projects: Project[] = [
     demo: 'https://www.youtube.com/watch?v=j1K0Ypl_iDk&t=5325',
     semester: 'Spring 2025',
     slug: 'biogenie',
+    members: ['Keith C Bunn', 'Amitai Goldmeer', 'Ishmam Kabir', 'Khanh Q Nguyen', 'Katerina Orlovskiy', 'Justin Truong', 'Troy K Witmer'],
   },
   {
     title: 'Whiteboard Assistant',
@@ -359,6 +387,7 @@ export const projects: Project[] = [
     tags: ['education','ai', 'interview-prep', 'web','pwa'],
     semester: 'Fall 2024',
     slug: 'whiteboard-assistant',
+    members: ['Dean Roos', 'Ben Stephenson', 'Vince Lukban', 'Renxuan Yao', 'Dhruvil Patel'],
     // useDocsAsPreview: true
   },
   {
@@ -370,6 +399,7 @@ export const projects: Project[] = [
     tags: ['gaming', 'education', 'hardware', 'raspberry-pi', 'embedded','pwa'],
     semester: 'Spring 2024',
     slug: 'blastpad',
+    members: ['Jacob Snarr', 'Neil Conley', 'Jeffin Johnykutty', 'Mustafa Wedee', 'Mustafa Malik', 'Niaz Baharudeen', 'Aiden McGonagle'],
   },
   {
     title: 'Wildlife Odyssey',
@@ -379,6 +409,7 @@ export const projects: Project[] = [
     semester: 'Spring 2024',
     slug: 'wildlife-odyssey',
     tags: ['game', 'multiplayer', 'unity','csharp', "matlab"],
+    members: ['Eddy Pike', 'Alex McGinn', 'Brandon Cuevas', 'Theron Halsey', 'Luigi Mazzocchi', 'Brian Barnefiher', 'Andrew Tran'],
   },
   {
     title: 'SmartSpeech',
@@ -391,6 +422,7 @@ export const projects: Project[] = [
     semester: 'Fall 2023',
     useDocsAsPreview: true,
     slug: 'smartspeech',
+    members: ['Parth Patel', 'Landen Lloyd', 'Zeshan Ahmad', 'Anthony Roman', 'Cynthia To', 'Alexander Rajasekaran', 'Liam Mackay'],
   },
   {
     title: 'Garden Sensor Array',
@@ -401,6 +433,7 @@ export const projects: Project[] = [
     tags: ['iot', 'sensors', 'community', 'hardware', 'raspberry-pi', 'embedded','bluetooth'],
     semester: 'Fall 2023',
     slug: 'garden-sensor-array',
+    members: ['Alexander Korsunsky', 'Sam GL', 'Regina Oda', 'Giorgio Tatarelli', 'Gabriel Sta Ana', 'Jimson Whiskeyman'],
   },
   {
     title: 'Lomo',
@@ -412,6 +445,7 @@ export const projects: Project[] = [
     tags: ['gaming', 'geolocation', 'social','pwa','laravel'],
     semester: 'Fall 2023',
     slug: 'lomo',
+    members: ['Jonathan Altenburg', 'Andy Olshanky', 'Emma Pincus', 'Ziyi Ke', 'Carla Delima', 'Alan Uthuppan', 'Jennifer Lieu'],
   },
   {
     title: 'Code Review Chatbot',
@@ -422,6 +456,7 @@ export const projects: Project[] = [
     tags: ['ai', 'code-quality', 'vscode-extension', 'education','laravel'],
     semester: 'Fall 2023',
     slug: 'code-review-chatbot',
+    members: ['Jason Lee', 'Thomas Rau', 'Kroos Xiang', 'Joshua Deland', 'Patrick Brady', 'Joseph Shiller', 'Domenic Malinsky'],
   },
   {
     title: 'ARPetPals',
@@ -432,6 +467,7 @@ export const projects: Project[] = [
     tags: ['virtual-pet','ar', 'mobile', 'health', 'fitness', 'unity','gamification'],
     semester: 'Fall 2023',
     slug: 'ar-pet-pals',
+    members: ['Son Tran', 'Karl James Gray', 'Youfei Li', 'Alex Mailo', 'Hy D Nguyen', "Dario George D'Aguanno", 'Anya Tewari'],
   },
   {
     title: 'Study Buddy',
@@ -443,6 +479,7 @@ export const projects: Project[] = [
     tags: ['virtual-pet','education', 'gamification', 'pwa', 'canvas-lms','react','django','sqlite'],
     semester: 'Spring 2023',
     slug: 'study-buddy',
+    members: ['Mary Clay', 'Christine Cho', 'Alexander Russakoff', 'Katrina Janeczko', 'Harrison Fedor', 'Jay Newman'],
   },
   {
     title: 'TUTraffic',
@@ -455,6 +492,7 @@ export const projects: Project[] = [
     semester: 'Spring 2023',
     // useDocsAsPreview: true,
     slug: 'tu-traffic',
+    members: ['Ethan Hopkins', 'Adam Wong', 'Logan Bennett', 'Isaac Ferguson', 'Raymond Chen', 'Brian Rangel', 'Maguire Qvale', 'Jason Michel'],
   },
   {
     title: 'Robocontrol',
@@ -476,6 +514,7 @@ export const projects: Project[] = [
     tags: ['iot', 'mobile', 'safety', 'bluetooth', 'embedded','hardware'],
     semester: 'Spring 2023',
     slug: 'vehicle-collision-detection',
+    members: ['Evan Noyes', 'Austin Foster', 'Thanh Nguyen', 'Bradley Dinger', 'Arif Ayarci', 'Nathan Adiam', 'Justice Chang'],
     useDocsAsPreview: true
   },
   {
@@ -487,6 +526,7 @@ export const projects: Project[] = [
     tags: ['discordBot', 'chatbot', 'github', 'jira', 'collaboration', 'devops'],
     semester: 'Fall 2022',
     slug: 'collabybot',
+    members: ['Sofia Drachuk', 'Dan Kalyniy', 'Nahara Johnson', 'Marshall Walsh'],
   },
   {
     title: 'Sokroban',
@@ -498,6 +538,7 @@ export const projects: Project[] = [
     tags: ['game', 'puzzle', 'multiplayer', 'unity', 'webgl'],
     semester: 'Fall 2022',
     slug: 'sokroban',
+    members: ['Arthur Kozhevnik', 'Roberto Nano', 'Felix Rabinovich', 'Riddhi Patel'],
   },
 
 ];

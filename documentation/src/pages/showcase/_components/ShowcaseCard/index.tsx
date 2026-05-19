@@ -97,11 +97,17 @@ function parseYoutubeUrl(url: string): {
   return {videoId, startTime};
 }
 
+function getHighlightLabels(user: User): string[] {
+  return Array.isArray(user.highlights) ? user.highlights.slice(0, 3) : [];
+}
+
 function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributorsColumns?: number}) {
   const image = getCardImage(user);
   const [expanded, setExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const {videoId: youtubeVideoId, startTime} = parseYoutubeUrl(user.demo);
+  const members = user.members?.filter(Boolean) ?? [];
+  const highlightLabels = getHighlightLabels(user);
 
   const MAX = 150;
   const desc = user.description ?? '';
@@ -113,6 +119,9 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
         className={clsx('card__image', styles.showcaseCardImage)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}>
+        {user.semester && (
+          <span className={styles.semesterChipOverlay}>{user.semester}</span>
+        )}
         {isHovered && youtubeVideoId ? (
           <iframe
             src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1${
@@ -286,10 +295,21 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
             </Link>
           )}
         </div>
-        {/* Contributors wrapped in a list item for valid HTML and layout control */}
-        {/*<li className={styles.contributorsItem}>*/}
-          {user.source && <Contributors githubURL={user.source} columns={7} />}
-        {/*</li>*/}
+        {highlightLabels.length > 0 && (
+          <p className={styles.highlightSummary}>
+            {highlightLabels.join(' · ')}
+          </p>
+        )}
+        {(user.source || members.length > 0) && (
+          <div className={styles.contributorBlock}>
+            {user.source && (
+              <Contributors githubURL={user.source} columns={contributorsColumns} />
+            )}
+            {members.length > 0 && (
+              <p className={styles.memberList}>{members.join(', ')}</p>
+            )}
+          </div>
+        )}
         <p className={styles.showcaseCardBody}>
           {isLong ? (
             <>
