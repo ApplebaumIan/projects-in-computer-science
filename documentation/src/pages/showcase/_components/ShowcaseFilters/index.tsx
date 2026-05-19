@@ -273,7 +273,7 @@ function GlossaryShortcut() {
       aria-controls="showcase-glossary"
       aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
     >
-      {translate({id: 'showcase.filters.gotoGlossaryContext', message: 'Filter glossary'})}
+      {translate({id: 'showcase.filters.gotoGlossaryContext', message: 'View filter glossary'})}
     </button>
   );
 }
