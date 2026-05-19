@@ -299,7 +299,14 @@ function CohortFilters() {
 
   return (
     <div className={styles.cohortFilters}>
-      <span className={styles.cohortLabel}>Academic year</span>
+      <span className={styles.cohortLabel}>
+        <Translate
+            id="showcase.filters.cohortLabel"
+            description={'Label for a cohort filter button, where the button label is the academic year. Example: "Filter by academic year 2022-2023"'}
+        >
+          Academic Year
+        </Translate>
+      </span>
       <ul className={clsx('clean-list', styles.cohortList)}>
         {cohortOptions.map(({label, count}) => {
           const selected = cohort === label;
