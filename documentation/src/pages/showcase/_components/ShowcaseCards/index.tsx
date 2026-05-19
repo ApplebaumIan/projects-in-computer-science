@@ -10,7 +10,7 @@ import Translate from '@docusaurus/Translate';
 import {type User} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
 import ShowcaseCard from '../ShowcaseCard';
-import {semesterToCohort, useFilteredAndSortedUsers} from '../../_utils';
+import {cohortToAcademicYearLabel, semesterToCohort, useFilteredAndSortedUsers} from '../../_utils';
 
 import styles from './styles.module.css';
 
@@ -68,18 +68,9 @@ function CohortSection({cohort, items}: {cohort: string; items: User[]}) {
       <div className={clsx('container', styles.yearSectionLayout)}>
         <div className={styles.yearSectionHeader}>
           <Heading as="h2" id={`showcase-cohort-heading-${cohort}`} className={styles.yearSectionTitle}>
-            {cohort}
+            {cohortToAcademicYearLabel(cohort)}
           </Heading>
           <p className={styles.projectCount}>{items.length} project{items.length === 1 ? '' : 's'}</p>
-          {semesters.length > 0 && (
-            <ul className={clsx('clean-list', styles.semesterList)}>
-              {semesters.map((semester) => (
-                <li key={semester} className={styles.semesterPill}>
-                  {semester}
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
         <div>
           <ul className={clsx('clean-list', styles.cardList)}>
