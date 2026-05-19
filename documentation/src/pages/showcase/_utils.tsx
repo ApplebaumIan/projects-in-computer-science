@@ -22,10 +22,6 @@ export function useTags() {
   return useQueryStringList('tags');
 }
 
-export function useSemester() {
-  return useQueryString('semester');
-}
-
 export function useCohort() {
   return useQueryString('cohort');
 }
@@ -47,14 +43,12 @@ function filterUsers({
   tags,
   operator,
   searchName,
-  semester,
   cohort,
 }: {
   users: User[];
   tags: TagType[];
   operator: Operator;
   searchName: string | null;
-  semester?: string | null;
   cohort?: string | null;
 }) {
   if (searchName) {
@@ -67,9 +61,6 @@ function filterUsers({
         .toLowerCase();
       return searchableFields.includes(normalizedSearch);
     });
-  }
-  if (semester) {
-    users = users.filter((user) => user.semester === semester);
   }
   if (cohort) {
     users = users.filter((user) => semesterToCohort(user.semester) === cohort);
@@ -92,7 +83,6 @@ export function useFilteredUsers() {
   const [tags] = useTags();
   const [searchName] = useSearchName();
   const [operator] = useOperator();
-  const [semester] = useSemester();
   const [cohort] = useCohort();
   return useMemo(
     () =>
@@ -101,18 +91,16 @@ export function useFilteredUsers() {
         tags: tags as TagType[],
         operator,
         searchName,
-        semester,
         cohort,
       }),
-    [tags, operator, searchName, semester, cohort],
+    [tags, operator, searchName, cohort],
   );
 }
 
-// Return users filtered by the current searchName/semester but ignoring tag selection.
+// Return users filtered by the current searchName/cohort but ignoring tag selection.
 // This is useful to compute per-tag counts without circular dependency on current tag selection.
 export function useUsersForCounts() {
   const [searchName] = useSearchName();
-  const [semester] = useSemester();
   const [cohort] = useCohort();
   return useMemo(
     () =>
@@ -121,10 +109,9 @@ export function useUsersForCounts() {
         tags: [],
         operator: 'OR',
         searchName,
-        semester,
         cohort,
       }),
-    [searchName, semester, cohort],
+    [searchName, cohort],
   );
 }
 
@@ -158,6 +145,13 @@ export function semesterToCohort(sem?: string | null) {
   const parsed = parseSemester(sem);
   if (!parsed) return null;
   return String(parsed.season === 'fall' ? parsed.year + 1 : parsed.year);
+}
+
+export function cohortToAcademicYearLabel(cohort?: string | null) {
+  if (!cohort) return '';
+  const endYear = Number.parseInt(cohort, 10);
+  if (!Number.isFinite(endYear)) return cohort;
+  return `${endYear - 1} - ${endYear}`;
 }
 
 // Helper: compute a sortable numeric key from semester strings like "Spring 2025"

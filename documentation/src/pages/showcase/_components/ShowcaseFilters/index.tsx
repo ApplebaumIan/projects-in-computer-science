@@ -16,6 +16,7 @@ import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
 import ClearAllButton from '../ClearAllButton';
 import {
+  cohortToAcademicYearLabel,
   semesterToCohort,
   useCohort,
   useFilteredUsers,
@@ -309,7 +310,7 @@ function CohortFilters() {
                 className={clsx(styles.cohortButton, selected && styles.cohortButtonActive)}
                 aria-pressed={selected}
                 onClick={() => setCohort(selected ? null : label)}>
-                <span>{label}</span>
+                <span>{cohortToAcademicYearLabel(label)}</span>
                 <span className={styles.cohortCount}>{count}</span>
               </button>
             </li>
