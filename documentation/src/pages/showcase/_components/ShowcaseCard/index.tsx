@@ -119,6 +119,9 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
         className={clsx('card__image', styles.showcaseCardImage)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}>
+        {user.semester && (
+          <span className={styles.semesterChipOverlay}>{user.semester}</span>
+        )}
         {isHovered && youtubeVideoId ? (
           <iframe
             src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1${

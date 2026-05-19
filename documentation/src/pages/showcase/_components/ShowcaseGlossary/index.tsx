@@ -67,7 +67,7 @@ export default function ShowcaseGlossary(): ReactNode {
   const allTags: TagType[] = [...categoryTags.slice(0, 24), ...languageTags] as TagType[];
 
   // Batch loading configuration
-  const BATCH_SIZE = 9; // number of items to load per batch
+  const BATCH_SIZE = 6; // number of items to load per batch
 
   const [visibleCount, setVisibleCount] = useState<number>(0);
   const [loadedOnce, setLoadedOnce] = useState(false);

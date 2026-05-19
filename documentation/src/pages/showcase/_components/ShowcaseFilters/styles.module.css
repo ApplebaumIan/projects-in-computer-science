@@ -46,10 +46,11 @@
 
 .cohortLabel {
   color: var(--ifm-color-emphasis-700);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .cohortList {
@@ -112,6 +113,12 @@
   justify-content: flex-start;
 }
 
+.filterFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
 .showMoreButton {
   background: transparent;
   border: none;
@@ -132,17 +139,18 @@
 }
 
 .glossaryButton {
-  background: var(--ifm-color-primary, #0d47a1);
-  color: var(--ifm-color-white, #fff);
-  border: none;
-  padding: 6px 10px;
+  background: transparent;
+  color: var(--ifm-color-primary, #0d47a1);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 22%, white 78%);
+  padding: 0.5rem 0.9rem;
   font-size: 0.9rem;
-  border-radius: 4px;
+  font-weight: 600;
+  border-radius: 999px;
   cursor: pointer;
 }
 
 .glossaryButton:hover {
-  opacity: 0.95;
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, white 92%);
 }
 
 .glossaryButton:focus {
@@ -163,5 +171,9 @@
   .headingButtons > * {
     margin-left: 0;
     margin-right: 8px;
+  }
+
+  .filterFooter {
+    justify-content: flex-start;
   }
 }

@@ -210,43 +210,44 @@ function HeadingText() {
 }
 
 function HeadingButtons() {
-  // Smooth-scroll to glossary
+  return (
+    <div className={styles.headingButtons} style={{alignItems: 'center'}}>
+      <OperatorButton />
+      <ClearAllButton />
+    </div>
+  );
+}
+
+function GlossaryShortcut() {
   function goToGlossary() {
     try {
-      // Ask the page to load the glossary (Showcase page listens for this event)
       window.dispatchEvent(new Event('showcase:loadGlossary'));
 
       const scrollTo = () => {
         const el = document.getElementById('showcase-glossary');
-        if (el) {
-          el.scrollIntoView({behavior: 'smooth', block: 'start'});
-          // After scrolling, place keyboard focus on the glossary for accessibility
-          // Use a short timeout to avoid fighting the smooth scroll animation
-          window.setTimeout(() => {
-            try {
-              (el as HTMLElement).focus();
-            } catch (e) {
-              // ignore if focus isn't supported in the environment
-            }
-          }, 400);
-          return true;
+        if (!el) {
+          return false;
         }
-        return false;
+        el.scrollIntoView({behavior: 'smooth', block: 'start'});
+        window.setTimeout(() => {
+          try {
+            (el as HTMLElement).focus();
+          } catch (e) {
+            // ignore if focus isn't supported in the environment
+          }
+        }, 400);
+        return true;
       };
 
-      // If it's already present, scroll immediately
       if (scrollTo()) return;
 
-      // Otherwise poll for the element for up to ~4 seconds
       let attempts = 0;
-      const maxAttempts = 40; // 40 * 100ms = 4000ms
-      const intervalMs = 100;
       const timer = window.setInterval(() => {
         attempts += 1;
-        if (scrollTo() || attempts >= maxAttempts) {
+        if (scrollTo() || attempts >= 40) {
           clearInterval(timer);
         }
-      }, intervalMs);
+      }, 100);
     } catch (e) {
       // ignore in SSR or restricted environments
     }
@@ -257,27 +258,22 @@ function HeadingButtons() {
   function prefetchGlossary() {
     if (glossaryPrefetched) return;
     glossaryPrefetched = true;
-    // Dynamic import to warm the chunk (path relative to this file)
     import('../ShowcaseGlossary').catch(() => {
       // ignore failures; load will be attempted again when requested
     });
   }
 
   return (
-    <div className={styles.headingButtons} style={{alignItems: 'center'}}>
-      <OperatorButton />
-      <button
-        type="button"
-        className={styles.glossaryButton}
-        onClick={goToGlossary}
-        onMouseEnter={prefetchGlossary}
-        aria-controls="showcase-glossary"
-        aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
-      >
-        {translate({id: 'showcase.filters.gotoGlossaryShort', message: 'Glossary'})}
-      </button>
-      <ClearAllButton />
-    </div>
+    <button
+      type="button"
+      className={styles.glossaryButton}
+      onClick={goToGlossary}
+      onMouseEnter={prefetchGlossary}
+      aria-controls="showcase-glossary"
+      aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
+    >
+      {translate({id: 'showcase.filters.gotoGlossaryContext', message: 'Filter glossary'})}
+    </button>
   );
 }
 
@@ -339,6 +335,9 @@ export default function ShowcaseFilters(): ReactNode {
       <HeadingRow />
       <CohortFilters />
       <ShowcaseTagList />
+      <div className={styles.filterFooter}>
+        <GlossaryShortcut />
+      </div>
     </section>
   );
 }
