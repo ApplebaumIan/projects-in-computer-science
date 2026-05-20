@@ -17,6 +17,13 @@ const path = require('path');
 const axios = require('axios');
 
 const SHOWCASE_FILE = path.join(__dirname, '..', 'src', 'data', 'showcase.ts');
+const SHOWCASE_PROJECTS_FILE = path.join(
+  __dirname,
+  '..',
+  'src',
+  'data',
+  'showcaseProjects.js',
+);
 const DEMO_FILE = path.join(__dirname, '..', 'src', 'data', 'demoLineup.ts');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'data', 'showcaseLanguages.json');
 
@@ -179,7 +186,12 @@ function loadExistingMapping() {
 async function main() {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || null;
   const fileContent = fs.readFileSync(SHOWCASE_FILE, 'utf8');
-  const projects = parseProjects(fileContent);
+  const projects = fs.existsSync(SHOWCASE_PROJECTS_FILE)
+    ? require(SHOWCASE_PROJECTS_FILE).map((project) => ({
+        slug: project.slug,
+        source: project.source || null,
+      }))
+    : parseProjects(fileContent);
   const demoContent = fs.existsSync(DEMO_FILE) ? fs.readFileSync(DEMO_FILE,'utf8') : '';
   const demoProjects = parseDemoLineup(demoContent);
   const allProjects = [...projects, ...demoProjects];

@@ -341,6 +341,7 @@ const config = {
         systemvars: true,
       },
     ],
+    require.resolve('./plugins/showcase-project-pages'),
     'plugin-image-zoom',
   ],
   scripts: [{src:'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', async: true},

@@ -5,10 +5,11 @@
  * Welcome to the Capstone Showcase, where we proudly present the innovative projects developed by student groups from Temple University's CIS4398 capstone course. This course allows students to utilize the culmination of all their previous coursework and outside experience to build software as a team. This page highlights the exceptional documentation, presentation, and technical skills demonstrated in these collaborative efforts. Over 17 weeks, students tackle projects in diverse domains, from AI and accessibility to IoT and computer science education tools, using Agile methodologies and tools like Jira and GitHub. Many projects also involve hardware challenges, such as soldering and working with embedded systems. As a writing-intensive course, students thoroughly document their projects using Docusaurus. Explore these achievements and witness the future potential of these emerging professionals.
  */
 import type {ReactNode} from 'react';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {translate} from '@docusaurus/Translate';
 
 import Layout from '@theme/Layout';
+import {resolveLegacyShowcaseRedirect} from '@site/src/data/showcase';
 
 import ShowcaseSearchBar from '@site/src/pages/showcase/_components/ShowcaseSearchBar';
 import ShowcaseCards from './_components/ShowcaseCards';
@@ -20,7 +21,6 @@ const DESCRIPTION = translate({
     /* I need a short one line message to introduce the showcase of capstone projects */
   message: 'Discover the innovative projects developed by student groups from Temple University\'s CIS4398 capstone course, showcasing their technical skills and collaborative efforts across diverse domains.',
 });
-const SUBMIT_URL = 'https://github.com/facebook/docusaurus/discussions/7826';
 
 function ShowcaseHeader() {
   return (
@@ -33,12 +33,35 @@ function ShowcaseHeader() {
 
 export default function Showcase(): ReactNode {
   useEffect(() => {
+    const redirectTarget = resolveLegacyShowcaseRedirect({
+      pathname: window.location.pathname,
+      hash: window.location.hash,
+      search: window.location.search,
+    });
+
+    if (redirectTarget) {
+      window.location.replace(redirectTarget);
+      return undefined;
+    }
+
+    function getHighlightTarget(id: string): HTMLElement | null {
+      const element = document.getElementById(id);
+      if (!element) {
+        return null;
+      }
+
+      return (
+        (element.closest('[data-project-card="true"]') as HTMLElement | null) ||
+        element
+      );
+    }
+
     function scrollToHash() {
       try {
         const hash = window.location.hash;
         if (!hash) return;
         const id = hash.startsWith('#') ? hash.slice(1) : hash;
-        const el = document.getElementById(id);
+        const el = getHighlightTarget(id);
         if (el) {
           // smooth scroll and center the card
           el.scrollIntoView({behavior: 'smooth', block: 'center'});
