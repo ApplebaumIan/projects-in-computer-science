@@ -179,7 +179,7 @@ const config = {
                 label: 'Course Schedule 📆',
               },
               {
-                to: '/tutorial/Intro',
+                to: '/tutorial/intro',
                 label: 'Docusaurus Tutorial',
                 activeBaseRegex: `/tutorial/`,
               },
@@ -214,7 +214,7 @@ const config = {
               },
               {
                 label: 'Projects',
-                to: '/syllabus/projects',
+                to: '/syllabus/projects/intro',
               },
               {
                 label: 'Project Expectations',
@@ -341,11 +341,20 @@ const config = {
       },
     ],
     [
+      'posthog-docusaurus',
+      {
+        apiKey: 'phc_AxuZ9Px26BTjay392ur6oDVUN8KXpn69shVeRjGjQTe5',
+        appUrl: 'https://us.i.posthog.com',
+        enableInDevelopment: false,
+      },
+    ],
+    [
       "docusaurus2-dotenv-2",
       {
         systemvars: true,
       },
     ],
+    require.resolve('./plugins/showcase-project-pages'),
     'plugin-image-zoom',
   ],
   scripts: [{src:'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', async: true},

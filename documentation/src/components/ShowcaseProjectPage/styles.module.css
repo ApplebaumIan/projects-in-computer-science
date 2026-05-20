@@ -1,0 +1,470 @@
+.page {
+  padding: 2.5rem 0 4rem;
+}
+
+.layout {
+  max-width: 1080px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.backLinkIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.copy {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.eyebrowRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.75rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--ifm-color-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.contributorsWrap {
+  max-width: 520px;
+}
+
+.metaList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.metaListCompact {
+  gap: 0;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 999px;
+  background: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 6%,
+    var(--ifm-background-surface-color) 94%
+  );
+}
+
+.metaChipCompact {
+  gap: 0.45rem;
+  padding: 0.32rem 0.65rem;
+}
+
+.metaChipLabel {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.metaChipCompact .metaChipLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.metaChipValue {
+  color: var(--ifm-color-emphasis-900);
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
+.metaChipCompact .metaChipValue {
+  font-size: 0.86rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.actionButton {
+  border: none;
+}
+
+.buttonContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  line-height: 1;
+}
+
+.buttonText {
+  display: inline;
+}
+
+.actionIcon {
+  width: auto;
+  height: 1.1em;
+  display: block;
+  flex: 0 0 auto;
+  fill: currentColor;
+  overflow: visible;
+}
+
+.mediaCard {
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 20px;
+  background: var(--ifm-card-background-color);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+}
+
+.section {
+  margin-top: 2.5rem;
+}
+
+.description {
+  max-width: 78ch;
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.overviewContent {
+  max-width: 78ch;
+}
+
+.overviewContent > :first-child {
+  margin-top: 0.5rem;
+}
+
+.overviewContent h2,
+.overviewContent h3,
+.overviewContent h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 1.05rem;
+}
+
+.overviewContent p,
+.overviewContent li {
+  line-height: 1.75;
+}
+
+.overviewContent ul,
+.overviewContent ol {
+  padding-left: 1.25rem;
+}
+
+.overviewContent blockquote {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: 12px;
+  background: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 7%,
+    var(--ifm-background-surface-color) 93%
+  );
+}
+
+.sourceNote {
+  margin-top: 1rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+  isolation: isolate;
+}
+
+.tagItem {
+  list-style: none;
+  display: inline-grid;
+  grid-template-columns: max-content;
+  justify-items: start;
+  flex: 0 0 auto;
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 999px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    border-color 180ms ease,
+    border-radius 180ms ease,
+    box-shadow 180ms ease,
+    padding 180ms ease,
+    transform 180ms ease;
+}
+
+.tagItem:hover,
+.tagItem:focus-within {
+  width: fit-content;
+  max-width: min(280px, 72vw);
+  padding: 1rem 1.05rem 1.1rem;
+  border-radius: 20px;
+  border-color: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 18%,
+    var(--ifm-color-emphasis-200) 82%
+  );
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  z-index: 2;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.tag:hover,
+.tag:focus-visible {
+  outline: none;
+}
+
+.tagDetails {
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  margin-top: 0;
+  padding-top: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    grid-template-rows 180ms ease,
+    margin-top 180ms ease,
+    padding-top 180ms ease,
+    opacity 150ms ease,
+    transform 150ms ease;
+  transform: translateY(-4px);
+}
+
+.tagItem:hover .tagDetails,
+.tagItem:focus-within .tagDetails {
+  grid-template-rows: 1fr;
+  margin-top: 0.9rem;
+  padding-top: 0.15rem;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.tagDetailsInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tagDetails p {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+.tagDetailsHint {
+  display: inline-flex;
+  margin-top: 0.9rem;
+  color: var(--ifm-color-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tagDot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+}
+
+.sectionIntro {
+  margin-bottom: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.pagination {
+  margin-top: 2.5rem;
+}
+
+.relatedList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.relatedCard {
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 20px;
+  background: var(--ifm-card-background-color);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.relatedMedia {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.relatedImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.relatedSemesterChip {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.relatedContent {
+  padding: 1rem 1rem 1.1rem;
+}
+
+.relatedTitle {
+  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+}
+
+.relatedTitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.relatedTitle a:hover,
+.relatedTitle a:focus-visible {
+  color: var(--ifm-color-primary);
+}
+
+.relatedYear {
+  margin: 0;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+}
+
+.relatedTagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0;
+  margin: 0.85rem 0 0;
+  list-style: none;
+}
+
+.relatedTag {
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.8rem;
+}
+
+.relatedCta {
+  display: inline-flex;
+  margin-top: 0.95rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.relatedCta:hover,
+.relatedCta:focus-visible {
+  text-decoration: underline;
+}
+
+@media (min-width: 996px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  }
+}
+
+@media (max-width: 996px) {
+  .video {
+    min-height: 240px;
+  }
+
+  .metaGrid {
+    grid-template-columns: 1fr;
+  }
+}

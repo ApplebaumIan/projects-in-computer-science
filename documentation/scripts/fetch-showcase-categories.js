@@ -17,6 +17,13 @@ const axios = require('axios');
 const { JSDOM } = require('jsdom');
 
 const SHOWCASE_FILE = path.join(__dirname, '..', 'src', 'data', 'showcase.ts');
+const SHOWCASE_PROJECTS_FILE = path.join(
+  __dirname,
+  '..',
+  'src',
+  'data',
+  'showcaseProjects.js',
+);
 const DEMO_LINEUP_FILE = path.join(__dirname, '..', 'src', 'data', 'demoLineup.ts');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'data', 'showcaseCategoryHints.json');
 
@@ -278,7 +285,13 @@ async function main() {
   const langTags = extractLanguageTagList(showcaseContent);
   const { map: keywordMap, nonLang } = buildKeywordMap(allTags, langTags);
   const allowed = nonLang; // already excludes language tags + excluded autotags
-  const showcaseProjects = parseProjects(showcaseContent, 'projects');
+  const showcaseProjects = fs.existsSync(SHOWCASE_PROJECTS_FILE)
+    ? require(SHOWCASE_PROJECTS_FILE).map((project) => ({
+        slug: project.slug,
+        documentation: project.documentation || null,
+        title: project.title || '(untitled)',
+      }))
+    : parseProjects(showcaseContent, 'projects');
   const demoProjects = parseProjects(demoLineupContent, 'demoLineupProjects');
   // Merge & de-duplicate by slug
   const merged = [];

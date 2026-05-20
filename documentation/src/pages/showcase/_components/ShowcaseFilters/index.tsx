@@ -15,8 +15,15 @@ import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
 import ClearAllButton from '../ClearAllButton';
-import {useFilteredUsers, useSiteCountPlural, useSemester, useUsersForCounts} from '../../_utils';
-import {sortedUsers} from '@site/src/data/showcase';
+import {
+  cohortToAcademicYearLabel,
+  semesterToCohort,
+  useCohort,
+  useFilteredUsers,
+  useSiteCountPlural,
+  useUsersForCohortCounts,
+  useUsersForCounts,
+} from '../../_utils';
 
 import styles from './styles.module.css';
 
@@ -204,67 +211,44 @@ function HeadingText() {
 }
 
 function HeadingButtons() {
-  const [semester, setSemester] = useSemester();
+  return (
+    <div className={styles.headingButtons} style={{alignItems: 'center'}}>
+      <OperatorButton />
+      <ClearAllButton />
+    </div>
+  );
+}
 
-  // Build semester options from sortedUsers (unique, non-empty)
-  const semesterOptions = useMemo(() => {
-    const set = new Set<string>();
-    for (const u of sortedUsers) {
-      if (u.semester) set.add(u.semester);
-    }
-    // Convert to array and sort using a simple comparator that prefers newer semesters
-    const arr = Array.from(set);
-    const seasonOrder: Record<string, number> = { spring: 0, summer: 1, fall: 2, winter: 3 };
-    arr.sort((a, b) => {
-      const pa = a.split(/\s+/);
-      const pb = b.split(/\s+/);
-      const ya = parseInt(pa[1] || '0', 10);
-      const yb = parseInt(pb[1] || '0', 10);
-      if (ya !== yb) return yb - ya;
-      const sa = seasonOrder[(pa[0] || '').toLowerCase()] ?? 4;
-      const sb = seasonOrder[(pb[0] || '').toLowerCase()] ?? 4;
-      return sb - sa;
-    });
-    return arr;
-  }, []);
-
-  // Smooth-scroll to glossary
+function GlossaryShortcut() {
   function goToGlossary() {
     try {
-      // Ask the page to load the glossary (Showcase page listens for this event)
       window.dispatchEvent(new Event('showcase:loadGlossary'));
 
       const scrollTo = () => {
         const el = document.getElementById('showcase-glossary');
-        if (el) {
-          el.scrollIntoView({behavior: 'smooth', block: 'start'});
-          // After scrolling, place keyboard focus on the glossary for accessibility
-          // Use a short timeout to avoid fighting the smooth scroll animation
-          window.setTimeout(() => {
-            try {
-              (el as HTMLElement).focus();
-            } catch (e) {
-              // ignore if focus isn't supported in the environment
-            }
-          }, 400);
-          return true;
+        if (!el) {
+          return false;
         }
-        return false;
+        el.scrollIntoView({behavior: 'smooth', block: 'start'});
+        window.setTimeout(() => {
+          try {
+            (el as HTMLElement).focus();
+          } catch (e) {
+            // ignore if focus isn't supported in the environment
+          }
+        }, 400);
+        return true;
       };
 
-      // If it's already present, scroll immediately
       if (scrollTo()) return;
 
-      // Otherwise poll for the element for up to ~4 seconds
       let attempts = 0;
-      const maxAttempts = 40; // 40 * 100ms = 4000ms
-      const intervalMs = 100;
       const timer = window.setInterval(() => {
         attempts += 1;
-        if (scrollTo() || attempts >= maxAttempts) {
+        if (scrollTo() || attempts >= 40) {
           clearInterval(timer);
         }
-      }, intervalMs);
+      }, 100);
     } catch (e) {
       // ignore in SSR or restricted environments
     }
@@ -275,40 +259,71 @@ function HeadingButtons() {
   function prefetchGlossary() {
     if (glossaryPrefetched) return;
     glossaryPrefetched = true;
-    // Dynamic import to warm the chunk (path relative to this file)
     import('../ShowcaseGlossary').catch(() => {
       // ignore failures; load will be attempted again when requested
     });
   }
 
   return (
-    <div className={styles.headingButtons} style={{alignItems: 'center'}}>
-      <OperatorButton />
-      <div style={{display: 'flex', alignItems: 'center'}}>
-        <label htmlFor="semester-select" style={{marginRight: 8, fontSize: '0.9rem'}}>Semester</label>
-        <select
-          id="semester-select"
-          value={semester ?? ''}
-          onChange={(e) => setSemester(e.target.value || null)}
-          className={styles.semesterSelect}
+    <button
+      type="button"
+      className={styles.glossaryButton}
+      onClick={goToGlossary}
+      onMouseEnter={prefetchGlossary}
+      aria-controls="showcase-glossary"
+      aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
+    >
+      {translate({id: 'showcase.filters.gotoGlossaryContext', message: 'View filter glossary'})}
+    </button>
+  );
+}
+
+function CohortFilters() {
+  const [cohort, setCohort] = useCohort();
+  const usersForCounts = useUsersForCohortCounts();
+  const cohortOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    usersForCounts.forEach((user) => {
+      const label = semesterToCohort(user.semester);
+      if (!label) return;
+      counts.set(label, (counts.get(label) ?? 0) + 1);
+    });
+    return [...counts.entries()]
+      .sort(([a], [b]) => Number(b) - Number(a))
+      .map(([label, count]) => ({label, count}));
+  }, [usersForCounts]);
+
+  if (cohortOptions.length <= 1) {
+    return null;
+  }
+
+  return (
+    <div className={styles.cohortFilters}>
+      <span className={styles.cohortLabel}>
+        <Translate
+            id="showcase.filters.cohortLabel"
+            description={'Label for a cohort filter button, where the button label is the academic year. Example: "Filter by academic year 2022-2023"'}
         >
-          <option value="">All</option>
-          {semesterOptions.map((s) => (
-            <option key={s} value={s}>{s}</option>
-          ))}
-        </select>
-      </div>
-      <button
-        type="button"
-        className={styles.glossaryButton}
-        onClick={goToGlossary}
-        onMouseEnter={prefetchGlossary}
-        aria-controls="showcase-glossary"
-        aria-label={translate({id: 'showcase.filters.gotoGlossary', message: 'Go to glossary'})}
-      >
-        {translate({id: 'showcase.filters.gotoGlossaryShort', message: 'Glossary'})}
-      </button>
-      <ClearAllButton />
+          Academic Year
+        </Translate>
+      </span>
+      <ul className={clsx('clean-list', styles.cohortList)}>
+        {cohortOptions.map(({label, count}) => {
+          const selected = cohort === label;
+          return (
+            <li key={label}>
+              <button
+                type="button"
+                className={clsx(styles.cohortButton, selected && styles.cohortButtonActive)}
+                aria-pressed={selected}
+                onClick={() => setCohort(selected ? null : label)}>
+                <span>{cohortToAcademicYearLabel(label)}</span>
+                <span className={styles.cohortCount}>{count}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
@@ -326,7 +341,11 @@ export default function ShowcaseFilters(): ReactNode {
   return (
     <section className="container margin-top--l margin-bottom--lg">
       <HeadingRow />
+      <CohortFilters />
       <ShowcaseTagList />
+      <div className={styles.filterFooter}>
+        <GlossaryShortcut />
+      </div>
     </section>
   );
 }

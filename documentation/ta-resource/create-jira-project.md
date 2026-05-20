@@ -8,10 +8,7 @@ title: Create Jira Projects
 Once students are in Jira, they need their project setup to start planning their work. Follow the steps in the video to create *Company Managed* projects.
 
 <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', textAlign: 'center', margin: '20px 0'}}>
-    <iframe src="https://www.youtube.com/embed/0SRN6VqYjj4?si=G4cIWpdqAKUDvris" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
+    <iframe src="https://www.youtube.com/embed/0SRN6VqYjj4?si=G4cIWpdqAKUDvris" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
         style={{
             position: 'absolute',
             top: 0,

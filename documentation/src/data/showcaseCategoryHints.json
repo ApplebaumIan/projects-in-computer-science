@@ -205,7 +205,6 @@
   "bereal-chatbot": [
     "devops",
     "social",
-    "api",
     "mongodb"
   ]
 }
