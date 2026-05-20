@@ -19,6 +19,7 @@ test('finds projects by canonical slug', () => {
 test('finds projects by derived legacy title slug', () => {
   const project = helpers.findProjectBySlug(projects, 'vibecheck');
   assert.equal(project?.slug, 'bereal-chatbot');
+  assert.equal(helpers.getProjectSlug(project), 'vibecheck');
 });
 
 test('finds projects by explicit alias when present', () => {
@@ -40,7 +41,7 @@ test('share links use dedicated project detail paths', () => {
   const project = helpers.findProjectBySlug(projects, 'bereal-chatbot');
   assert.equal(
     helpers.getProjectDetailPath(project),
-    '/showcase/projects/bereal-chatbot',
+    '/showcase/projects/vibecheck',
   );
 });
 
@@ -71,7 +72,7 @@ test('legacy hash redirect resolves to the new detail page', () => {
       hash: '#vibecheck',
       search: '',
     }),
-    '/showcase/projects/bereal-chatbot',
+    '/showcase/projects/vibecheck',
   );
 });
 
@@ -93,7 +94,7 @@ test('legacy anchor and slug query params both redirect', () => {
       hash: '',
       search: '?anchor=vibecheck',
     }),
-    '/showcase/projects/bereal-chatbot',
+    '/showcase/projects/vibecheck',
   );
 
   assert.equal(
@@ -127,6 +128,8 @@ test('project metadata includes SEO phrases and student names', () => {
   assert.match(description, /Temple University/i);
   assert.match(description, /CIS4398/i);
   assert.match(description, /Justin Pham/);
+  assert.match(description, /Chatbot/i);
+  assert.match(description, /MongoDB/i);
   assert.equal(
     title,
     'VibeCheck Senior Project | Temple University CIS4398',

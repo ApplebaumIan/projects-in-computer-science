@@ -22,6 +22,7 @@ import {
   parseYoutubeUrl,
   showcaseSystemOverviews,
   sortedUsers,
+  description,
   Tags,
   type User,
 } from '@site/src/data/showcase';
@@ -473,6 +474,7 @@ export default function ShowcaseProjectPage({
         <title>{title}</title>
         <link rel="canonical" href={canonicalUrl} />
         <meta name="description" content={description} />
+        <meta name="robots" content="index,follow" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
