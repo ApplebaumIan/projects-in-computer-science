@@ -5,12 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useState, useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import Image from '@theme/IdealImage';
-import {Tags, TagList, type TagType, type User} from '@site/src/data/showcase';
+import {
+  Tags,
+  TagList,
+  getProjectCardAnchorIds,
+  getProjectDetailPath,
+  getProjectImage,
+  parseYoutubeUrl,
+  type TagType,
+  type User,
+} from '@site/src/data/showcase';
 import {sortBy} from '@site/src/utils/jsUtils';
 import Heading from '@theme/Heading';
 import FavoriteIcon from '../FavoriteIcon';
@@ -58,63 +67,38 @@ export function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   );
 }
 
-function getCardImage(user: User): string {
-  return (
-    user.preview ??
-    // TODO make it configurable
-    `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
-      user.useDocsAsPreview ? user.website : user.documentation,
-    )}/showcase/_764234242`
-  );
-}
-
-function makeSlug(s: string) {
-  return String(s)
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9-\s]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-}
-
-function parseYoutubeUrl(url: string): {
-  videoId: string | null;
-  startTime: string | null;
-} {
-  if (!url) {
-    return {videoId: null, startTime: null};
-  }
-  const videoIdRegex =
-    /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const videoIdMatch = url.match(videoIdRegex);
-  const videoId =
-    videoIdMatch && videoIdMatch[2].length === 11 ? videoIdMatch[2] : null;
-
-  const timeRegex = /[?&](?:t|start)=(\d+)/;
-  const timeMatch = url.match(timeRegex);
-  const startTime = timeMatch ? timeMatch[1] : null;
-
-  return {videoId, startTime};
-}
-
 function getHighlightLabels(user: User): string[] {
   return Array.isArray(user.highlights) ? user.highlights.slice(0, 3) : [];
 }
 
 function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributorsColumns?: number}) {
-  const image = getCardImage(user);
-  const [expanded, setExpanded] = useState(false);
+  const image = getProjectImage(user);
   const [isHovered, setIsHovered] = useState(false);
   const {videoId: youtubeVideoId, startTime} = parseYoutubeUrl(user.demo);
   const members = user.members?.filter(Boolean) ?? [];
   const highlightLabels = getHighlightLabels(user);
+  const projectPath = getProjectDetailPath(user);
+  const anchorIds = getProjectCardAnchorIds(user);
 
   const MAX = 150;
   const desc = user.description ?? '';
   const isLong = desc.length > MAX;
-  const cardId = user.slug ?? makeSlug(user.title);
+  const [cardId, ...extraAnchorIds] = anchorIds;
   return (
-    <li id={cardId} data-slug={cardId} key={user.title} className="card shadow--md">
+    <li
+      id={cardId}
+      data-slug={user.slug}
+      data-project-card="true"
+      key={user.title}
+      className="card shadow--md">
+      {extraAnchorIds.map((anchorId) => (
+        <span
+          key={anchorId}
+          id={anchorId}
+          className="screen-reader-only"
+          aria-hidden="true"
+        />
+      ))}
       <div
         className={clsx('card__image', styles.showcaseCardImage)}
         onMouseEnter={() => setIsHovered(true)}
@@ -133,13 +117,17 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
             className={styles.youtubeEmbed}
           />
         ) : (
-          <Image img={image} alt={user.title} />
+          image && (
+            <Link to={projectPath} aria-label={`Open details for ${user.title}`}>
+              <Image img={image} alt={user.title} />
+            </Link>
+          )
         )}
       </div>
       <div className="card__body">
         <div className={clsx(styles.showcaseCardHeader)}>
           <Heading as="h4" className={styles.showcaseCardTitle}>
-            <Link href={user.website} className={styles.showcaseCardLink}>
+            <Link to={projectPath} className={styles.showcaseCardLink}>
               {user.title}
             </Link>
             <button
@@ -155,7 +143,7 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
                     const origin =
                       window.location.origin ||
                       `${window.location.protocol}//${window.location.host}`;
-                    const url = `${origin}/showcase#${cardId}`;
+                    const url = `${origin}${projectPath}`;
                     const doToast = () => {
                       try {
                         const toast = document.createElement('div');
@@ -194,7 +182,7 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
                 } catch (err) {
                   // ignore copy errors
                 }
-              }, [cardId])}>
+              }, [projectPath])}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -313,19 +301,10 @@ function ShowcaseCard({user, contributorsColumns = 4}: {user: User; contributors
         <p className={styles.showcaseCardBody}>
           {isLong ? (
             <>
-              <span>{expanded ? desc : desc.slice(0, MAX) + '...'}</span>
-              <button
-                type="button"
-                className={styles.readMoreBtn}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setExpanded((s) => !s);
-                }}
-                aria-expanded={expanded}
-              >
-                {expanded ? 'Read less' : 'Read more'}
-              </button>
+              <span>{`${desc.slice(0, MAX)}...`}</span>
+              <Link to={projectPath} className={styles.readMoreBtn}>
+                Read more
+              </Link>
             </>
           ) : (
             desc
