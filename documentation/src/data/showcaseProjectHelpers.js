@@ -213,18 +213,7 @@ function getProjectSystemOverviewUrl(project) {
 }
 
 function buildProjectPageTitle(project) {
-  const members = (project.members || []).filter(Boolean);
-  let peopleClause = '';
-
-  if (members.length === 1) {
-    peopleClause = ` | ${members[0]}`;
-  } else if (members.length === 2) {
-    peopleClause = ` | ${members[0]} and ${members[1]}`;
-  } else if (members.length > 2) {
-    peopleClause = ` | ${members[0]} and team`;
-  }
-
-  return `${project.title}${peopleClause} Senior Project | Temple University CIS4398`;
+  return `${project.title} Senior Project | Temple University CIS4398`;
 }
 
 function getProjectOverviewSummary(project, overviewMapping) {
