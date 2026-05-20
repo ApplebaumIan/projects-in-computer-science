@@ -7,13 +7,11 @@ import Heading from '@theme/Heading';
 import Image from '@theme/IdealImage';
 import DocPaginator from '@theme/DocPaginator';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useHistory, useLocation} from '@docusaurus/router';
+import {useHistory} from '@docusaurus/router';
 import {
   buildProjectMetaDescription,
   buildProjectPageTitle,
   buildProjectStructuredData,
-  extractProjectSlugFromPathname,
-  findShowcaseProjectBySlug,
   getProjectDetailPath,
   getProjectImage,
   getProjectOverview,
@@ -411,12 +409,24 @@ function ProjectPageBody({project}: {project: User}) {
   );
 }
 
-export default function ShowcaseProjectPage(): ReactNode {
+type ProjectPageData = {
+  project: User;
+  routeSlug: string;
+  canonicalSlug: string;
+};
+
+type ShowcaseProjectPageProps = {
+  projectPageData?: ProjectPageData;
+};
+
+export default function ShowcaseProjectPage({
+  projectPageData,
+}: ShowcaseProjectPageProps): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   const history = useHistory();
-  const location = useLocation();
-  const projectSlug = extractProjectSlugFromPathname(location.pathname);
-  const project = findShowcaseProjectBySlug(projectSlug);
+  const project = projectPageData?.project ?? null;
+  const routeSlug = projectPageData?.routeSlug ?? '';
+  const canonicalSlug = projectPageData?.canonicalSlug ?? '';
 
   if (!project) {
     return (
@@ -450,13 +460,12 @@ export default function ShowcaseProjectPage(): ReactNode {
   const ogImage =
     getProjectImage(project) ||
     buildAbsoluteUrl(siteConfig.url, siteConfig.baseUrl, 'img/Dont_Panic.png');
-  const canonicalSlug = getProjectSlug(project);
 
   useEffect(() => {
-    if (projectSlug !== canonicalSlug) {
+    if (routeSlug && canonicalSlug && routeSlug !== canonicalSlug) {
       history.replace(canonicalPath);
     }
-  }, [canonicalPath, canonicalSlug, history, projectSlug]);
+  }, [canonicalPath, canonicalSlug, history, routeSlug]);
 
   return (
     <Layout description={description}>

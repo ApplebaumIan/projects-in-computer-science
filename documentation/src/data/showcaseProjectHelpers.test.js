@@ -127,7 +127,10 @@ test('project metadata includes SEO phrases and student names', () => {
   assert.match(description, /Temple University/i);
   assert.match(description, /CIS4398/i);
   assert.match(description, /Justin Pham/);
-  assert.match(title, /Justin Pham/);
+  assert.equal(
+    title,
+    'VibeCheck Senior Project | Temple University CIS4398',
+  );
 });
 
 test('structured data is emitted as a CreativeWork payload', () => {
