@@ -9,8 +9,5 @@ sidebar_custom_props:
 ---
 
 import ApiDocMdx from '@theme/ApiDocMdx';
-import docusaurusConfig from "../../../.docusaurus/docusaurus.config.mjs";
 
-<>
-{docusaurusConfig.customFields.is_pdf ? <></> : <ApiDocMdx id="using-petstore-yaml" />}
-</>
+<ApiDocMdx id="using-petstore-yaml" />

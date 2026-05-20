@@ -14,7 +14,6 @@ import {
   buildProjectStructuredData,
   extractProjectSlugFromPathname,
   findShowcaseProjectBySlug,
-  getAcademicYearLabel,
   getProjectDetailPath,
   getProjectImage,
   getProjectOverview,
@@ -31,6 +30,7 @@ import {
 import {getGlossaryTagMetadata} from '@site/src/data/showcaseGlossary';
 import Contributors from '@site/src/components/Contributors';
 import styles from './styles.module.css';
+import Admonition from '@theme/Admonition';
 
 function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
   return new URL(path.replace(/^\//, ''), `${siteUrl}${baseUrl}`).toString();
@@ -97,6 +97,45 @@ function getProjectPagination(project: User) {
         }
       : undefined,
   };
+}
+
+function BackLinkButton() {
+  return (
+    <Link to="/showcase" className={`button button--secondary ${styles.backLink}`}>
+      <span className={styles.backLinkIcon} aria-hidden="true">
+        ←
+      </span>
+      <span>Back to showcase</span>
+    </Link>
+  );
+}
+
+function ProjectMetaChips({
+  semester,
+  compact = false,
+}: {
+  semester?: string;
+  compact?: boolean;
+}) {
+  const items = [
+    semester ? {label: 'Semester', value: semester} : null,
+  ].filter(Boolean) as {label: string; value: string}[];
+
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <ul className={compact ? `${styles.metaList} ${styles.metaListCompact}` : styles.metaList}>
+      {items.map((item) => (
+        <li
+          key={item.label}
+          className={compact ? `${styles.metaChip} ${styles.metaChipCompact}` : styles.metaChip}>
+          <span className={styles.metaChipValue}>{item.value}</span>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 function ActionButtonIcon({kind}: {kind: 'website' | 'documentation' | 'demo' | 'source'}) {
@@ -221,7 +260,6 @@ function RelatedProjectCard({project}: {project: User}) {
         <h3 className={styles.relatedTitle}>
           <Link to={projectPath}>{project.title}</Link>
         </h3>
-        <div className={styles.relatedYear}>{getAcademicYearLabel(project.semester)}</div>
         {tagLabels.length > 0 && (
           <ul className={styles.relatedTagList}>
             {tagLabels.map((label) => (
@@ -241,7 +279,6 @@ function RelatedProjectCard({project}: {project: User}) {
 
 function ProjectPageBody({project}: {project: User}) {
   const image = getProjectImage(project);
-  const academicYear = getAcademicYearLabel(project.semester);
   const {videoId, startTime} = parseYoutubeUrl(project.demo);
   const overview = getProjectOverview(project);
   const overviewContentHtml = getProjectOverviewContentHtml(project);
@@ -256,13 +293,14 @@ function ProjectPageBody({project}: {project: User}) {
   return (
     <main className={styles.page}>
       <div className={`container ${styles.layout}`}>
-        <Link to="/showcase" className={styles.backLink}>
-          Back to showcase
-        </Link>
+        <BackLinkButton />
 
         <header className={styles.hero}>
           <div className={styles.copy}>
-            <div className={styles.eyebrow}>Temple University CIS4398</div>
+            <div className={styles.eyebrowRow}>
+              <div className={styles.eyebrow}>Temple University CIS4398</div>
+              <ProjectMetaChips semester={project.semester} compact />
+            </div>
             <Heading as="h1" className={styles.title}>
               {project.title}
             </Heading>
@@ -274,20 +312,6 @@ function ProjectPageBody({project}: {project: User}) {
             <div className={styles.subtitle}>
               {project.members?.length ? project.members.join(', ') : 'Capstone project team'}
             </div>
-            <dl className={styles.metaGrid}>
-              {project.semester && (
-                <>
-                  <dt>Semester</dt>
-                  <dd>{project.semester}</dd>
-                </>
-              )}
-              {academicYear && (
-                <>
-                  <dt>Academic Year</dt>
-                  <dd>{academicYear}</dd>
-                </>
-              )}
-            </dl>
             <ProjectLinkList project={project} />
           </div>
 
@@ -362,7 +386,8 @@ function ProjectPageBody({project}: {project: User}) {
         )}
 
         <section className={styles.section}>
-          <Heading as="h2">Explore More</Heading>
+          <Admonition type="note" title="Explore More">
+          {/*<Heading as="h2">Explore More</Heading>*/}
           <div className={styles.sectionIntro}>
             Browse the full cohort, compare projects, and use filters on the
             main showcase page.
@@ -370,7 +395,9 @@ function ProjectPageBody({project}: {project: User}) {
           <Link to="/showcase" className="button button--primary button--lg">
             Open Showcase
           </Link>
+          </Admonition>
         </section>
+
 
         {(pagination.previous || pagination.next) && (
           <DocPaginator
@@ -399,9 +426,7 @@ export default function ShowcaseProjectPage(): ReactNode {
         </Head>
         <main className={styles.page}>
           <div className={`container ${styles.layout}`}>
-            <Link to="/showcase" className={styles.backLink}>
-              Back to showcase
-            </Link>
+            <BackLinkButton />
             <Heading as="h1">Project not found</Heading>
             <p>The requested showcase project could not be found.</p>
           </div>

@@ -8,8 +8,16 @@
 
 .backLink {
   display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   margin-bottom: 1.5rem;
   font-weight: 600;
+  width: fit-content;
+}
+
+.backLinkIcon {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .hero {
@@ -21,6 +29,13 @@
 .copy {
   display: grid;
   gap: 0.9rem;
+}
+
+.eyebrowRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.75rem;
 }
 
 .eyebrow {
@@ -47,20 +62,59 @@
   max-width: 520px;
 }
 
-.metaGrid {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 0.4rem 1rem;
+.metaList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.metaGrid dt {
+.metaListCompact {
+  gap: 0;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 999px;
+  background: color-mix(
+    in srgb,
+    var(--ifm-color-primary) 6%,
+    var(--ifm-background-surface-color) 94%
+  );
+}
+
+.metaChipCompact {
+  gap: 0.45rem;
+  padding: 0.32rem 0.65rem;
+}
+
+.metaChipLabel {
   color: var(--ifm-color-emphasis-600);
+  font-size: 0.86rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.metaGrid dd {
-  margin: 0;
+.metaChipCompact .metaChipLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.metaChipValue {
+  color: var(--ifm-color-emphasis-900);
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
+.metaChipCompact .metaChipValue {
+  font-size: 0.86rem;
 }
 
 .actions {
@@ -180,7 +234,8 @@
   grid-template-columns: max-content;
   justify-items: start;
   flex: 0 0 auto;
-  width: max-content;
+  width: fit-content;
+  min-width: 0;
   max-width: 100%;
   padding: 0.55rem 0.9rem;
   border: 1px solid var(--ifm-color-emphasis-200);
@@ -197,8 +252,8 @@
 
 .tagItem:hover,
 .tagItem:focus-within {
-  width: min(320px, 72vw);
-  max-width: 100%;
+  width: fit-content;
+  max-width: min(280px, 72vw);
   padding: 1rem 1.05rem 1.1rem;
   border-radius: 20px;
   border-color: color-mix(
