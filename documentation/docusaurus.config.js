@@ -179,7 +179,7 @@ const config = {
                 label: 'Course Schedule 📆',
               },
               {
-                to: '/tutorial/Intro',
+                to: '/tutorial/intro',
                 label: 'Docusaurus Tutorial',
                 activeBaseRegex: `/tutorial/`,
               },
