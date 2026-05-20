@@ -11,6 +11,7 @@ module.exports = [
       'https://github.com/Capstone-Projects-2026-spring/project-bereal-chatbot',
     tags: ['chatbot', 'ai', 'web', 'python', 'mongodb', 'slack', 'social'],
     semester: 'Spring 2026',
+    canonicalSlug: 'vibecheck',
     slug: 'bereal-chatbot',
     members: [
       'Justin Pham',

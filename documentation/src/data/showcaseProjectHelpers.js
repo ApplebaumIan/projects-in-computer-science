@@ -29,7 +29,9 @@ function slugifyProjectValue(value) {
 }
 
 function getProjectSlug(project) {
-  return normalizeProjectLookupValue(project.slug || slugifyProjectValue(project.title));
+  return normalizeProjectLookupValue(
+    project.canonicalSlug || project.slug || slugifyProjectValue(project.title),
+  );
 }
 
 function getProjectTitleSlug(project) {
@@ -63,6 +65,7 @@ function getProjectLookupKeys(project) {
     new Set(
       [
         getProjectSlug(project),
+        project.slug,
         project.legacySlug,
         ...(Array.isArray(project.aliases) ? project.aliases : []),
         getProjectTitleSlug(project),
@@ -216,6 +219,50 @@ function buildProjectPageTitle(project) {
   return `${project.title} Senior Project | Temple University CIS4398`;
 }
 
+function formatProjectTag(tag) {
+  const normalized = String(tag)
+    .replace(/[_-]+/g, ' ')
+    .trim();
+
+  const upperAcronyms = new Set([
+    'ai',
+    'api',
+    'aac',
+    'pwa',
+    'iot',
+    'llms',
+    'ml',
+    'ui',
+    'ux',
+    'vscode',
+    'sql',
+    'webgl',
+  ]);
+
+  return normalized
+    .split(/\s+/)
+    .map((part) => {
+      const lower = part.toLowerCase();
+      if (upperAcronyms.has(lower)) {
+        return lower.toUpperCase();
+      }
+      if (lower === 'nextjs') {
+        return 'Next.js';
+      }
+      if (lower === 'typescript') {
+        return 'TypeScript';
+      }
+      if (lower === 'javascript') {
+        return 'JavaScript';
+      }
+      if (lower === 'mongodb') {
+        return 'MongoDB';
+      }
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join(' ');
+}
+
 function getProjectOverviewSummary(project, overviewMapping) {
   return (
     overviewMapping?.[getProjectSlug(project)]?.summary ||
@@ -227,7 +274,14 @@ function getProjectOverviewSummary(project, overviewMapping) {
 function buildProjectMetaDescription(project, overviewMapping) {
   const memberNames = (project.members || []).filter(Boolean).join(', ');
   const nameClause = memberNames ? ` by ${memberNames}` : '';
-  return `${project.title} senior project and capstone project from Temple University CIS4398${nameClause}. ${getProjectOverviewSummary(project, overviewMapping)}`;
+  const keyTechnologies = Array.from(
+    new Set((project.tags || []).map((tag) => formatProjectTag(tag)).filter(Boolean)),
+  ).slice(0, 5);
+  const technologyClause = keyTechnologies.length
+    ? ` Key technologies: ${keyTechnologies.join(', ')}.`
+    : '';
+
+  return `${project.title} senior project and capstone project from Temple University CIS4398${nameClause}.${technologyClause} ${getProjectOverviewSummary(project, overviewMapping)}`.trim();
 }
 
 function buildProjectStructuredData(project, overviewMapping) {
