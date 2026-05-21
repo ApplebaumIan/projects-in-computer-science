@@ -136,6 +136,27 @@ test('project metadata includes SEO phrases and student names', () => {
   );
 });
 
+test('project meta descriptions normalize whitespace and stay concise', () => {
+  const description = helpers.buildProjectMetaDescription(
+    {
+      title: 'Whitespace Demo',
+      members: ['Ada Lovelace', 'Grace Hopper'],
+      tags: ['ai', 'mongodb', 'web'],
+      description: '',
+    },
+    {
+      'whitespace-demo': {
+        summary:
+          'First paragraph with useful context.\n\nSecond paragraph adds more detail.\nThird line keeps going.',
+      },
+    },
+  );
+
+  assert.doesNotMatch(description, /\n/);
+  assert.match(description, /First paragraph with useful context\. Second paragraph adds more detail\./);
+  assert.ok(description.length <= 320);
+});
+
 test('structured data is emitted as a CreativeWork payload', () => {
   const project = helpers.findProjectBySlug(projects, 'collabybot');
   const payload = helpers.buildProjectStructuredData(project);

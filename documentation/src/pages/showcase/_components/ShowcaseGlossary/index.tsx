@@ -123,7 +123,7 @@ export default function ShowcaseGlossary(): ReactNode {
         <Translate id="showcase.glossary.title">Glossary</Translate>
       </Heading>
       <p className={styles.intro}>
-        <Translate id="showcase.glossary.intro">Helpful explanations for the topic and language filters used on this page.</Translate>
+        <Translate id="showcase.glossary.intro">Helpful explanations for the topic and language filters used on this page. Definitions from Wikipedia.</Translate>
       </p>
 
       {/* Live region for accessibility */}
