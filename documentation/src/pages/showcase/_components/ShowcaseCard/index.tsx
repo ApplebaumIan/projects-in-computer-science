@@ -8,7 +8,6 @@
 import React, {useCallback} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import Image from '@theme/IdealImage';
 import {
   Tags,
   TagList,
@@ -130,14 +129,20 @@ function ShowcaseCard({
         <span
           key={anchorId}
           id={anchorId}
-          className="screen-reader-only"
+          className={styles.legacyAnchor}
           aria-hidden="true"
         />
       ))}
       <div className={clsx('card__image', styles.showcaseCardImage)}>
         {image && (
           <Link to={projectPath} aria-label={`Open details for ${user.title}`}>
-            <Image img={image} alt={user.title} />
+            <img
+              src={image}
+              alt={user.title}
+              className={styles.showcasePreviewImage}
+              loading="lazy"
+              decoding="async"
+            />
           </Link>
         )}
       </div>
