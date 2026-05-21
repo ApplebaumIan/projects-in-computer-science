@@ -22,7 +22,6 @@ import {
   parseYoutubeUrl,
   showcaseSystemOverviews,
   sortedUsers,
-  description,
   Tags,
   type User,
 } from '@site/src/data/showcase';
