@@ -9,7 +9,7 @@ const GitHubClassroomButton = ({ link }) => {
       const finalLink = link
         ? link
         : window.location.hostname === 'capstone.ianapplebaum.com'
-          ? 'https://classroom.github.com/a/hUCYbovh'// capstone
+          ? 'https://classroom.github.com/a/D6hMaIHO'// capstone
           : 'https://classroom.github.com/a/OnZTWK0I'; // software design
       setGithubClassroomLink(finalLink);
     }
