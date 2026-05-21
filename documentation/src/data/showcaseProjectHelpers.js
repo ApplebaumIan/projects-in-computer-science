@@ -271,6 +271,37 @@ function getProjectOverviewSummary(project, overviewMapping) {
   );
 }
 
+function normalizeSeoText(value) {
+  return String(value || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function truncateSeoText(value, maxLength = 320) {
+  const normalized = normalizeSeoText(value);
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+
+  const truncated = normalized.slice(0, maxLength - 1);
+  const lastSentenceBreak = Math.max(
+    truncated.lastIndexOf('. '),
+    truncated.lastIndexOf('! '),
+    truncated.lastIndexOf('? '),
+  );
+
+  if (lastSentenceBreak >= Math.floor(maxLength * 0.6)) {
+    return truncated.slice(0, lastSentenceBreak + 1).trim();
+  }
+
+  const lastWordBreak = truncated.lastIndexOf(' ');
+  if (lastWordBreak >= Math.floor(maxLength * 0.7)) {
+    return `${truncated.slice(0, lastWordBreak).trim()}…`;
+  }
+
+  return `${truncated.trim()}…`;
+}
+
 function buildProjectMetaDescription(project, overviewMapping) {
   const memberNames = (project.members || []).filter(Boolean).join(', ');
   const nameClause = memberNames ? ` by ${memberNames}` : '';
@@ -281,7 +312,9 @@ function buildProjectMetaDescription(project, overviewMapping) {
     ? ` Key technologies: ${keyTechnologies.join(', ')}.`
     : '';
 
-  return `${project.title} senior project and capstone project from Temple University CIS4398${nameClause}.${technologyClause} ${getProjectOverviewSummary(project, overviewMapping)}`.trim();
+  return truncateSeoText(
+    `${project.title} senior project and capstone project from Temple University CIS4398${nameClause}.${technologyClause} ${getProjectOverviewSummary(project, overviewMapping)}`,
+  );
 }
 
 function buildProjectStructuredData(project, overviewMapping) {

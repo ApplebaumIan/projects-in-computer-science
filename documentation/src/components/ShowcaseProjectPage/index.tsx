@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
-import React, {useEffect} from 'react';
+import React, {useEffect, useId, useState} from 'react';
+import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
@@ -37,27 +38,42 @@ function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
 
 function TagChip({tag}: {tag: string}) {
   const glossary = getGlossaryTagMetadata(tag);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const detailsId = useId();
 
   return (
-    <li className={styles.tagItem}>
+    <li className={clsx(styles.tagItem, isExpanded && styles.tagItemExpanded)}>
       <button
         type="button"
         className={styles.tag}
-        aria-label={`Show details for ${glossary.label}`}>
+        aria-expanded={isExpanded}
+        aria-controls={detailsId}
+        onClick={() => setIsExpanded((current) => !current)}>
         <span
           className={styles.tagDot}
           style={{backgroundColor: glossary.color}}
         />
         <span>{glossary.label}</span>
       </button>
-      <div className={styles.tagDetails}>
+      <div
+        id={detailsId}
+        className={styles.tagDetails}
+        aria-hidden={!isExpanded}>
         <div className={styles.tagDetailsInner}>
+          <div className={styles.tagDetailsHeader}>
+            <span
+              className={styles.tagDot}
+              style={{backgroundColor: glossary.color}}
+            />
+            <span>{glossary.label}</span>
+          </div>
           <p>{glossary.description}</p>
           <a
             href={glossary.wikiUrl}
             target="_self"
             rel="noopener noreferrer"
-            className={styles.tagDetailsHint}>
+            className={styles.tagDetailsHint}
+            onClick={() => setIsExpanded(false)}>
             Learn more
           </a>
         </div>
