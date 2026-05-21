@@ -237,7 +237,7 @@ function ShowcaseCard({
         <div className={styles.showcaseCardSummary}>
           <p className={styles.showcaseCardBody}>{descriptionPreview}</p>
           <Link to={projectPath} className={styles.readMoreBtn}>
-            Read more
+            View more {user.title}
           </Link>
         </div>
       </div>
