@@ -29,6 +29,8 @@ const WIKI_OVERRIDES: Record<string, string> = {
   MATLAB: 'MATLAB',
   Dart: 'Dart_(programming_language)',
   Slack: 'Slack_(software)',
+  Bun: 'Bun_(software)',
+  Phaser: 'Phaser_(game_framework)',
 };
 
 export function wikipediaUrlForLabel(label?: string) {

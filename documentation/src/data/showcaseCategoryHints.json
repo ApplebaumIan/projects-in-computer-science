@@ -206,5 +206,14 @@
     "devops",
     "social",
     "mongodb"
+  ],
+  "code-battlegrounds": [
+    "game",
+    "multiplayer",
+    "web",
+    "api",
+    "library",
+    "nextjs",
+    "postgresql"
   ]
 }

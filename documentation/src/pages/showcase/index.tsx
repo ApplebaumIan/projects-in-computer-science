@@ -12,7 +12,6 @@ import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import {resolveLegacyShowcaseRedirect} from '@site/src/data/showcase';
 
-import ShowcaseSearchBar from '@site/src/pages/showcase/_components/ShowcaseSearchBar';
 import ShowcaseCards from './_components/ShowcaseCards';
 import ShowcaseFilters from './_components/ShowcaseFilters';
 import ShowcaseGlossary from './_components/ShowcaseGlossary';
@@ -21,24 +20,33 @@ import styles from './styles.module.css';
 const SEO_TITLE = translate({
   message: 'Temple University CIS4398 Senior Capstone Projects Showcase',
 });
-const HERO_TITLE = translate({message: 'Senior Capstone Projects Showcase'});
+const HERO_TITLE_LEAD = translate({message: 'Senior Capstone'});
+const HERO_TITLE_TRAIL = translate({message: 'Projects Showcase'});
 const HERO_EYEBROW = translate({message: 'Temple University · CIS4398'});
 const HERO_SUBTITLE = translate({
   message:
-    'Explore the best student-built computer science projects in AI, accessibility, robotics, embedded systems, multiplayer gaming, education technology, and software engineering.',
+    'Explore student-built computer science projects in AI, accessibility, robotics, embedded systems, multiplayer gaming, education technology, and software engineering.',
 });
 const SEO_DESCRIPTION = translate({
   message:
-    'Explore the best Temple University CIS4398 senior capstone projects in AI, accessibility, robotics, embedded systems, gaming, edtech, and software engineering.',
+    'Explore Temple University CIS4398 senior capstone projects in AI, accessibility, robotics, embedded systems, gaming, edtech, and software engineering.',
 });
 
 function ShowcaseHeader() {
   return (
     <section className={`text--center ${styles.heroSection}`}>
       <div className={styles.hero}>
-      <p className={styles.eyebrow}>{HERO_EYEBROW}</p>
-      <h1 className={styles.title}>{HERO_TITLE}</h1>
-      <p className={styles.description}>{HERO_SUBTITLE}</p>
+        <p className={styles.eyebrow}>{HERO_EYEBROW}</p>
+        <h1 className={styles.title}>
+          <span className={styles.titleLead}>{HERO_TITLE_LEAD}</span>
+          <span className={styles.titleTrail}>
+            <span>{HERO_TITLE_TRAIL}</span>
+            <span aria-hidden="true" className={styles.titleStar}>
+              ⭐️
+            </span>
+          </span>
+        </h1>
+        <p className={styles.description}>{HERO_SUBTITLE}</p>
       </div>
     </section>
   );
@@ -106,9 +114,6 @@ export default function Showcase(): ReactNode {
       <main className={styles.page}>
         <ShowcaseHeader />
         <ShowcaseFilters />
-        <div className={`container ${styles.searchRow}`}>
-          <ShowcaseSearchBar />
-        </div>
         <ShowcaseCards />
         <ShowcaseGlossary />
        </main>

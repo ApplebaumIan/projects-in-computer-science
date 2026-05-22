@@ -135,5 +135,13 @@
   ],
   "bereal-chatbot": [
     "python"
+  ],
+  "code-battlegrounds": [
+    "typescript",
+    "javascript",
+    "python",
+    "dockerfile",
+    "lua",
+    "shell"
   ]
 }
