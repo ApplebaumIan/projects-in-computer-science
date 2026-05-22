@@ -24,6 +24,30 @@ module.exports = [
     useDocsAsPreview: true,
   },
   {
+    title: 'Code Battlegrounds',
+    description:
+      'Code Battlegrounds is a real-time pair-programming competition platform where teams collaborate in a shared coding workspace, run tests together, and race to solve programming challenges. It turns collaborative software development into a game-like experience that helps students build teamwork, communication, and problem-solving skills through live coding battles.',
+    website: 'https://codebattlegrounds.com',
+    documentation:
+      'https://capstone-projects-2026-spring.github.io/project-code-battlegrounds-1-5/',
+    source:
+      'https://github.com/Capstone-Projects-2026-spring/project-code-battlegrounds-1-5',
+    tags: ['education', 'collaboration', 'game', 'web', 'multiplayer'],
+    semester: 'Spring 2026',
+    slug: 'code-battlegrounds',
+    aliases: ['code-battlegrounds-1-5', 'project-code-battlegrounds-1-5'],
+    members: [
+      'Julia Fasick',
+      'Jesse Herrera',
+      'Kyle Fauntroy',
+      'Elan Reizas',
+      'Samir Buch',
+      'Michael Zach',
+      'Saad Chaudry',
+    ],
+    useDocsAsPreview: true,
+  },
+  {
     title: 'AACcommodate API',
     description:
       'This application programming interface (API) supports AAC games. The API allows users to play AAC games like StoryQuest through external AAC board interaction, rather than relying on an embedded AAC board in the game. Users can relay game inputs by either speaking verbally or speaking through the board. The API will enable audio-controlled games, which will promote social and communication skills in children who use AAC devices by enabling AAC users to play games alongside non-AAC users.',
