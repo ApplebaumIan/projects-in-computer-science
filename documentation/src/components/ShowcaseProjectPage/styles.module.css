@@ -1,5 +1,6 @@
 .page {
   padding: 2.5rem 0 4rem;
+  overflow-x: clip;
 }
 
 .layout {
@@ -313,7 +314,7 @@
   left: 0;
   width: min(20rem, calc(100vw - 4rem));
   max-width: min(20rem, calc(100vw - 4rem));
-  min-width: max-content;
+  min-width: 0;
   padding: 1rem 1.05rem 1.1rem;
   border: 1px solid color-mix(
     in srgb,
@@ -332,6 +333,7 @@
   transform: translateY(-6px) scale(0.98);
   transform-origin: top left;
   z-index: 7;
+  box-sizing: border-box;
 }
 
 .tagItem:hover .tagDetails,
