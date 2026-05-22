@@ -20,7 +20,8 @@ import styles from './styles.module.css';
 const SEO_TITLE = translate({
   message: 'Temple University CIS4398 Senior Capstone Projects Showcase',
 });
-const HERO_TITLE = translate({message: 'Senior Capstone Projects Showcase'});
+const HERO_TITLE_LEAD = translate({message: 'Senior Capstone'});
+const HERO_TITLE_TRAIL = translate({message: 'Projects Showcase'});
 const HERO_EYEBROW = translate({message: 'Temple University · CIS4398'});
 const HERO_SUBTITLE = translate({
   message:
@@ -35,9 +36,17 @@ function ShowcaseHeader() {
   return (
     <section className={`text--center ${styles.heroSection}`}>
       <div className={styles.hero}>
-      <p className={styles.eyebrow}>{HERO_EYEBROW}</p>
-      <h1 className={styles.title}>{HERO_TITLE}</h1>
-      <p className={styles.description}>{HERO_SUBTITLE}</p>
+        <p className={styles.eyebrow}>{HERO_EYEBROW}</p>
+        <h1 className={styles.title}>
+          <span className={styles.titleLead}>{HERO_TITLE_LEAD}</span>
+          <span className={styles.titleTrail}>
+            <span>{HERO_TITLE_TRAIL}</span>
+            <span aria-hidden="true" className={styles.titleStar}>
+              ⭐️
+            </span>
+          </span>
+        </h1>
+        <p className={styles.description}>{HERO_SUBTITLE}</p>
       </div>
     </section>
   );
