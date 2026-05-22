@@ -13,6 +13,24 @@ import {
 } from '@docusaurus/theme-common';
 import type {TagType, User} from '@site/src/data/showcase';
 import {sortedUsers} from '@site/src/data/showcase';
+import showcaseTagDetection from '@site/src/data/showcaseTagDetection';
+
+const {
+  detectTagsFromSearch,
+  activateDetectedTag,
+  cleanupSearchAfterTagActivation,
+} = showcaseTagDetection as {
+  detectTagsFromSearch: (searchInput: string | null) => Array<{
+    tag: TagType;
+    matchedAlias: string;
+    index: number;
+  }>;
+  activateDetectedTag: (currentTags: TagType[], tag: TagType) => TagType[];
+  cleanupSearchAfterTagActivation: (
+    searchInput: string | null,
+    matchedAlias: string,
+  ) => string;
+};
 
 export function useSearchName() {
   return useQueryString('name');
@@ -20,6 +38,32 @@ export function useSearchName() {
 
 export function useTags() {
   return useQueryStringList('tags');
+}
+
+export function useDetectedSearchTags() {
+  const [searchName] = useSearchName();
+  const [tags] = useTags();
+
+  return useMemo(() => {
+    const detected = detectTagsFromSearch(searchName);
+    return detected.filter(({tag}) => !(tags as string[]).includes(tag));
+  }, [searchName, tags]);
+}
+
+export function useApplyDetectedSearchTag() {
+  const [tags, setTags] = useTags();
+  const [searchName, setSearchName] = useSearchName();
+
+  return useCallback(
+    (tag: TagType, matchedAlias: string) => {
+      setTags((current) => activateDetectedTag(current as TagType[], tag));
+      const cleanedSearch = cleanupSearchAfterTagActivation(searchName, matchedAlias);
+      if (cleanedSearch !== searchName) {
+        setSearchName(cleanedSearch || null);
+      }
+    },
+    [searchName, setSearchName, setTags],
+  );
 }
 
 export function useCohort() {
