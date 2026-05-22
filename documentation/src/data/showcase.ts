@@ -87,7 +87,14 @@ export type TagType =
   | 'r'
   | 'objective-c'
   | 'haskell'
-  | 'perl';
+  | 'perl'
+  | 'node'
+  | 'websocket'
+  | 'k8s'
+  | 'redis'
+  | 'bun'
+  | 'phaser'
+;
 
 export const TagList: TagType[] = [
   'aac',
@@ -151,6 +158,12 @@ export const TagList: TagType[] = [
   , 'mongodb'
   , 'tensorflow'
   , 'pytorch'
+  , 'node'
+  , 'websocket'
+  , 'k8s'
+  , 'redis'
+  ,'bun'
+  ,'phaser'
   // Language tags appended
   , 'typescript', 'javascript', 'python', 'csharp', 'cpp', 'shell', 'swift', 'go', 'kotlin', 'php', 'c', 'java', 'ruby', 'rust', 'dart', 'lua','dockerfile','docker-compose','jupyter-notebook','matlab','r','objective-c','haskell','perl'
 ];
@@ -247,6 +260,13 @@ export const Tags: Record<
   'objective-c': { label: 'Objective-C', description: 'Objective-C language', color: '#438EFF' },
   'haskell': { label: 'Haskell', description: 'Haskell language', color: '#5E5086' },
   'perl': { label: 'Perl', description: 'Perl language', color: '#39457E' },
+  'node': {label: 'Node.js', description: 'Node.js runtime', color: '#339933' },
+  'websocket': { label: 'WebSocket', description: 'WebSocket protocol or real-time communication', color: '#00897B' },
+  'k8s': { label: 'Kubernetes', description: 'Kubernetes container orchestration', color: '#326CE5' },
+  'redis':{ label: 'Redis', description: 'Redis in-memory data store', color: '#D82C20' },
+  'bun':{ label: 'Bun', description: 'Bun runtime', color: '#ee81c3' },
+  'phaser': { label: 'Phaser', description: 'Phaser Game Framework for Web', color: '#00897B' },
+
 };
 
 export type Project = {

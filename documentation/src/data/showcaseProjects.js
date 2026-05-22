@@ -32,7 +32,7 @@ module.exports = [
       'https://capstone-projects-2026-spring.github.io/project-code-battlegrounds-1-5/',
     source:
       'https://github.com/Capstone-Projects-2026-spring/project-code-battlegrounds-1-5',
-    tags: ['education', 'collaboration', 'game', 'web', 'multiplayer'],
+    tags: ['education', 'collaboration', 'game', 'web', 'multiplayer', 'node', 'websocket','k8s','redis','nextjs','bun','typescript','postgresql'],
     semester: 'Spring 2026',
     slug: 'code-battlegrounds',
     aliases: ['code-battlegrounds-1-5', 'project-code-battlegrounds-1-5'],
@@ -86,7 +86,7 @@ module.exports = [
     demo: 'https://www.youtube.com/watch?v=tA-bBxNLHKY&t=2526',
     source:
       'https://github.com/Capstone-Projects-2025-Spring/project-acc-hungry-hippos',
-    tags: ['game', 'accessibility', 'multiplayer', 'aac', 'research'],
+    tags: ['game', 'accessibility', 'multiplayer', 'aac', 'research','websocket','react','typescript','phaser','node','postgresql'],
     semester: 'Summer 2025',
     slug: 'hip-io',
     members: [
