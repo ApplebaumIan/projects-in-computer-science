@@ -9,6 +9,13 @@
   margin: 0 auto 1.25rem;
 }
 
+.filtersShell {
+  padding: 1.1rem 1.2rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 94%, white 6%);
+}
+
 .headingRow {
   display: flex;
   align-items: center;
@@ -45,7 +52,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .cohortLabel {
@@ -116,6 +123,70 @@
   flex-wrap: wrap;
 }
 
+.primaryControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
+.controlButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.advancedToggleButton {
+  border: none;
+  background: transparent;
+  color: var(--ifm-color-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.2rem 0;
+}
+
+.advancedToggleButton:hover {
+  text-decoration: underline;
+}
+
+.advancedToggleButton:focus-visible {
+  outline: 2px solid rgba(13, 71, 161, 0.2);
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+}
+
+.filterFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.extraFilters {
+  margin-top: 0.7rem;
+  padding-top: 0.15rem;
+}
+
+.extraFiltersHidden {
+  display: none;
+}
+
 .tagListItem {
   user-select: none;
   white-space: nowrap;
@@ -133,12 +204,6 @@
   margin-top: 0.5rem;
   display: flex;
   justify-content: flex-start;
-}
-
-.filterFooter {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.75rem;
 }
 
 .showMoreButton {
@@ -193,6 +258,10 @@
     margin-bottom: 1rem;
   }
 
+  .filtersShell {
+    padding: 1rem;
+  }
+
   .headingRow {
     align-items: flex-start;
     flex-direction: column;
@@ -207,7 +276,14 @@
     margin-right: 8px;
   }
 
-  .filterFooter {
+  .primaryControls,
+  .controlButtons,
+  .filterFooter,
+  .searchRow {
     justify-content: flex-start;
+  }
+
+  .searchRow {
+    flex-basis: 100%;
   }
 }

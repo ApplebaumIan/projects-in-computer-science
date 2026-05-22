@@ -35,11 +35,14 @@ if (!process.env.PROJECT_NAME) {
 if (is_pdf) {
   console.log("PDF Mode")
 }
-const title = (process.env.PROJECT_NAME || 'default-project')
-  .replaceAll('-', ' ')
-  .split(' ')
-  .map((word) => word[0].toUpperCase() + word.substring(1))
-  .join(' ');
+const fallbackSiteTitle = 'Projects In Computer Science';
+const title = process.env.PROJECT_NAME
+  ? process.env.PROJECT_NAME
+      .replaceAll('-', ' ')
+      .split(' ')
+      .map((word) => word[0].toUpperCase() + word.substring(1))
+      .join(' ')
+  : fallbackSiteTitle;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {

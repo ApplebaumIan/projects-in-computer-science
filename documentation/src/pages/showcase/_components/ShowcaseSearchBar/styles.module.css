@@ -6,10 +6,12 @@
  */
 
 .searchBar {
-  margin-left: auto;
+  width: 100%;
+  max-width: 320px;
 }
 
 .searchBar input {
+  width: 100%;
   height: 30px;
   border-radius: 15px;
   padding: 10px;

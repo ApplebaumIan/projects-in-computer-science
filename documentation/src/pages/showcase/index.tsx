@@ -12,7 +12,6 @@ import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import {resolveLegacyShowcaseRedirect} from '@site/src/data/showcase';
 
-import ShowcaseSearchBar from '@site/src/pages/showcase/_components/ShowcaseSearchBar';
 import ShowcaseCards from './_components/ShowcaseCards';
 import ShowcaseFilters from './_components/ShowcaseFilters';
 import ShowcaseGlossary from './_components/ShowcaseGlossary';
@@ -25,11 +24,11 @@ const HERO_TITLE = translate({message: 'Senior Capstone Projects Showcase'});
 const HERO_EYEBROW = translate({message: 'Temple University · CIS4398'});
 const HERO_SUBTITLE = translate({
   message:
-    'Explore the best student-built computer science projects in AI, accessibility, robotics, embedded systems, multiplayer gaming, education technology, and software engineering.',
+    'Explore student-built computer science projects in AI, accessibility, robotics, embedded systems, multiplayer gaming, education technology, and software engineering.',
 });
 const SEO_DESCRIPTION = translate({
   message:
-    'Explore the best Temple University CIS4398 senior capstone projects in AI, accessibility, robotics, embedded systems, gaming, edtech, and software engineering.',
+    'Explore Temple University CIS4398 senior capstone projects in AI, accessibility, robotics, embedded systems, gaming, edtech, and software engineering.',
 });
 
 function ShowcaseHeader() {
@@ -106,9 +105,6 @@ export default function Showcase(): ReactNode {
       <main className={styles.page}>
         <ShowcaseHeader />
         <ShowcaseFilters />
-        <div className={`container ${styles.searchRow}`}>
-          <ShowcaseSearchBar />
-        </div>
         <ShowcaseCards />
         <ShowcaseGlossary />
        </main>

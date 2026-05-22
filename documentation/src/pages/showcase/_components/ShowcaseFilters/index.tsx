@@ -10,7 +10,8 @@ import clsx from 'clsx';
 import {useState, useMemo} from 'react';
 import Translate, {translate} from '@docusaurus/Translate';
 import FavoriteIcon from '@site/src/pages/showcase/_components/FavoriteIcon';
-import {Tags, TagList, type TagType, LanguageTagList} from '@site/src/data/showcase';
+import ShowcaseSearchBar from '@site/src/pages/showcase/_components/ShowcaseSearchBar';
+import {Tags, TagList, type TagType} from '@site/src/data/showcase';
 import Heading from '@theme/Heading';
 import ShowcaseTagSelect from '../ShowcaseTagSelect';
 import OperatorButton from '../OperatorButton';
@@ -27,6 +28,19 @@ import {
 
 import styles from './styles.module.css';
 
+const DEFAULT_VISIBLE_FILTERS: TagType[] = [
+  'javascript',
+  'python',
+  'react',
+  'api',
+  'web',
+  'education',
+  'ai',
+  'embedded',
+  'mobile',
+  'pwa',
+];
+
 function TagCircleIcon({color, style}: {color: string; style?: CSSProperties}) {
   return (
     <span
@@ -41,16 +55,21 @@ function TagCircleIcon({color, style}: {color: string; style?: CSSProperties}) {
   );
 }
 
-function ShowcaseTagListItem({tag}: {tag: TagType}) {
+function ShowcaseTagListItem({
+  tag,
+  count,
+}: {
+  tag: TagType;
+  count: number;
+}) {
   const {label, description, color} = Tags[tag];
-  // tag count will be provided via closure in ShowcaseTagList
   return (
     <li className={styles.tagListItem}>
       <ShowcaseTagSelect
         tag={tag}
         label={label}
         description={description}
-        count={(ShowcaseTagList as any).tagCounts?.[tag] ?? 0}
+        count={count}
         icon={
           tag === 'favorite' ? (
             <FavoriteIcon size="small" style={{marginLeft: 8}} />
@@ -69,130 +88,92 @@ function ShowcaseTagListItem({tag}: {tag: TagType}) {
   );
 }
 
-// New generic list that can render either language tags or category tags separately
-function GenericTagList({tags, id}: {tags: TagType[]; id: string}) {
-  const usersForCounts = useUsersForCounts();
-  const tagCounts = useMemo(() => {
-    const map: Record<string, number> = {};
-    for (const tag of tags) map[tag] = 0;
-    for (const u of usersForCounts) {
-      for (const t of u.tags ?? []) {
-        if (map[t] !== undefined) map[t] += 1;
-      }
-    }
-    return map as Record<TagType, number>;
-  }, [usersForCounts, tags]);
-  (GenericTagList as any).tagCounts = tagCounts;
-  // Remove zero-count tags (unless none would remain)
-  const nonZero = tags.filter(t => (tagCounts[t] ?? 0) > 0);
-  const displayTags = nonZero.length > 0 ? nonZero : tags; // fallback to showing all if all zero
-  // Order by count desc, then alphabetical
-  const ordered = useMemo(() => {
-    return [...displayTags].sort((a, b) => {
-      const ca = tagCounts[a] ?? 0;
-      const cb = tagCounts[b] ?? 0;
-      if (cb !== ca) return cb - ca;
-      return a.localeCompare(b);
-    });
-  }, [displayTags, tagCounts]);
+function GenericTagList({
+  tags,
+  id,
+}: {
+  tags: TagType[];
+  id: string;
+}) {
   return (
     <ul id={id} className={clsx('clean-list', styles.tagList)}>
-      {ordered.map((tag) => (
-        <li key={tag} className={styles.tagListItem}>
-          <ShowcaseTagSelect
-            tag={tag}
-            label={Tags[tag].label}
-            description={Tags[tag].description}
-            count={tagCounts[tag] ?? 0}
-            icon={<TagCircleIcon color={Tags[tag].color} style={{marginLeft: 8}} />}
-          />
-        </li>
+      {tags.map((tag) => (
+        <ShowcaseTagListItem
+          key={tag}
+          tag={tag}
+          count={(ShowcaseTagList as any).tagCounts?.[tag] ?? 0}
+        />
       ))}
     </ul>
   );
 }
 
-function ShowcaseTagList() {
-  // Separate tag groups
-  const languageTags = LanguageTagList;
-  const categoryTags = TagList.filter((t) => !languageTags.includes(t));
-
-  // Existing truncation logic applies only to category tags (usually larger set)
+function ShowcaseTagList({
+  showExtraFilters,
+  extraFiltersId,
+}: {
+  showExtraFilters: boolean;
+  extraFiltersId: string;
+}) {
+  const allTags = useMemo(
+    () => [...new Set([...DEFAULT_VISIBLE_FILTERS, ...TagList])],
+    [],
+  );
   const usersForCounts = useUsersForCounts();
   const tagCounts = useMemo(() => {
     const map: Record<string, number> = {};
-    for (const tag of categoryTags) map[tag] = 0;
+    for (const tag of allTags) map[tag] = 0;
     for (const u of usersForCounts) {
       for (const t of u.tags ?? []) {
         if (map[t] !== undefined) map[t] += 1;
       }
     }
-    return map as Record<TagType, number>;
-  }, [usersForCounts, categoryTags]);
+    return map;
+  }, [usersForCounts, allTags]);
   (ShowcaseTagList as any).tagCounts = tagCounts;
-  const [expanded, setExpanded] = useState(false);
-  const VISIBLE_COUNT = 8;
-  const TOP_TAGS: TagType[] = [
-    'education',
-    'game',
-    'ai',
-    'accessibility',
-    'multiplayer',
-    'ml',
-    'web',
-    'hardware',
-  ];
-  const orderedCategoryTags = useMemo(() => {
-    // Exclude zero-count tags first (unless that would remove all tags)
-    const nonZero = categoryTags.filter(t => (tagCounts[t] ?? 0) > 0);
-    const base = nonZero.length > 0 ? nonZero : categoryTags;
+
+  const orderedTags = useMemo(() => {
+    const nonZero = allTags.filter((tag) => (tagCounts[tag] ?? 0) > 0);
+    const base = nonZero.length > 0 ? nonZero : allTags;
     return [...base].sort((a, b) => {
       const ca = tagCounts[a] ?? 0;
       const cb = tagCounts[b] ?? 0;
       if (cb !== ca) return cb - ca;
-      const ia = TOP_TAGS.indexOf(a);
-      const ib = TOP_TAGS.indexOf(b);
-      if (ia !== -1 || ib !== -1) {
-        if (ia === -1) return 1;
-        if (ib === -1) return -1;
-        return ia - ib;
-      }
       return a.localeCompare(b);
     });
-  }, [tagCounts, categoryTags]);
+  }, [allTags, tagCounts]);
 
-  const total = orderedCategoryTags.length;
-  const shouldTruncate = total > VISIBLE_COUNT && !expanded;
-  const visibleCategoryTags = shouldTruncate ? orderedCategoryTags.slice(0, VISIBLE_COUNT) : orderedCategoryTags;
-  const moreCount = Math.max(0, total - VISIBLE_COUNT);
-  const moreLabel = translate({
-    id: 'showcase.filters.showMore',
-    message: `Show ${moreCount} more`,
-    values: {count: moreCount},
-  });
-  const lessLabel = translate({id: 'showcase.filters.showLess', message: 'Show less'});
+  const visibleTags = useMemo(() => {
+    const curated = DEFAULT_VISIBLE_FILTERS.filter((tag) =>
+      orderedTags.includes(tag),
+    );
+    const extras = orderedTags.filter((tag) => !curated.includes(tag));
+    const visible = [...curated];
+    for (const tag of extras) {
+      if (visible.length >= 12) {
+        break;
+      }
+      visible.push(tag);
+    }
+    return visible;
+  }, [orderedTags]);
+
+  const extraTags = useMemo(
+    () => orderedTags.filter((tag) => !visibleTags.includes(tag)),
+    [orderedTags, visibleTags],
+  );
 
   return (
     <div>
-      <GenericTagList id="showcase-language-tags" tags={languageTags} />
-      {/*<Heading as="h3" style={{marginTop: '2rem'}}>Topics & Categories</Heading>*/}
-      <ul id="showcase-more-tags" className={clsx('clean-list', styles.tagList)}>
-        {visibleCategoryTags.map((tag) => {
-          return <ShowcaseTagListItem key={tag} tag={tag} />;
-        })}
-      </ul>
-      {total > VISIBLE_COUNT && (
-        <div className={styles.showMoreRow}>
-          <button
-            className={styles.showMoreButton}
-            onClick={() => setExpanded((v) => !v)}
-            aria-expanded={expanded}
-            aria-controls="showcase-more-tags"
-          >
-            {expanded ? lessLabel : moreLabel}
-          </button>
-        </div>
-      )}
+      <GenericTagList id="showcase-primary-tags" tags={visibleTags} />
+      <div
+        id={extraFiltersId}
+        className={clsx(styles.extraFilters, !showExtraFilters && styles.extraFiltersHidden)}
+        hidden={!showExtraFilters}>
+        {extraTags.length > 0 && (
+          <GenericTagList id="showcase-extra-tags" tags={extraTags} />
+        )}
+      </div>
     </div>
   );
 }
@@ -211,12 +192,7 @@ function HeadingText() {
 }
 
 function HeadingButtons() {
-  return (
-    <div className={styles.headingButtons} style={{alignItems: 'center'}}>
-      <OperatorButton />
-      <ClearAllButton />
-    </div>
-  );
+  return null;
 }
 
 function GlossaryShortcut() {
@@ -338,13 +314,46 @@ function HeadingRow() {
 }
 
 export default function ShowcaseFilters(): ReactNode {
+  const [showExtraFilters, setShowExtraFilters] = useState(false);
+  const extraFiltersId = 'showcase-extra-filters';
+  const showMoreFiltersLabel = translate({
+    id: 'showcase.filters.showAdvanced',
+    message: 'Show all filters',
+  });
+  const hideMoreFiltersLabel = translate({
+    id: 'showcase.filters.hideAdvanced',
+    message: 'Hide extra filters',
+  });
+
   return (
     <section className={`container ${styles.filtersSection}`}>
       <HeadingRow />
-      <CohortFilters />
-      <ShowcaseTagList />
-      <div className={styles.filterFooter}>
-        <GlossaryShortcut />
+      <div className={styles.filtersShell}>
+        <CohortFilters />
+        <div className={styles.primaryControls}>
+          <div className={styles.searchRow}>
+            <ShowcaseSearchBar />
+          </div>
+          <div className={styles.controlButtons}>
+            <OperatorButton />
+            <ClearAllButton />
+          </div>
+        </div>
+        <ShowcaseTagList
+          showExtraFilters={showExtraFilters}
+          extraFiltersId={extraFiltersId}
+        />
+        <div className={styles.filterFooter}>
+          <button
+            type="button"
+            className={styles.advancedToggleButton}
+            aria-expanded={showExtraFilters}
+            aria-controls={extraFiltersId}
+            onClick={() => setShowExtraFilters((value) => !value)}>
+            {showExtraFilters ? hideMoreFiltersLabel : showMoreFiltersLabel}
+          </button>
+          <GlossaryShortcut />
+        </div>
       </div>
     </section>
   );

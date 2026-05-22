@@ -33,18 +33,12 @@
 }
 
 .description {
-  max-width: 760px;
+  max-width: 680px;
   margin: 0 auto;
   color: var(--ifm-color-emphasis-700);
   font-size: 1.05rem;
   line-height: 1.68;
   text-wrap: pretty;
-}
-
-.searchRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 996px) {
@@ -67,9 +61,5 @@
 
   .description {
     font-size: 1rem;
-  }
-
-  .searchRow {
-    margin-bottom: 1.25rem;
   }
 }
