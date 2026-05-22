@@ -5,6 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+.filtersSection {
+  margin: 0 auto 1.25rem;
+}
+
 .headingRow {
   display: flex;
   align-items: center;
@@ -185,6 +189,10 @@
 }
 
 @media (max-width: 768px) {
+  .filtersSection {
+    margin-bottom: 1rem;
+  }
+
   .headingRow {
     align-items: flex-start;
     flex-direction: column;
