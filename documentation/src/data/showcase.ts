@@ -298,35 +298,15 @@ type ProjectOverviewEntry = {
 const rawProjects: Project[] = require('./showcaseProjects');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const showcaseProjectHelpers = require('./showcaseProjectHelpers');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {enrichedProjects} = require('./showcaseEnrichment') as {
+  enrichedProjects: Project[];
+};
 
 export const projects: Project[] = rawProjects;
 
-// Import generated language mapping (slug -> language tag array)
-// This file is produced at build time by scripts/fetch-showcase-languages.js
-// Using require to avoid TS2732 without resolveJsonModule
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const languagesMapping: Record<string, string[]> = require('./showcaseLanguages.json');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const categoryHints: Record<string, string[]> = require('./showcaseCategoryHints.json');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const systemOverviewMapping: Record<string, ProjectOverviewEntry> = require('./showcaseSystemOverviews.json');
-
-function mergeLanguageTags(proj: Project): Project {
-  try {
-    const langs: string[] | undefined = (languagesMapping as any)[proj.slug ?? ''];
-    const cats: string[] | undefined = (categoryHints as any)[proj.slug ?? ''];
-    const addable = (arr?: string[]) => Array.isArray(arr) ? arr.map((l) => l.toLowerCase()).filter((l) => (Tags as any)[l]) : [];
-    const validLangTags = addable(langs);
-    const validCatTags = addable(cats);
-    if (validLangTags.length === 0 && validCatTags.length === 0) return proj;
-    const merged = Array.from(new Set([...(proj.tags || []), ...validLangTags, ...validCatTags]));
-    return { ...proj, tags: merged };
-  } catch (e) {
-    return proj;
-  }
-}
-
-const enrichedProjects: Project[] = projects.map(mergeLanguageTags);
 
 // Provide backward-compatible exports used by older components (names like `sortedUsers`).
 export const sortedUsers = enrichedProjects;

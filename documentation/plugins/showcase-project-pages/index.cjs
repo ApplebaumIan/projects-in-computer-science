@@ -1,4 +1,4 @@
-const projects = require('../../src/data/showcaseProjects');
+const {enrichedProjects: projects} = require('../../src/data/showcaseEnrichment');
 const {
   getProjectDetailPath,
   getProjectSlug,
