@@ -334,8 +334,10 @@ export default function ShowcaseFilters(): ReactNode {
           <div className={styles.searchRow}>
             <ShowcaseSearchBar />
           </div>
-          <div className={styles.controlButtons}>
+          <div className={styles.logicControl}>
             <OperatorButton />
+          </div>
+          <div className={styles.clearControl}>
             <ClearAllButton />
           </div>
         </div>
@@ -350,7 +352,12 @@ export default function ShowcaseFilters(): ReactNode {
             aria-expanded={showExtraFilters}
             aria-controls={extraFiltersId}
             onClick={() => setShowExtraFilters((value) => !value)}>
-            {showExtraFilters ? hideMoreFiltersLabel : showMoreFiltersLabel}
+            <span className={styles.advancedToggleContent}>
+              <span className={styles.advancedToggleIcon} aria-hidden="true">
+                {showExtraFilters ? '▴' : '▾'}
+              </span>
+              <span>{showExtraFilters ? hideMoreFiltersLabel : showMoreFiltersLabel}</span>
+            </span>
           </button>
           <GlossaryShortcut />
         </div>
