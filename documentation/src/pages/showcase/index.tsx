@@ -9,6 +9,7 @@ import React, {useEffect} from 'react';
 import {translate} from '@docusaurus/Translate';
 
 import Head from '@docusaurus/Head';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import {resolveLegacyShowcaseRedirect} from '@site/src/data/showcase';
 
@@ -32,6 +33,16 @@ const SEO_DESCRIPTION = translate({
     'Explore Temple University CIS4398 senior capstone projects in AI, accessibility, robotics, embedded systems, gaming, edtech, and software engineering.',
 });
 
+function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
+  return new URL(path.replace(/^\//, ''), `${siteUrl}${baseUrl}`).toString();
+}
+
+function buildShareImageUrl(targetUrl: string) {
+  return `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
+    targetUrl,
+  )}/showcase/_764234242`;
+}
+
 function ShowcaseHeader() {
   return (
     <section className={`text--center ${styles.heroSection}`}>
@@ -53,6 +64,14 @@ function ShowcaseHeader() {
 }
 
 export default function Showcase(): ReactNode {
+  const {siteConfig} = useDocusaurusContext();
+  const canonicalUrl = buildAbsoluteUrl(
+    siteConfig.url,
+    siteConfig.baseUrl,
+    '/showcase',
+  );
+  const shareImage = buildShareImageUrl(canonicalUrl);
+
   useEffect(() => {
     const redirectTarget = resolveLegacyShowcaseRedirect({
       pathname: window.location.pathname,
@@ -109,7 +128,15 @@ export default function Showcase(): ReactNode {
     <Layout description={SEO_DESCRIPTION}>
       <Head>
         <title>{SEO_TITLE}</title>
+        <link rel="canonical" href={canonicalUrl} />
+        <meta name="description" content={SEO_DESCRIPTION} />
         <meta property="og:title" content={SEO_TITLE} />
+        <meta property="og:description" content={SEO_DESCRIPTION} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={shareImage} />
+        <meta name="twitter:title" content={SEO_TITLE} />
+        <meta name="twitter:description" content={SEO_DESCRIPTION} />
+        <meta name="twitter:image" content={shareImage} />
       </Head>
       <main className={styles.page}>
         <ShowcaseHeader />
