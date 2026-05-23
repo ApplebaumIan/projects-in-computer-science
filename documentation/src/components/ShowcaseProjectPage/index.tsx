@@ -36,6 +36,12 @@ function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
   return new URL(path.replace(/^\//, ''), `${siteUrl}${baseUrl}`).toString();
 }
 
+function buildShareImageUrl(targetUrl: string) {
+  return `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
+    targetUrl,
+  )}/showcase/_764234242`;
+}
+
 function TagChip({tag}: {tag: string}) {
   const glossary = getGlossaryTagMetadata(tag);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -476,7 +482,7 @@ export default function ShowcaseProjectPage({
   };
   const ogImage =
     getProjectImage(project) ||
-    buildAbsoluteUrl(siteConfig.url, siteConfig.baseUrl, 'img/Dont_Panic.png');
+    buildShareImageUrl(canonicalUrl);
 
   useEffect(() => {
     if (routeSlug && canonicalSlug && routeSlug !== canonicalSlug) {
@@ -496,6 +502,9 @@ export default function ShowcaseProjectPage({
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={ogImage} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
