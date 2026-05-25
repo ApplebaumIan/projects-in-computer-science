@@ -13,8 +13,6 @@ import styles from './carousel.module.css';
 
 const ROTATE_MS = 18000;
 const HERO_TITLE = 'Senior Capstone Projects Showcase';
-const HERO_SUBTITLE =
-  'Explore student-built computer science projects in AI, accessibility, robotics, embedded systems, multiplayer gaming, education technology, and software engineering.';
 
 function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
   return new URL(path.replace(/^\//, ''), `${siteUrl}${baseUrl}`).toString();
@@ -56,12 +54,17 @@ function getCarouselProjects(projects: Project[]) {
     .sort((left, right) => (right.semester || '').localeCompare(left.semester || ''));
 }
 
-function truncateDescription(description: string, max = 340) {
-  if (description.length <= max) {
-    return description;
-  }
+function buildProjectSubtitle(project: Project) {
+  const tags = Array.from(new Set((project.tags || []).filter(Boolean)));
 
-  return `${description.slice(0, max).trimEnd()}...`;
+  return tags
+    .slice(0, 3)
+    .map((tag) =>
+      String(tag)
+        .replace(/[-_]+/g, ' ')
+        .replace(/\b\w/g, (char) => char.toUpperCase()),
+    )
+    .join(' • ');
 }
 
 export default function ShowcaseCarousel() {
@@ -155,7 +158,6 @@ export default function ShowcaseCarousel() {
             <div className={styles.brandBlock}>
               <p className={styles.eyebrow}>Temple University · CIS4398</p>
               <h1 className={styles.title}>{HERO_TITLE}</h1>
-              <p className={styles.subtitle}>{HERO_SUBTITLE}</p>
             </div>
             <div className={styles.controls}>
               <span className={styles.statusPill}>
@@ -189,31 +191,35 @@ export default function ShowcaseCarousel() {
 
           <div className={styles.contentGrid}>
             <section className={styles.videoPanel}>
-              {embedUrl ? (
-                <iframe
-                  key={embedUrl}
-                  className={styles.videoFrame}
-                  src={embedUrl}
-                  title={`${activeProject.title} demo video`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              ) : (
-                <div className={styles.videoPlaceholder}>
-                  {previewImage ? (
-                    <img
-                      className={styles.placeholderImage}
-                      src={previewImage}
-                      alt={`${activeProject.title} preview`}
+              <div className={styles.videoStage}>
+                <div className={styles.videoSurface}>
+                  {embedUrl ? (
+                    <iframe
+                      key={embedUrl}
+                      className={styles.videoFrame}
+                      src={embedUrl}
+                      title={`${activeProject.title} demo video`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
                     />
-                  ) : null}
-                  <div className={styles.placeholderOverlay}>
-                    <p className={styles.placeholderNote}>
-                      Demo video embed not available for this project yet. The QR code still opens the showcase page so visitors can explore the project details.
-                    </p>
-                  </div>
+                  ) : (
+                    <div className={styles.videoPlaceholder}>
+                      {previewImage ? (
+                        <img
+                          className={styles.placeholderImage}
+                          src={previewImage}
+                          alt={`${activeProject.title} preview`}
+                        />
+                      ) : null}
+                      <div className={styles.placeholderOverlay}>
+                        <p className={styles.placeholderNote}>
+                          Scan for project details
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </section>
 
             <aside className={styles.infoPanel}>
@@ -223,9 +229,11 @@ export default function ShowcaseCarousel() {
                     {activeProject.semester || 'Showcase project'}
                   </p>
                   <h2 className={styles.projectTitle}>{activeProject.title}</h2>
-                  <p className={styles.projectDescription}>
-                    {truncateDescription(activeProject.description)}
-                  </p>
+                  {buildProjectSubtitle(activeProject) ? (
+                    <p className={styles.projectDescription}>
+                      {buildProjectSubtitle(activeProject)}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className={styles.qrSection}>
@@ -235,7 +243,7 @@ export default function ShowcaseCarousel() {
                     alt={`QR code for ${activeProject.title} showcase page`}
                   />
                   <p className={styles.qrCaption}>
-                    Scan to open this project&apos;s showcase page on a phone or tablet.
+                    Scan for details
                   </p>
                   <div className={styles.linkList}>
                     <a
@@ -243,7 +251,7 @@ export default function ShowcaseCarousel() {
                       href={showcaseUrl}
                       target="_blank"
                       rel="noreferrer">
-                      Open showcase page
+                      Showcase
                     </a>
                     {activeProject.website ? (
                       <a
@@ -251,7 +259,7 @@ export default function ShowcaseCarousel() {
                         href={activeProject.website}
                         target="_blank"
                         rel="noreferrer">
-                        Open live project
+                        Live
                       </a>
                     ) : null}
                   </div>
@@ -260,7 +268,6 @@ export default function ShowcaseCarousel() {
 
               {previewImage ? (
                 <div className={styles.thumbCard}>
-                  <p className={styles.thumbLabel}>Docusaurus showcase thumbnail</p>
                   <img
                     className={styles.thumbImage}
                     src={previewImage}
