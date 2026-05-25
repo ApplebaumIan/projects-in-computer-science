@@ -7,6 +7,7 @@
 import type {ReactNode} from 'react';
 import React, {useEffect} from 'react';
 import {translate} from '@docusaurus/Translate';
+import Link from '@docusaurus/Link';
 
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -58,6 +59,11 @@ function ShowcaseHeader() {
           </span>
         </h1>
         <p className={styles.description}>{HERO_SUBTITLE}</p>
+        <div className={styles.heroActions}>
+          <Link className="button button--primary button--lg" to="/showcase/carousel">
+            Open Event Carousel
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -99,6 +99,12 @@
   text-wrap: pretty;
 }
 
+.heroActions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.45rem;
+}
+
 @media (max-width: 996px) {
   .page {
     padding: 1.25rem 0 2rem;
