@@ -266,32 +266,52 @@ export default function ShowcaseCarousel() {
                 </div>
               </div>
               <div className={styles.videoControls}>
-                <span className={styles.statusPill}>
-                  {activeIndex + 1} / {projects.length}
-                </span>
-                <button
-                  type="button"
-                  className={styles.controlButton}
-                  onClick={() =>
-                    setActiveIndex((current) => (current - 1 + projects.length) % projects.length)
-                  }>
-                  Previous
-                </button>
-                <button
-                  type="button"
-                  className={styles.controlButton}
-                  onClick={() => setIsPaused((current) => !current)}>
-                  {isPaused ? 'Resume rotation' : 'Pause rotation'}
-                </button>
-                <button
-                  type="button"
-                  className={styles.controlButton}
-                  onClick={() => setActiveIndex((current) => (current + 1) % projects.length)}>
-                  Next
-                </button>
-                <Link className={styles.linkButton} to="/showcase">
-                  Back to showcase
-                </Link>
+                <div className={styles.statusControls}>
+                  <span className={styles.statusPill}>
+                    {activeIndex + 1} / {projects.length}
+                  </span>
+                </div>
+                <div className={styles.primaryControls}>
+                  <button
+                    type="button"
+                    className={styles.controlButton}
+                    onClick={() =>
+                      setActiveIndex((current) => (current - 1 + projects.length) % projects.length)
+                    }>
+                    <span className={styles.controlIcon} aria-hidden="true">
+                      ◀
+                    </span>
+                    <span>Previous</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={clsx(styles.controlButton, styles.pauseButton)}
+                    onClick={() => setIsPaused((current) => !current)}>
+                    <span
+                      className={clsx(styles.controlIcon, styles.pauseIcon)}
+                      aria-hidden="true">
+                      {isPaused ? '▶' : '⏸'}
+                    </span>
+                    <span>{isPaused ? 'Resume' : 'Pause'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.controlButton}
+                    onClick={() => setActiveIndex((current) => (current + 1) % projects.length)}>
+                    <span>Next</span>
+                    <span className={styles.controlIcon} aria-hidden="true">
+                      ▶
+                    </span>
+                  </button>
+                </div>
+                <div className={styles.secondaryControls}>
+                  <Link className={styles.utilityButton} to="/showcase" aria-label="Back to showcase">
+                    <span className={styles.controlIcon} aria-hidden="true">
+                      ↗
+                    </span>
+                    <span>Showcase grid</span>
+                  </Link>
+                </div>
               </div>
             </section>
 
@@ -328,7 +348,7 @@ export default function ShowcaseCarousel() {
                       href={showcaseUrl}
                       target="_blank"
                       rel="noreferrer">
-                      Showcase
+                      See project
                     </a>
                     {activeProject.website ? (
                       <a
@@ -336,7 +356,7 @@ export default function ShowcaseCarousel() {
                         href={activeProject.website}
                         target="_blank"
                         rel="noreferrer">
-                        Live
+                        Try demo
                       </a>
                     ) : null}
                   </div>

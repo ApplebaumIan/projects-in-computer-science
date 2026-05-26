@@ -98,13 +98,33 @@
 }
 
 .videoControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 18%, transparent);
+}
+
+.statusControls,
+.primaryControls,
+.secondaryControls {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+}
+
+.statusControls {
   justify-content: flex-start;
-  padding: 0 1rem 1rem;
-  border-top: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 18%, transparent);
+}
+
+.primaryControls {
+  justify-content: center;
+}
+
+.secondaryControls {
+  justify-content: flex-end;
 }
 
 .statusPill {
@@ -126,10 +146,42 @@
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   transition:
     transform 160ms ease,
     background 160ms ease,
     border-color 160ms ease;
+}
+
+.controlButton {
+  min-width: 7.1rem;
+}
+
+.pauseButton {
+  min-width: 8.25rem;
+}
+
+.utilityButton {
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 20%, transparent);
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+  color: var(--ifm-color-primary-dark);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
 .controlButton:hover,
@@ -140,6 +192,28 @@
   background: color-mix(in srgb, var(--ifm-background-surface-color) 82%, var(--ifm-color-primary) 18%);
   border-color: color-mix(in srgb, var(--ifm-color-primary) 44%, transparent);
   color: var(--ifm-font-color-base);
+}
+
+.utilityButton:hover,
+.utilityButton:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--ifm-color-primary) 16%, transparent);
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 38%, transparent);
+  color: var(--ifm-color-primary-darkest);
+}
+
+.controlIcon {
+  font-size: 1.35em;
+  line-height: 1;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1em;
+}
+
+.pauseIcon {
+  font-size: 1.65em;
 }
 
 .contentGrid {
@@ -292,12 +366,13 @@
 
 .thumbCard {
   display: grid;
-  align-content: start;
+  align-content: stretch;
   gap: 0.65rem;
   padding: 0.8rem;
   border-radius: 1.25rem;
   border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 20%, transparent);
   background: color-mix(in srgb, var(--ifm-background-surface-color) 86%, transparent);
+  height: 100%;
   min-height: 0;
   overflow: hidden;
 }
@@ -312,7 +387,8 @@
 
 .thumbImage {
   width: 100%;
-  aspect-ratio: 16 / 8.2;
+  height: 100%;
+  aspect-ratio: auto;
   object-fit: cover;
   border-radius: 0.9rem;
   background: color-mix(in srgb, var(--ifm-background-color) 82%, var(--ifm-background-surface-color));
@@ -322,7 +398,7 @@
   display: grid;
   gap: 0.55rem;
   align-content: start;
-  flex: 0 0 200px;
+  flex: 0 0 180px;
 }
 
 .qrImage {
@@ -417,13 +493,17 @@
   }
 
   .videoControls {
+    display: flex;
     gap: 0.5rem;
     padding: 0 0.75rem 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .statusPill,
   .controlButton,
-  .linkButton {
+  .linkButton,
+  .utilityButton {
     font-size: 0.76rem;
     padding: 0.48rem 0.72rem;
   }
@@ -560,6 +640,13 @@
   }
 
   .videoControls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .statusControls,
+  .primaryControls,
+  .secondaryControls {
     width: 100%;
     justify-content: flex-start;
   }
