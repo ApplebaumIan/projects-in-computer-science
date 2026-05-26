@@ -1,4 +1,5 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useId, useMemo, useState} from 'react';
+import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -8,11 +9,82 @@ import showcaseProjects, {
   parseYoutubeUrl,
   type Project,
 } from '@site/src/data/showcase';
+import {getGlossaryTagMetadata} from '@site/src/data/showcaseGlossary';
+import projectPageStyles from '@site/src/components/ShowcaseProjectPage/styles.module.css';
 
 import styles from './carousel.module.css';
 
 const ROTATE_MS = 18000;
 const HERO_TITLE = 'Senior Capstone Projects Showcase';
+const MAX_VISIBLE_TAGS = 6;
+
+function TagChip({tag}: {tag: string}) {
+  const glossary = getGlossaryTagMetadata(tag);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const detailsId = useId();
+
+  return (
+    <li
+      className={clsx(
+        projectPageStyles.tagItem,
+        isExpanded && projectPageStyles.tagItemExpanded,
+      )}>
+      <button
+        type="button"
+        className={projectPageStyles.tag}
+        aria-expanded={isExpanded}
+        aria-controls={detailsId}
+        onClick={() => setIsExpanded((current) => !current)}>
+        <span
+          className={projectPageStyles.tagDot}
+          style={{backgroundColor: glossary.color}}
+        />
+        <span>{glossary.label}</span>
+      </button>
+      <div
+        id={detailsId}
+        className={projectPageStyles.tagDetails}
+        aria-hidden={!isExpanded}>
+        <div className={projectPageStyles.tagDetailsInner}>
+          <div className={projectPageStyles.tagDetailsHeader}>
+            <span
+              className={projectPageStyles.tagDot}
+              style={{backgroundColor: glossary.color}}
+            />
+            <span>{glossary.label}</span>
+          </div>
+          <p>{glossary.description}</p>
+          <a
+            href={glossary.wikiUrl}
+            target="_self"
+            rel="noopener noreferrer"
+            className={projectPageStyles.tagDetailsHint}
+            onClick={() => setIsExpanded(false)}>
+            Learn more
+          </a>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function ShowMoreTagChip({to}: {to: string}) {
+  return (
+    <li className={projectPageStyles.tagItem}>
+      <Link to={to} className={clsx(projectPageStyles.tag, styles.showMoreTagChip)}>
+        Show more
+      </Link>
+    </li>
+  );
+}
+
+function buildProjectSummary(description: string, max = 150) {
+  if (description.length <= max) {
+    return description;
+  }
+
+  return `${description.slice(0, max).trimEnd()}...`;
+}
 
 function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
   return new URL(path.replace(/^\//, ''), `${siteUrl}${baseUrl}`).toString();
@@ -52,19 +124,6 @@ function getCarouselProjects(projects: Project[]) {
   return projects
     .filter((project) => Boolean(project.demo || getProjectImage(project)))
     .sort((left, right) => (right.semester || '').localeCompare(left.semester || ''));
-}
-
-function buildProjectSubtitle(project: Project) {
-  const tags = Array.from(new Set((project.tags || []).filter(Boolean)));
-
-  return tags
-    .slice(0, 3)
-    .map((tag) =>
-      String(tag)
-        .replace(/[-_]+/g, ' ')
-        .replace(/\b\w/g, (char) => char.toUpperCase()),
-    )
-    .join(' • ');
 }
 
 export default function ShowcaseCarousel() {
@@ -145,6 +204,11 @@ export default function ShowcaseCarousel() {
   const qrCodeUrl = buildQrCodeUrl(showcaseUrl);
   const embedUrl = buildEmbedUrl(activeProject);
   const previewImage = getProjectImage(activeProject);
+  const visibleTags =
+    activeProject.tags.length > MAX_VISIBLE_TAGS
+      ? activeProject.tags.slice(0, MAX_VISIBLE_TAGS - 1)
+      : activeProject.tags;
+  const hasOverflowTags = activeProject.tags.length > MAX_VISIBLE_TAGS;
 
   return (
     <>
@@ -156,36 +220,17 @@ export default function ShowcaseCarousel() {
         <section className={styles.carouselShell}>
           <header className={styles.topBar}>
             <div className={styles.brandBlock}>
-              <p className={styles.eyebrow}>Temple University · CIS4398</p>
-              <h1 className={styles.title}>{HERO_TITLE}</h1>
-            </div>
-            <div className={styles.controls}>
-              <span className={styles.statusPill}>
-                {activeIndex + 1} / {projects.length}
-              </span>
-              <button
-                type="button"
-                className={styles.controlButton}
-                onClick={() =>
-                  setActiveIndex((current) => (current - 1 + projects.length) % projects.length)
-                }>
-                Previous
-              </button>
-              <button
-                type="button"
-                className={styles.controlButton}
-                onClick={() => setIsPaused((current) => !current)}>
-                {isPaused ? 'Resume rotation' : 'Pause rotation'}
-              </button>
-              <button
-                type="button"
-                className={styles.controlButton}
-                onClick={() => setActiveIndex((current) => (current + 1) % projects.length)}>
-                Next
-              </button>
-              <Link className={styles.linkButton} to="/showcase">
-                Back to showcase
-              </Link>
+              <div className={styles.brandHeader}>
+                <img
+                  className={styles.brandMark}
+                  src="/img/temple-logo-horizontal.svg"
+                  alt="Temple University"
+                />
+                <div className={styles.brandCopy}>
+                  <p className={styles.eyebrow}>Temple University · CIS4398</p>
+                  <h1 className={styles.title}>{HERO_TITLE}</h1>
+                </div>
+              </div>
             </div>
           </header>
 
@@ -220,6 +265,34 @@ export default function ShowcaseCarousel() {
                   )}
                 </div>
               </div>
+              <div className={styles.videoControls}>
+                <span className={styles.statusPill}>
+                  {activeIndex + 1} / {projects.length}
+                </span>
+                <button
+                  type="button"
+                  className={styles.controlButton}
+                  onClick={() =>
+                    setActiveIndex((current) => (current - 1 + projects.length) % projects.length)
+                  }>
+                  Previous
+                </button>
+                <button
+                  type="button"
+                  className={styles.controlButton}
+                  onClick={() => setIsPaused((current) => !current)}>
+                  {isPaused ? 'Resume rotation' : 'Pause rotation'}
+                </button>
+                <button
+                  type="button"
+                  className={styles.controlButton}
+                  onClick={() => setActiveIndex((current) => (current + 1) % projects.length)}>
+                  Next
+                </button>
+                <Link className={styles.linkButton} to="/showcase">
+                  Back to showcase
+                </Link>
+              </div>
             </section>
 
             <aside className={styles.infoPanel}>
@@ -229,11 +302,15 @@ export default function ShowcaseCarousel() {
                     {activeProject.semester || 'Showcase project'}
                   </p>
                   <h2 className={styles.projectTitle}>{activeProject.title}</h2>
-                  {buildProjectSubtitle(activeProject) ? (
-                    <p className={styles.projectDescription}>
-                      {buildProjectSubtitle(activeProject)}
-                    </p>
-                  ) : null}
+                  <p className={styles.projectSummary}>
+                    {buildProjectSummary(activeProject.description)}
+                  </p>
+                  <ul className={clsx(projectPageStyles.tagList, styles.projectTagList)}>
+                    {visibleTags.map((tag) => (
+                      <TagChip key={String(tag)} tag={String(tag)} />
+                    ))}
+                    {hasOverflowTags ? <ShowMoreTagChip to={projectPath} /> : null}
+                  </ul>
                 </div>
 
                 <div className={styles.qrSection}>
