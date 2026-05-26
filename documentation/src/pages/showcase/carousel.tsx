@@ -16,7 +16,7 @@ import styles from './carousel.module.css';
 
 const ROTATE_MS = 18000;
 const HERO_TITLE = 'Senior Capstone Projects Showcase';
-const MAX_VISIBLE_TAGS = 6;
+const MAX_VISIBLE_TAGS = 8;
 
 function TagChip({tag}: {tag: string}) {
   const glossary = getGlossaryTagMetadata(tag);
@@ -78,7 +78,7 @@ function ShowMoreTagChip({to}: {to: string}) {
   );
 }
 
-function buildProjectSummary(description: string, max = 150) {
+function buildProjectSummary(description: string, max = 220) {
   if (description.length <= max) {
     return description;
   }
@@ -111,6 +111,7 @@ function buildEmbedUrl(project: Project) {
     rel: '0',
     modestbranding: '1',
     playsinline: '1',
+    cc_load_policy: '1',
   });
 
   if (startTime) {
@@ -218,24 +219,23 @@ export default function ShowcaseCarousel() {
       </Head>
       <main className={styles.page}>
         <section className={styles.carouselShell}>
-          <header className={styles.topBar}>
-            <div className={styles.brandBlock}>
-              <div className={styles.brandHeader}>
-                <img
-                  className={styles.brandMark}
-                  src="/img/temple-logo-horizontal.svg"
-                  alt="Temple University"
-                />
-                <div className={styles.brandCopy}>
-                  <p className={styles.eyebrow}>Temple University · CIS4398</p>
-                  <h1 className={styles.title}>{HERO_TITLE}</h1>
-                </div>
-              </div>
-            </div>
-          </header>
-
           <div className={styles.contentGrid}>
             <section className={styles.videoPanel}>
+              <header className={styles.topBar}>
+                <div className={styles.brandBlock}>
+                  <div className={styles.brandHeader}>
+                    <img
+                      className={styles.brandMark}
+                      src="/img/temple-logo-horizontal.svg"
+                      alt="Temple University"
+                    />
+                    <div className={styles.brandCopy}>
+                      <p className={styles.eyebrow}>Temple University · CIS4398</p>
+                      <h1 className={styles.title}>{HERO_TITLE}</h1>
+                    </div>
+                  </div>
+                </div>
+              </header>
               <div className={styles.videoStage}>
                 <div className={styles.videoSurface}>
                   {embedUrl ? (

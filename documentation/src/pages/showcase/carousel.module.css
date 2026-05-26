@@ -44,8 +44,6 @@
 .carouselShell {
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
   overflow: hidden;
 }
 
@@ -157,7 +155,7 @@
   background: color-mix(in srgb, var(--ifm-background-surface-color) 84%, black);
   min-height: 0;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   overflow: hidden;
 }
 
@@ -224,7 +222,7 @@
 
 .infoPanel {
   display: grid;
-  grid-template-rows: auto auto minmax(0, auto);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 1rem;
   padding: 1.1rem;
   background: color-mix(in srgb, var(--ifm-background-surface-color) 78%, transparent);
@@ -276,7 +274,8 @@
   color: var(--ifm-color-emphasis-700);
   font-size: 1rem;
   line-height: 1.45;
-  max-width: 48ch;
+  max-width: none;
+  width: 100%;
 }
 
 .projectTagList {
@@ -293,6 +292,7 @@
 
 .thumbCard {
   display: grid;
+  align-content: start;
   gap: 0.65rem;
   padding: 0.8rem;
   border-radius: 1.25rem;
@@ -385,6 +385,122 @@
   border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 24%, transparent);
 }
 
+@media (max-width: 1280px) and (min-width: 1101px) {
+  .contentGrid {
+    grid-template-columns: minmax(0, 1.72fr) minmax(320px, 0.94fr);
+  }
+
+  .topBar {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .brandHeader {
+    gap: 0.7rem;
+  }
+
+  .brandMark {
+    width: 6.2rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .videoStage {
+    display: grid;
+    place-items: center;
+    padding: 0.75rem;
+  }
+
+  .videoControls {
+    gap: 0.5rem;
+    padding: 0 0.75rem 0.75rem;
+  }
+
+  .statusPill,
+  .controlButton,
+  .linkButton {
+    font-size: 0.76rem;
+    padding: 0.48rem 0.72rem;
+  }
+
+  .infoPanel {
+    gap: 0.75rem;
+    padding: 0.75rem;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .projectHero {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .projectMeta {
+    gap: 0.4rem;
+  }
+
+  .projectSemester {
+    font-size: 0.82rem;
+  }
+
+  .projectTitle {
+    font-size: clamp(1.3rem, 2.7vw, 2.25rem);
+    line-height: 0.96;
+  }
+
+  .projectSummary {
+    font-size: 0.9rem;
+    line-height: 1.32;
+  }
+
+  .projectTagList {
+    gap: 0.35rem;
+    margin-top: 0.1rem;
+  }
+
+  .qrSection {
+    width: 100%;
+    flex: none;
+    gap: 0.35rem 0.65rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .qrImage {
+    grid-row: 1 / span 2;
+    width: 104px;
+    padding: 0.4rem;
+    border-radius: 0.8rem;
+  }
+
+  .qrCaption {
+    font-size: 0.78rem;
+    line-height: 1.2;
+    align-self: end;
+  }
+
+  .linkList {
+    gap: 0.4rem;
+  }
+
+  .thumbCard {
+    height: 100%;
+    align-content: stretch;
+    padding: 0.5rem;
+  }
+
+  .thumbImage {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0.65rem;
+  }
+}
+
 @media (max-width: 1100px) {
   .page,
   .carouselShell {
@@ -399,6 +515,10 @@
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
+  }
+
+  .carouselShell {
+    display: block;
   }
 
   .videoStage {
