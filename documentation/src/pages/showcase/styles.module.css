@@ -66,10 +66,12 @@
 }
 
 .titleStar {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.66em;
   line-height: 1;
-  transform: translateY(-0.04em);
+  transform: translateY(0.01em);
 }
 
 [data-theme='dark'] .titleTrail {

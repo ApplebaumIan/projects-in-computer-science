@@ -220,6 +220,10 @@ const config = {
                 to: '/syllabus/projects/intro',
               },
               {
+                label: 'Showcase',
+                to: '/showcase',
+              },
+              {
                 label: 'Documentation',
                 to: '/docs/intro',
               },

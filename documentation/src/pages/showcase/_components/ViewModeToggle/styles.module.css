@@ -1,0 +1,91 @@
+.toggleShell {
+  position: fixed;
+  right: 1rem;
+  bottom: 5.25rem;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22rem;
+  padding: 0.22rem;
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 16%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 94%, white);
+  box-shadow: 0 16px 34px -28px color-mix(in srgb, var(--ifm-color-primary) 42%, transparent);
+  backdrop-filter: blur(16px);
+  transform: none;
+}
+
+.bottomRight {
+  right: 1rem;
+  bottom: 5.25rem;
+}
+
+.toggleButton {
+  width: 2.85rem;
+  height: 2.85rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-primary-dark);
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.toggleButton:hover,
+.toggleButton:focus-visible {
+  text-decoration: none;
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--ifm-color-primary) 10%, white);
+  color: var(--ifm-color-primary-darkest);
+}
+
+.toggleButtonActive {
+  background: color-mix(in srgb, var(--ifm-color-primary) 14%, white);
+  color: var(--ifm-color-primary-darkest);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ifm-color-primary) 18%, transparent),
+    0 8px 20px -18px color-mix(in srgb, var(--ifm-color-primary) 46%, transparent);
+}
+
+.toggleIcon {
+  width: 1.32rem;
+  height: 1.32rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.toggleButtonActive .toggleIcon {
+  stroke-width: 2.15;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 996px) {
+  .bottomRight {
+    right: 0.8rem;
+    bottom: 5rem;
+  }
+
+  .toggleButton {
+    width: 2.65rem;
+    height: 2.65rem;
+  }
+}

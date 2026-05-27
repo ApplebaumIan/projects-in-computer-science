@@ -1,0 +1,813 @@
+:global(html),
+:global(body),
+:global(#__docusaurus) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+:global(body[data-theme]) {
+  background: var(--ifm-background-color);
+}
+
+:global(.main-wrapper) {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  padding: 0 !important;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--ifm-color-primary) 18%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--ifm-background-color) 88%, black),
+      color-mix(in srgb, var(--ifm-background-color) 76%, var(--ifm-color-primary-darkest) 24%) 48%,
+      color-mix(in srgb, var(--ifm-background-color) 92%, black)
+    );
+  color: var(--ifm-font-color-base);
+}
+
+.carouselShell {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.85rem;
+  padding: 0.8rem 1.1rem;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 72%, transparent);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 28%, transparent);
+}
+
+.brandBlock {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brandMark {
+  width: clamp(7rem, 12vw, 10rem);
+  height: auto;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.brandCopy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.3vw, 2rem);
+  line-height: 1.02;
+}
+
+.videoControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 18%, transparent);
+}
+
+.statusControls,
+.primaryControls,
+.secondaryControls,
+.navSpacer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.statusControls {
+  justify-content: flex-start;
+}
+
+.primaryControls {
+  justify-content: center;
+}
+
+.secondaryControls {
+  justify-content: flex-end;
+}
+
+.navSpacer {
+  justify-content: flex-end;
+}
+
+.statusPill {
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 34%, transparent);
+  background: color-mix(in srgb, var(--ifm-color-primary) 14%, transparent);
+  color: color-mix(in srgb, var(--ifm-font-color-base) 92%, var(--ifm-color-primary));
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+}
+
+.controlButton,
+.linkButton {
+  border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 30%, transparent);
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 88%, transparent);
+  color: var(--ifm-font-color-base);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.controlButton {
+  min-width: 7.1rem;
+}
+
+.pauseButton {
+  min-width: 8.25rem;
+}
+
+.utilityButton {
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 20%, transparent);
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+  color: var(--ifm-color-primary-dark);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.controlButton:hover,
+.linkButton:hover,
+.controlButton:focus-visible,
+.linkButton:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 82%, var(--ifm-color-primary) 18%);
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 44%, transparent);
+  color: var(--ifm-font-color-base);
+}
+
+.utilityButton:hover,
+.utilityButton:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--ifm-color-primary) 16%, transparent);
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 38%, transparent);
+  color: var(--ifm-color-primary-darkest);
+}
+
+.controlIcon {
+  font-size: 1.35em;
+  line-height: 1;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1em;
+}
+
+.pauseIcon {
+  font-size: 1.65em;
+}
+
+.contentGrid {
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(320px, 0.95fr);
+  overflow: hidden;
+}
+
+.videoPanel {
+  position: relative;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 84%, black);
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+
+.videoStage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.videoSurface {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
+  background: color-mix(in srgb, black 82%, var(--ifm-background-surface-color));
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ifm-color-emphasis-400) 24%, transparent);
+}
+
+.videoFrame,
+.videoPlaceholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  display: block;
+}
+
+.videoPlaceholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05);
+}
+
+.placeholderOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, transparent 92%, var(--ifm-background-color)),
+    color-mix(in srgb, var(--ifm-background-color) 88%, transparent)
+  );
+  padding: 2rem;
+}
+
+.placeholderNote {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--ifm-font-color-base);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.infoPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  padding: 1.1rem;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 78%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 22%, transparent);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.projectHero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 0;
+}
+
+.projectMeta {
+  display: grid;
+  gap: 0.55rem;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.projectSemester {
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin: 0;
+  font-weight: 700;
+}
+
+.projectTitle {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.35vw, 3.85rem);
+  line-height: 0.94;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-inline-size: 100%;
+}
+
+.projectDescription {
+  margin: 0;
+}
+
+.projectSummary {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: none;
+  width: 100%;
+}
+
+.projectTagList {
+  margin: 0.2rem 0 0;
+  padding: 0;
+  gap: 0.45rem;
+  list-style: none;
+}
+
+.showMoreTagChip {
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+
+.thumbCard {
+  display: grid;
+  align-content: stretch;
+  gap: 0.65rem;
+  padding: 0.8rem;
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 20%, transparent);
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 86%, transparent);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.thumbLabel {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.74);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--ifm-background-color) 82%, var(--ifm-background-surface-color));
+}
+
+.qrSection {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  flex: 0 0 180px;
+}
+
+.qrImage {
+  width: min(100%, 180px);
+  aspect-ratio: 1;
+  border-radius: 1.2rem;
+  background: white;
+  padding: 0.65rem;
+}
+
+.qrCaption {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.35;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.linkList {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.progressRail {
+  position: relative;
+  height: 0.4rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ifm-color-emphasis-400) 26%, transparent);
+}
+
+.progressBar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--progress-width, 0%);
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary-light) 0%,
+    var(--ifm-color-primary) 55%,
+    var(--ifm-color-primary-dark) 100%
+  );
+  transition: width 220ms linear;
+}
+
+.emptyState {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.emptyCard {
+  max-width: 38rem;
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 24%, transparent);
+}
+
+@media (max-width: 1280px) and (min-width: 1101px) {
+  .contentGrid {
+    grid-template-columns: minmax(0, 1.72fr) minmax(320px, 0.94fr);
+  }
+
+  .topBar {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .brandHeader {
+    gap: 0.7rem;
+  }
+
+  .brandMark {
+    width: 6.2rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .videoStage {
+    display: grid;
+    place-items: center;
+    padding: 0.75rem;
+  }
+
+  .videoControls {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.75rem 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .statusPill,
+  .controlButton,
+  .linkButton,
+  .utilityButton {
+    font-size: 0.76rem;
+    padding: 0.48rem 0.72rem;
+  }
+
+  .infoPanel {
+    gap: 0.75rem;
+    padding: 0.75rem;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .projectHero {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .projectMeta {
+    gap: 0.4rem;
+  }
+
+  .projectSemester {
+    font-size: 0.82rem;
+  }
+
+  .projectTitle {
+    font-size: clamp(1.3rem, 2.7vw, 2.25rem);
+    line-height: 0.96;
+  }
+
+  .projectSummary {
+    font-size: 0.9rem;
+    line-height: 1.32;
+  }
+
+  .projectTagList {
+    gap: 0.35rem;
+    margin-top: 0.1rem;
+  }
+
+  .qrSection {
+    width: 100%;
+    flex: none;
+    gap: 0.35rem 0.65rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .qrImage {
+    grid-row: 1 / span 2;
+    width: 104px;
+    padding: 0.4rem;
+    border-radius: 0.8rem;
+  }
+
+  .qrCaption {
+    font-size: 0.78rem;
+    line-height: 1.2;
+    align-self: end;
+  }
+
+  .linkList {
+    gap: 0.4rem;
+  }
+
+  .thumbCard {
+    height: 100%;
+    align-content: stretch;
+    padding: 0.5rem;
+  }
+
+  .thumbImage {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0.65rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .page,
+  .carouselShell {
+    position: static;
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .carouselShell {
+    display: block;
+  }
+
+  .videoStage {
+    padding: 0;
+  }
+
+  .videoSurface {
+    border-radius: 0;
+  }
+
+  .infoPanel {
+    grid-template-columns: 1fr;
+    border-left: 0;
+    border-top: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 22%, transparent);
+    overflow: visible;
+  }
+
+  .projectHero {
+    flex-direction: column;
+  }
+
+  .progressRail {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    background: var(--ifm-background-color);
+  }
+
+  .carouselShell {
+    background: var(--ifm-background-color);
+  }
+
+  .topBar {
+    padding: 0.9rem 1rem 0.8rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brandHeader {
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .brandMark {
+    width: 5.8rem;
+  }
+
+  .brandCopy {
+    gap: 0.08rem;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .title {
+    font-size: 1.05rem;
+    line-height: 1.08;
+  }
+
+  .videoControls {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    padding: 0.8rem 0.9rem 0.9rem;
+    justify-content: center;
+  }
+
+  .statusControls,
+  .primaryControls,
+  .secondaryControls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .statusControls {
+    order: 2;
+  }
+
+  .primaryControls {
+    order: 1;
+    gap: 0.55rem;
+  }
+
+  .navSpacer {
+    display: none;
+  }
+
+  .statusPill {
+    padding: 0.42rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .controlButton {
+    min-width: 0;
+    width: 3.4rem;
+    height: 3.4rem;
+    padding: 0;
+    border-radius: 1rem;
+    gap: 0;
+  }
+
+  .pauseButton {
+    width: 4rem;
+  }
+
+  .controlButton span:last-child:not(.controlIcon),
+  .controlButton span:first-child:not(.controlIcon) {
+    display: none;
+  }
+
+  .controlIcon {
+    font-size: 1.65rem;
+  }
+
+  .pauseIcon {
+    font-size: 1.8rem;
+  }
+
+  .infoPanel {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.8rem;
+    padding: 1rem 1rem 0.9rem;
+    background: var(--ifm-background-surface-color);
+  }
+
+  .projectHero {
+    gap: 0.85rem;
+  }
+
+  .projectMeta {
+    gap: 0.45rem;
+  }
+
+  .projectTitle {
+    font-size: clamp(1.85rem, 11vw, 2.75rem);
+    line-height: 0.95;
+  }
+
+  .projectSemester {
+    font-size: 0.82rem;
+  }
+
+  .projectSummary {
+    font-size: 0.98rem;
+    line-height: 1.42;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .projectTagList,
+  .thumbCard,
+  .qrImage,
+  .qrCaption {
+    display: none;
+  }
+
+  .qrSection {
+    width: 100%;
+    flex-basis: auto;
+    gap: 0;
+  }
+
+  .linkList {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .linkButton {
+    min-height: 3rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .progressRail {
+    height: 0.34rem;
+  }
+
+  .videoStage {
+    padding: 0;
+  }
+
+  .videoSurface {
+    border-radius: 0;
+  }
+
+  .videoFrame,
+  .videoPlaceholder {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .placeholderOverlay {
+    padding: 1rem;
+  }
+
+  .placeholderNote {
+    font-size: 0.88rem;
+  }
+}

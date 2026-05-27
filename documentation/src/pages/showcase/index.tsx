@@ -16,6 +16,7 @@ import {resolveLegacyShowcaseRedirect} from '@site/src/data/showcase';
 import ShowcaseCards from './_components/ShowcaseCards';
 import ShowcaseFilters from './_components/ShowcaseFilters';
 import ShowcaseGlossary from './_components/ShowcaseGlossary';
+import ViewModeToggle from './_components/ViewModeToggle';
 import styles from './styles.module.css';
 
 const SEO_TITLE = translate({
@@ -139,6 +140,7 @@ export default function Showcase(): ReactNode {
         <meta name="twitter:image" content={shareImage} />
       </Head>
       <main className={styles.page}>
+        <ViewModeToggle activeView="grid" placement="bottomRight" />
         <ShowcaseHeader />
         <ShowcaseFilters />
         <ShowcaseCards />
