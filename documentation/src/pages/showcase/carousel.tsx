@@ -97,7 +97,7 @@ function buildQrCodeUrl(url: string) {
   )}`;
 }
 
-function buildEmbedUrl(project: Project) {
+function buildEmbedUrl(project: Project, isMuted: boolean) {
   const {videoId, startTime} = parseYoutubeUrl(project.demo);
   if (!videoId) {
     return null;
@@ -105,7 +105,7 @@ function buildEmbedUrl(project: Project) {
 
   const params = new URLSearchParams({
     autoplay: '1',
-    mute: '1',
+    mute: isMuted ? '1' : '0',
     controls: '0',
     loop: '1',
     playlist: videoId,
@@ -133,9 +133,14 @@ export default function ShowcaseCarousel() {
   const projects = useMemo(() => getCarouselProjects(showcaseProjects), []);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
 
   const activeProject = projects[activeIndex];
+
+  useEffect(() => {
+    setIsMuted(true);
+  }, [activeIndex]);
 
   useEffect(() => {
     if (projects.length <= 1 || isPaused) {
@@ -204,7 +209,7 @@ export default function ShowcaseCarousel() {
   const projectPath = getProjectDetailPath(activeProject);
   const showcaseUrl = buildAbsoluteUrl(siteConfig.url, siteConfig.baseUrl, projectPath);
   const qrCodeUrl = buildQrCodeUrl(showcaseUrl);
-  const embedUrl = buildEmbedUrl(activeProject);
+  const embedUrl = buildEmbedUrl(activeProject, isMuted);
   const previewImage = getProjectImage(activeProject);
   const visibleTags =
     activeProject.tags.length > MAX_VISIBLE_TAGS
@@ -296,6 +301,17 @@ export default function ShowcaseCarousel() {
                     </span>
                     <span>{isPaused ? 'Resume' : 'Pause'}</span>
                   </button>
+                  {embedUrl ? (
+                    <button
+                      type="button"
+                      className={styles.controlButton}
+                      onClick={() => setIsMuted((current) => !current)}>
+                      <span className={styles.controlIcon} aria-hidden="true">
+                        {isMuted ? '🔇' : '🔊'}
+                      </span>
+                      <span>{isMuted ? 'Unmute' : 'Mute'}</span>
+                    </button>
+                  ) : null}
                   <button
                     type="button"
                     className={styles.controlButton}
