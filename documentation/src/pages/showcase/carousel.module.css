@@ -630,50 +630,184 @@
 }
 
 @media (max-width: 720px) {
+  .page {
+    background: var(--ifm-background-color);
+  }
+
+  .carouselShell {
+    background: var(--ifm-background-color);
+  }
+
   .topBar {
-    align-items: flex-start;
-    flex-direction: column;
+    padding: 0.9rem 1rem 0.8rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .brandHeader {
-    align-items: flex-start;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   .brandMark {
-    width: 6.25rem;
+    width: 5.8rem;
+  }
+
+  .brandCopy {
+    gap: 0.08rem;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  .title {
+    font-size: 1.05rem;
+    line-height: 1.08;
   }
 
   .videoControls {
     width: 100%;
-    justify-content: flex-start;
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    padding: 0.8rem 0.9rem 0.9rem;
+    justify-content: center;
   }
 
   .statusControls,
   .primaryControls,
   .secondaryControls {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
+  }
+
+  .statusControls {
+    order: 2;
+  }
+
+  .primaryControls {
+    order: 1;
+    gap: 0.55rem;
+  }
+
+  .navSpacer {
+    display: none;
+  }
+
+  .statusPill {
+    padding: 0.42rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .controlButton {
+    min-width: 0;
+    width: 3.4rem;
+    height: 3.4rem;
+    padding: 0;
+    border-radius: 1rem;
+    gap: 0;
+  }
+
+  .pauseButton {
+    width: 4rem;
+  }
+
+  .controlButton span:last-child:not(.controlIcon),
+  .controlButton span:first-child:not(.controlIcon) {
+    display: none;
+  }
+
+  .controlIcon {
+    font-size: 1.65rem;
+  }
+
+  .pauseIcon {
+    font-size: 1.8rem;
   }
 
   .infoPanel {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.8rem;
+    padding: 1rem 1rem 0.9rem;
+    background: var(--ifm-background-surface-color);
   }
 
   .projectHero {
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
-  .qrSection {
-    flex-basis: auto;
-    width: 100%;
+  .projectMeta {
+    gap: 0.45rem;
   }
 
   .projectTitle {
-    font-size: clamp(2rem, 10vw, 3.1rem);
+    font-size: clamp(1.85rem, 11vw, 2.75rem);
+    line-height: 0.95;
+  }
+
+  .projectSemester {
+    font-size: 0.82rem;
+  }
+
+  .projectSummary {
+    font-size: 0.98rem;
+    line-height: 1.42;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .projectTagList,
+  .thumbCard,
+  .qrImage,
+  .qrCaption {
+    display: none;
+  }
+
+  .qrSection {
+    width: 100%;
+    flex-basis: auto;
+    gap: 0;
+  }
+
+  .linkList {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .linkButton {
+    min-height: 3rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .progressRail {
+    height: 0.34rem;
+  }
+
+  .videoStage {
+    padding: 0;
+  }
+
+  .videoSurface {
+    border-radius: 0;
   }
 
   .videoFrame,
   .videoPlaceholder {
-    min-height: 42vh;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .placeholderOverlay {
+    padding: 1rem;
+  }
+
+  .placeholderNote {
+    font-size: 0.88rem;
   }
 }
