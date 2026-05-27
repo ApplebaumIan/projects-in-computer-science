@@ -107,7 +107,8 @@
 
 .statusControls,
 .primaryControls,
-.secondaryControls {
+.secondaryControls,
+.navSpacer {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -123,6 +124,10 @@
 }
 
 .secondaryControls {
+  justify-content: flex-end;
+}
+
+.navSpacer {
   justify-content: flex-end;
 }
 

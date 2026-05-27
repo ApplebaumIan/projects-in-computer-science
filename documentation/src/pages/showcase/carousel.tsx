@@ -11,6 +11,7 @@ import showcaseProjects, {
 } from '@site/src/data/showcase';
 import {getGlossaryTagMetadata} from '@site/src/data/showcaseGlossary';
 import projectPageStyles from '@site/src/components/ShowcaseProjectPage/styles.module.css';
+import ViewModeToggle from './_components/ViewModeToggle';
 
 import styles from './carousel.module.css';
 
@@ -218,6 +219,7 @@ export default function ShowcaseCarousel() {
         <meta name="robots" content="noindex" />
       </Head>
       <main className={styles.page}>
+        <ViewModeToggle activeView="carousel" placement="bottomRight" />
         <section className={styles.carouselShell}>
           <div className={styles.contentGrid}>
             <section className={styles.videoPanel}>
@@ -304,14 +306,7 @@ export default function ShowcaseCarousel() {
                     </span>
                   </button>
                 </div>
-                <div className={styles.secondaryControls}>
-                  <Link className={styles.utilityButton} to="/showcase" aria-label="Back to showcase">
-                    <span className={styles.controlIcon} aria-hidden="true">
-                      ↗
-                    </span>
-                    <span>Showcase grid</span>
-                  </Link>
-                </div>
+                <div className={styles.navSpacer} aria-hidden="true" />
               </div>
             </section>
 
