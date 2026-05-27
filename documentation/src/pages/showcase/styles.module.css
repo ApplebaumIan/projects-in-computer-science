@@ -66,10 +66,12 @@
 }
 
 .titleStar {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.66em;
   line-height: 1;
-  transform: translateY(-0.04em);
+  transform: translateY(0.01em);
 }
 
 [data-theme='dark'] .titleTrail {
@@ -103,6 +105,36 @@
   display: flex;
   justify-content: center;
   margin-top: 0.45rem;
+}
+
+.carouselLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 90%, white);
+  color: var(--ifm-color-primary-dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.carouselLink:hover,
+.carouselLink:focus-visible {
+  text-decoration: none;
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--ifm-color-primary) 10%, white);
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 32%, transparent);
+  color: var(--ifm-color-primary-darkest);
 }
 
 @media (max-width: 996px) {

@@ -60,8 +60,8 @@ function ShowcaseHeader() {
         </h1>
         <p className={styles.description}>{HERO_SUBTITLE}</p>
         <div className={styles.heroActions}>
-          <Link className="button button--primary button--lg" to="/showcase/carousel">
-            Open Event Carousel
+          <Link className={styles.carouselLink} to="/showcase/carousel">
+            Event carousel
           </Link>
         </div>
       </div>
