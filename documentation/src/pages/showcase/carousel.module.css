@@ -461,6 +461,7 @@
   border-radius: 999px;
   overflow: hidden;
   background: color-mix(in srgb, var(--ifm-color-emphasis-400) 26%, transparent);
+  margin: 0 1rem 0.9rem;
 }
 
 .progressBar {
@@ -528,7 +529,7 @@
   .videoControls {
     display: flex;
     gap: 0.5rem;
-    padding: 0 0.75rem 0.75rem;
+    padding: 0 0.75rem 0.55rem;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -664,6 +665,7 @@
 
   .progressRail {
     grid-column: auto;
+    margin: 0 0.75rem 0.75rem;
   }
 }
 
@@ -831,6 +833,7 @@
 
   .progressRail {
     height: 0.34rem;
+    margin: 0 0.9rem 0.9rem;
   }
 
   .videoStage {
