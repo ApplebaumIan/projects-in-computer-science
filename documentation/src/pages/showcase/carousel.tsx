@@ -344,6 +344,11 @@ export default function ShowcaseCarousel() {
                 </div>
                 <div className={styles.navSpacer} aria-hidden="true" />
               </div>
+              <div
+                className={styles.progressRail}
+                style={{['--progress-width' as string]: `${progress * 100}%`}}>
+                <div className={styles.progressBar} />
+              </div>
             </section>
 
             <aside className={styles.infoPanel}>
@@ -429,11 +434,6 @@ export default function ShowcaseCarousel() {
                 </div>
               )}
 
-              <div
-                className={styles.progressRail}
-                style={{['--progress-width' as string]: `${progress * 100}%`}}>
-                <div className={styles.progressBar} />
-              </div>
             </aside>
           </div>
         </section>
