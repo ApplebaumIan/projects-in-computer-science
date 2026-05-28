@@ -14,6 +14,7 @@ import projectPageStyles from '@site/src/components/ShowcaseProjectPage/styles.m
 import ViewModeToggle from './_components/ViewModeToggle';
 
 import styles from './carousel.module.css';
+import Contributors from '@site/src/components/Contributors';
 
 const ROTATE_MS = 18000;
 const HERO_TITLE = 'Senior Capstone Projects Showcase';
@@ -216,6 +217,7 @@ export default function ShowcaseCarousel() {
       ? activeProject.tags.slice(0, MAX_VISIBLE_TAGS - 1)
       : activeProject.tags;
   const hasOverflowTags = activeProject.tags.length > MAX_VISIBLE_TAGS;
+  const projectMembers = activeProject.members?.filter(Boolean) ?? [];
 
   return (
     <>
@@ -373,6 +375,26 @@ export default function ShowcaseCarousel() {
                   </div>
                 </div>
               </div>
+
+              {(projectMembers.length > 0 || activeProject.source) ? (
+                <div className={styles.collaboratorsSection}>
+                  {projectMembers.length > 0 ? (
+                    <p className={styles.projectMembers}>
+                      <span className={styles.projectMembersLabel}>Students:</span>{' '}
+                      {projectMembers.join(', ')}
+                    </p>
+                  ) : null}
+                  {activeProject.source ? (
+                    <div className={styles.contributorsRail}>
+                      <Contributors
+                        key={activeProject.source}
+                        githubURL={activeProject.source}
+                        columns={10}
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
 
               {previewImage ? (
                 <div className={styles.thumbCard}>
