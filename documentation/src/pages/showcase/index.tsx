@@ -38,12 +38,6 @@ function buildAbsoluteUrl(siteUrl: string, baseUrl: string, path: string) {
   return new URL(path.replace(/^\//, ''), `${siteUrl}${baseUrl}`).toString();
 }
 
-function buildShareImageUrl(targetUrl: string) {
-  return `https://slorber-api-screenshot.netlify.app/${encodeURIComponent(
-    targetUrl,
-  )}/showcase/_764234242`;
-}
-
 function ShowcaseHeader() {
   return (
     <section className={`text--center ${styles.heroSection}`}>
@@ -71,7 +65,11 @@ export default function Showcase(): ReactNode {
     siteConfig.baseUrl,
     '/showcase',
   );
-  const shareImage = buildShareImageUrl(canonicalUrl);
+  const shareImage = buildAbsoluteUrl(
+    siteConfig.url,
+    siteConfig.baseUrl,
+    '/img/showcase-share-thumbnail.jpeg',
+  );
 
   useEffect(() => {
     const redirectTarget = resolveLegacyShowcaseRedirect({
@@ -135,6 +133,7 @@ export default function Showcase(): ReactNode {
         <meta property="og:description" content={SEO_DESCRIPTION} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={shareImage} />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={SEO_TITLE} />
         <meta name="twitter:description" content={SEO_DESCRIPTION} />
         <meta name="twitter:image" content={shareImage} />
