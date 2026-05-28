@@ -19,6 +19,8 @@ import Contributors from '@site/src/components/Contributors';
 const ROTATE_MS = 18000;
 const HERO_TITLE = 'Senior Capstone Projects Showcase';
 const MAX_VISIBLE_TAGS = 8;
+const CAROUSEL_DESCRIPTION =
+  'Event-mode rotating showcase for Temple University CIS4398 senior capstone projects.';
 
 function TagChip({tag}: {tag: string}) {
   const glossary = getGlossaryTagMetadata(tag);
@@ -209,6 +211,12 @@ export default function ShowcaseCarousel() {
 
   const projectPath = getProjectDetailPath(activeProject);
   const showcaseUrl = buildAbsoluteUrl(siteConfig.url, siteConfig.baseUrl, projectPath);
+  const carouselUrl = buildAbsoluteUrl(siteConfig.url, siteConfig.baseUrl, '/showcase/carousel');
+  const shareImage = buildAbsoluteUrl(
+    siteConfig.url,
+    siteConfig.baseUrl,
+    '/img/showcase-share-thumbnail.jpeg',
+  );
   const qrCodeUrl = buildQrCodeUrl(showcaseUrl);
   const embedUrl = buildEmbedUrl(activeProject, isMuted);
   const previewImage = getProjectImage(activeProject);
@@ -224,6 +232,16 @@ export default function ShowcaseCarousel() {
       <Head>
         <title>{`${activeProject.title} | Showcase Carousel`}</title>
         <meta name="robots" content="noindex" />
+        <link rel="canonical" href={carouselUrl} />
+        <meta name="description" content={CAROUSEL_DESCRIPTION} />
+        <meta property="og:title" content={`${activeProject.title} | Showcase Carousel`} />
+        <meta property="og:description" content={CAROUSEL_DESCRIPTION} />
+        <meta property="og:url" content={carouselUrl} />
+        <meta property="og:image" content={shareImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${activeProject.title} | Showcase Carousel`} />
+        <meta name="twitter:description" content={CAROUSEL_DESCRIPTION} />
+        <meta name="twitter:image" content={shareImage} />
       </Head>
       <main className={styles.page}>
         <ViewModeToggle activeView="carousel" placement="bottomRight" />
