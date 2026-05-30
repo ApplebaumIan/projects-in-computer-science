@@ -1,0 +1,196 @@
+.feedbackPrompt {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 0.85rem 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-300) 75%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--ifm-background-surface-color) 94%, var(--ifm-color-primary) 6%);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.feedbackMessage {
+  margin: 0;
+  color: var(--ifm-font-color-base);
+  font-size: 1rem;
+  line-height: 1.4;
+  padding-right: 2.25rem;
+}
+
+.feedbackActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.feedbackForm {
+  margin-top: 0.75rem;
+}
+
+.feedbackButton {
+  margin: 0;
+  box-shadow: none;
+}
+
+.feedbackEmojiButton {
+  position: relative;
+  min-width: 3rem;
+  padding: 0.5rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  overflow: visible;
+  border-color: color-mix(in srgb, var(--ifm-color-emphasis-300) 90%, transparent);
+  transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease;
+}
+
+.feedbackEmojiSymbol {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.feedbackEmojiLabel {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.45rem);
+  transform: translateX(-50%) translateY(0.2rem);
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  background: var(--ifm-font-color-base);
+  color: var(--ifm-background-color);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.feedbackEmojiButton:hover,
+.feedbackEmojiButton:focus-visible {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.feedbackEmojiButton:hover .feedbackEmojiLabel,
+.feedbackEmojiButton:focus-visible .feedbackEmojiLabel {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.feedbackEmojiPositive {
+  background: color-mix(in srgb, #22c55e 14%, var(--ifm-background-surface-color));
+  border-color: color-mix(in srgb, #22c55e 34%, var(--ifm-color-emphasis-300));
+  border-radius: 999px;
+}
+
+.feedbackEmojiNeutral {
+  background: color-mix(in srgb, #f59e0b 12%, var(--ifm-background-surface-color));
+  border-color: color-mix(in srgb, #f59e0b 30%, var(--ifm-color-emphasis-300));
+  border-radius: 0.9rem;
+  border-style: dashed;
+}
+
+.feedbackEmojiNegative {
+  background: color-mix(in srgb, #ef4444 12%, var(--ifm-background-surface-color));
+  border-color: color-mix(in srgb, #ef4444 30%, var(--ifm-color-emphasis-300));
+  border-radius: 0.6rem;
+  border-width: 2px;
+}
+
+.feedbackDismissCorner {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 0.9;
+  color: var(--ifm-font-color-base);
+  border-color: color-mix(in srgb, var(--ifm-color-emphasis-400) 90%, transparent);
+  font-weight: 700;
+  box-shadow: none;
+  border-radius: 999px;
+}
+
+.feedbackDismissCorner:hover,
+.feedbackDismissCorner:focus-visible {
+  color: var(--ifm-font-color-base);
+  border-color: var(--ifm-color-emphasis-500);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.feedbackTextarea {
+  display: block;
+  width: 100%;
+  min-height: 4.75rem;
+  margin-bottom: 0.6rem;
+  resize: vertical;
+}
+
+[data-theme='dark'] .feedbackPrompt {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(35, 38, 45, 0.96), rgba(28, 30, 36, 0.94));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+[data-theme='dark'] .feedbackEmojiButton,
+[data-theme='dark'] .feedbackDismissCorner {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='dark'] .feedbackEmojiPositive {
+  background: color-mix(in srgb, #22c55e 22%, rgba(255, 255, 255, 0.06));
+  border-color: color-mix(in srgb, #22c55e 36%, rgba(255, 255, 255, 0.14));
+}
+
+[data-theme='dark'] .feedbackEmojiNeutral {
+  background: color-mix(in srgb, #f59e0b 20%, rgba(255, 255, 255, 0.06));
+  border-color: color-mix(in srgb, #f59e0b 34%, rgba(255, 255, 255, 0.14));
+}
+
+[data-theme='dark'] .feedbackEmojiNegative {
+  background: color-mix(in srgb, #ef4444 20%, rgba(255, 255, 255, 0.06));
+  border-color: color-mix(in srgb, #ef4444 34%, rgba(255, 255, 255, 0.14));
+}
+
+[data-theme='dark'] .feedbackEmojiButton:hover,
+[data-theme='dark'] .feedbackEmojiButton:focus-visible,
+[data-theme='dark'] .feedbackDismissCorner:hover,
+[data-theme='dark'] .feedbackDismissCorner:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+[data-theme='dark'] .feedbackEmojiLabel {
+  background: rgba(248, 249, 250, 0.96);
+  color: #17191d;
+}
+
+[data-theme='dark'] .feedbackTextarea {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+@media screen and (max-width: 996px) {
+  .feedbackPrompt {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: calc(100vw - 1.5rem);
+  }
+}

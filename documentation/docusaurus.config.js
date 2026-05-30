@@ -356,7 +356,7 @@ const config = {
       src: "/js/userway.js",
       async: true
     },
-    ...main_template_jira_scripts().map(script => ({src: script, async: true}))
+    // ...main_template_jira_scripts().map(script => ({src: script, async: true}))
   ],
   future: {
       v4: true,
