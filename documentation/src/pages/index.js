@@ -10,15 +10,13 @@ import YouTubeVideoDescription from "../components/YouTubeVideoDescription";
 import Instructor from "../components/Instructor/Instructor";
 import ShowcaseCard from "@site/src/pages/showcase/_components/ShowcaseCard";
 import {demoLineupProjects, demoSections} from "@site/src/data/demoLineup";
+import {DiscordCommunity} from "../components/DiscordCommunity";
+
 const buttons = [
     { to: "#office-hours", label: "Student Office Hours ️👨‍🏫" },
     { to: "/syllabus/course-overview", label: "Course Syllabus 📋" },
     { to: "/syllabus/schedule", label: "Course Schedule 📆" },
 ];
-import Discord from "../../static/img/discord_logo.svg"
-import Figure from "../components/Figure";
-import Admonition from "@theme/Admonition";
-import { projectsCourseLabel } from "../config/courseIdentity";
 
 function SummerSun() {
   return (
@@ -170,59 +168,10 @@ export default function Home() {
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
                     {/*<DemoLineUp/>*/}
                     <Instructor/>
-                    <section className={styles.discordSection} aria-labelledby="discord-community">
-                        <div className={styles.discordHero}>
-                            <div className={styles.discordCopy}>
-                                <div className={styles.discordHeading}>
-                                    <div className={styles.discordLogoWrap} aria-hidden="true">
-                                        <Discord className={styles.discordLogo} />
-                                    </div>
-                                    <h2 id="discord-community">Discord Community</h2>
-                                </div>
-                                <p>
-                                    In this class, Discord will be the host for team communication as well as communication with
-                                    your instructors and peers.
-                                </p>
-                                <p>
-                                    You are free to conduct team meetings, have discussions about your projects, get advice, or
-                                    talk with your instructors using this platform. In addition, you may talk about your projects
-                                    and assignments with other students in all the sections of the {projectsCourseLabel}.
-                                </p>
-                            </div>
-                        </div>
-
-                        <Admonition type={"important"}>
-                            Please make sure that you change your nickname to your full name!
-                        </Admonition>
-
-                        <div className={styles.discordDetails}>
-                            <div className={styles.discordQrCard}>
-                                <Figure
-                                    src={"https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://discord.com/invite/97hbYEH5"}
-                                    caption={"Scan QR Code above to join Discord Server"}
-                                />
-                            </div>
-                            <div className={styles.discordWidgetCard}>
-                                <div className={styles.discordCta}>
-                                    <h3>Join the Discord</h3>
-                                    <p>
-                                        Get announcements, team updates, and fast help from instructors and classmates.
-                                    </p>
-                                    <a
-                                        className="button button--primary button--lg"
-                                        href="https://discord.com/invite/97hbYEH5"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        Join Discord
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
+                    {/*<DiscordCommunity/>*/}
                 </div>
-                <nav className="pagination-nav docusaurus-mt-lg" aria-label="Docs pages" style={{justifyContent: 'center', margin: '2rem 0'}}>
+                <nav className="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"
+                     style={{justifyContent: 'center', margin: '2rem 0'}}>
                     <Link className="pagination-nav__link pagination-nav__link--next" to="/syllabus/course-overview">
                         <div className="pagination-nav__sublabel">Continue Reading</div>
                         <div className="pagination-nav__label">Course Overview</div>
