@@ -11,6 +11,7 @@ import Instructor from "../components/Instructor/Instructor";
 import ShowcaseCard from "@site/src/pages/showcase/_components/ShowcaseCard";
 import {demoLineupProjects, demoSections} from "@site/src/data/demoLineup";
 import {DiscordCommunity} from "../components/DiscordCommunity";
+import TeachingAssistants from "../components/TeachingAssistants";
 
 const buttons = [
     { to: "#office-hours", label: "Student Office Hours ️👨‍🏫" },
@@ -168,6 +169,7 @@ export default function Home() {
                 <div style={{zIndex: 100000, marginLeft: "5%", marginRight: "5%"}}>
                     {/*<DemoLineUp/>*/}
                     <Instructor/>
+                    <TeachingAssistants/>
                     {/*<DiscordCommunity/>*/}
                 </div>
                 <nav className="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"
