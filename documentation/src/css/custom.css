@@ -451,6 +451,19 @@ main {
   margin: 0 auto;
 }
 
+.stakeholder-avatar {
+  align-items: center;
+  background: var(--ifm-color-emphasis-200);
+  border-radius: 50%;
+  color: var(--ifm-color-emphasis-800);
+  display: flex;
+  font-weight: bold;
+  height: 100px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100px;
+}
+
 /* Replace fragile multi-figcaption selectors with explicit class selectors.
    Use one <figcaption> per <figure>, and put the person name in an element
    with class="name" and the job/title in an element with class="job-title".
