@@ -315,7 +315,7 @@ const config = {
         // ... other options
         // Provide an editUrl so the plugin generates `editUrl` metadata for pages
         // TODO: Change this to main branch when live.
-        editUrl: 'https://github.com/Applebaumian/projects-in-computer-science/edit/staging/documentation/',
+        editUrl: 'https://github.com/Applebaumian/projects-in-computer-science/edit/main/documentation/',
       },
     ],
     [
