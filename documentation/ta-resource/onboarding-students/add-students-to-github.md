@@ -2,7 +2,15 @@
 sidebar_position: 1
 ---
 
-# GitHub Classroom for Onboarding
+# GitHub Classroom Onboarding
+
+:::danger 
+## GitHub Classroom Sunset Fall 2026
+[GitHub Classroom has sunset with **no replacement**](https://github.com/orgs/community/discussions/205975). TAs and Instructors should opt to manually create repositories for students and provide them with the repository links. This process is more manual but ensures that students can still access their projects and collaborate effectively.
+
+**This page remains as a historical reference for instructors and TAs who may have used GitHub Classroom in previous semesters. Please reach out to the course instructor for guidance on managing student projects without GitHub Classroom.**
+:::
+
 
 GitHub Classroom is a key tool in our capstone course, integrating seamlessly with GitHub to manage student projects. It simplifies assignment creation, distribution, and management.
 
@@ -18,4 +26,4 @@ This streamlined process ensures that all students start with a uniform foundati
 At the beginning of the semester, I will invite instructors and TAs who email me at [ian.tyler@temple.edu](mailto:ian.tyler@temple.edu) with the subject line `ADD-TO-COURSE-GITHUB`. This will provide access to all course GitHub features and assignments.
 
 ## GitHub Classroom Setup
-Every semester, I update [https://capstone.ianapplebaum.com/docs/intro](https://capstone.ianapplebaum.com/docs/intro) with a new GitHub Classroom link. This page contains all assignment details for students to join GitHub and set up Docusaurus.
+~~Every semester, I update [https://capstone.ianapplebaum.com/docs/intro](https://capstone.ianapplebaum.com/docs/intro) with a new GitHub Classroom link. This page contains all assignment details for students to join GitHub and set up Docusaurus.~~
