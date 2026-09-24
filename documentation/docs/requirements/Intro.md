@@ -1,6 +1,13 @@
 # Requirements Documentation
 
-Once you have setup the GitHub Repo, and submitted the *Team Git Repository Creation* assignment, you will be work on your Requirements Document located in the `documentation/docs/requirements/` directory. This document encapsulates everything that makes up your project. Features, use cases, functional and non-functional requirements. This is the very first design document of your project. It serves as a contract between your project team and the project stakeholders. The Requirements Specification defines the functional and non-functional requirements for the product. Those requirements will be verified as a measurement of the project success or failure.
+Once you have set up the GitHub Repo, and submitted the *Team Git Repository Creation* assignment, you will be work on your Requirements Document located in the `documentation/docs/requirements/` directory.
+:::important Add the Requirements Section
+Before you can start editing the template, you need to initialize it. 
+```shell
+yarn docs:add requirements
+```
+:::
+This document encapsulates everything that makes up your project. Features, use cases, functional and non-functional requirements. This is the very first design document of your project. It serves as a contract between your project team and the project stakeholders. The Requirements Specification defines the functional and non-functional requirements for the product. Those requirements will be verified as a measurement of the project success or failure.
 
 
 The requirements specification document must include the following sections:
